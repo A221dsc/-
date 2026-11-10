@@ -77,10 +77,14 @@ def phase_analysis(directory):
 
 
 def plot(directory, output):
-    profiles = json.loads((directory/"config.json").read_text())["profiles"]
+    labels = {
+        "reference":"70% hot\nclustered\n50% update","hot_0":"0% hot","hot_95":"95% hot",
+        "dist_uniform":"Uniform","dist_strong":"Strong\nclustering",
+        "update_10":"10% update","update_100":"100% update",
+    }
+    profiles = list(labels)
+    assert set(profiles) == set(json.loads((directory/"config.json").read_text())["profiles"])
     metrics = read_csv(directory/"metrics.csv")
-    labels = ["70% hot\nclustered\n50% update","0% hot","95% hot","Uniform",
-              "Strong\nclustering","10% update","100% update"]
     fig,(query,maintenance) = plt.subplots(2,1,figsize=(12,7),sharex=True,layout="constrained")
     width = .24
     palette = ["#22577A","#278F85","#B66233"]
@@ -94,7 +98,7 @@ def plot(directory, output):
         query.bar(x,latency,width,color=palette[i],label=f"S{i} {LABELS[i]}")
         maintenance.bar(x,coarse,width,color=palette[i],alpha=.38)
         maintenance.bar(x,local,width,bottom=coarse,color=palette[i])
-    maintenance.set_xticks(list(range(len(labels))),labels)
+    maintenance.set_xticks(list(range(len(labels))),list(labels.values()))
     query.set_ylabel("Query time (ms)")
     maintenance.set_ylabel("Update time (ms)")
     query.set_title("Query cost in the primary replay",loc="left")
@@ -121,6 +125,7 @@ def main():
     write_csv(args.output/"regional_cost_by_phase.csv",phases)
     json_file(args.output/"cold_region_maintenance.json",cold)
     plot(args.controlled_20k,args.output)
+    print(f"Saved {len(bins)} density/load bins, {len(phases)} profile-phase rows and cost figure")
 
 
 if __name__ == "__main__":
