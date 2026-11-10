@@ -34,7 +34,7 @@ std::size_t AdaptiveRegionalIndex::entity_count(unsigned region) const {
 
 std::unique_ptr<Index> AdaptiveRegionalIndex::build(unsigned r, Mode mode, const Region& bucket) {
     if (mode == Mode::Scan || bucket.ids.empty()) return {};
-    const auto begin = Clock::now();
+    const auto begin = profile_ ? Clock::now() : decltype(Clock::now()){};
     auto next = mode == Mode::FineGrid ? make_grid(fine_cell_)
                                        : make_quad(quad_capacity_,region_box(r));
     for (Id id : bucket.ids) next->set(id,objects_.at(id).point);
@@ -77,26 +77,26 @@ void AdaptiveRegionalIndex::detach(Region& bucket, const Record& record) {
 void AdaptiveRegionalIndex::maintain(unsigned r, Region& bucket, Id id, std::optional<Point> point) {
     if (profile_) ++stats_[r].object_updates;
     if (modes_[r] == Mode::Scan) return;
-    const auto begin = Clock::now();
+    const auto begin = profile_ ? Clock::now() : decltype(Clock::now()){};
     if (!bucket.auxiliary) bucket.auxiliary = build(r,modes_[r],bucket);
     else if (point) bucket.auxiliary->set(id,*point);
     else bucket.auxiliary->erase(id);
-    const auto elapsed = (Clock::now()-begin).count();
-    times_.local_ns += elapsed;
-    ++times_.local_updates;
     if (profile_) {
+        const auto elapsed = (Clock::now()-begin).count();
+        times_.local_ns += elapsed;
+        ++times_.local_updates;
         stats_[r].local_update_ns += elapsed;
         ++stats_[r].local_updates;
     }
 }
 
 void AdaptiveRegionalIndex::set(Id id, Point point) {
-    const auto begin = Clock::now();
+    const auto begin = profile_ ? Clock::now() : decltype(Clock::now()){};
     if (!std::isfinite(point.x) || !std::isfinite(point.y))
         throw std::invalid_argument("nonfinite point");
     auto old = objects_.find(id);
     if (old != objects_.end() && old->second.point == point) {
-        times_.base_ns += (Clock::now()-begin).count();
+        if (profile_) times_.base_ns += (Clock::now()-begin).count();
         if (profile_) ++stats_[old->second.region].object_updates;
         return;
     }
@@ -120,23 +120,23 @@ void AdaptiveRegionalIndex::set(Id id, Point point) {
             old->second = {point,next,slot};
         }
     }
-    times_.base_ns += (Clock::now()-begin).count();
+    if (profile_) times_.base_ns += (Clock::now()-begin).count();
     if (previous_bucket) maintain(previous,*previous_bucket,id,std::nullopt);
     maintain(next,*bucket,id,point);
 }
 
 void AdaptiveRegionalIndex::erase(Id id) {
-    const auto begin = Clock::now();
+    const auto begin = profile_ ? Clock::now() : decltype(Clock::now()){};
     const auto found = objects_.find(id);
     if (found == objects_.end()) {
-        times_.base_ns += (Clock::now()-begin).count();
+        if (profile_) times_.base_ns += (Clock::now()-begin).count();
         return;
     }
     const unsigned r = found->second.region;
     auto& bucket = regions_.at(r);
     detach(bucket,found->second);
     objects_.erase(found);
-    times_.base_ns += (Clock::now()-begin).count();
+    if (profile_) times_.base_ns += (Clock::now()-begin).count();
     maintain(r,bucket,id,std::nullopt);
 }
 

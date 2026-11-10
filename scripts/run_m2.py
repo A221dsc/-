@@ -56,14 +56,13 @@ def make_row(args, name, meta, algorithm, param, truth, observed):
     assert checks == int(observed["query_count"]) == counts["R"]+counts["C"]
     assert counts.get("U",0) == int(observed["update_count"])
     assert counts.get("I",0)+counts.get("D",0) == int(observed["insert_delete_count"])
-    if algorithm == "S0_ALL_SCAN" and name != "switch":
-        assert int(observed["local_updates"]) == float(observed["local_update_ms"]) == 0
     return {
         "group":args.group,"profile":name,"trace_id":meta["trace_id"],"seed":meta["seed"],
         "dataset_variant":meta["dataset_variant"],"baseline":algorithm,"parameter":param,
         "entity_count":peak,"initial_entities":meta["initial_entities"],"steps":meta["steps"],
         "trajectory_records":meta["trajectory_records"],"trace_sha256":meta["trace_sha256"],
-        **observed,"correctness_pass":True,
+        **observed,"correctness_pass":True,"profile_online_ms":"",
+        "profile_query_ms":"","profile_mutations_ms":"",
         "total_with_build_ms":float(observed["build_ms"])+float(observed["total_wall_ms"]),
         "query_per_sec":checks*1000/float(observed["query_wall_ms"]),
         "exact_refinements":observed["candidate_count"],
@@ -81,9 +80,9 @@ def write_environment(args):
         "flags":"-std=c++20 -O3 -DNDEBUG","cpu":args.cpu,"threads":1,
         "deps":{"boost":"1.82.0","libspatialindex":"1.9.3"},
         "git_commit":version("git","rev-parse","HEAD"),"binary_sha256":sha(args.binary),
-        "config_sha256":sha(args.config),
+        "config_sha256":sha(args.output/"config.json"),"input_config_sha256":sha(args.config),
         "cache_state":"warm process memory input; no OS cache flush",
-        "region_profile":"separate execution, regional timers and counters enabled",
+        "region_profile":"separate execution; all inner region timers except explicit switch timing disabled in primary ranking",
         "files_sha256":{p.as_posix():sha(p) for d in ("scripts","src","tests")
                         for p in sorted(Path(d).rglob("*"))
                         if p.is_file() and "__pycache__" not in p.parts},
@@ -127,10 +126,17 @@ def run_group(args, config, name, selected, manifest, regional_file, region_writ
             rows.append(row)
             if algo.startswith("S"):
                 profiled,regions = run_measure(args,path,algo,param,profile=True)
-                for field in ("query_count","candidate_count","result_count","local_updates","switches"):
+                for field in ("query_count","candidate_count","result_count","switches"):
                     assert measured[field] == profiled[field]
-                assert sum(int(r["local_updates"]) for r in regions if r["phase_index"] != "-1") == int(measured["local_updates"])
+                assert sum(int(r["local_updates"]) for r in regions if r["phase_index"] != "-1") == int(profiled["local_updates"])
                 assert sum(int(r["switches"]) for r in regions) == int(measured["switches"])
+                if algo == "S0_ALL_SCAN" and name != "switch":
+                    assert int(profiled["local_updates"]) == float(profiled["local_update_ms"]) == 0
+                for field in ("base_update_ms","coarse_update_ms","local_update_ms","local_updates"):
+                    row[field] = profiled[field]
+                row["profile_online_ms"] = profiled["total_wall_ms"]
+                row["profile_query_ms"] = profiled["query_wall_ms"]
+                row["profile_mutations_ms"] = profiled["all_mutations_ms"]
                 for r in regions:
                     phase = int(r["phase_index"])
                     seconds = meta.get("phase_window_seconds",meta["steps"]*60) if phase >= 0 else 0

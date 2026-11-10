@@ -11,3 +11,4 @@ __pycache__/
 **/events.parquet
 **/trace.txt
 /results/*_pre_boundary_fix/
+/results/m2_instrumented/

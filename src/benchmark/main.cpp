@@ -180,12 +180,13 @@ void measure(const Trace& trace, std::string_view name, int param, Ns load,
     std::cout << ',' << hits << ',' << peak << ',' << prebuild_peak << ',' << ms(load);
     if (extended) {
         const auto times = regional ? regional->times() : RegionalTimes{};
-        if (regional) std::cout << ',' << ms(Ns(times.base_ns-initial_times.base_ns));
-        else std::cout << ',';
-        std::cout << ',' << ms(Ns(times.local_ns-initial_times.local_ns))
-                  << ',' << ms(Ns(times.switch_ns-initial_times.switch_ns))
-                  << ',' << times.local_updates-initial_times.local_updates
-                  << ',' << times.switches-initial_times.switches;
+        std::cout << ',';
+        if (profile) std::cout << ms(Ns(times.base_ns-initial_times.base_ns));
+        std::cout << ',';
+        if (profile || !regional) std::cout << ms(Ns(times.local_ns-initial_times.local_ns));
+        std::cout << ',' << ms(Ns(times.switch_ns-initial_times.switch_ns)) << ',';
+        if (profile || !regional) std::cout << times.local_updates-initial_times.local_updates;
+        std::cout << ',' << times.switches-initial_times.switches;
     }
     std::cout << '\n';
     for (const auto& row : regions) {
