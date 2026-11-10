@@ -117,11 +117,13 @@ def native(config, seed, source, split):
     }
 
 
-def write_trace(config, seed, split, source, out):
+def write_trace(config, seed, split, source, out, generated=None):
     trace_id = f'{config["experiment_id"]}_{split}_{seed}'
     dest = out / trace_id
     dest.mkdir(parents=True, exist_ok=True)
-    if config["dataset"] == "SYNTHETIC":
+    if generated is not None:
+        initial,events,steps,meta = generated
+    elif config["dataset"] == "SYNTHETIC":
         initial,events,steps,meta = synthetic(config,seed)
     else:
         initial,events,steps,meta = native(config,seed,source,split)
@@ -140,12 +142,15 @@ def write_trace(config, seed, split, source, out):
         if op in ("R","C"):
             query_count += 1
             qid,qtype,params = query_count,("RECT" if op == "R" else "CIRCLE"),json.dumps(point)
+        elif op in ("P","S"):
+            params = json.dumps([ident,*point])
+            ident = old = None
         elif op == "D":
             del current[ident]
         else:
             current[ident] = new = point
         rows.append((trace_id,step,stamp,len(rows),
-                     {"B":"BUILD","U":"UPDATE","I":"INSERT","D":"DELETE","R":"QUERY","C":"QUERY"}[op],
+                     {"B":"BUILD","U":"UPDATE","I":"INSERT","D":"DELETE","R":"QUERY","C":"QUERY","P":"PHASE_END","S":"MODE_SWITCH"}[op],
                      ident,*(old or (None,None)),*(new or (None,None)),qid,qtype,params,
                      "SYNTHETIC_QUERY" if qtype else config["dataset_variant"],seed))
 
@@ -164,7 +169,7 @@ def write_trace(config, seed, split, source, out):
         "trace_id": trace_id, "seed": seed, "split": split, "steps": steps,
         "counts": dict(counts), "initial_entities": len(initial),
         "trace_sha256": sha(path), "events_sha256": sha(parquet),
-        "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+        "query_source": meta.get("query_source","seeded synthetic RECT/CIRCLE, uniform world-space centers"),
         "dataset_variant": config["dataset_variant"],
     })
     json_file(dest / "trace.json",meta)

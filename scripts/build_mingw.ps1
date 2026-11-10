@@ -9,7 +9,7 @@ $env:PATH = "$LsiRoot/bin;" + $env:PATH
 $flags = @('-std=c++20', '-O3', '-DNDEBUG', '-Isrc', "-I$LsiRoot/include")
 $common = @(
     'src/indexes/grid.cpp', 'src/indexes/quad.cpp', 'src/indexes/boost.cpp',
-    'src/indexes/lsi.cpp', 'src/validation/oracle.cpp'
+    'src/indexes/lsi.cpp', 'src/indexes/regional.cpp', 'src/validation/oracle.cpp'
 )
 $objects = foreach ($src in $common) {
     $obj = Join-Path $Build ([IO.Path]::GetFileNameWithoutExtension($src) + '.o')

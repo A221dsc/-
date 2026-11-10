@@ -1,4 +1,5 @@
 #include "core/index.hpp"
+#include "regional_tests.hpp"
 #include "validation/oracle.hpp"
 #include <algorithm>
 #include <iostream>
@@ -67,6 +68,8 @@ int main() {
             exercise(*make_index(name,param,{-500,-500,500,500}));
             std::cout << name << " boundary and 5 x 2500 mixed operations passed\n";
         }
+        test_regions();
+        std::cout << "Regional fixed modes, boundaries, switches, SCAN accounting and 60000 mixed operations passed\n";
     } catch (const std::exception& e) {
         std::cerr << e.what() << '\n';
         return 1;

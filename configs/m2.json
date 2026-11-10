@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "validation_seed": 719,
+  "test_seeds": [101, 203, 307, 409, 503],
+  "validation_repeats": 5,
+  "world_bounds_m": [-10000, -10000, 10000, 10000],
+  "region_side": 16,
+  "phases": ["fixed", "migrate", "hot_cold"],
+  "steps_per_phase": 2,
+  "queries_per_step": 144,
+  "query_area_fractions": [0.0001, 0.001, 0.01],
+  "cluster_regions_xy": [[3, 3], [5, 11], [10, 5], [12, 12]],
+  "cluster_mass": {"uniform": 0.0, "clustered": 0.7, "strong": 0.95},
+  "cluster_sigma_m": {"uniform": 300, "clustered": 430, "strong": 170},
+  "movement_sigma_m": 100,
+  "profiles": {
+    "reference": [0.7, "clustered", 0.5],
+    "hot_0": [0.0, "clustered", 0.5],
+    "hot_95": [0.95, "clustered", 0.5],
+    "dist_uniform": [0.7, "uniform", 0.5],
+    "dist_strong": [0.7, "strong", 0.5],
+    "update_10": [0.7, "clustered", 0.1],
+    "update_100": [0.7, "clustered", 1.0]
+  },
+  "parameter_search": {
+    "UNIFORM_GRID": [100, 250, 500, 1000],
+    "PR_QUADTREE": [8, 16, 32, 64],
+    "RSTAR_BOOST": [8, 16, 32, 64],
+    "RSTAR_LIBSPATIALINDEX": [8, 16, 32, 64],
+    "S0_ALL_SCAN": [1],
+    "S1_ALL_FINE": [100, 250, 500, 1000],
+    "S2_ALL_QUAD": [8, 16, 32, 64]
+  }
+}

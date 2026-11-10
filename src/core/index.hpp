@@ -47,7 +47,7 @@ struct Answer {
 class Index {
 public:
     virtual ~Index() = default;
-    void set(Id id, Point point) {
+    virtual void set(Id id, Point point) {
         if (!std::isfinite(point.x) || !std::isfinite(point.y))
             throw std::invalid_argument("nonfinite point");
         auto old = points_.find(id);
@@ -59,7 +59,7 @@ public:
             old->second = point;
         }
     }
-    void erase(Id id) {
+    virtual void erase(Id id) {
         auto old = points_.find(id);
         if (old == points_.end()) return;
         remove(id, old->second);

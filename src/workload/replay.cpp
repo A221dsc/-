@@ -20,7 +20,13 @@ Trace read_trace(const std::filesystem::path& path) {
         auto& box = e.query.box;
         switch (e.type) {
             case 'I': case 'U': in >> e.id >> e.point.x >> e.point.y; break;
-            case 'D': in >> e.id; break;
+            case 'D': case 'P': in >> e.id; break;
+            case 'S':
+                in >> e.id >> e.point.x;
+                if (e.id < 0 || e.id >= 256 ||
+                    !(e.point.x == 0 || e.point.x == 1 || e.point.x == 2))
+                    throw std::runtime_error("invalid region switch");
+                break;
             case 'R':
                 in >> box.x0 >> box.y0 >> box.x1 >> box.y1;
                 if (!(box.x0 <= box.x1 && box.y0 <= box.y1))

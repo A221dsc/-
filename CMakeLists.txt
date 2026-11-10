@@ -7,7 +7,7 @@ find_package(Boost 1.75 REQUIRED)
 find_path(LSI_INCLUDE spatialindex/capi/sidx_api.h REQUIRED)
 find_library(LSI_LIBRARY NAMES spatialindex_c spatialindex_c-64 REQUIRED)
 add_library(indexes src/indexes/grid.cpp src/indexes/quad.cpp
-                    src/indexes/boost.cpp src/indexes/lsi.cpp)
+                    src/indexes/boost.cpp src/indexes/lsi.cpp src/indexes/regional.cpp)
 target_include_directories(indexes PUBLIC src PRIVATE ${LSI_INCLUDE})
 target_link_libraries(indexes PRIVATE Boost::headers ${LSI_LIBRARY})
 add_library(oracle src/validation/oracle.cpp)
