@@ -1,1 +1,2 @@
 * text=auto eol=lf
+results/m2/*/config.json -text whitespace=cr-at-eol

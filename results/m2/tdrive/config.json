@@ -1,0 +1,145 @@
+{
+  "cluster_mass": {
+    "clustered": 0.7,
+    "strong": 0.95,
+    "uniform": 0.0
+  },
+  "cluster_regions_xy": [
+    [
+      3,
+      3
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      10,
+      5
+    ],
+    [
+      12,
+      12
+    ]
+  ],
+  "cluster_sigma_m": {
+    "clustered": 430,
+    "strong": 170,
+    "uniform": 300
+  },
+  "dataset": "TDRIVE",
+  "dataset_variant": "REAL_TRAJECTORY",
+  "end": "2008-02-03 09:00:00",
+  "event_window_seconds": 60,
+  "experiment_id": "m1_tdrive_native_pilot",
+  "movement_sigma_m": 100,
+  "parameter_search": {
+    "PR_QUADTREE": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "RSTAR_BOOST": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "RSTAR_LIBSPATIALINDEX": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "S0_ALL_SCAN": [
+      1
+    ],
+    "S1_ALL_FINE": [
+      100,
+      250,
+      500,
+      1000
+    ],
+    "S2_ALL_QUAD": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "UNIFORM_GRID": [
+      100,
+      250,
+      500,
+      1000
+    ]
+  },
+  "phases": [
+    "fixed",
+    "migrate",
+    "hot_cold"
+  ],
+  "profiles": {
+    "dist_strong": [
+      0.7,
+      "strong",
+      0.5
+    ],
+    "dist_uniform": [
+      0.7,
+      "uniform",
+      0.5
+    ],
+    "hot_0": [
+      0.0,
+      "clustered",
+      0.5
+    ],
+    "hot_95": [
+      0.95,
+      "clustered",
+      0.5
+    ],
+    "reference": [
+      0.7,
+      "clustered",
+      0.5
+    ],
+    "update_10": [
+      0.7,
+      "clustered",
+      0.1
+    ],
+    "update_100": [
+      0.7,
+      "clustered",
+      1.0
+    ]
+  },
+  "queries_per_step": 120,
+  "query_area_fractions": [
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "region_side": 16,
+  "schema_version": 1,
+  "start": "2008-02-03 08:00:00",
+  "steps_per_phase": 2,
+  "test_seeds": [
+    101,
+    203,
+    307,
+    409,
+    503
+  ],
+  "validation_repeats": 5,
+  "validation_seed": 719,
+  "warmup_start": "2008-02-03 07:30:00",
+  "world_bounds_m": [
+    -35000,
+    -35000,
+    35000,
+    35000
+  ]
+}

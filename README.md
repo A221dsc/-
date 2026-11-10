@@ -33,3 +33,19 @@ python -X utf8 scripts/run_m1.py configs/m1_smoke.json build/spatial_bench.exe r
 ```
 
 使用新的结果目录。每条轨迹保留 `events.parquet`、等价的 C++ 回放文本及 SHA-256。查询是固定种子生成的矩形/圆形，真实轨迹配置也使用人工生成查询。测试前用独立验证轨迹为每种索引搜索四组参数，然后锁定参数。每组候选参数在验证轨迹上运行五个独立计时进程，按在线耗时中位数选型。每个配对测试种子独立启动计时和 oracle 校验进程。Windows 计时使用 QueryPerformanceCounter。结果包含 `metrics.csv`、`tuning.csv`、`summary.json`、配置及环境记录。在线计时包含查询和所有动态变更，初始构建、轨迹载入和全量正确性校验分别处理。峰值 RSS 为计时进程的工作集峰值，包含公共回放数据。两套 R*-Tree 使用公开查询接口，访问节点数留空。
+
+## M2 区域混合索引
+
+S0、S1、S2 使用相同的 16×16 稀疏粗网格和点查询语义。固定策略与四种经典索引共享回放。通过 `AdaptiveRegionalIndex::switch_mode` 在单线程事件边界完成模式切换。首轮计时、逐区域剖析和正确性校验分别执行。
+
+```powershell
+./scripts/build_mingw.ps1 -Build build_m2_fair
+$env:PATH = 'D:/anaconda/Library/bin;' + $env:PATH
+python -X utf8 -m unittest discover -s tests -v
+python -X utf8 scripts/run_m2.py 2k configs/m2.json build_m2_fair/spatial_bench.exe results/m2_rerun/controlled_2k
+python -X utf8 scripts/run_m2.py tdrive configs/m2.json build_m2_fair/spatial_bench.exe results/m2_rerun/tdrive --source data/processed/tdrive
+python -X utf8 scripts/run_m2.py 20k configs/m2.json build_m2_fair/spatial_bench.exe results/m2_rerun/controlled_20k
+python -X utf8 scripts/analyze_m2.py results/m2_rerun/controlled_20k results/m2_rerun/analysis
+```
+
+T-Drive 复用既有的本地标准化数据。受控组使用纯合成对象轨迹，热点规则、阶段、配置和种子保存在清单中。默认实际事件落在本地忽略目录 `data/processed/m2_traces`。复现时使用新结果目录。图表脚本需要 Matplotlib。

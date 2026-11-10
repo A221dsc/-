@@ -1,0 +1,128 @@
+[
+  {
+    "counts": {
+      "B": 1051,
+      "C": 3600,
+      "I": 206,
+      "R": 3600,
+      "U": 12458
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "57a3cb2245a5271b17c96f4acbc0417e34a94c2e2747b786cb92c1510169bb22",
+    "initial_entities": 1051,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 719,
+    "split": "validation",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_validation_719",
+    "trace_sha256": "56dea1ee1012e0c93a6261d2d95d278527ea00b8c624fb97b7a4d42490bd7094",
+    "trajectory_records": 12664,
+    "warmup_trajectory_records": 6579
+  },
+  {
+    "counts": {
+      "B": 1092,
+      "C": 3600,
+      "I": 214,
+      "R": 3600,
+      "U": 13752
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "1e199bafb7b29b3557cfed6e836c3c72896a4259d07cb6031e79c84d1414b2a9",
+    "initial_entities": 1092,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 101,
+    "split": "test",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_test_101",
+    "trace_sha256": "b8406ae47447ddfa666249b95a6402fb5d3c5fb3b8439f131c2038c7cfc85297",
+    "trajectory_records": 13966,
+    "warmup_trajectory_records": 7182
+  },
+  {
+    "counts": {
+      "B": 1092,
+      "C": 3600,
+      "I": 214,
+      "R": 3600,
+      "U": 13752
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "ef9096b882b58698d2ecc1660a85fa1f1038fcec1256bfd4841c75e4caae59de",
+    "initial_entities": 1092,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 203,
+    "split": "test",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_test_203",
+    "trace_sha256": "7f9450039d45ed426dc8926081a96ee297df5c121314a2e9065615023c540a33",
+    "trajectory_records": 13966,
+    "warmup_trajectory_records": 7182
+  },
+  {
+    "counts": {
+      "B": 1092,
+      "C": 3600,
+      "I": 214,
+      "R": 3600,
+      "U": 13752
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "cd5a5311b1f2dcdac5b7eaedd85b7d1ac5b9c8db9984b08d9ea97143686026b9",
+    "initial_entities": 1092,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 307,
+    "split": "test",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_test_307",
+    "trace_sha256": "01996232cfdc0abb6fbe2f33c59dbcba13e6ac07b0efd2071de70ed4b955f490",
+    "trajectory_records": 13966,
+    "warmup_trajectory_records": 7182
+  },
+  {
+    "counts": {
+      "B": 1092,
+      "C": 3600,
+      "I": 214,
+      "R": 3600,
+      "U": 13752
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "68df124351cd7f28bc4d752cb9db56b4041cfce6be2444ce8c5d6e9619b7eae2",
+    "initial_entities": 1092,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 409,
+    "split": "test",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_test_409",
+    "trace_sha256": "e2bb7e732c1f946316420d121c0e1c3af5d7cba081707cabe0da8807493076ed",
+    "trajectory_records": 13966,
+    "warmup_trajectory_records": 7182
+  },
+  {
+    "counts": {
+      "B": 1092,
+      "C": 3600,
+      "I": 214,
+      "R": 3600,
+      "U": 13752
+    },
+    "dataset_variant": "REAL_TRAJECTORY",
+    "events_sha256": "5256f582efa613d3f582c8b73f4b23688d7071d562395f66025b8d6fa61792d9",
+    "initial_entities": 1092,
+    "presence_model": "latest prior sample initializes entity, last known position retained through this window",
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 503,
+    "split": "test",
+    "steps": 60,
+    "trace_id": "m2_tdrive_native_test_503",
+    "trace_sha256": "23cec15de5d3fc07ff4ff5b108b065b9c49d24985986a7580bc4359478b3b39f",
+    "trajectory_records": 13966,
+    "warmup_trajectory_records": 7182
+  }
+]

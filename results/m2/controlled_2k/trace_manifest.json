@@ -1,0 +1,591 @@
+[
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "6a1b18de69e69b0160cf1ef97f2524e86d2f2438cc8137bdc88668f71d90340b",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 719,
+    "split": "validation",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_validation_719",
+    "trace_sha256": "195e11cc883ef5e89a89f0008579db003d8f3682968616b87d77289fb9d0361d",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "03014486dfc92537bec54cba36be6ea800e13575176a1c4f3adc338d393c3cb1",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 101,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_test_101",
+    "trace_sha256": "d9fd1aa24e349ae4d463fcb9d3c028b771606a370b70ff40eacc6e63cfe2bff1",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "68b1d6ee1234dd78999d50b42920dcb0e39977ae10961812d6a7b623c1b7ec8b",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 203,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_test_203",
+    "trace_sha256": "59a9aec4a9b9880adf61abefa12fe5d2cd99cdfc28142f8bfcebc6550e5cf899",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "be72d0e1077f0b53a74439b21556cc2b544e470a14b335009c6f6099c0c61b60",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 307,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_test_307",
+    "trace_sha256": "a4ce94265194e4086f950a0766583a368f7cc56fa4f8470fdb6a1d1f7b92e8f9",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "5ee31e8a38dd45f2d7536b050d92e774dbad8f448b2c8d284af3ec0355b58f52",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 409,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_test_409",
+    "trace_sha256": "f31221994fc421bd64a29c1f6a0a0c7d754c4951a466d1ae01f1ee994a862052",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "9f1980deaa1cc998e110e67b13ba8548864457052c5503cf091961280a062360",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 503,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_reference_test_503",
+    "trace_sha256": "28344498c4b9bb6a9e926a42992dc50c5f7c1d7efc937b3d28de95fca221a259",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 432,
+      "P": 3,
+      "R": 432,
+      "S": 24,
+      "U": 6000
+    },
+    "dataset_variant": "SYNTHETIC_CONTROLLED",
+    "distribution": "clustered",
+    "events_sha256": "b9522dfc114030a275a6553771d92636812839fab88b923063ac7cefc8da2dc8",
+    "hot_fraction": 0.7,
+    "hotspot_schedule": [
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 0
+      },
+      {
+        "center_region_xy": [
+          3,
+          3
+        ],
+        "forced_hot_queries": 101,
+        "phase": "fixed",
+        "step": 1
+      },
+      {
+        "center_region_xy": [
+          4,
+          7
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 2
+      },
+      {
+        "center_region_xy": [
+          5,
+          11
+        ],
+        "forced_hot_queries": 101,
+        "phase": "migrate",
+        "step": 3
+      },
+      {
+        "center_region_xy": [
+          10,
+          5
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 4
+      },
+      {
+        "center_region_xy": [
+          12,
+          12
+        ],
+        "forced_hot_queries": 101,
+        "phase": "hot_cold",
+        "step": 5
+      }
+    ],
+    "initial_entities": 2000,
+    "phase_names": [
+      "fixed",
+      "migrate",
+      "hot_cold"
+    ],
+    "phase_window_seconds": 2,
+    "query_source": "seeded RECT/CIRCLE, forced hot-cell centers plus uniform background",
+    "seed": 101,
+    "split": "test",
+    "steps": 6,
+    "trace_id": "m2_2k_switch_test_101",
+    "trace_sha256": "bf7d42d23e42c599c7a1e7888cc0016a015c18b9ef7bf06f265a8061412facfe",
+    "trajectory_records": 0,
+    "update_fraction": 0.5
+  }
+]

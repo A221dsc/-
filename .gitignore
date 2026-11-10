@@ -12,3 +12,4 @@ __pycache__/
 **/trace.txt
 /results/*_pre_boundary_fix/
 /results/m2_instrumented/
+/results/m2/tdrive/regions.csv

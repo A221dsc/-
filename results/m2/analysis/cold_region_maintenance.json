@@ -1,0 +1,13 @@
+{
+  "aggregate_ms": {
+    "FINE_GRID": 118.2416,
+    "LOCAL_QUAD": 120.1727,
+    "SCAN": 0.0
+  },
+  "median_ms": {
+    "FINE_GRID": 0.0051,
+    "LOCAL_QUAD": 0.0035,
+    "SCAN": 0.0
+  },
+  "observations": 8573
+}

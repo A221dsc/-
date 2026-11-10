@@ -1,0 +1,40 @@
+20k validation repeat 1 done
+20k validation repeat 2 done
+20k validation repeat 3 done
+20k validation repeat 4 done
+20k validation repeat 5 done
+20k reference seed 101 passed 7 algorithms
+20k reference seed 203 passed 7 algorithms
+20k reference seed 307 passed 7 algorithms
+20k reference seed 409 passed 7 algorithms
+20k reference seed 503 passed 7 algorithms
+20k hot_0 seed 101 passed 7 algorithms
+20k hot_0 seed 203 passed 7 algorithms
+20k hot_0 seed 307 passed 7 algorithms
+20k hot_0 seed 409 passed 7 algorithms
+20k hot_0 seed 503 passed 7 algorithms
+20k hot_95 seed 101 passed 7 algorithms
+20k hot_95 seed 203 passed 7 algorithms
+20k hot_95 seed 307 passed 7 algorithms
+20k hot_95 seed 409 passed 7 algorithms
+20k hot_95 seed 503 passed 7 algorithms
+20k dist_uniform seed 101 passed 7 algorithms
+20k dist_uniform seed 203 passed 7 algorithms
+20k dist_uniform seed 307 passed 7 algorithms
+20k dist_uniform seed 409 passed 7 algorithms
+20k dist_uniform seed 503 passed 7 algorithms
+20k dist_strong seed 101 passed 7 algorithms
+20k dist_strong seed 203 passed 7 algorithms
+20k dist_strong seed 307 passed 7 algorithms
+20k dist_strong seed 409 passed 7 algorithms
+20k dist_strong seed 503 passed 7 algorithms
+20k update_10 seed 101 passed 7 algorithms
+20k update_10 seed 203 passed 7 algorithms
+20k update_10 seed 307 passed 7 algorithms
+20k update_10 seed 409 passed 7 algorithms
+20k update_10 seed 503 passed 7 algorithms
+20k update_100 seed 101 passed 7 algorithms
+20k update_100 seed 203 passed 7 algorithms
+20k update_100 seed 307 passed 7 algorithms
+20k update_100 seed 409 passed 7 algorithms
+20k update_100 seed 503 passed 7 algorithms

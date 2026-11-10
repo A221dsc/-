@@ -1,0 +1,7 @@
+
+#define BOOST_LIB_VERSION "1_82"
+UNIFORM_GRID boundary and 5 x 2500 mixed operations passed
+PR_QUADTREE boundary and 5 x 2500 mixed operations passed
+RSTAR_BOOST boundary and 5 x 2500 mixed operations passed
+RSTAR_LIBSPATIALINDEX boundary and 5 x 2500 mixed operations passed
+Regional fixed modes, boundaries, switches, SCAN accounting and 60000 mixed operations passed

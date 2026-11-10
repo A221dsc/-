@@ -1,0 +1,4 @@
+controlled_2k 35 test rows, 125 tuning rows, 16384 region rows, 30240 verified queries
+tdrive 35 test rows, 125 tuning rows, 7680 region rows, 252000 verified queries
+controlled_20k 245 test rows, 125 tuning rows, 107520 region rows, 211680 verified queries
+switches 24 verified test queries including switch diagnostic 494784
