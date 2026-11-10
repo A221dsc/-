@@ -29,7 +29,8 @@ struct Query {
     Point center;
     double radius{};
     bool matches(Point p) const {
-        if (!circular) return box.contains(p);
+        if (!box.contains(p)) return false;
+        if (!circular) return true;
         const double dx = p.x - center.x, dy = p.y - center.y;
         return dx*dx + dy*dy <= radius*radius;
     }

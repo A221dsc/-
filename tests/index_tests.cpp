@@ -33,6 +33,11 @@ void exercise(Index& index) {
     require(check(circle({0,0},0)).size() == 100, "duplicate point bucket");
     for (Id id = 100; id < 200; ++id) del(id);
     require(check(circle({0,0},0)).empty(), "delete duplicate point bucket");
+    set(999, {1e-13, 5000});
+    auto edge = check(circle({-10000,5000},10000));
+    require(std::find(edge.begin(),edge.end(),999) == edge.end(),
+            "circle edge rounded distance must not admit an out-of-bounds point");
+    del(999);
 
     for (unsigned seed : {101,203,307,409,503}) {
         std::mt19937 rng(seed);
