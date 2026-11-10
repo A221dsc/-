@@ -1,0 +1,20 @@
+{
+  "experiment_id": "m1_tdrive_native_pilot",
+  "dataset": "TDRIVE",
+  "dataset_variant": "REAL_TRAJECTORY",
+  "world_bounds_m": [-35000, -35000, 35000, 35000],
+  "warmup_start": "2008-02-03 07:30:00",
+  "start": "2008-02-03 08:00:00",
+  "end": "2008-02-03 09:00:00",
+  "event_window_seconds": 60,
+  "query_area_fractions": [0.0001, 0.001, 0.01],
+  "queries_per_step": 120,
+  "validation_seed": 719,
+  "test_seeds": [101, 203, 307, 409, 503],
+  "parameter_search": {
+    "UNIFORM_GRID": [100, 250, 500, 1000],
+    "PR_QUADTREE": [8, 16, 32, 64],
+    "RSTAR_BOOST": [8, 16, 32, 64],
+    "RSTAR_LIBSPATIALINDEX": [8, 16, 32, 64]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "experiment_id": "m1_synthetic_smoke",
+  "dataset": "SYNTHETIC",
+  "dataset_variant": "SYNTHETIC_SMOKE",
+  "world_bounds_m": [-10000, -10000, 10000, 10000],
+  "query_area_fractions": [0.0001, 0.001, 0.01],
+  "queries_per_step": 160,
+  "synthetic_steps": 36,
+  "synthetic_entities": 2000,
+  "synthetic_movers_per_step": 600,
+  "validation_seed": 719,
+  "test_seeds": [101, 203, 307, 409, 503],
+  "parameter_search": {
+    "UNIFORM_GRID": [100, 250, 500, 1000],
+    "PR_QUADTREE": [8, 16, 32, 64],
+    "RSTAR_BOOST": [8, 16, 32, 64],
+    "RSTAR_LIBSPATIALINDEX": [8, 16, 32, 64]
+  }
+}

@@ -1,0 +1,15 @@
+# Observed M1 synthetic run environment
+os=Windows 11 10.0.26300
+cpu=Intel Core i7-13650HX; 14 physical cores; 20 logical CPUs
+memory_bytes=16869351424
+python=3.12.7
+pyarrow=16.1.0
+gcc=MinGW-w64 GCC 13.2.0
+cmake=3.27.6
+boost=1.82.0 (Anaconda headers selected by the -I flag)
+libspatialindex=1.9.3 (Anaconda spatialindex_c-64.dll and spatialindex-64.dll)
+compiler_flags=-std=c++20 -O3 -DNDEBUG
+benchmark_threads=1
+logical_cpu=0
+process_rss=Windows PeakWorkingSetSize, MiB
+cache_state=input parsed into memory before measured loop; no OS cache flush

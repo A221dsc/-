@@ -1,0 +1,8 @@
+/build*/
+/data/raw/*
+/data/processed/*
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
+__pycache__/
+.pytest_cache/
+/results/m1_synthetic_initial_timer/
