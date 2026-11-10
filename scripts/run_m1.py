@@ -105,6 +105,13 @@ def main():
     config = json.loads(args.config.read_text(encoding="utf-8"))
     if config["dataset"] != "SYNTHETIC" and args.source is None:
         p.error("--source is required for a real trajectory group")
+    if args.source:
+        metadata = json.loads((args.source / "metadata.json").read_text(encoding="utf-8"))
+        if metadata["dataset"] != config["dataset"]:
+            raise ValueError("normalized source dataset does not match experiment config")
+        for split in ("validation","test"):
+            if sha(args.source / f"{split}.csv") != metadata["output_sha256"][split]:
+                raise ValueError(f"normalized {split} CSV does not match source manifest")
     args.output.mkdir(parents=True, exist_ok=False)
     digest = sha(args.config)
     (args.output / "config.json").write_bytes(args.config.read_bytes())

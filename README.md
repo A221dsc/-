@@ -32,4 +32,4 @@ Porto 可用同样流程，将 `tdrive` 替换为 `porto`，配置使用 `config
 python -X utf8 scripts/run_m1.py configs/m1_smoke.json build/spatial_bench.exe results/m1_synthetic_rerun
 ```
 
-使用新的结果目录。每条轨迹保留 `events.parquet`、等价的 C++ 回放文本及 SHA-256。查询是固定种子生成的矩形/圆形，真实轨迹配置也使用人工生成查询。测试前用独立验证轨迹为每种索引搜索四组参数，然后锁定参数。每个配对种子独立启动计时和 oracle 校验进程。结果包含 `metrics.csv`、`tuning.csv`、`summary.json`、配置及环境记录。在线计时包含查询和所有动态变更，初始构建、轨迹载入和全量正确性校验分别处理。峰值 RSS 为计时进程的工作集峰值，包含公共回放数据。两套 R*-Tree 使用公开查询接口，访问节点数留空。
+使用新的结果目录。每条轨迹保留 `events.parquet`、等价的 C++ 回放文本及 SHA-256。查询是固定种子生成的矩形/圆形，真实轨迹配置也使用人工生成查询。测试前用独立验证轨迹为每种索引搜索四组参数，然后锁定参数。每组候选参数在验证轨迹上运行五个独立计时进程，按在线耗时中位数选型。每个配对测试种子独立启动计时和 oracle 校验进程。Windows 计时使用 QueryPerformanceCounter。结果包含 `metrics.csv`、`tuning.csv`、`summary.json`、配置及环境记录。在线计时包含查询和所有动态变更，初始构建、轨迹载入和全量正确性校验分别处理。峰值 RSS 为计时进程的工作集峰值，包含公共回放数据。两套 R*-Tree 使用公开查询接口，访问节点数留空。

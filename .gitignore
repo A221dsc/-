@@ -6,3 +6,7 @@
 __pycache__/
 .pytest_cache/
 /results/m1_synthetic_initial_timer/
+/results/**/quality.json
+/results/**/metadata.json
+**/events.parquet
+**/trace.txt
