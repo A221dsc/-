@@ -1,0 +1,21 @@
+resume: 90 rows already present
+test-1-brc203d a2 Boost R*-Tree online 1148.8 ms
+test-1-brc203d a2 Fixed Local Quadtree online 284.2 ms
+test-1-brc203d a2 Fixed Regional Scan online 457.4 ms
+test-1-brc203d a2 Threshold-Based Adaptive Regional Index Selection online 176.0 ms
+test-1-brc203d a2 Uniform Grid online 254.4 ms
+test-1-brc203d a2 Cost-Aware Greedy Regional Index Selection (Scenario) online 174.4 ms
+test-1-brc203d a2 Fixed Local Fine Grid online 400.3 ms
+test-1-brc203d a2 Cost-Aware Greedy Regional Index Selection online 172.0 ms
+test-1-brc203d a2 Threshold-Based Adaptive Regional Index Selection (Scenario) online 178.3 ms
+test-1-brc203d a2 PR Quadtree online 213.8 ms
+Traceback (most recent call last):
+  File "D:\code for all\毕业设计\spatial_index_v2\scripts\run_m4.py", line 216, in <module>
+    main()
+  File "D:\code for all\毕业设计\spatial_index_v2\scripts\run_m4.py", line 179, in main
+    "switches": statistics.median(r["switches"] for r in rows),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\statistics.py", line 622, in median
+    return (data[i - 1] + data[i]) / 2
+           ~~~~~~~~~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for /: 'str' and 'int'

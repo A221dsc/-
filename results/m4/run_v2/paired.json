@@ -1,0 +1,113 @@
+{
+  "best_static": "PR Quadtree",
+  "pairs": {
+    "Boost R*-Tree / PR Quadtree": {
+      "bootstrap95": [
+        4.612471030424963,
+        6.029039186120415
+      ],
+      "median_ratio": 4.695021161957986,
+      "n": 6,
+      "wins": 0
+    },
+    "Cost-Aware Greedy Regional Index Selection (Scenario) / PR Quadtree": {
+      "bootstrap95": [
+        0.7840800797795642,
+        1.2143085876113875
+      ],
+      "median_ratio": 0.9959439504278629,
+      "n": 6,
+      "wins": 3
+    },
+    "Cost-Aware Greedy Regional Index Selection (Scenario) / history": {
+      "bootstrap95": [
+        0.9687687392644353,
+        1.0675857008501577
+      ],
+      "median_ratio": 1.040710914081846,
+      "n": 6,
+      "wins": 1
+    },
+    "Cost-Aware Greedy Regional Index Selection / PR Quadtree": {
+      "bootstrap95": [
+        0.7554992220878141,
+        1.2059041043718803
+      ],
+      "median_ratio": 0.9702651065254418,
+      "n": 6,
+      "wins": 3
+    },
+    "Fixed Local Fine Grid / PR Quadtree": {
+      "bootstrap95": [
+        1.7861075079066389,
+        2.1634820208504992
+      ],
+      "median_ratio": 1.99851280198292,
+      "n": 6,
+      "wins": 0
+    },
+    "Fixed Local Quadtree / PR Quadtree": {
+      "bootstrap95": [
+        1.1613160550784993,
+        1.3043316146530515
+      ],
+      "median_ratio": 1.261201141706058,
+      "n": 6,
+      "wins": 0
+    },
+    "Fixed Regional Scan / PR Quadtree": {
+      "bootstrap95": [
+        2.0647673944646536,
+        2.9599732409148243
+      ],
+      "median_ratio": 2.806523258808558,
+      "n": 6,
+      "wins": 0
+    },
+    "PR Quadtree / PR Quadtree": {
+      "bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "median_ratio": 1.0,
+      "n": 6,
+      "wins": 0
+    },
+    "Threshold-Based Adaptive Regional Index Selection (Scenario) / PR Quadtree": {
+      "bootstrap95": [
+        0.8410561702772108,
+        1.2318656086619353
+      ],
+      "median_ratio": 1.0767197331394533,
+      "n": 6,
+      "wins": 3
+    },
+    "Threshold-Based Adaptive Regional Index Selection (Scenario) / history": {
+      "bootstrap95": [
+        0.9639615726338222,
+        1.1828574321718412
+      ],
+      "median_ratio": 1.0930760961755344,
+      "n": 6,
+      "wins": 1
+    },
+    "Threshold-Based Adaptive Regional Index Selection / PR Quadtree": {
+      "bootstrap95": [
+        0.7643544863371489,
+        1.0966381107852423
+      ],
+      "median_ratio": 1.0660407800645215,
+      "n": 6,
+      "wins": 2
+    },
+    "Uniform Grid / PR Quadtree": {
+      "bootstrap95": [
+        1.1240254427335041,
+        1.5505748393635819
+      ],
+      "median_ratio": 1.3235483877040708,
+      "n": 6,
+      "wins": 0
+    }
+  }
+}

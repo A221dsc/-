@@ -52,7 +52,8 @@ def main():
                 trace = args.directory / "traces" / f"{ident}{suffix}.m3bin"
                 write_trace(trace, scenario["world"], execution["points"], execution["events"])
                 loads = execution["actual_loads"]
-                with (args.directory / "loads" / f"{ident}{suffix}.loads.csv").open(
+                (args.directory / "loads_python_semantics").mkdir(parents=True, exist_ok=True)
+                with (args.directory / "loads_python_semantics" / f"{ident}{suffix}.loads.csv").open(
                         "w", encoding="utf-8", newline="") as handle:
                     handle.write("window,region,query_count,entity_count,update_count,coverage\n")
                     for w in range(loads["queries"].shape[0]):

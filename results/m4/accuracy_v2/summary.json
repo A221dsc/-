@@ -1,0 +1,78 @@
+{
+  "test": {
+    "ewma": {
+      "entity_mae_per_window": 11.796422101449275,
+      "horizon4_hotspot_accuracy": 0.6159420289855073,
+      "hotspot_top1_accuracy": 0.6521739130434783,
+      "hotspot_top3_accuracy": 0.8043478260869565,
+      "mean_tv_distance": 0.3437019694064687,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.5,
+      "query_mae_per_window": 9.865516988626283,
+      "query_total_relative_error": 0.7246188598701528,
+      "update_mae_per_window": 21.843382019927535
+    },
+    "persistence": {
+      "entity_mae_per_window": 11.796422101449275,
+      "horizon4_hotspot_accuracy": 0.6159420289855073,
+      "hotspot_top1_accuracy": 0.6521739130434783,
+      "hotspot_top3_accuracy": 0.6521739130434783,
+      "mean_tv_distance": 0.3557661976790755,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.5,
+      "query_mae_per_window": 10.225260416666666,
+      "query_total_relative_error": 0.7328263459440346,
+      "update_mae_per_window": 21.843382019927535
+    },
+    "scenario": {
+      "entity_mae_per_window": 13.343070652173914,
+      "horizon4_hotspot_accuracy": 0.8985507246376812,
+      "hotspot_top1_accuracy": 0.9565217391304347,
+      "hotspot_top3_accuracy": 1.0,
+      "mean_tv_distance": 0.11684316104037001,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.7916666666666666,
+      "query_mae_per_window": 2.749490957795517,
+      "query_total_relative_error": 0.21285091446457857,
+      "update_mae_per_window": 20.773720561594203
+    }
+  },
+  "validation": {
+    "ewma": {
+      "entity_mae_per_window": 14.233101222826086,
+      "horizon4_hotspot_accuracy": 0.6086956521739131,
+      "hotspot_top1_accuracy": 0.6521739130434783,
+      "hotspot_top3_accuracy": 0.8260869565217391,
+      "mean_tv_distance": 0.3486188409885812,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.5,
+      "query_mae_per_window": 8.841052982035656,
+      "query_total_relative_error": 0.7319950686170639,
+      "update_mae_per_window": 24.453422214673914
+    },
+    "persistence": {
+      "entity_mae_per_window": 14.233101222826086,
+      "horizon4_hotspot_accuracy": 0.6086956521739131,
+      "hotspot_top1_accuracy": 0.6521739130434783,
+      "hotspot_top3_accuracy": 0.6521739130434783,
+      "mean_tv_distance": 0.36123998233883836,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.5,
+      "query_mae_per_window": 9.314070991847826,
+      "query_total_relative_error": 0.7422188883594149,
+      "update_mae_per_window": 24.453422214673914
+    },
+    "scenario": {
+      "entity_mae_per_window": 16.53150475543478,
+      "horizon4_hotspot_accuracy": 0.9130434782608695,
+      "hotspot_top1_accuracy": 1.0,
+      "hotspot_top3_accuracy": 1.0,
+      "mean_tv_distance": 0.11621247507097986,
+      "onset_median_lead_windows": 3.0,
+      "onset_share_detected": 0.875,
+      "query_mae_per_window": 2.3053601493716034,
+      "query_total_relative_error": 0.21399491136513915,
+      "update_mae_per_window": 25.948921535326086
+    }
+  }
+}

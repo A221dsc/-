@@ -1,0 +1,7 @@
+scenario,actual,online_ms,promotions,switches
+test-0-brc100d,0,219.678200,10,275
+test-0-brc100d,1,219.303700,10,275
+test-0-brc100d,2,221.718100,11,277
+test-1-brc203d,0,167.983300,9,273
+test-1-brc203d,1,209.817400,8,271
+test-1-brc203d,2,226.824200,10,275

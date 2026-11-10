@@ -22,4 +22,9 @@ __pycache__/
 /results/m4/run/profile/
 /results/m4/calibration/tmp/
 /results/m4/viz/profile/
+/results/m4/phase2/tmp/
+/results/m4/oracle/*.oracle.csv
+/results/m4/run_v2/profile/
+/results/m4/run_v2/regions.csv
+/results/m4/audit/check_loads_window.csv
 

@@ -53,7 +53,7 @@ def build_one(config, map_name, split, index, directory, mismatch="medium", over
     ident = f"{split}-{index}-{Path(map_name).stem}"
     scenarios_dir = directory / "scenarios"
     traces_dir = directory / "traces"
-    loads_dir = directory / "loads"
+    loads_dir = directory / "loads_python_semantics"
     meta_dir = directory / "meta"
     for folder in (scenarios_dir, traces_dir, loads_dir, meta_dir):
         folder.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,22 @@
+{
+  "alpha": 0.85,
+  "classic": {
+    "Boost R*-Tree": 16,
+    "PR Quadtree": 64,
+    "Uniform Grid": 125
+  },
+  "fine_cell_m": 160,
+  "greedy_validation_online_ms": 229.0602,
+  "margin": 0.0,
+  "quad_capacity": 32,
+  "threshold": [
+    64,
+    60,
+    0.05,
+    240,
+    0.12,
+    0.7,
+    0
+  ],
+  "threshold_validation_online_ms": 239.53109999999998
+}

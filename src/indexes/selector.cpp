@@ -88,6 +88,15 @@ SelectorConfig read_selector_config(const std::filesystem::path& path) {
             if (!(tokens >> flag) || (flag != 0 && flag != 1))
                 throw std::runtime_error("invalid fusion flag");
             config.fusion = flag == 1;
+        } else if (key == "uncertainty") {
+            int level = 0;
+            if (!(tokens >> level) || level < 0 || level > 2)
+                throw std::runtime_error("invalid uncertainty level");
+            config.uncertainty = level;
+        } else if (key == "risk_lambda") {
+            if (!(tokens >> config.risk_lambda) || !std::isfinite(config.risk_lambda) ||
+                config.risk_lambda < 0)
+                throw std::runtime_error("invalid risk_lambda");
         } else if (key == "alpha") {
             if (!(tokens >> config.alpha)) throw std::runtime_error("invalid selector alpha");
             if (!(config.alpha > 0 && config.alpha <= 1))
@@ -269,10 +278,35 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
             target = threshold_target(decision.old_mode, forecast_entities, decision.forecast,
                                       floor_active);
         } else {
-            const double stay = running_cost_ns(decision.old_mode, forecast_entities, decision.forecast);
+            auto running_score = [&](Mode mode) -> double {
+                if (!(prior_on && config_.uncertainty > 0 && prior_->samples() > 1 &&
+                      region < prior_->regions()))
+                    return running_cost_ns(mode, forecast_entities, decision.forecast);
+                const unsigned samples = std::min<unsigned>(prior_->samples(), 64);
+                std::array<double, 64> costs{};
+                double sum = 0.0;
+                for (unsigned s = 0; s < samples; ++s) {
+                    const auto& cell = prior_->at(s, prior_window, region);
+                    const WindowLoad load{
+                        static_cast<std::uint64_t>(std::llround(cell.queries)),
+                        static_cast<std::uint64_t>(std::llround(cell.updates)), cell.coverage};
+                    const double cost = running_cost_ns(
+                        mode, static_cast<std::size_t>(std::llround(cell.entities)), load);
+                    costs[s] = cost;
+                    sum += cost;
+                }
+                const double mean = sum / static_cast<double>(samples);
+                if (config_.uncertainty < 2 || config_.risk_lambda <= 0) return mean;
+                std::sort(costs.begin(), costs.begin() + samples);
+                const auto index = std::min<unsigned>(
+                    samples - 1, static_cast<unsigned>(std::ceil(0.9 * samples)) - 1);
+                const double tail = std::max(0.0, costs[index] - mean);
+                return mean + config_.risk_lambda * tail;
+            };
+            const double stay = running_score(decision.old_mode);
             double best = stay;
             for (Mode candidate : {Mode::Scan, Mode::FineGrid, Mode::LocalQuad}) {
-                const double cost = running_cost_ns(candidate, forecast_entities, decision.forecast) +
+                const double cost = running_score(candidate) +
                                     transition_cost_ns(decision.old_mode, candidate, decision.entities);
                 if (cost < best) {
                     best = cost;

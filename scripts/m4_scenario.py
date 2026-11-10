@@ -182,8 +182,14 @@ def prepare(scenario, game, entities, actual=None):
             "hold": hold, "count": count}
 
 
-def simulate(scenario, game, prepared, actual=None):
-    """Advance every entity; returns initial/final positions and window-end counts."""
+def simulate(scenario, game, prepared, actual=None, reporting=False):
+    """Advance every entity; returns positions and window-end load counters.
+
+    With ``reporting`` the nominal run also simulates the periodic position
+    reports with an independent nominal seed, so entity counts refer to the last
+    reported state and update touches include the old region on cross-region
+    moves, exactly like the index observes them.
+    """
     steps = scenario["steps"]
     window = scenario["decision_window"]
     windows = steps // window
@@ -206,7 +212,11 @@ def simulate(scenario, game, prepared, actual=None):
         positions[members] = interpolate(route, cum, np.zeros(len(members))) + offset[members]
     initial = positions.copy()
     counts = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
+    updates = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
+    entities = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
     bounds = scenario["world"]
+    report_rng = np.random.default_rng(scenario["seeds"]["query"] + 104729)
+    reported_region_ids = region_array(initial, bounds)
     for step in range(steps):
         phase = int(phase_at[step])
         moving = delay <= step
@@ -216,11 +226,25 @@ def simulate(scenario, game, prepared, actual=None):
                                 hold[members, phase])
             distance[members] = target
             positions[members] = interpolate(route, cum, distance[members]) + offset[members]
+        w = min(windows - 1, step // window)
+        if reporting:
+            rate = min(phases[phase]["update_rate"], prepared["count"])
+            chosen = report_rng.choice(prepared["count"], size=rate, replace=False)
+            new_region = region_array(positions[chosen], bounds)
+            old_region = reported_region_ids[chosen]
+            updates[w] += np.bincount(new_region, minlength=SIDE * SIDE)
+            moved = new_region != old_region
+            if moved.any():
+                updates[w] += np.bincount(old_region[moved], minlength=SIDE * SIDE)
+            reported_region_ids[chosen] = new_region
         if (step + 1) % window == 0:
             counts[(step + 1) // window - 1] = np.bincount(
                 region_array(positions, bounds), minlength=SIDE * SIDE)
+            if reporting:
+                entities[(step + 1) // window - 1] = np.bincount(
+                    reported_region_ids, minlength=SIDE * SIDE)
     return {"initial": initial, "final": positions.copy(), "window_counts": counts,
-            "phase_at": phase_at}
+            "window_updates": updates, "window_entities": entities, "phase_at": phase_at}
 
 
 def planned_query_schedule(scenario, game):
@@ -255,7 +279,8 @@ def planned_query_schedule(scenario, game):
             else:
                 point = tuple(float(v) for v in cells[int(rng.integers(len(cells)))])
                 tag = "background"
-            schedule.append((step, kind, point, half, tag))
+            box_half = half if kind == "R" else 2.0 * half / math.sqrt(math.pi)
+            schedule.append((step, kind, point, box_half, tag))
     return schedule
 
 
@@ -264,11 +289,34 @@ def _normal_mass(low, high, mean, sigma):
                   math.erf((low - mean) / (sigma * math.sqrt(2))))
 
 
-def query_distribution(schedule, game, scenario, windows):
+def _normal_integral(low, high, a, sigma):
+    """Integral over [low, high] of Phi((x - a) / sigma) dx."""
+    def primitive(x):
+        u = (x - a) / sigma
+        return sigma * (u * 0.5 * (1.0 + math.erf(u / math.sqrt(2))) +
+                        math.exp(-0.5 * u * u) / math.sqrt(2 * math.pi))
+    return primitive(high) - primitive(low)
+
+
+def _expected_overlap(low, high, centre, sigma, half):
+    """E[ length of the intersection of [centre-half, centre+half] with [low, high] ]."""
+    return (_normal_integral(low, high, centre - half, sigma) -
+            _normal_integral(low, high, centre + half, sigma))
+
+
+def query_distributions(schedule, game, scenario, windows):
+    """Expected query touches, query centres and covered fraction per region.
+
+    A query touches every region whose box intersects the query bounding box, so
+    the touch expectation integrates the centre distribution over the region
+    expanded by the box half width. Coverage is the expected covered fraction of
+    the region box, which is separable and therefore analytic.
+    """
     bounds = scenario["world"]
-    sigma = scenario["queries"]["sigma_m"]
     x0, y0, x1, y1 = bounds
+    sigma = scenario["queries"]["sigma_m"]
     rw, rh = (x1 - x0) / SIDE, (y1 - y0) / SIDE
+    region_area = rw * rh
     region_walkable = np.zeros(SIDE * SIDE)
     for by in range(SIDE):
         for bx in range(SIDE):
@@ -278,9 +326,9 @@ def query_distribution(schedule, game, scenario, windows):
             region_walkable[SIDE * by + bx] = game.walkable[r0:r1 + 1, c0:c1 + 1].sum()
     region_walkable = np.maximum(region_walkable, 1.0)
     background = region_walkable / max(1.0, float(game.walkable_count))
-    expected = np.zeros((windows, SIDE * SIDE))
+    touch = np.zeros((windows, SIDE * SIDE))
+    centre_counts = np.zeros((windows, SIDE * SIDE))
     coverage = np.zeros((windows, SIDE * SIDE))
-    region_area = rw * rh
     window = scenario["decision_window"]
     by_step = {}
     for item in schedule:
@@ -288,55 +336,72 @@ def query_distribution(schedule, game, scenario, windows):
     for w in range(windows):
         for (step, kind, point, half, tag) in by_step.get(w, []):
             region = region_of(point, bounds)
-            overlap = max(0.0, min(x0 + (region % SIDE + 1) * rw, point[0] + half) -
-                          max(x0 + (region % SIDE) * rw, point[0] - half))
-            overlap *= max(0.0, min(y0 + (region // SIDE + 1) * rh, point[1] + half) -
-                           max(y0 + (region // SIDE) * rh, point[1] - half))
-            coverage[w, region] += min(1.0, overlap / region_area)
             if tag == "background":
-                expected[w] += background
+                touch[w] += background
+                coverage[w, region] += min(1.0, (2 * half) ** 2 / region_area)
+                centre_counts[w] += background
                 continue
-            bx_lo = max(0, int((point[0] - 4 * sigma - x0) / rw))
-            bx_hi = min(SIDE - 1, int((point[0] + 4 * sigma - x0) / rw))
-            by_lo = max(0, int((point[1] - 4 * sigma - y0) / rh))
-            by_hi = min(SIDE - 1, int((point[1] + 4 * sigma - y0) / rh))
+            centre_counts[w] += _centre_distribution(point, sigma, bounds)
+            bx_lo = max(0, int((point[0] - half - 4 * sigma - x0) / rw))
+            bx_hi = min(SIDE - 1, int((point[0] + half + 4 * sigma - x0) / rw))
+            by_lo = max(0, int((point[1] - half - 4 * sigma - y0) / rh))
+            by_hi = min(SIDE - 1, int((point[1] + half + 4 * sigma - y0) / rh))
             for by in range(by_lo, by_hi + 1):
-                low, high = y0 + by * rh, y0 + (by + 1) * rh
-                py = _normal_mass(low, high, point[1], sigma)
-                if py <= 0:
+                ry0, ry1 = y0 + by * rh, y0 + (by + 1) * rh
+                touch_y = _normal_mass(ry0 - half, ry1 + half, point[1], sigma)
+                if touch_y <= 0:
                     continue
+                overlap_y = max(0.0, _expected_overlap(ry0, ry1, point[1], sigma, half))
                 for bx in range(bx_lo, bx_hi + 1):
-                    px = _normal_mass(x0 + bx * rw, x0 + (bx + 1) * rw, point[0], sigma)
-                    expected[w, SIDE * by + bx] += px * py
-    return expected, coverage
+                    rx0, rx1 = x0 + bx * rw, x0 + (bx + 1) * rw
+                    region = SIDE * by + bx
+                    touch[w, region] += touch_y * _normal_mass(rx0 - half, rx1 + half,
+                                                               point[0], sigma)
+                    if overlap_y > 0:
+                        overlap_x = max(0.0, _expected_overlap(rx0, rx1, point[0], sigma, half))
+                        coverage[w, region] += min(1.0, overlap_x * overlap_y / region_area)
+    return touch, centre_counts, coverage
+
+
+def _centre_distribution(point, sigma, bounds):
+    x0, y0, x1, y1 = bounds
+    rw, rh = (x1 - x0) / SIDE, (y1 - y0) / SIDE
+    out = np.zeros(SIDE * SIDE)
+    bx_lo = max(0, int((point[0] - 4 * sigma - x0) / rw))
+    bx_hi = min(SIDE - 1, int((point[0] + 4 * sigma - x0) / rw))
+    by_lo = max(0, int((point[1] - 4 * sigma - y0) / rh))
+    by_hi = min(SIDE - 1, int((point[1] + 4 * sigma - y0) / rh))
+    for by in range(by_lo, by_hi + 1):
+        py = _normal_mass(y0 + by * rh, y0 + (by + 1) * rh, point[1], sigma)
+        for bx in range(bx_lo, bx_hi + 1):
+            px = _normal_mass(x0 + bx * rw, x0 + (bx + 1) * rw, point[0], sigma)
+            out[SIDE * by + bx] += px * py
+    return out
 
 
 def nominal_summary(scenario, game, prepared):
     windows = scenario["steps"] // scenario["decision_window"]
     schedule = planned_query_schedule(scenario, game)
-    expected, coverage = query_distribution(schedule, game, scenario, windows)
-    state = simulate(scenario, game, prepared)
-    entities = state["window_counts"].astype(float)
-    updates = np.zeros_like(entities)
-    for w in range(windows):
-        phase = min(len(scenario["phases"]) - 1,
-                    (w * scenario["decision_window"]) // scenario["phase_steps"])
-        rate = scenario["phases"][phase]["update_rate"]
-        updates[w] = entities[w] * (rate * scenario["decision_window"] / scenario["entity_count"])
-    return {"queries": expected, "entities": state["window_counts"], "updates": updates,
+    touch, centres, coverage = query_distributions(schedule, game, scenario, windows)
+    state = simulate(scenario, game, prepared, reporting=True)
+    return {"queries": touch, "centres": centres,
+            "entities": state["window_entities"].astype(float),
+            "entities_true": state["window_counts"].astype(float),
+            "updates": state["window_updates"].astype(float),
             "coverage": coverage, "phase_at": state["phase_at"],
             "initial": state["initial"], "schedule": schedule}
 
 
 def write_nominal_table(path, summary):
     windows = summary["queries"].shape[0]
-    lines = ["window,region,query_count,entity_count,update_count,coverage"]
+    lines = ["window,region,query_count,entity_count,update_count,coverage,query_centre"]
     for w in range(windows):
         for region in range(SIDE * SIDE):
             lines.append(f"{w},{region},{summary['queries'][w, region]:.6f},"
                          f"{int(summary['entities'][w, region])},"
                          f"{summary['updates'][w, region]:.6f},"
-                         f"{summary['coverage'][w, region]:.6f}")
+                         f"{summary['coverage'][w, region]:.6f},"
+                         f"{summary['centres'][w, region]:.6f}")
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

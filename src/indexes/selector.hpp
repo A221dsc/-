@@ -39,6 +39,8 @@ struct SelectorConfig {
     double margin{0.1};
     double alpha{1.0};   // EWMA weight of the newest window; 1 = raw last window
     bool fusion{false};  // take the per-region maximum of prior and history forecasts
+    int uncertainty{0};  // 0 point prior, 1 expected cost over samples, 2 add tail risk
+    double risk_lambda{0.0};
     CostModel cost;
 };
 

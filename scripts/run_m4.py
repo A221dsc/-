@@ -57,6 +57,8 @@ def read_csv(path):
 
 
 def write_csv(path, rows):
+    if not rows:
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
@@ -81,6 +83,7 @@ def main():
     parser.add_argument("--cpu", type=int, default=0)
     parser.add_argument("--splits", nargs="+", default=["validation", "test"])
     parser.add_argument("--actuals", type=int, default=3)
+    parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     selection = json.loads(args.selection.read_text(encoding="utf-8"))
@@ -104,10 +107,17 @@ def main():
                                "map": Path(map_name).stem})
 
     metrics, decisions, timeline, regions = [], [], [], []
+    existing = set()
+    if args.resume and (args.output / "metrics.csv").exists():
+        metrics = read_csv(args.output / "metrics.csv")
+        existing = {(row["scenario"], int(row["actual"]), row["method"]) for row in metrics}
+        print(f"resume: {len(existing)} rows already present", flush=True)
     for entry in traces:
         order = list(METHODS)
         random.Random(f"{entry['scenario']}-{entry['actual']}").shuffle(order)
         for method in order:
+            if (entry["scenario"], entry["actual"], method) in existing:
+                continue
             param = 1
             if method == "Uniform Grid":
                 param = classic["Uniform Grid"]
@@ -168,9 +178,9 @@ def main():
         summary[split] = {method: {field: statistics.median(float(r[field]) for r in rows)
                                    for field in METRIC} | {"total_ms": statistics.median(
                                        float(r["total_ms"]) for r in rows),
-                                       "switches": statistics.median(r["switches"] for r in rows),
-                                       "promotions": statistics.median(r["promotions"] for r in rows),
-                                       "demotions": statistics.median(r["demotions"] for r in rows)}
+                                       "switches": statistics.median(int(r["switches"]) for r in rows),
+                                       "promotions": statistics.median(int(r["promotions"]) for r in rows),
+                                       "demotions": statistics.median(int(r["demotions"]) for r in rows)}
                            for method, rows in by_method.items()}
     json_file(args.output / "summary.json", summary)
 

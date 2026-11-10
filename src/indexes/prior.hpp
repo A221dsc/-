@@ -22,9 +22,12 @@ public:
     bool has(std::size_t window) const { return window < windows_; }
     unsigned regions() const { return regions_; }
     std::size_t windows() const { return windows_; }
+    unsigned samples() const { return samples_; }
     const PriorLoad& at(std::size_t window, unsigned region) const;
+    const PriorLoad& at(unsigned sample, std::size_t window, unsigned region) const;
 
 private:
+    unsigned samples_{1};
     unsigned regions_{};
     std::size_t windows_{};
     std::vector<PriorLoad> data_;

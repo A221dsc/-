@@ -24,7 +24,8 @@ def read_table(path):
         header = next(handle)
         assert header.startswith("window,region"), path
         for line in handle:
-            window, region, queries, entities, updates, coverage = line.split(",")
+            fields = line.split(",")
+            window, region, queries, entities, updates, coverage = fields[:6]
             table[(int(window), int(region))] = (float(queries), float(entities),
                                                 float(updates), float(coverage))
     windows = max(w for w, _ in table) + 1

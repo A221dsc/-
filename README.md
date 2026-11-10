@@ -86,3 +86,17 @@ python -X utf8 scripts/m4_export_viz.py configs/m4.json data/processed/m4 build_
 
 新方法名（报告与 CSV 使用完整名称）：Fixed Regional Scan、Fixed Local Fine Grid、Fixed Local Quadtree、Threshold-Based Adaptive Regional Index Selection、Cost-Aware Greedy Regional Index Selection，以及两者各加 `(Scenario)` 的想定前馈变体。C++ 仍接受旧缩写用于 M1–M3 复现。详见 [M4 报告](M4_REPORT.md)。
 
+## M4 第二阶段：负载语义修复与不确定性感知前馈
+
+索引按“查询外包盒触达区域”统计查询、按“跨区新旧各一次”统计更新、按“最后上报位置”统计实体。名义推导与离线标签必须使用同一语义：`m4_loadstats.py` 用独立 Python 实现复现索引语义，并通过 `spatial_m3 loadprobe` 在每条实际轨迹上逐窗口核对。旧 Python 语义标签保留在 `data/processed/m4/loads_legacy_python_semantics/`。
+
+```powershell
+python -X utf8 scripts/m4_loadstats.py data/processed/m4 build_m3/spatial_m3.exe
+python -X utf8 scripts/m4_uncertainty.py configs/m4.json data/processed/m4 results/m4/uncertainty
+python -X utf8 scripts/m4_accuracy.py configs/m4.json data/processed/m4 results/m4/accuracy_v2
+python -X utf8 scripts/run_m4.py configs/m4.json results/m4/calibration/selected.json results/m4/calibration/selector_final.txt build_m3/spatial_m3.exe data/processed/m4 results/m4/run_v2 --cpu 0
+python -X utf8 scripts/run_m4_phase2.py configs/m4.json results/m4/calibration/selected.json results/m4/calibration/selector_final.txt build_m3/spatial_m3.exe data/processed/m4 results/m4/phase2 --cpu 0
+```
+
+新增完整方法名：History-Load Cost-Aware Greedy Regional Index Selection、Nominal Point Feed-Forward Regional Index Selection、Footprint-Calibrated Feed-Forward Regional Index Selection、Uncertainty-Aware Feed-Forward Regional Index Selection、Risk-Constrained Uncertainty-Aware Feed-Forward Regional Index Selection。详见 [M4 第二阶段报告](M4_PHASE2_REPORT.md)。
+

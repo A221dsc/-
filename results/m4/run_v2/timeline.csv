@@ -1,0 +1,97 @@
+method,split,scenario,actual,window_index,step_end,scan_regions,fine_regions,quad_regions,scan_entities,fine_entities,quad_entities,switches,policy_ms
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,0,50,0,0,256,0,0,20000,0,0.000000
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,1,100,254,0,2,16819,0,3181,254,0.370300
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,2,150,254,0,2,16883,0,3117,0,0.012300
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,3,200,254,0,2,16760,0,3240,0,0.011400
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,4,250,254,0,2,16622,0,3378,0,0.011500
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,5,300,254,1,1,16392,141,3467,1,0.069800
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,6,350,254,1,1,15733,482,3785,0,0.011900
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,7,400,252,0,4,14887,0,5113,3,0.273700
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,8,450,253,0,3,18505,0,1495,1,0.336300
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,9,500,254,0,2,19146,0,854,1,0.031600
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,10,550,254,0,2,19219,0,781,0,0.012500
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,11,600,254,0,2,19141,0,859,0,0.013000
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,12,650,252,1,3,18538,137,1325,2,0.092100
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,13,700,252,1,3,18354,120,1526,0,0.012600
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,14,750,252,1,3,17775,101,2124,4,0.381100
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,15,800,252,1,3,17657,86,2257,0,0.014000
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,16,850,251,2,3,17326,191,2483,1,0.029800
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,17,900,252,2,2,17902,229,1869,1,0.029700
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,18,950,252,2,2,17399,341,2260,0,0.016400
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,19,1000,252,2,2,18334,424,1242,2,0.110500
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,20,1050,255,0,1,19483,0,517,3,0.043100
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,21,1100,255,0,1,19473,0,527,0,0.013400
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,22,1150,255,0,1,19468,0,532,0,0.018500
+Threshold-Based Adaptive Regional Index Selection,test,test-1-brc203d,2,23,1200,255,0,1,19456,0,544,0,0.013400
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,0,50,0,0,256,0,0,20000,0,0.000000
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,1,100,254,0,2,16819,0,3181,254,0.380600
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,2,150,254,0,2,16883,0,3117,0,0.014000
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,3,200,254,0,2,16760,0,3240,0,0.014100
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,4,250,254,0,2,16622,0,3378,0,0.013900
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,5,300,254,0,2,16392,0,3608,0,0.015400
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,6,350,253,0,3,18860,0,1140,5,0.836300
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,7,400,253,0,3,18993,0,1007,0,0.015900
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,8,450,253,0,3,19061,0,939,0,0.017200
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,9,500,254,0,2,19146,0,854,1,0.023200
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,10,550,254,0,2,19219,0,781,0,0.014900
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,11,600,254,0,2,19141,0,859,0,0.015000
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,12,650,256,0,0,20000,0,0,2,0.040300
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,13,700,252,0,4,17797,0,2203,4,0.434400
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,14,750,250,0,6,17705,0,2295,2,0.033500
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,15,800,250,0,6,17565,0,2435,0,0.015800
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,16,850,254,0,2,19889,0,111,4,0.066200
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,17,900,256,0,0,20000,0,0,2,0.091800
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,18,950,255,0,1,19526,0,474,1,0.098100
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,19,1000,255,0,1,19499,0,501,0,0.016000
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,20,1050,255,0,1,19483,0,517,0,0.015700
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,21,1100,255,0,1,19473,0,527,0,0.015500
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,22,1150,255,0,1,19468,0,532,0,0.020500
+Cost-Aware Greedy Regional Index Selection (Scenario),test,test-1-brc203d,2,23,1200,255,0,1,19456,0,544,0,0.015500
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,0,50,0,0,256,0,0,20000,0,0.000000
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,1,100,254,0,2,16819,0,3181,254,0.377500
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,2,150,254,0,2,16883,0,3117,0,0.013000
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,3,200,254,0,2,16760,0,3240,0,0.011800
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,4,250,254,0,2,16622,0,3378,0,0.012500
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,5,300,254,0,2,16392,0,3608,0,0.012700
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,6,350,254,0,2,15733,0,4267,0,0.012500
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,7,400,251,0,5,14862,0,5138,3,0.191900
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,8,450,253,0,3,19061,0,939,2,0.346400
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,9,500,254,0,2,19146,0,854,1,0.017700
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,10,550,254,0,2,19219,0,781,0,0.013200
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,11,600,254,0,2,19141,0,859,0,0.013900
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,12,650,253,0,3,18675,0,1325,1,0.061300
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,13,700,252,0,4,18437,0,1563,1,0.017100
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,14,750,251,0,5,17724,0,2276,5,0.388000
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,15,800,250,0,6,17565,0,2435,1,0.018500
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,16,850,250,0,6,17305,0,2695,0,0.014300
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,17,900,252,0,4,19097,0,903,2,0.046900
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,18,950,253,0,3,18934,0,1066,1,0.015800
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,19,1000,254,0,2,18758,0,1242,3,0.094900
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,20,1050,255,0,1,19483,0,517,1,0.035200
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,21,1100,255,0,1,19473,0,527,0,0.014400
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,22,1150,255,0,1,19468,0,532,0,0.014400
+Cost-Aware Greedy Regional Index Selection,test,test-1-brc203d,2,23,1200,255,0,1,19456,0,544,0,0.014300
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,0,50,0,0,256,0,0,20000,0,0.000000
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,1,100,253,0,3,16671,0,3329,253,0.381600
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,2,150,253,0,3,16585,0,3415,0,0.013500
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,3,200,253,0,3,16335,0,3665,0,0.013400
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,4,250,253,1,2,15965,155,3880,1,0.071800
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,5,300,253,1,2,15596,141,4263,0,0.013200
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,6,350,254,0,2,18922,0,1078,5,0.807500
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,7,400,254,0,2,19018,0,982,0,0.015800
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,8,450,254,0,2,19073,0,927,0,0.014400
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,9,500,254,0,2,19146,0,854,0,0.019300
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,10,550,254,1,1,19219,248,533,1,0.094800
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,11,600,254,1,1,19141,378,481,0,0.014100
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,12,650,256,0,0,20000,0,0,2,0.131200
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,13,700,252,1,3,17797,120,2083,4,0.511300
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,14,750,252,1,3,17775,101,2124,0,0.019100
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,15,800,252,1,3,17657,86,2257,0,0.013900
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,16,850,255,1,0,19910,90,0,5,0.145000
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,17,900,255,1,0,19893,107,0,0,0.018500
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,18,950,255,0,1,19526,0,474,2,0.098400
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,19,1000,255,0,1,19499,0,501,0,0.014900
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,20,1050,255,0,1,19483,0,517,0,0.014200
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,21,1100,255,0,1,19473,0,527,0,0.015000
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,22,1150,255,0,1,19468,0,532,0,0.014500
+Threshold-Based Adaptive Regional Index Selection (Scenario),test,test-1-brc203d,2,23,1200,255,0,1,19456,0,544,0,0.014100

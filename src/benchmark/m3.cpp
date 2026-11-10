@@ -76,6 +76,7 @@ struct Method {
     bool classic{};
     bool feedforward{};
     bool fusion{};
+    int uncertainty{};
 };
 
 Method parse_method(std::string_view name) {
@@ -98,6 +99,16 @@ Method parse_method(std::string_view name) {
         { name = "S4_GREEDY"; method.feedforward = true; }
     else if (name == "Cost-Aware Greedy Regional Index Selection (Scenario + History)")
         { name = "S4_GREEDY"; method.feedforward = true; method.fusion = true; }
+    else if (name == "History-Load Cost-Aware Greedy Regional Index Selection")
+        { name = "S4_GREEDY"; }
+    else if (name == "Nominal Point Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; }
+    else if (name == "Footprint-Calibrated Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; }
+    else if (name == "Uncertainty-Aware Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 1; }
+    else if (name == "Risk-Constrained Uncertainty-Aware Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 2; }
     if (const auto mode = fixed_mode(name)) {
         method.fixed = mode;
         return method;
@@ -140,6 +151,7 @@ Context create(const Method& method, const M3Trace& trace, int fine, int quad, i
             trace.bounds, Mode::LocalQuad, fine, quad, profile, true);
         SelectorConfig local = *config;
         local.fusion = method.fusion;
+        local.uncertainty = method.uncertainty;
         context.selector = std::make_unique<Selector>(*method.policy, local,
                                                       method.feedforward ? prior : nullptr);
     } else {
@@ -457,6 +469,38 @@ void probe_switches(const M3Trace& trace, int fine, int quad) {
     }
 }
 
+// Dump the load the index itself observes per region and window. This is the
+// semantic reference for the offline load labels and the nominal derivation.
+void probe_loads(const M3Trace& trace, int fine, int quad, const std::string& prefix) {
+    AdaptiveRegionalIndex index(trace.bounds, Mode::Scan, fine, quad, false, true);
+    Id id = 0;
+    for (const Point& point : trace.points) index.set(++id, point);
+    index.reset_window();
+    std::ofstream out(prefix + "_loads_window.csv");
+    out << "window,region,query_count,update_count,coverage,entity_count\n";
+    int window = 0;
+    auto dump = [&]() {
+        for (unsigned region = 0; region < AdaptiveRegionalIndex::region_count; ++region) {
+            const auto& load = index.window_load(region);
+            out << window << ',' << region << ',' << load.queries << ',' << load.updates << ','
+                << std::fixed << std::setprecision(6) << load.coverage << ','
+                << index.entity_count(region) << '\n';
+        }
+        ++window;
+    };
+    for (const M3Event& event : trace.events) {
+        if (event.type == 'P') {
+            dump();
+            index.reset_window();
+        } else if (event.type == 'U') {
+            index.set(event.id, event.point);
+        } else {
+            index.query(event.query);
+        }
+    }
+    dump();
+}
+
 void run_profile(Context& context, const M3Trace& trace, const std::string& prefix,
                  double trace_load_ms) {
     std::ofstream regions(prefix + "_regions.csv");
@@ -527,6 +571,13 @@ int main(int argc, char** argv) {
             auto context = create(method, trace, fine, quad, param,
                                   config ? &*config : nullptr, true, prior);
             run_profile(context, trace, argv[9], load_ms);
+            return 0;
+        }
+        if (mode == "loadprobe") {
+            if (argc != 7) throw std::invalid_argument("usage: spatial_m3 loadprobe FINE QUAD CPU TRACE PREFIX");
+            pin(std::stoi(argv[4]));
+            const auto trace = read_m3_trace(argv[5]);
+            probe_loads(trace, std::stoi(argv[2]), std::stoi(argv[3]), argv[6]);
             return 0;
         }
         if (mode == "switchprobe") {

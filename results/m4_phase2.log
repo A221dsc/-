@@ -1,0 +1,34 @@
+risk lambda 0.5 -> 131.7 ms
+risk lambda 1.0 -> 206.2 ms
+risk lambda 2.0 -> 226.3 ms
+validation-0-brc204d a0 calibrated 187.0 ms
+validation-0-brc204d a0 expected 196.0 ms
+validation-0-brc204d a0 risk 188.6 ms
+validation-0-brc204d a1 calibrated 186.6 ms
+validation-0-brc204d a1 expected 179.0 ms
+validation-0-brc204d a1 risk 203.7 ms
+validation-1-arena2 a0 calibrated 151.1 ms
+validation-1-arena2 a0 expected 152.1 ms
+validation-1-arena2 a0 risk 145.7 ms
+validation-1-arena2 a1 calibrated 144.0 ms
+validation-1-arena2 a1 expected 146.1 ms
+validation-1-arena2 a1 risk 154.6 ms
+test-0-brc100d a0 calibrated 277.7 ms
+test-0-brc100d a0 expected 278.2 ms
+test-0-brc100d a0 risk 211.7 ms
+test-0-brc100d a1 calibrated 278.6 ms
+test-0-brc100d a1 expected 281.8 ms
+test-0-brc100d a1 risk 214.9 ms
+test-0-brc100d a2 calibrated 288.3 ms
+test-0-brc100d a2 expected 266.0 ms
+test-0-brc100d a2 risk 206.0 ms
+test-1-brc203d a0 calibrated 186.8 ms
+test-1-brc203d a0 expected 183.5 ms
+test-1-brc203d a0 risk 188.5 ms
+test-1-brc203d a1 calibrated 179.6 ms
+test-1-brc203d a1 expected 184.2 ms
+test-1-brc203d a1 risk 174.7 ms
+test-1-brc203d a2 calibrated 173.0 ms
+test-1-brc203d a2 expected 170.1 ms
+test-1-brc203d a2 risk 164.5 ms
+done

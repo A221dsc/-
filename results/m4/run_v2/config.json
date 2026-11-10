@@ -1,0 +1,374 @@
+{
+  "actual_seeds": {
+    "test": [
+      [
+        5501,
+        5502,
+        5503,
+        5504,
+        5505
+      ],
+      [
+        5601,
+        5602,
+        5603,
+        5604,
+        5605
+      ]
+    ],
+    "train": [
+      [
+        5101,
+        5102,
+        5103,
+        5104,
+        5105
+      ],
+      [
+        5201,
+        5202,
+        5203,
+        5204,
+        5205
+      ]
+    ],
+    "validation": [
+      [
+        5301,
+        5302,
+        5303,
+        5304,
+        5305
+      ],
+      [
+        5401,
+        5402,
+        5403,
+        5404,
+        5405
+      ]
+    ]
+  },
+  "alpha_candidates": [
+    1.0,
+    0.85
+  ],
+  "dataset_variant": "PUBLIC_MAP_SCENARIO",
+  "decision": {
+    "cooldown_windows": 2,
+    "rebuild_entity_limit": 6000,
+    "rebuilds_per_window": 4
+  },
+  "decision_window": 50,
+  "forecast_horizon": 200,
+  "greedy_margins": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.45
+  ],
+  "index": {
+    "boost_capacity": 8,
+    "fine_cell_m": 320,
+    "pr_quadtree_capacity": 64,
+    "quad_capacity": 64,
+    "uniform_grid_m": 500
+  },
+  "maps": {
+    "test": [
+      "brc100d.map",
+      "brc203d.map"
+    ],
+    "train": [
+      "brc202d.map",
+      "orz100d.map"
+    ],
+    "validation": [
+      "brc204d.map",
+      "arena2.map"
+    ]
+  },
+  "methods": [
+    "Fixed Regional Scan",
+    "Fixed Local Fine Grid",
+    "Fixed Local Quadtree",
+    "Threshold-Based Adaptive Regional Index Selection",
+    "Threshold-Based Adaptive Regional Index Selection (Scenario)",
+    "Cost-Aware Greedy Regional Index Selection",
+    "Cost-Aware Greedy Regional Index Selection (Scenario)",
+    "Uniform Grid",
+    "PR Quadtree",
+    "Boost R*-Tree"
+  ],
+  "mismatch_profiles": {
+    "heavy": {
+      "delay_steps_max": 60,
+      "detour_share": 0.2,
+      "focus_offset_m": 160,
+      "phase_shift": [
+        40,
+        -50,
+        30
+      ],
+      "query_jitter_m": 150,
+      "query_sigma_factor": 1.8,
+      "report_noise_m": 90,
+      "speed_sigma": 0.3
+    },
+    "light": {
+      "delay_steps_max": 8,
+      "detour_share": 0.02,
+      "focus_offset_m": 20,
+      "phase_shift": [
+        0,
+        0,
+        0
+      ],
+      "query_jitter_m": 20,
+      "query_sigma_factor": 1.1,
+      "report_noise_m": 15,
+      "speed_sigma": 0.05
+    },
+    "medium": {
+      "delay_steps_max": 30,
+      "detour_share": 0.1,
+      "focus_offset_m": 70,
+      "phase_shift": [
+        15,
+        -20,
+        10
+      ],
+      "query_jitter_m": 60,
+      "query_sigma_factor": 1.35,
+      "report_noise_m": 40,
+      "speed_sigma": 0.15
+    }
+  },
+  "perturbation": {
+    "delay_steps_max": 30,
+    "detour_share": 0.1,
+    "focus_offset_m": 70,
+    "phase_shift": [
+      15,
+      -20,
+      10
+    ],
+    "query_jitter_m": 60,
+    "query_sigma_factor": 1.35,
+    "report_noise_m": 40,
+    "speed_sigma": 0.15
+  },
+  "phase_steps": 300,
+  "phases": [
+    {
+      "focus": "obj0",
+      "hot_share": 0.875,
+      "name": "fixed",
+      "queries_per_step": 32,
+      "speed_factor": 1.0,
+      "update_rate": 180
+    },
+    {
+      "focus": "obj2",
+      "hot_share": 0.85,
+      "name": "migration",
+      "queries_per_step": 40,
+      "speed_factor": 1.5,
+      "update_rate": 360
+    },
+    {
+      "cycle_steps": 100,
+      "focus": "obj3",
+      "focus_cycle": [
+        "obj3",
+        "obj1"
+      ],
+      "hot_share": 0.9,
+      "name": "alternation",
+      "queries_per_step": 48,
+      "speed_factor": 1.0,
+      "update_rate": 180
+    },
+    {
+      "focus": "obj4",
+      "hot_share": 0.875,
+      "name": "update_surge",
+      "queries_per_step": 24,
+      "speed_factor": 0.8,
+      "update_rate": 950
+    }
+  ],
+  "queries": {
+    "circle_share": 0.5,
+    "half_sizes_m": [
+      40,
+      80,
+      160,
+      320
+    ],
+    "sigma_m": 120
+  },
+  "scenario": {
+    "entity_count": 20000,
+    "main_group_share": 0.62,
+    "objectives": [
+      "obj0",
+      "obj1",
+      "obj2",
+      "obj3",
+      "obj4",
+      "obj5"
+    ],
+    "phase_targets": [
+      "obj0",
+      "obj2",
+      "obj3",
+      "obj4"
+    ]
+  },
+  "scenario_seeds": {
+    "test": [
+      4301,
+      4302
+    ],
+    "train": [
+      4101,
+      4102
+    ],
+    "validation": [
+      4201,
+      4202
+    ]
+  },
+  "steps": 1200,
+  "threshold_candidates": [
+    [
+      64,
+      60,
+      0.05,
+      240,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      96,
+      90,
+      0.1,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      120,
+      0.15,
+      320,
+      0.15,
+      0.7,
+      0
+    ],
+    [
+      160,
+      90,
+      0.15,
+      320,
+      0.1,
+      0.7,
+      0
+    ],
+    [
+      256,
+      120,
+      0.1,
+      640,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      96,
+      60,
+      0.05,
+      240,
+      0.2,
+      0.6,
+      0
+    ],
+    [
+      160,
+      150,
+      0.3,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      192,
+      120,
+      0.2,
+      480,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      64,
+      120,
+      0.1,
+      240,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      320,
+      160,
+      0.3,
+      320,
+      0.12,
+      0.75,
+      0
+    ],
+    [
+      128,
+      180,
+      0.25,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      96,
+      120,
+      0.2,
+      240,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      120,
+      0.25,
+      320,
+      0.12,
+      0.7,
+      512
+    ],
+    [
+      256,
+      240,
+      0.5,
+      320,
+      0.12,
+      0.8,
+      512
+    ]
+  ]
+}
