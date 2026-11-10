@@ -1,0 +1,9 @@
+method,phase,windows,scan_regions,fine_regions,quad_regions,indexed_regions,switches,policy_ms
+S3_THRESHOLD,fixed,6,255.0,0.0,1.0,1.0,1275,5.7262
+S3_THRESHOLD,migration,6,255.0,0.0,1.0,1.0,10,10.8188
+S3_THRESHOLD,alternation,6,254.0,1.0,1.0,2.0,63,8.6783
+S3_THRESHOLD,update_surge,6,255.0,0.0,0.5,1.0,38,1.5987
+S4_GREEDY,fixed,6,254.0,0.0,2.0,2.0,1272,6.7401
+S4_GREEDY,migration,6,254.0,0.0,2.0,2.0,34,9.8173
+S4_GREEDY,alternation,6,254.5,0.0,1.5,1.5,54,8.2397
+S4_GREEDY,update_surge,6,254.0,0.0,2.0,2.0,40,8.2691

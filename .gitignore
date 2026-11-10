@@ -13,3 +13,8 @@ __pycache__/
 /results/*_pre_boundary_fix/
 /results/m2_instrumented/
 /results/m2/tdrive/regions.csv
+
+/results/m3/_smoke/
+/results/m3/final/profile/
+/results/m3/final/regions.csv
+/results/m3/calibration/tmp/

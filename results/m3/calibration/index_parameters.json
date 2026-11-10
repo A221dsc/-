@@ -1,0 +1,8 @@
+{
+  "PR_QUADTREE": 64,
+  "RSTAR_BOOST": 8,
+  "UNIFORM_GRID": 500,
+  "fine_cell_m": 320,
+  "quad_capacity": 64,
+  "selection": "median online ms over the training traces, 2 repeats, candidate sets from configs/m3.json"
+}

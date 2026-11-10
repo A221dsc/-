@@ -4,6 +4,10 @@
 
 namespace spatial {
 enum class Mode { Scan, FineGrid, LocalQuad };
+struct WindowLoad {
+    std::uint64_t queries{}, updates{};
+    double coverage{};
+};
 struct RegionalStats {
     std::uint64_t queries{}, object_updates{}, local_updates{}, builds{}, switches{};
     std::int64_t query_ns{}, local_update_ns{}, build_ns{}, switch_ns{};
@@ -20,7 +24,7 @@ public:
     static constexpr unsigned region_count = side * side;
 
     AdaptiveRegionalIndex(Box world, Mode mode, int fine_cell, int quad_capacity,
-                          bool profile = false);
+                          bool profile = false, bool observe = false);
     void set(Id id, Point point) override;
     void erase(Id id) override;
     Answer query(Query q) const override;
@@ -30,7 +34,8 @@ public:
     Mode mode(unsigned region) const { return modes_.at(region); }
     RegionalTimes times() const { return times_; }
     const RegionalStats& region_stats(unsigned region) const { return stats_.at(region); }
-    void reset_window() { stats_ = {}; }
+    const WindowLoad& window_load(unsigned region) const { return loads_.at(region); }
+    void reset_window() { stats_ = {}; loads_ = {}; }
 
 private:
     struct Record {
@@ -46,7 +51,8 @@ private:
     Box world_;
     double width_, height_;
     int fine_cell_, quad_capacity_;
-    bool profile_;
+    bool profile_, observe_;
+    mutable std::array<WindowLoad, region_count> loads_{};
     std::unordered_map<Id, Record> objects_;
     std::unordered_map<unsigned, Region> regions_;
     std::array<Mode, region_count> modes_;

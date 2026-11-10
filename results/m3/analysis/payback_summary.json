@@ -1,0 +1,68 @@
+{
+  "S3_THRESHOLD": {
+    "all": {
+      "applied_switches": 1386,
+      "total_switch_cost_ms": 25.1071
+    },
+    "demote": {
+      "median_payback_windows": 0.2920560858381041,
+      "share_payback_within_three_windows": 0.9789391575663027,
+      "share_pays_back_in_phase": 0.9882995319812793,
+      "share_with_positive_saving": 0.964635063957863,
+      "switches": 1329,
+      "total_switch_cost_ms": 11.9799,
+      "wasted_switches": 0
+    },
+    "promote": {
+      "median_payback_windows": 0.09905989913623232,
+      "share_payback_within_three_windows": 1.0,
+      "share_pays_back_in_phase": 1.0,
+      "share_with_positive_saving": 0.47368421052631576,
+      "switches": 57,
+      "total_switch_cost_ms": 13.1272,
+      "wasted_switches": 3
+    },
+    "retune": {
+      "median_payback_windows": null,
+      "share_payback_within_three_windows": null,
+      "share_pays_back_in_phase": null,
+      "share_with_positive_saving": null,
+      "switches": 0,
+      "total_switch_cost_ms": 0,
+      "wasted_switches": 0
+    }
+  },
+  "S4_GREEDY": {
+    "all": {
+      "applied_switches": 1400,
+      "total_switch_cost_ms": 29.6708
+    },
+    "demote": {
+      "median_payback_windows": 0.2581554905587716,
+      "share_payback_within_three_windows": 0.9821981424148607,
+      "share_pays_back_in_phase": 0.989938080495356,
+      "share_with_positive_saving": 0.9677902621722847,
+      "switches": 1335,
+      "total_switch_cost_ms": 15.7954,
+      "wasted_switches": 0
+    },
+    "promote": {
+      "median_payback_windows": 0.10799943507987804,
+      "share_payback_within_three_windows": 0.9591836734693877,
+      "share_pays_back_in_phase": 0.9387755102040817,
+      "share_with_positive_saving": 0.7538461538461538,
+      "switches": 65,
+      "total_switch_cost_ms": 13.8754,
+      "wasted_switches": 5
+    },
+    "retune": {
+      "median_payback_windows": null,
+      "share_payback_within_three_windows": null,
+      "share_pays_back_in_phase": null,
+      "share_with_positive_saving": null,
+      "switches": 0,
+      "total_switch_cost_ms": 0,
+      "wasted_switches": 0
+    }
+  }
+}

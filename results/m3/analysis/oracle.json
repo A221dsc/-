@@ -1,0 +1,28 @@
+{
+  "best_static_regional_profile_ms": 150.88496600000033,
+  "note": "offline bounds from the three fixed-mode profile replays of the same test traces; analysis only, never used by S3/S4",
+  "per_region_static_oracle_ms": 126.94659300000001,
+  "per_window_oracle_ms": 70.89689500000013,
+  "policy_capture": {
+    "S3_THRESHOLD": {
+      "gap_to_best_static_ms": 40.236746000000394,
+      "profile_total_ms": 110.64821999999994,
+      "share_of_region_static_oracle_gap_closed": 1.680847148634531,
+      "share_of_window_oracle_gap_closed": 0.5030343337070885
+    },
+    "S4_GREEDY": {
+      "gap_to_best_static_ms": 36.83300400000033,
+      "profile_total_ms": 114.051962,
+      "share_of_region_static_oracle_gap_closed": 1.538659456931339,
+      "share_of_window_oracle_gap_closed": 0.4604812135049517
+    }
+  },
+  "profile_totals_ms": {
+    "S0_ALL_SCAN": 150.88496600000033,
+    "S1_ALL_FINE": 347.4845189999987,
+    "S2_ALL_QUAD": 263.343711,
+    "S3_THRESHOLD": 110.64821999999994,
+    "S4_GREEDY": 114.051962
+  },
+  "space": "all bounds use the profile per-region costs of the same three fixed-mode replays; the coarse update term is absent from every value in this block"
+}

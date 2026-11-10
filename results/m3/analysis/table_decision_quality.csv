@@ -1,0 +1,9 @@
+method,phase,windows,hotspot_indexed_share,median_indexed_regions
+S3_THRESHOLD,fixed,30,0.16666666666666666,1.0
+S3_THRESHOLD,migration,30,0.0,1.0
+S3_THRESHOLD,alternation,30,0.3333333333333333,2.0
+S3_THRESHOLD,update_surge,30,0.23333333333333334,1.0
+S4_GREEDY,fixed,30,0.9333333333333333,2.0
+S4_GREEDY,migration,30,0.0,2.0
+S4_GREEDY,alternation,30,0.4,1.5
+S4_GREEDY,update_surge,30,0.3333333333333333,2.0

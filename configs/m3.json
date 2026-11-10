@@ -1,0 +1,365 @@
+{
+  "dataset_variant": "SYNTHETIC_LONG_SEPARATED",
+  "world": [
+    -10000,
+    -10000,
+    10000,
+    10000
+  ],
+  "entities": 20000,
+  "steps": 1200,
+  "phase_steps": 300,
+  "window_steps": 50,
+  "cooldown_windows": 2,
+  "switch_limit": 4,
+  "rebuild_entity_limit": 6000,
+  "phases": [
+    "fixed",
+    "migration",
+    "alternation",
+    "update_surge"
+  ],
+  "updates_per_step": [
+    180,
+    360,
+    180,
+    950
+  ],
+  "queries_per_step": [
+    32,
+    40,
+    48,
+    24
+  ],
+  "forced_hot_share": [
+    0.875,
+    0.85,
+    0.9,
+    0.875
+  ],
+  "entity_clusters_xy": [
+    [
+      3,
+      3
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      11,
+      8
+    ],
+    [
+      12,
+      12
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      14,
+      3
+    ]
+  ],
+  "entity_cluster_mass": [
+    0.16,
+    0.15,
+    0.14,
+    0.13,
+    0.12,
+    0.11
+  ],
+  "cluster_sigma_m": [
+    220,
+    260,
+    240,
+    300,
+    260,
+    210
+  ],
+  "query_anchor_phases": {
+    "fixed": [
+      [
+        3,
+        3
+      ]
+    ],
+    "migration": [
+      [
+        3,
+        3
+      ],
+      [
+        11,
+        8
+      ]
+    ],
+    "alternation": [
+      [
+        12,
+        12
+      ],
+      [
+        9,
+        15
+      ]
+    ],
+    "update_surge": [
+      [
+        7,
+        5
+      ],
+      [
+        0,
+        8
+      ]
+    ]
+  },
+  "alternation_steps": 100,
+  "movement_sigma_m": 32,
+  "query_half_sizes_m": [
+    80,
+    160,
+    320,
+    640
+  ],
+  "train_seeds": [
+    1301,
+    1307
+  ],
+  "validation_seeds": [
+    1709,
+    1741
+  ],
+  "test_seeds": [
+    101,
+    203,
+    307,
+    409,
+    503
+  ],
+  "validation_repeats": 2,
+  "fine_candidates_m": [
+    80,
+    160,
+    320,
+    640
+  ],
+  "quad_candidates": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "global_grid_candidates_m": [
+    125,
+    250,
+    500,
+    1000
+  ],
+  "global_tree_candidates": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "alpha_candidates": [
+    1.0,
+    0.85,
+    0.7
+  ],
+  "threshold_candidates": [
+    [
+      160,
+      60,
+      0.1,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      120,
+      0.25,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      256,
+      120,
+      0.1,
+      640,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      96,
+      60,
+      0.1,
+      240,
+      0.1,
+      0.6,
+      0
+    ],
+    [
+      160,
+      240,
+      0.5,
+      320,
+      0.12,
+      0.8,
+      0
+    ],
+    [
+      256,
+      60,
+      0.05,
+      320,
+      0.2,
+      0.7,
+      0
+    ],
+    [
+      512,
+      120,
+      0.1,
+      640,
+      0.08,
+      0.7,
+      0
+    ],
+    [
+      160,
+      120,
+      0.25,
+      320,
+      0.12,
+      0.6,
+      512
+    ],
+    [
+      256,
+      240,
+      0.5,
+      320,
+      0.12,
+      0.8,
+      512
+    ],
+    [
+      96,
+      120,
+      0.2,
+      240,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      90,
+      0.15,
+      320,
+      0.1,
+      0.7,
+      0
+    ],
+    [
+      320,
+      160,
+      0.3,
+      320,
+      0.12,
+      0.75,
+      0
+    ],
+    [
+      160,
+      60,
+      0.1,
+      240,
+      0.15,
+      0.65,
+      0
+    ],
+    [
+      128,
+      180,
+      0.25,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      192,
+      120,
+      0.2,
+      480,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      120,
+      0.25,
+      320,
+      0.12,
+      0.7,
+      1024
+    ],
+    [
+      64,
+      60,
+      0.05,
+      240,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      256,
+      90,
+      0.15,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      160,
+      150,
+      0.3,
+      320,
+      0.12,
+      0.7,
+      0
+    ],
+    [
+      96,
+      90,
+      0.1,
+      320,
+      0.2,
+      0.7,
+      0
+    ]
+  ],
+  "greedy_margins": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.45
+  ],
+  "policy_parameters_note": "threshold rows are min_entities,min_queries,min_ratio,quad_entities,fine_coverage,hysteresis,dense_entities; alpha is the EWMA weight of the newest window; dense_entities is a structural floor shared by S3 and S4",
+  "scenario_note": "entity clusters and query anchors are separated so that dense but unwatched force concentrations coexist with hot sparse areas"
+}

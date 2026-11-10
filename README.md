@@ -49,3 +49,20 @@ python -X utf8 scripts/analyze_m2.py results/m2_rerun/controlled_20k results/m2_
 ```
 
 T-Drive 复用既有的本地标准化数据。受控组使用纯合成对象轨迹，热点规则、阶段、配置和种子保存在清单中。默认实际事件落在本地忽略目录 `data/processed/m2_traces`。复现时使用新结果目录。图表脚本需要 Matplotlib。
+
+## M3 长时序区域选型
+
+S3 阈值选型与 S4 代价贪心在 1,200 步（4 阶段 × 300 步）动态负载上在线选择区域模式。两策略共享 50 步决策窗口、2 窗口冷却、每窗口 4 次重建与 6,000 实体重建预算、同一索引库；决策只读取当窗之前已观测的负载，切换、局部维护和策略自身开销全部计入在线时间。实体聚集区与查询关注区分开设置：两个稠密力群从不被查询，两个查询热点位于稀疏区，构成可被选型利用的异质性。
+
+```powershell
+./scripts/build_mingw.ps1 -Build build_m3
+$env:PATH = 'D:/anaconda/Library/bin;' + $env:PATH
+python -X utf8 scripts/m3_workload.py configs/m3.json data/processed/m3_traces
+python -X utf8 scripts/calibrate_m3.py configs/m3.json build_m3/spatial_m3.exe data/processed/m3_traces results/m3/calibration --cpu 0
+python -X utf8 scripts/run_m3.py configs/m3.json results/m3/calibration/selected.json results/m3/calibration/selector_final.txt build_m3/spatial_m3.exe results/m3/final --cpu 0
+python -X utf8 scripts/analyze_m3.py results/m3/final results/m3/calibration results/m3/analysis
+```
+
+轨迹由固定种子生成器产出，保存在本地忽略目录；标定只用训练与验证轨迹，测试种子在参数冻结后只读一次。`run_m3.py` 为每个方法/种子分别启动校验、计时和剖析进程，S3/S4 的决策哈希必须在计时与剖析之间一致。`analyze_m3.py` 产出逐种子对照、分阶段成本、决策最优性、回本和离线上下界与图。详见 [M3 报告](M3_REPORT.md)。
+
+C++ 二进制在含中文的绝对路径下会因窄字符路径转换失败，轨迹与配置文件请使用相对路径。

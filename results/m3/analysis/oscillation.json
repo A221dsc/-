@@ -1,0 +1,14 @@
+{
+  "S3_THRESHOLD": {
+    "max_switches_one_region": 5,
+    "regions_switched": 1280,
+    "regions_with_three_or_more_switches": 30,
+    "switches_back_to_previous_mode_within_three_windows": 72
+  },
+  "S4_GREEDY": {
+    "max_switches_one_region": 6,
+    "regions_switched": 1280,
+    "regions_with_three_or_more_switches": 35,
+    "switches_back_to_previous_mode_within_three_windows": 75
+  }
+}

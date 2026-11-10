@@ -1,0 +1,22 @@
+{
+  "alpha": 1.0,
+  "classic_parameters": {
+    "PR_QUADTREE": 64,
+    "RSTAR_BOOST": 8,
+    "UNIFORM_GRID": 500
+  },
+  "fine_cell_m": 320,
+  "greedy_validation_online_ms": 156.135,
+  "margin": 0.0,
+  "quad_capacity": 64,
+  "threshold": [
+    64,
+    60,
+    0.05,
+    240,
+    0.12,
+    0.7,
+    0
+  ],
+  "threshold_validation_online_ms": 150.32695
+}
