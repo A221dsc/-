@@ -293,6 +293,32 @@ void test_trace_reader() {
     std::filesystem::remove(path);
 }
 
+void test_prior() {
+    const auto path = std::filesystem::current_path() / "m4_prior_test.csv";
+    {
+        std::ofstream out(path);
+        out << "window,region,query_count,entity_count,update_count,coverage\n";
+        for (int w = 0; w < 2; ++w)
+            for (int r = 0; r < 4; ++r)
+                out << w << ',' << r << ',' << (w + 1) * 10 + r << ',' << 100 + r
+                    << ',' << 5.5 << ',' << 0.25 << '\n';
+    }
+    auto prior = ScenarioPrior::read(path);
+    require(prior.valid() && prior.windows() == 2 && prior.regions() == 4, "prior shape");
+    require(prior.at(1, 2).queries == 22 && prior.at(0, 3).entities == 103, "prior values");
+    bool thrown = false;
+    try { prior.at(2, 0); } catch (const std::out_of_range&) { thrown = true; }
+    require(thrown, "prior window bounds checked");
+    {
+        std::ofstream out(path);
+        out << "window,region\n0,0\n";
+    }
+    thrown = false;
+    try { ScenarioPrior::read(path); } catch (const std::runtime_error&) { thrown = true; }
+    require(thrown, "malformed prior rejected");
+    std::filesystem::remove(path);
+}
+
 void test_tick() {
     const auto first = Tick::now();
     volatile double sink = 0;
@@ -308,6 +334,7 @@ int main() {
     try {
         test_trace_reader();
         test_config_parser();
+        test_prior();
         test_tick();
         test_threshold_and_cooldown();
         test_rebuild_budget_and_free_demotions();
@@ -315,7 +342,7 @@ int main() {
         test_greedy_choice();
         test_ewma_retention();
         test_history_only_and_empty_window();
-        std::cout << checks << " M3 checks passed: trace reader, config parser, TSC timer, "
+        std::cout << checks << " M3 checks passed: trace reader, config parser, scenario prior, TSC timer, "
                      "threshold promotion/demotion, cooldown, rebuild budget, free demotions, "
                      "dense floor, greedy cost choice, EWMA retention, history-only decisions\n";
         return 0;

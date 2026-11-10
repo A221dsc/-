@@ -1,0 +1,81 @@
+sweep,method,candidate,database,repeat,online_ms,query_ms,update_ms
+fine_cell_m,Fixed Local Fine Grid,80,train-0-brc202d.actual.m3bin,0,1055.2554,249.3386,747.3284
+fine_cell_m,Fixed Local Fine Grid,80,train-1-orz100d.actual.m3bin,0,1023.595,250.8976,716.0847
+fine_cell_m,Fixed Local Fine Grid,160,train-0-brc202d.actual.m3bin,0,768.2118,240.8108,485.695
+fine_cell_m,Fixed Local Fine Grid,160,train-1-orz100d.actual.m3bin,0,961.4456,298.5036,613.5669
+fine_cell_m,Fixed Local Fine Grid,320,train-0-brc202d.actual.m3bin,0,977.4211,297.5558,627.9074
+fine_cell_m,Fixed Local Fine Grid,320,train-1-orz100d.actual.m3bin,0,1051.3746,360.4228,629.3804
+fine_cell_m,Fixed Local Fine Grid,640,train-0-brc202d.actual.m3bin,0,848.5499,323.8716,479.0833
+fine_cell_m,Fixed Local Fine Grid,640,train-1-orz100d.actual.m3bin,0,1032.7042,442.1821,537.662
+fine_cell_m,Fixed Local Fine Grid,80,train-0-brc202d.actual.m3bin,1,1099.0013,231.8358,795.4111
+fine_cell_m,Fixed Local Fine Grid,80,train-1-orz100d.actual.m3bin,1,1241.6082,311.2093,842.3376
+fine_cell_m,Fixed Local Fine Grid,160,train-0-brc202d.actual.m3bin,1,893.079,264.3588,581.4581
+fine_cell_m,Fixed Local Fine Grid,160,train-1-orz100d.actual.m3bin,1,923.9878,302.0745,564.7589
+fine_cell_m,Fixed Local Fine Grid,640,train-0-brc202d.actual.m3bin,1,1063.4184,338.2266,676.8114
+fine_cell_m,Fixed Local Fine Grid,640,train-1-orz100d.actual.m3bin,1,1235.5883,427.4443,752.7997
+fine_cell_m,Fixed Local Fine Grid,320,train-0-brc202d.actual.m3bin,1,813.295,276.1287,491.8459
+fine_cell_m,Fixed Local Fine Grid,320,train-1-orz100d.actual.m3bin,1,982.8645,370.7014,567.2845
+quad_capacity,Fixed Local Quadtree,64,train-0-brc202d.actual.m3bin,0,591.3054,74.1834,476.2494
+quad_capacity,Fixed Local Quadtree,64,train-1-orz100d.actual.m3bin,0,642.9488,90.6942,508.9294
+quad_capacity,Fixed Local Quadtree,16,train-0-brc202d.actual.m3bin,0,766.9397,92.8123,636.8863
+quad_capacity,Fixed Local Quadtree,16,train-1-orz100d.actual.m3bin,0,788.3351,106.9563,640.9084
+quad_capacity,Fixed Local Quadtree,32,train-0-brc202d.actual.m3bin,0,593.7914,82.7613,478.7313
+quad_capacity,Fixed Local Quadtree,32,train-1-orz100d.actual.m3bin,0,558.9949,79.5495,444.99
+quad_capacity,Fixed Local Quadtree,8,train-0-brc202d.actual.m3bin,0,768.178,117.7959,608.2431
+quad_capacity,Fixed Local Quadtree,8,train-1-orz100d.actual.m3bin,0,863.3984,132.8039,693.1458
+quad_capacity,Fixed Local Quadtree,16,train-0-brc202d.actual.m3bin,1,555.9041,99.7593,417.384
+quad_capacity,Fixed Local Quadtree,16,train-1-orz100d.actual.m3bin,1,655.6255,92.3925,528.7321
+quad_capacity,Fixed Local Quadtree,8,train-0-brc202d.actual.m3bin,1,1181.4012,140.6025,985.9354
+quad_capacity,Fixed Local Quadtree,8,train-1-orz100d.actual.m3bin,1,828.851,124.3359,663.9438
+quad_capacity,Fixed Local Quadtree,64,train-0-brc202d.actual.m3bin,1,759.5817,95.3426,611.467
+quad_capacity,Fixed Local Quadtree,64,train-1-orz100d.actual.m3bin,1,494.0377,80.6016,381.2325
+quad_capacity,Fixed Local Quadtree,32,train-0-brc202d.actual.m3bin,1,500.8211,74.919,396.7959
+quad_capacity,Fixed Local Quadtree,32,train-1-orz100d.actual.m3bin,1,654.0653,82.9812,529.1529
+grid_side_m,Uniform Grid,1000,train-0-brc202d.actual.m3bin,0,374.9177,234.2218,118.3887
+grid_side_m,Uniform Grid,1000,train-1-orz100d.actual.m3bin,0,500.1697,352.2595,125.2928
+grid_side_m,Uniform Grid,250,train-0-brc202d.actual.m3bin,0,372.4432,172.8537,165.3652
+grid_side_m,Uniform Grid,250,train-1-orz100d.actual.m3bin,0,381.1465,222.0408,136.8528
+grid_side_m,Uniform Grid,500,train-0-brc202d.actual.m3bin,0,345.9819,199.5814,123.8219
+grid_side_m,Uniform Grid,500,train-1-orz100d.actual.m3bin,0,419.1943,260.9332,131.0157
+grid_side_m,Uniform Grid,125,train-0-brc202d.actual.m3bin,0,321.4927,147.2193,148.0861
+grid_side_m,Uniform Grid,125,train-1-orz100d.actual.m3bin,0,378.0742,179.3186,169.9867
+grid_side_m,Uniform Grid,500,train-0-brc202d.actual.m3bin,1,310.2046,196.2727,95.8953
+grid_side_m,Uniform Grid,500,train-1-orz100d.actual.m3bin,1,426.7454,270.494,130.8076
+grid_side_m,Uniform Grid,125,train-0-brc202d.actual.m3bin,1,322.715,157.686,143.6175
+grid_side_m,Uniform Grid,125,train-1-orz100d.actual.m3bin,1,384.0425,178.9871,176.7379
+grid_side_m,Uniform Grid,1000,train-0-brc202d.actual.m3bin,1,347.946,229.4228,97.4491
+grid_side_m,Uniform Grid,1000,train-1-orz100d.actual.m3bin,1,470.6012,346.7751,101.097
+grid_side_m,Uniform Grid,250,train-0-brc202d.actual.m3bin,1,365.2566,183.1579,151.3783
+grid_side_m,Uniform Grid,250,train-1-orz100d.actual.m3bin,1,425.5261,241.5782,151.677
+quad_capacity,PR Quadtree,32,train-0-brc202d.actual.m3bin,0,337.0598,65.6734,250.1159
+quad_capacity,PR Quadtree,32,train-1-orz100d.actual.m3bin,0,350.5287,75.0027,253.7313
+quad_capacity,PR Quadtree,64,train-0-brc202d.actual.m3bin,0,332.6872,57.0328,249.6903
+quad_capacity,PR Quadtree,64,train-1-orz100d.actual.m3bin,0,426.8821,89.635,294.8547
+quad_capacity,PR Quadtree,16,train-0-brc202d.actual.m3bin,0,412.1195,81.7113,308.781
+quad_capacity,PR Quadtree,16,train-1-orz100d.actual.m3bin,0,435.4748,91.4539,320.3864
+quad_capacity,PR Quadtree,8,train-0-brc202d.actual.m3bin,0,576.4744,108.6171,430.5788
+quad_capacity,PR Quadtree,8,train-1-orz100d.actual.m3bin,0,603.0162,131.3084,441.983
+quad_capacity,PR Quadtree,64,train-0-brc202d.actual.m3bin,1,302.8283,56.4294,220.5782
+quad_capacity,PR Quadtree,64,train-1-orz100d.actual.m3bin,1,309.2929,70.4915,215.9579
+quad_capacity,PR Quadtree,16,train-0-brc202d.actual.m3bin,1,418.4603,71.7837,320.3915
+quad_capacity,PR Quadtree,16,train-1-orz100d.actual.m3bin,1,403.6748,86.233,297.5676
+quad_capacity,PR Quadtree,8,train-0-brc202d.actual.m3bin,1,590.7903,102.1606,457.3864
+quad_capacity,PR Quadtree,8,train-1-orz100d.actual.m3bin,1,475.5596,113.6083,331.0436
+quad_capacity,PR Quadtree,32,train-0-brc202d.actual.m3bin,1,356.5246,71.5239,256.9896
+quad_capacity,PR Quadtree,32,train-1-orz100d.actual.m3bin,1,304.219,77.3218,207.9176
+node_capacity,Boost R*-Tree,32,train-0-brc202d.actual.m3bin,0,1608.0948,108.0499,1475.472
+node_capacity,Boost R*-Tree,32,train-1-orz100d.actual.m3bin,0,1789.1317,133.414,1627.3713
+node_capacity,Boost R*-Tree,8,train-0-brc202d.actual.m3bin,0,1375.6615,171.4163,1152.0805
+node_capacity,Boost R*-Tree,8,train-1-orz100d.actual.m3bin,0,1424.3941,187.6229,1193.2945
+node_capacity,Boost R*-Tree,16,train-0-brc202d.actual.m3bin,0,1301.9717,126.9667,1142.4153
+node_capacity,Boost R*-Tree,16,train-1-orz100d.actual.m3bin,0,1395.6389,153.9551,1199.4098
+node_capacity,Boost R*-Tree,64,train-0-brc202d.actual.m3bin,0,1963.7041,91.4369,1841.2767
+node_capacity,Boost R*-Tree,64,train-1-orz100d.actual.m3bin,0,2157.7544,136.0759,1990.3772
+node_capacity,Boost R*-Tree,64,train-0-brc202d.actual.m3bin,1,2045.3988,106.2349,1910.5013
+node_capacity,Boost R*-Tree,64,train-1-orz100d.actual.m3bin,1,2072.2001,124.5367,1918.2827
+node_capacity,Boost R*-Tree,8,train-0-brc202d.actual.m3bin,1,1348.3553,167.6141,1141.946
+node_capacity,Boost R*-Tree,8,train-1-orz100d.actual.m3bin,1,1452.9384,193.1981,1213.0459
+node_capacity,Boost R*-Tree,16,train-0-brc202d.actual.m3bin,1,1310.9578,119.7904,1149.9842
+node_capacity,Boost R*-Tree,16,train-1-orz100d.actual.m3bin,1,1489.9715,149.8696,1301.5045
+node_capacity,Boost R*-Tree,32,train-0-brc202d.actual.m3bin,1,1667.6887,114.3224,1525.8089
+node_capacity,Boost R*-Tree,32,train-1-orz100d.actual.m3bin,1,1723.9161,126.3602,1569.2641

@@ -10,6 +10,7 @@ $flags = @('-std=c++20', '-O3', '-DNDEBUG', '-Isrc', "-I$LsiRoot/include")
 $common = @(
     'src/indexes/grid.cpp', 'src/indexes/quad.cpp', 'src/indexes/boost.cpp',
     'src/indexes/lsi.cpp', 'src/indexes/regional.cpp', 'src/indexes/selector.cpp',
+    'src/indexes/prior.cpp',
     'src/validation/oracle.cpp'
 )
 $objects = foreach ($src in $common) {

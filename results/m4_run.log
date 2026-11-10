@@ -1,0 +1,101 @@
+validation-0-brc204d a0 Threshold-Based Adaptive Regional Index Selection online 276.3 ms
+validation-0-brc204d a0 Fixed Local Fine Grid online 845.1 ms
+validation-0-brc204d a0 PR Quadtree online 331.2 ms
+validation-0-brc204d a0 Uniform Grid online 371.3 ms
+validation-0-brc204d a0 Fixed Regional Scan online 621.4 ms
+validation-0-brc204d a0 Cost-Aware Greedy Regional Index Selection online 396.4 ms
+validation-0-brc204d a0 Threshold-Based Adaptive Regional Index Selection (Scenario) online 277.9 ms
+validation-0-brc204d a0 Boost R*-Tree online 1478.0 ms
+validation-0-brc204d a0 Fixed Local Quadtree online 600.0 ms
+validation-0-brc204d a0 Cost-Aware Greedy Regional Index Selection (Scenario) online 265.9 ms
+validation-0-brc204d a1 Fixed Regional Scan online 591.4 ms
+validation-0-brc204d a1 Threshold-Based Adaptive Regional Index Selection online 272.0 ms
+validation-0-brc204d a1 PR Quadtree online 369.1 ms
+validation-0-brc204d a1 Cost-Aware Greedy Regional Index Selection online 244.3 ms
+validation-0-brc204d a1 Threshold-Based Adaptive Regional Index Selection (Scenario) online 287.0 ms
+validation-0-brc204d a1 Cost-Aware Greedy Regional Index Selection (Scenario) online 276.2 ms
+validation-0-brc204d a1 Uniform Grid online 364.0 ms
+validation-0-brc204d a1 Fixed Local Quadtree online 854.4 ms
+validation-0-brc204d a1 Fixed Local Fine Grid online 761.8 ms
+validation-0-brc204d a1 Boost R*-Tree online 1282.4 ms
+validation-1-arena2 a0 Cost-Aware Greedy Regional Index Selection (Scenario) online 208.4 ms
+validation-1-arena2 a0 Threshold-Based Adaptive Regional Index Selection online 247.1 ms
+validation-1-arena2 a0 Threshold-Based Adaptive Regional Index Selection (Scenario) online 218.5 ms
+validation-1-arena2 a0 Fixed Local Quadtree online 691.5 ms
+validation-1-arena2 a0 Cost-Aware Greedy Regional Index Selection online 195.7 ms
+validation-1-arena2 a0 Uniform Grid online 330.7 ms
+validation-1-arena2 a0 Fixed Regional Scan online 395.6 ms
+validation-1-arena2 a0 PR Quadtree online 283.1 ms
+validation-1-arena2 a0 Fixed Local Fine Grid online 716.2 ms
+validation-1-arena2 a0 Boost R*-Tree online 1218.6 ms
+validation-1-arena2 a1 Fixed Local Fine Grid online 731.7 ms
+validation-1-arena2 a1 Uniform Grid online 423.7 ms
+validation-1-arena2 a1 Fixed Regional Scan online 422.5 ms
+validation-1-arena2 a1 Cost-Aware Greedy Regional Index Selection (Scenario) online 219.0 ms
+validation-1-arena2 a1 Cost-Aware Greedy Regional Index Selection online 337.3 ms
+validation-1-arena2 a1 Fixed Local Quadtree online 402.7 ms
+validation-1-arena2 a1 Threshold-Based Adaptive Regional Index Selection (Scenario) online 198.0 ms
+validation-1-arena2 a1 Boost R*-Tree online 1168.6 ms
+validation-1-arena2 a1 Threshold-Based Adaptive Regional Index Selection online 186.2 ms
+validation-1-arena2 a1 PR Quadtree online 275.6 ms
+test-0-brc100d a0 Cost-Aware Greedy Regional Index Selection online 322.5 ms
+test-0-brc100d a0 Threshold-Based Adaptive Regional Index Selection online 327.7 ms
+test-0-brc100d a0 Threshold-Based Adaptive Regional Index Selection (Scenario) online 314.9 ms
+test-0-brc100d a0 Cost-Aware Greedy Regional Index Selection (Scenario) online 352.9 ms
+test-0-brc100d a0 Fixed Local Fine Grid online 612.5 ms
+test-0-brc100d a0 Uniform Grid online 340.4 ms
+test-0-brc100d a0 Fixed Local Quadtree online 376.8 ms
+test-0-brc100d a0 Boost R*-Tree online 1194.6 ms
+test-0-brc100d a0 Fixed Regional Scan online 589.1 ms
+test-0-brc100d a0 PR Quadtree online 322.2 ms
+test-0-brc100d a1 Boost R*-Tree online 1168.6 ms
+test-0-brc100d a1 Fixed Regional Scan online 659.7 ms
+test-0-brc100d a1 PR Quadtree online 257.3 ms
+test-0-brc100d a1 Uniform Grid online 325.9 ms
+test-0-brc100d a1 Cost-Aware Greedy Regional Index Selection online 348.2 ms
+test-0-brc100d a1 Cost-Aware Greedy Regional Index Selection (Scenario) online 336.4 ms
+test-0-brc100d a1 Threshold-Based Adaptive Regional Index Selection online 288.4 ms
+test-0-brc100d a1 Threshold-Based Adaptive Regional Index Selection (Scenario) online 318.8 ms
+test-0-brc100d a1 Fixed Local Quadtree online 462.4 ms
+test-0-brc100d a1 Fixed Local Fine Grid online 658.0 ms
+test-0-brc100d a2 Cost-Aware Greedy Regional Index Selection online 271.1 ms
+test-0-brc100d a2 Threshold-Based Adaptive Regional Index Selection (Scenario) online 348.9 ms
+test-0-brc100d a2 Uniform Grid online 336.8 ms
+test-0-brc100d a2 Fixed Local Fine Grid online 605.5 ms
+test-0-brc100d a2 PR Quadtree online 284.5 ms
+test-0-brc100d a2 Boost R*-Tree online 1075.5 ms
+test-0-brc100d a2 Threshold-Based Adaptive Regional Index Selection online 285.0 ms
+test-0-brc100d a2 Fixed Local Quadtree online 399.1 ms
+test-0-brc100d a2 Fixed Regional Scan online 594.2 ms
+test-0-brc100d a2 Cost-Aware Greedy Regional Index Selection (Scenario) online 292.6 ms
+test-1-brc203d a0 Uniform Grid online 408.6 ms
+test-1-brc203d a0 Boost R*-Tree online 1251.5 ms
+test-1-brc203d a0 Fixed Local Quadtree online 331.3 ms
+test-1-brc203d a0 Fixed Regional Scan online 534.1 ms
+test-1-brc203d a0 Threshold-Based Adaptive Regional Index Selection (Scenario) online 250.5 ms
+test-1-brc203d a0 Threshold-Based Adaptive Regional Index Selection online 194.3 ms
+test-1-brc203d a0 Cost-Aware Greedy Regional Index Selection (Scenario) online 226.3 ms
+test-1-brc203d a0 Cost-Aware Greedy Regional Index Selection online 191.2 ms
+test-1-brc203d a0 PR Quadtree online 231.6 ms
+test-1-brc203d a0 Fixed Local Fine Grid online 2102.7 ms
+test-1-brc203d a1 Fixed Regional Scan online 2999.1 ms
+test-1-brc203d a1 Cost-Aware Greedy Regional Index Selection online 754.7 ms
+test-1-brc203d a1 PR Quadtree online 1060.1 ms
+test-1-brc203d a1 Boost R*-Tree online 9966.1 ms
+test-1-brc203d a1 Fixed Local Quadtree online 1005.0 ms
+test-1-brc203d a1 Uniform Grid online 1216.1 ms
+test-1-brc203d a1 Fixed Local Fine Grid online 1456.0 ms
+test-1-brc203d a1 Threshold-Based Adaptive Regional Index Selection online 632.8 ms
+test-1-brc203d a1 Threshold-Based Adaptive Regional Index Selection (Scenario) online 708.8 ms
+test-1-brc203d a1 Cost-Aware Greedy Regional Index Selection (Scenario) online 786.0 ms
+test-1-brc203d a2 Boost R*-Tree online 3402.7 ms
+test-1-brc203d a2 Fixed Local Quadtree online 942.6 ms
+test-1-brc203d a2 Fixed Regional Scan online 1706.3 ms
+test-1-brc203d a2 Threshold-Based Adaptive Regional Index Selection online 627.6 ms
+test-1-brc203d a2 Uniform Grid online 1259.3 ms
+test-1-brc203d a2 Cost-Aware Greedy Regional Index Selection (Scenario) online 706.2 ms
+test-1-brc203d a2 Fixed Local Fine Grid online 1330.2 ms
+test-1-brc203d a2 Cost-Aware Greedy Regional Index Selection online 555.1 ms
+test-1-brc203d a2 Threshold-Based Adaptive Regional Index Selection (Scenario) online 621.7 ms
+test-1-brc203d a2 PR Quadtree online 696.5 ms
+best static: PR Quadtree

@@ -1,6 +1,8 @@
 #pragma once
+#include "prior.hpp"
 #include "regional.hpp"
 #include <array>
+#include <memory>
 #include <cstdint>
 #include <filesystem>
 #include <string>
@@ -36,6 +38,7 @@ struct SelectorConfig {
     ThresholdParams threshold;
     double margin{0.1};
     double alpha{1.0};   // EWMA weight of the newest window; 1 = raw last window
+    bool fusion{false};  // take the per-region maximum of prior and history forecasts
     CostModel cost;
 };
 
@@ -73,11 +76,13 @@ public:
     static constexpr unsigned max_rebuilds_per_window = 4;
     static constexpr double max_rebuild_entities = 6000;
 
-    Selector(Policy policy, SelectorConfig config);
+    Selector(Policy policy, SelectorConfig config,
+             std::shared_ptr<const ScenarioPrior> prior = nullptr);
 
     std::vector<Decision> decide(AdaptiveRegionalIndex& index, std::int64_t step);
 
     Policy policy() const { return policy_; }
+    bool feedforward() const { return static_cast<bool>(prior_); }
     const SelectorConfig& config() const { return config_; }
     const SelectorCounters& counters() const { return counters_; }
 
@@ -89,6 +94,7 @@ private:
 
     Policy policy_;
     SelectorConfig config_;
+    std::shared_ptr<const ScenarioPrior> prior_;
     std::array<std::int64_t, AdaptiveRegionalIndex::region_count> last_switch_{};
     std::array<Smoothed, AdaptiveRegionalIndex::region_count> smoothed_{};
     SelectorCounters counters_{};

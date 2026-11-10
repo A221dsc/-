@@ -1,0 +1,7 @@
+{
+  "Boost R*-Tree": 16,
+  "PR Quadtree": 64,
+  "Uniform Grid": 125,
+  "fine_cell_m": 160,
+  "quad_capacity": 32
+}

@@ -1,0 +1,21 @@
+split,method,label,online_ms,query_ms,update_ms,switch_ms,policy_ms,total_ms,p95_us,p99_us,switches,promotions,demotions,traces
+validation,Threshold-Based Adaptive Regional Index Selection,Threshold adaptive (history),259.5632,140.99595,81.9314,3.4686000000000003,3.9283,270.86575000000005,10.45,24.75,273.0,8.5,262.5,4
+validation,Fixed Local Fine Grid,Fixed Local Fine Grid,746.75625,231.01055,474.2789,0.0,0.0,754.8346,25.299999999999997,35.349999999999994,0.0,0.0,0.0,4
+validation,PR Quadtree,PR Quadtree,307.17785000000003,63.00655,220.2439,0.0,0.0,314.3747,6.5,9.649999999999999,0.0,0.0,0.0,4
+validation,Uniform Grid,Uniform Grid,367.64865,175.93955,158.5855,0.0,0.0,372.40689999999995,15.9,23.85,0.0,0.0,0.0,4
+validation,Fixed Regional Scan,Fixed Regional Scan,506.97595,435.00419999999997,42.13335,0.0,0.0,509.8316,36.3,45.5,0.0,0.0,0.0,4
+validation,Cost-Aware Greedy Regional Index Selection,Cost-aware greedy (history),290.7527,158.72899999999998,95.7262,4.06125,4.64965,298.56545,10.95,29.8,268.0,6.5,261.5,4
+validation,Threshold-Based Adaptive Regional Index Selection (Scenario),Threshold adaptive (scenario),248.16425,147.9947,56.53195,3.18275,3.6497,259.2086,12.0,28.55,266.0,5.5,260.5,4
+validation,Boost R*-Tree,Boost R*-Tree,1250.49435,128.2095,1093.55885,0.0,0.0,1292.69025,13.3,21.0,0.0,0.0,0.0,4
+validation,Fixed Local Quadtree,Fixed Local Quadtree,645.7617499999999,80.62195,525.8525500000001,0.0,0.0,653.6990499999999,8.3,13.6,0.0,0.0,0.0,4
+validation,Cost-Aware Greedy Regional Index Selection (Scenario),Cost-aware greedy (scenario),242.47680000000003,134.3236,70.56755,2.18635,2.7317,254.92690000000005,11.05,28.6,265.0,5.5,259.5,4
+test,Cost-Aware Greedy Regional Index Selection,Cost-aware greedy (history),335.3758,221.4164,89.88364999999999,3.9452499999999997,4.4579,345.79110000000003,16.65,30.55,275.0,10.0,265.0,6
+test,Threshold-Based Adaptive Regional Index Selection,Threshold adaptive (history),308.04915,193.49995,90.09309999999999,4.4873,5.1635,318.34074999999996,16.0,29.5,276.0,9.5,264.5,6
+test,Threshold-Based Adaptive Regional Index Selection (Scenario),Threshold adaptive (scenario),333.8342,254.5804,56.33885,3.60105,4.12125,339.60474999999997,18.95,40.65,271.0,7.5,262.5,6
+test,Cost-Aware Greedy Regional Index Selection (Scenario),Cost-aware greedy (scenario),344.62905,258.86890000000005,62.0457,1.8784,2.34215,350.80635,19.2,40.85,263.5,4.5,259.0,6
+test,Fixed Local Fine Grid,Fixed Local Fine Grid,994.08485,509.6834,444.88915000000003,0.0,0.0,1006.3806000000001,57.55,83.6,0.0,0.0,0.0,6
+test,Uniform Grid,Uniform Grid,374.48795,214.83075000000002,142.8276,0.0,0.0,379.15995,21.4,31.3,0.0,0.0,0.0,6
+test,Fixed Local Quadtree,Fixed Local Quadtree,430.7622,116.45705,296.70355,0.0,0.0,439.1018,10.399999999999999,15.45,0.0,0.0,0.0,6
+test,Boost R*-Tree,Boost R*-Tree,1223.0194000000001,175.9258,1031.7576,0.0,0.0,1274.9591500000001,17.9,26.950000000000003,0.0,0.0,0.0,6
+test,Fixed Regional Scan,Fixed Regional Scan,626.91445,574.7951499999999,38.1582,0.0,0.0,628.33635,39.4,52.95,0.0,0.0,0.0,6
+test,PR Quadtree,PR Quadtree,303.38194999999996,84.30175,200.19885,0.0,0.0,307.49659999999994,8.1,11.0,0.0,0.0,0.0,6

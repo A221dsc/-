@@ -66,3 +66,23 @@ python -X utf8 scripts/analyze_m3.py results/m3/final results/m3/calibration res
 轨迹由固定种子生成器产出，保存在本地忽略目录；标定只用训练与验证轨迹，测试种子在参数冻结后只读一次。`run_m3.py` 为每个方法/种子分别启动校验、计时和剖析进程，S3/S4 的决策哈希必须在计时与剖析之间一致。`analyze_m3.py` 产出逐种子对照、分阶段成本、决策最优性、回本和离线上下界与图。详见 [M3 报告](M3_REPORT.md)。
 
 C++ 二进制在含中文的绝对路径下会因窄字符路径转换失败，轨迹与配置文件请使用相对路径。
+
+## M4 想定驱动的双轨回放与前馈验证
+
+地形来自 Moving AI Lab 公开 2D 基准（DAO 地图集，`https://movingai.com/benchmarks/dao/dao-map.zip`，研究用途，引用 Sturtevant 2012）。想定定义名义路线、阶段表与周期查询；名义推导器只读想定与地图，输出未来 200 步的区域负载；实际执行器用独立种子注入延迟、速度噪声、上报噪声、改道与阶段偏移，写出所有索引共同重放的事件文件。防泄漏测试要求同想定换实际种子后名义负载表逐字节不变。
+
+```powershell
+./scripts/build_mingw.ps1 -Build build_m3
+$env:PATH = 'D:/anaconda/Library/bin;' + $env:PATH
+python -X utf8 scripts/m4_build.py configs/m4.json data/processed/m4 --splits train validation test
+python -X utf8 scripts/m4_build.py configs/m4.json data/processed/m4 --leakage
+python -X utf8 scripts/m4_actuals.py configs/m4.json data/processed/m4 --actuals 3 --splits test validation
+python -X utf8 scripts/m4_accuracy.py configs/m4.json data/processed/m4 results/m4/accuracy
+python -X utf8 scripts/m4_calibrate.py configs/m4.json build_m3/spatial_m3.exe data/processed/m4 results/m4/calibration --cpu 0
+python -X utf8 scripts/run_m4.py configs/m4.json results/m4/calibration/selected.json results/m4/calibration/selector_final.txt build_m3/spatial_m3.exe data/processed/m4 results/m4/run --cpu 0
+python -X utf8 scripts/m4_analyze.py configs/m4.json results/m4/run results/m4/accuracy data/processed/m4/loads results/m4/analysis
+python -X utf8 scripts/m4_export_viz.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/calibration/selector_final.txt results/m4/viz --scenario test-0-brc100d --actual 0 --method greedy-scenario
+```
+
+新方法名（报告与 CSV 使用完整名称）：Fixed Regional Scan、Fixed Local Fine Grid、Fixed Local Quadtree、Threshold-Based Adaptive Regional Index Selection、Cost-Aware Greedy Regional Index Selection，以及两者各加 `(Scenario)` 的想定前馈变体。C++ 仍接受旧缩写用于 M1–M3 复现。详见 [M4 报告](M4_REPORT.md)。
+

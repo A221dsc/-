@@ -83,6 +83,11 @@ SelectorConfig read_selector_config(const std::filesystem::path& path) {
             if (!(config.margin >= 0 && config.margin < 1))
                 throw std::runtime_error("selector margin out of range");
             margin_seen = true;
+        } else if (key == "fusion") {
+            int flag = 0;
+            if (!(tokens >> flag) || (flag != 0 && flag != 1))
+                throw std::runtime_error("invalid fusion flag");
+            config.fusion = flag == 1;
         } else if (key == "alpha") {
             if (!(tokens >> config.alpha)) throw std::runtime_error("invalid selector alpha");
             if (!(config.alpha > 0 && config.alpha <= 1))
@@ -152,8 +157,8 @@ SelectorConfig read_selector_config(const std::filesystem::path& path) {
     return config;
 }
 
-Selector::Selector(Policy policy, SelectorConfig config)
-    : policy_(policy), config_(std::move(config)) {
+Selector::Selector(Policy policy, SelectorConfig config, std::shared_ptr<const ScenarioPrior> prior)
+    : policy_(policy), config_(std::move(config)), prior_(std::move(prior)) {
     last_switch_.fill(-1000000);
 }
 
@@ -201,6 +206,9 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
     std::vector<Decision> proposals;
     proposals.reserve(AdaptiveRegionalIndex::region_count);
     const double alpha = std::clamp(config_.alpha, 1e-3, 1.0);
+    const auto prior_window = static_cast<std::size_t>(step / window_steps);
+    const bool prior_on = prior_ && prior_->valid() && prior_->has(prior_window) &&
+                          prior_->regions() > 0;
     for (unsigned region = 0; region < AdaptiveRegionalIndex::region_count; ++region) {
         Decision decision;
         decision.region = region;
@@ -219,9 +227,28 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
             smooth.updates = alpha * raw_u + (1.0 - alpha) * smooth.updates;
             smooth.coverage = alpha * raw_c + (1.0 - alpha) * smooth.coverage;
         }
-        decision.forecast = {static_cast<std::uint64_t>(std::llround(smooth.queries)),
-                             static_cast<std::uint64_t>(std::llround(smooth.updates)),
-                             smooth.coverage};
+        std::size_t forecast_entities = decision.entities;
+        if (prior_on && region < prior_->regions()) {
+            const auto& cell = prior_->at(prior_window, region);
+            decision.forecast = {static_cast<std::uint64_t>(std::llround(cell.queries)),
+                                 static_cast<std::uint64_t>(std::llround(cell.updates)),
+                                 cell.coverage};
+            forecast_entities = static_cast<std::size_t>(std::llround(cell.entities));
+            if (config_.fusion) {
+                decision.forecast.queries = std::max(
+                    decision.forecast.queries,
+                    static_cast<std::uint64_t>(std::llround(smooth.queries)));
+                decision.forecast.updates = std::max(
+                    decision.forecast.updates,
+                    static_cast<std::uint64_t>(std::llround(smooth.updates)));
+                decision.forecast.coverage = std::max(decision.forecast.coverage, smooth.coverage);
+                forecast_entities = std::max(forecast_entities, decision.entities);
+            }
+        } else {
+            decision.forecast = {static_cast<std::uint64_t>(std::llround(smooth.queries)),
+                                 static_cast<std::uint64_t>(std::llround(smooth.updates)),
+                                 smooth.coverage};
+        }
         if (decision.entities == 0) {
             if (decision.old_mode != Mode::Scan) {
                 decision.target = Mode::Scan;
@@ -230,21 +257,22 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
             }
             continue;
         }
-        if (decision.load.queries == 0 && decision.load.updates == 0 && smooth.queries < 1 &&
-            smooth.updates < 1) {
-            continue;
-        }
+        const bool quiet = decision.load.queries == 0 && decision.load.updates == 0 &&
+                           smooth.queries < 1 && smooth.updates < 1 &&
+                           (!prior_on || (decision.forecast.queries == 0 &&
+                                          decision.forecast.updates == 0));
+        if (quiet) continue;
         const bool floor_active = config_.threshold.dense_entities > 0 &&
                                   static_cast<double>(decision.entities) >= config_.threshold.dense_entities;
         Mode target = decision.old_mode;
         if (policy_ == Policy::Threshold) {
-            target = threshold_target(decision.old_mode, decision.entities, decision.forecast,
+            target = threshold_target(decision.old_mode, forecast_entities, decision.forecast,
                                       floor_active);
         } else {
-            const double stay = running_cost_ns(decision.old_mode, decision.entities, decision.forecast);
+            const double stay = running_cost_ns(decision.old_mode, forecast_entities, decision.forecast);
             double best = stay;
             for (Mode candidate : {Mode::Scan, Mode::FineGrid, Mode::LocalQuad}) {
-                const double cost = running_cost_ns(candidate, decision.entities, decision.forecast) +
+                const double cost = running_cost_ns(candidate, forecast_entities, decision.forecast) +
                                     transition_cost_ns(decision.old_mode, candidate, decision.entities);
                 if (cost < best) {
                     best = cost;
@@ -271,7 +299,7 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
         }
         decision.target = target;
         if (decision.has_estimate)
-            decision.estimate_ns = running_cost_ns(target, decision.entities, decision.forecast) +
+            decision.estimate_ns = running_cost_ns(target, forecast_entities, decision.forecast) +
                                    transition_cost_ns(decision.old_mode, target, decision.entities);
         proposals.push_back(decision);
     }

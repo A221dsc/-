@@ -18,3 +18,8 @@ __pycache__/
 /results/m3/final/profile/
 /results/m3/final/regions.csv
 /results/m3/calibration/tmp/
+/results/m4/run/regions.csv
+/results/m4/run/profile/
+/results/m4/calibration/tmp/
+/results/m4/viz/profile/
+

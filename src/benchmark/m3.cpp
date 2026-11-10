@@ -11,6 +11,7 @@
 // decision log; it is used for counterfactual cost analysis, not for the
 // headline timings. The O(1) decision hash of both paths must agree.
 #include "core/clock.hpp"
+#include "indexes/prior.hpp"
 #include "indexes/regional.hpp"
 #include "indexes/selector.hpp"
 #include "validation/oracle.hpp"
@@ -73,11 +74,30 @@ struct Method {
     std::optional<Mode> fixed;
     std::optional<Policy> policy;
     bool classic{};
+    bool feedforward{};
+    bool fusion{};
 };
 
 Method parse_method(std::string_view name) {
     Method method;
     method.name = std::string(name);
+    // Full method names used by the M4 reports; the short identifiers remain as
+    // aliases so the M1-M3 reproduction commands keep working.
+    if (name == "Fixed Regional Scan") name = "S0_ALL_SCAN";
+    else if (name == "Fixed Local Fine Grid") name = "S1_ALL_FINE";
+    else if (name == "Fixed Local Quadtree") name = "S2_ALL_QUAD";
+    else if (name == "Uniform Grid") name = "UNIFORM_GRID";
+    else if (name == "PR Quadtree") name = "PR_QUADTREE";
+    else if (name == "Boost R*-Tree") name = "RSTAR_BOOST";
+    else if (name == "libspatialindex R*-Tree") name = "RSTAR_LIBSPATIALINDEX";
+    else if (name == "Threshold-Based Adaptive Regional Index Selection") name = "S3_THRESHOLD";
+    else if (name == "Threshold-Based Adaptive Regional Index Selection (Scenario)")
+        { name = "S3_THRESHOLD"; method.feedforward = true; }
+    else if (name == "Cost-Aware Greedy Regional Index Selection") name = "S4_GREEDY";
+    else if (name == "Cost-Aware Greedy Regional Index Selection (Scenario)")
+        { name = "S4_GREEDY"; method.feedforward = true; }
+    else if (name == "Cost-Aware Greedy Regional Index Selection (Scenario + History)")
+        { name = "S4_GREEDY"; method.feedforward = true; method.fusion = true; }
     if (const auto mode = fixed_mode(name)) {
         method.fixed = mode;
         return method;
@@ -90,8 +110,10 @@ Method parse_method(std::string_view name) {
         method.policy = Policy::Greedy;
         return method;
     }
-    if (name == "UNIFORM_GRID" || name == "PR_QUADTREE" || name == "RSTAR_BOOST") {
+    if (name == "UNIFORM_GRID" || name == "PR_QUADTREE" || name == "RSTAR_BOOST" ||
+        name == "RSTAR_LIBSPATIALINDEX") {
         method.classic = true;
+        method.name = std::string(name);
         return method;
     }
     throw std::invalid_argument("unknown method " + method.name);
@@ -104,16 +126,22 @@ struct Context {
 };
 
 Context create(const Method& method, const M3Trace& trace, int fine, int quad, int param,
-               const SelectorConfig* config, bool profile) {
+               const SelectorConfig* config, bool profile,
+               const std::shared_ptr<const ScenarioPrior>& prior = nullptr) {
     Context context;
     if (method.fixed) {
         context.index = std::make_unique<AdaptiveRegionalIndex>(
             trace.bounds, *method.fixed, fine, quad, profile, profile);
     } else if (method.policy) {
         if (!config) throw std::invalid_argument("policy method requires a selector config");
+        if (method.feedforward && !prior)
+            throw std::invalid_argument("feed-forward method requires a scenario prior table");
         context.index = std::make_unique<AdaptiveRegionalIndex>(
             trace.bounds, Mode::LocalQuad, fine, quad, profile, true);
-        context.selector = std::make_unique<Selector>(*method.policy, *config);
+        SelectorConfig local = *config;
+        local.fusion = method.fusion;
+        context.selector = std::make_unique<Selector>(*method.policy, local,
+                                                      method.feedforward ? prior : nullptr);
     } else {
         context.index = make_index(method.name, param, trace.bounds);
     }
@@ -312,8 +340,8 @@ Outcome replay(Context& context, const M3Trace& trace, ProfileSink* sink) {
 }
 
 int validate(const M3Trace& trace, const Method& method, int fine, int quad, int param,
-             const SelectorConfig* config) {
-    auto context = create(method, trace, fine, quad, param, config, false);
+             const SelectorConfig* config, const std::shared_ptr<const ScenarioPrior>& prior) {
+    auto context = create(method, trace, fine, quad, param, config, false, prior);
     ArrayOracle oracle;
     Id id = 0;
     for (const Point& point : trace.points) {
@@ -458,9 +486,9 @@ int main(int argc, char** argv) {
         if (argc < 2) throw std::invalid_argument("usage: spatial_m3 measure|validate|profile|switchprobe ...");
         const std::string_view mode = argv[1];
         if (mode == "measure" || mode == "validate") {
-            if (argc != 9)
+            if (argc != 9 && argc != 10)
                 throw std::invalid_argument("usage: spatial_m3 " + std::string(mode) +
-                                            " METHOD FINE QUAD PARAM CPU TRACE CONFIG|NONE");
+                                            " METHOD FINE QUAD PARAM CPU TRACE CONFIG|NONE [PRIOR|NONE]");
             const auto method = parse_method(argv[2]);
             const int fine = std::stoi(argv[3]), quad = std::stoi(argv[4]);
             const int param = std::stoi(argv[5]);
@@ -469,18 +497,21 @@ int main(int argc, char** argv) {
             const auto trace = read_m3_trace(argv[7]);
             const auto load_ms = ms_of(Clock::now() - load_start);
             const auto config = load_config(argv[8]);
+            std::shared_ptr<const ScenarioPrior> prior;
+            if (argc == 10 && std::string_view(argv[9]) != "NONE")
+                prior = std::make_shared<const ScenarioPrior>(ScenarioPrior::read(argv[9]));
             if (mode == "validate") return validate(trace, method, fine, quad, param,
-                                                    config ? &*config : nullptr);
+                                                    config ? &*config : nullptr, prior);
             auto context = create(method, trace, fine, quad, param,
-                                  config ? &*config : nullptr, false);
+                                  config ? &*config : nullptr, false, prior);
             auto outcome = replay(context, trace, nullptr);
             outcome.trace_load_ms = load_ms;
             print_outcome(outcome, trace);
             return 0;
         }
         if (mode == "profile") {
-            if (argc != 10)
-                throw std::invalid_argument("usage: spatial_m3 profile METHOD FINE QUAD PARAM CPU TRACE CONFIG|NONE PREFIX");
+            if (argc != 10 && argc != 11)
+                throw std::invalid_argument("usage: spatial_m3 profile METHOD FINE QUAD PARAM CPU TRACE CONFIG|NONE PREFIX [PRIOR|NONE]");
             const auto method = parse_method(argv[2]);
             const int fine = std::stoi(argv[3]), quad = std::stoi(argv[4]);
             const int param = std::stoi(argv[5]);
@@ -490,8 +521,11 @@ int main(int argc, char** argv) {
             const auto load_ms = ms_of(Clock::now() - load_start);
             const auto config = load_config(argv[8]);
             if (method.policy && !config) throw std::invalid_argument("policy profile needs a config");
+            std::shared_ptr<const ScenarioPrior> prior;
+            if (argc == 11 && std::string_view(argv[10]) != "NONE")
+                prior = std::make_shared<const ScenarioPrior>(ScenarioPrior::read(argv[10]));
             auto context = create(method, trace, fine, quad, param,
-                                  config ? &*config : nullptr, true);
+                                  config ? &*config : nullptr, true, prior);
             run_profile(context, trace, argv[9], load_ms);
             return 0;
         }
