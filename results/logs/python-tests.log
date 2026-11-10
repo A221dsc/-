@@ -1,0 +1,6 @@
+test_sort_dedup_projection_and_disjoint_id_split (test_data.PrepareTest.test_sort_dedup_projection_and_disjoint_id_split) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.046s
+
+OK

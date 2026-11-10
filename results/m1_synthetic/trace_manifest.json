@@ -1,0 +1,122 @@
+[
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "7c94bec8d265fe4025546c12bd6a2363fb8b26d907ee91a5961c7960cbae30ce",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 719,
+    "split": "validation",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_validation_719",
+    "trace_sha256": "6f175e17c87a3e8e7cb7441df91610f97ab75a6e3e1aef0c6c8e6f84219e658e",
+    "trajectory_records": 0
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "0c92b28ad14b8dc6d0bccbae1a9e519cf2f559855e211ac035e0abbc2af49a0a",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 101,
+    "split": "test",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_test_101",
+    "trace_sha256": "55deb10e792e8b5bf24e1e3433f3028d317f73a458c67cb3fb02dd9ee00e7c82",
+    "trajectory_records": 0
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "8f9858c8092f18340fff18e48437feccf4df0b5b1a6fbbc4a4515fd358050d3c",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 203,
+    "split": "test",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_test_203",
+    "trace_sha256": "2de4ba9e734bae5ecad824ebb9ad186ebdf36bed76605b1e759bc7e797f551ca",
+    "trajectory_records": 0
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "32bcee66ffcd8b11ae51210478ccc71927242aed73873951a0c4989040ff952c",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 307,
+    "split": "test",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_test_307",
+    "trace_sha256": "ba1a4e947c41cb23a248ebec8c42df216570d3d60eec7200ed31a425ea62d550",
+    "trajectory_records": 0
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "a97b1e258c80bd65d7fd15b578a7df24f5c044b2defd4311b559f1f7718642fb",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 409,
+    "split": "test",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_test_409",
+    "trace_sha256": "f9095018a80017c3e727b98807162130ab0bb9a60b2610d46e7c83703f9e6ced",
+    "trajectory_records": 0
+  },
+  {
+    "counts": {
+      "B": 2000,
+      "C": 2880,
+      "D": 6,
+      "I": 6,
+      "R": 2880,
+      "U": 21600
+    },
+    "dataset_variant": "SYNTHETIC_SMOKE",
+    "events_sha256": "8676cebe7ce42ef0345e89a190bd998a6ca4843555a643b2c71cc71b3594fa35",
+    "initial_entities": 2000,
+    "query_source": "seeded synthetic RECT/CIRCLE, uniform world-space centers",
+    "seed": 503,
+    "split": "test",
+    "steps": 36,
+    "trace_id": "m1_synthetic_smoke_test_503",
+    "trace_sha256": "f25a77f0218a7dd5acac2dbfad5365fe4c145a361559bff1bd976fd06b28fe1d",
+    "trajectory_records": 0
+  }
+]

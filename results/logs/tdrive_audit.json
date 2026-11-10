@@ -1,0 +1,44 @@
+{
+  "normalization_counts": {
+    "duplicate_conflict": 9459,
+    "duplicate_exact": 1330669,
+    "gaps_over_15min": 305908,
+    "input_rows": 17662984,
+    "invalid": 30445
+  },
+  "splits": {
+    "test": {
+      "entities": 2072,
+      "records": 3291406
+    },
+    "train": {
+      "entities": 6184,
+      "records": 9715335
+    },
+    "validation": {
+      "entities": 2044,
+      "records": 3285670
+    }
+  },
+  "vehicle_ids_disjoint": true,
+  "windows": {
+    "validation_719": {
+      "initial_entities": 1051,
+      "reporting_entities_in_measured_window": 1243,
+      "active_entities_union": 1257,
+      "trajectory_records": 12664,
+      "trajectory_records_outside_query_center_bounds": 918,
+      "initial_entities_outside_query_center_bounds": 66,
+      "synthetic_queries": 7200
+    },
+    "test_101": {
+      "initial_entities": 1092,
+      "reporting_entities_in_measured_window": 1290,
+      "active_entities_union": 1306,
+      "trajectory_records": 13966,
+      "trajectory_records_outside_query_center_bounds": 679,
+      "initial_entities_outside_query_center_bounds": 56,
+      "synthetic_queries": 7200
+    }
+  }
+}

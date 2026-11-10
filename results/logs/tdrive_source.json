@@ -1,0 +1,13 @@
+{
+  "bytes": 153217794,
+  "compared_with_expected_sha256": false,
+  "download_url": "https://1drv.ms/u/s%21AsWQUIUFkRXPgsN6OCa9OB-qziGfhA?download=1",
+  "file": "T-drive Taxi Trajectories.zip",
+  "license": "MSR-LA; academic noncommercial use, no redistribution of data or derivatives",
+  "local_archive_supplied": true,
+  "official_page": "https://www.microsoft.com/en-us/research/publication/t-drive-trajectory-data-sample/",
+  "sha256": "3baded659dc7536b8806de1cbb1e3987f04f122d27f6a8a3eced715836e02fc2",
+  "verified_at_utc": "2026-11-10T12:54:00.301509+00:00",
+  "version": "2011-08 T-Drive sample",
+  "zip_crc_ok": true
+}

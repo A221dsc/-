@@ -1,0 +1,42 @@
+{
+  "binary_sha256": "c91c23a96254bc9028f577519e91ff7c2e0154866288127d3e4e014e135b18dd",
+  "cache_state": "trace parsed into process memory before timing; no OS cache flush",
+  "config_sha256": "57c3ff20498ae9e3ecd762781292a05f5fc8dbe77a429e1b600d46ee431fe980",
+  "logical_cores": 20,
+  "memory_bytes": 16869351424,
+  "physical_cores": 14,
+  "pinned_logical_cpu": 0,
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "pyarrow": "16.1.0",
+  "python": "3.12.7",
+  "repo_head": "092ad2811e97f35513fef90d95936af751a908b3",
+  "reproduction_argv": [
+    "scripts/run_m1.py",
+    "configs/m1_smoke.json",
+    "build_final/spatial_bench.exe",
+    "results/m1_synthetic"
+  ],
+  "source_hashes": {
+    "scripts/build_mingw.ps1": "4f82e74326c0d6f294c02d6118a4e9f1fc443c8ff8c9295dcaba7cf6cbcd7372",
+    "scripts/download.py": "24cd1c504f83d7aad3c1353721b4458491d0f874e0ec34109d95a4c8837d4c78",
+    "scripts/prepare.py": "6d416ffef83339e7fa58eafb7bcfe54e4e943e73a195475f219cfb6a4385ed75",
+    "scripts/run_m1.py": "e0ee1126e3bfd667171c527e4b1a4a530a48b006c3c06e92177089285340c64f",
+    "scripts/trace.py": "9ada0e869c29af29c76903a9322125410b7894d9064d21f2c697fc015f90dd67",
+    "src/benchmark/main.cpp": "9fc1c57c55c49e4182a3d782729686503b483f917487e5d8eae734b17aa1f484",
+    "src/core/index.hpp": "1f090fc7c2b715189c065eb9c0067cf91b8c81e5f7740579a94fb8b415880310",
+    "src/indexes/boost.cpp": "09b96859e1151491faa3180f613967541ddcfa83a6d8ff2459a025ba3c5a459d",
+    "src/indexes/grid.cpp": "7be9172791705f1d1ecc13f4f1a8c521f4fb2515f5ae0610a5c3d968ae14804a",
+    "src/indexes/lsi.cpp": "c7a2b5a0000b5ebc21077111c77be56ccebdc9b2879070b25ede2fbb879b4804",
+    "src/indexes/quad.cpp": "6e7772583cad51c508af83aae86cb66df508f1e9641c639a8b8540092bab27f1",
+    "src/rl/.gitkeep": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "src/validation/oracle.cpp": "4e8f8d021e76112e5cd71059d410fd37317b6fad1d4a43a771ea32e45255537a",
+    "src/validation/oracle.hpp": "b7ee32d563bb91a3f591d61828a00b94dbeab58c221df2329990c1fa261fe310",
+    "src/workload/replay.cpp": "ad04f4e27ce36f2895fce711d252b41c4acbc2cc12770612bc35e9485e24b4fc",
+    "src/workload/replay.hpp": "d4520f29324f4e624bd803cddf0be878d6cc43e04afafb8ed23ce9e85ddc8465",
+    "tests/index_tests.cpp": "9200def58a841f6fc4b3bef49f1be03a373eb3fc51d6117e219083c712ced54f",
+    "tests/test_data.py": "52e7c02b21b809b410b1f554896ba7d6f109432a6fdd20b47b29778b2fb9b1c6"
+  },
+  "system": "Windows-11-10.0.26300-SP0",
+  "threads": 1,
+  "worktree_note": "experiment code is local; repo HEAD alone does not identify it"
+}

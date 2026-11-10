@@ -1,0 +1,129 @@
+{
+  "medians": {
+    "PR_QUADTREE": {
+      "base_update_ms": 3.6056,
+      "build_ms": 0.3836,
+      "candidate_count": 204540.0,
+      "exact_refinements": 204540.0,
+      "insert_delete_count": 214.0,
+      "insert_delete_ms": 0.0548,
+      "node_visits": 263232.0,
+      "peak_rss_mb": 8.30859375,
+      "position_update_ms": 3.5508,
+      "prebuild_peak_rss_mb": 7.7734375,
+      "query_count": 7200.0,
+      "query_p50_us": 0.2,
+      "query_p95_us": 0.9,
+      "query_p99_us": 1.8,
+      "query_per_sec": 2927662.342943114,
+      "query_wall_ms": 2.4593,
+      "result_count": 29755.0,
+      "total_wall_ms": 6.5833,
+      "total_with_build_ms": 6.954700000000001,
+      "trace_load_ms": 138.0321,
+      "update_count": 13752.0,
+      "update_per_sec": 3872930.04393376
+    },
+    "RSTAR_BOOST": {
+      "base_update_ms": 9.0704,
+      "build_ms": 1.5958,
+      "candidate_count": 33797.0,
+      "exact_refinements": 33797.0,
+      "insert_delete_count": 214.0,
+      "insert_delete_ms": 0.1838,
+      "peak_rss_mb": 8.1796875,
+      "position_update_ms": 8.8814,
+      "prebuild_peak_rss_mb": 7.76953125,
+      "query_count": 7200.0,
+      "query_p50_us": 0.4,
+      "query_p95_us": 1.1,
+      "query_p99_us": 2.3,
+      "query_per_sec": 1996727.585346238,
+      "query_wall_ms": 3.6059,
+      "result_count": 29755.0,
+      "total_wall_ms": 13.2386,
+      "total_with_build_ms": 14.9118,
+      "trace_load_ms": 136.3229,
+      "update_count": 13752.0,
+      "update_per_sec": 1548404.53081721
+    },
+    "RSTAR_LIBSPATIALINDEX": {
+      "base_update_ms": 238.3387,
+      "build_ms": 9.388,
+      "candidate_count": 33797.0,
+      "exact_refinements": 33797.0,
+      "insert_delete_count": 214.0,
+      "insert_delete_ms": 1.9583,
+      "peak_rss_mb": 8.59765625,
+      "position_update_ms": 236.368,
+      "prebuild_peak_rss_mb": 7.7734375,
+      "query_count": 7200.0,
+      "query_p50_us": 3.5,
+      "query_p95_us": 13.9,
+      "query_p99_us": 38.2,
+      "query_per_sec": 171946.86841765896,
+      "query_wall_ms": 41.8734,
+      "result_count": 29755.0,
+      "total_wall_ms": 284.2971,
+      "total_with_build_ms": 293.5756,
+      "trace_load_ms": 135.855,
+      "update_count": 13752.0,
+      "update_per_sec": 58180.46436066
+    },
+    "UNIFORM_GRID": {
+      "base_update_ms": 1.3423,
+      "build_ms": 0.2977,
+      "candidate_count": 47145.0,
+      "exact_refinements": 47145.0,
+      "insert_delete_count": 214.0,
+      "insert_delete_ms": 0.0716,
+      "node_visits": 206023.0,
+      "peak_rss_mb": 8.07421875,
+      "position_update_ms": 1.2695,
+      "prebuild_peak_rss_mb": 7.76953125,
+      "query_count": 7200.0,
+      "query_p50_us": 0.2,
+      "query_p95_us": 1.7,
+      "query_p99_us": 3.5,
+      "query_per_sec": 1776593.3821896515,
+      "query_wall_ms": 4.0527,
+      "result_count": 29755.0,
+      "total_wall_ms": 5.7863,
+      "total_with_build_ms": 6.1038,
+      "trace_load_ms": 137.1996,
+      "update_count": 13752.0,
+      "update_per_sec": 10832611.26427727
+    }
+  },
+  "pairwise": {
+    "PR_QUADTREE": {
+      "bootstrap95_percentile_paired": [
+        1.0768463237098225,
+        1.4689342167040533
+      ],
+      "median_paired_online_time_ratio_to_reference": 1.1084803760606952
+    },
+    "RSTAR_BOOST": {
+      "bootstrap95_percentile_paired": [
+        2.1854568920135176,
+        2.415323351939764
+      ],
+      "median_paired_online_time_ratio_to_reference": 2.287395456847031
+    },
+    "RSTAR_LIBSPATIALINDEX": {
+      "bootstrap95_percentile_paired": [
+        46.573730269076634,
+        51.42166465873972
+      ],
+      "median_paired_online_time_ratio_to_reference": 48.159814560089664
+    },
+    "UNIFORM_GRID": {
+      "bootstrap95_percentile_paired": [
+        1.0,
+        1.0
+      ],
+      "median_paired_online_time_ratio_to_reference": 1.0
+    }
+  },
+  "reference_lowest_median_online": "UNIFORM_GRID"
+}
