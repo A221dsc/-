@@ -1,0 +1,82 @@
+scenario,actual,role,method,online_ms
+test-0-brc100d,0,anchor-start,Fixed Regional Scan,626.727900
+test-0-brc100d,0,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],212.338000
+test-0-brc100d,0,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],248.368300
+test-0-brc100d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,254.103900
+test-0-brc100d,0,method,Cost-Aware Greedy Regional Index Selection,292.646000
+test-0-brc100d,0,method,Fixed Regional Scan,589.263400
+test-0-brc100d,0,method,PR Quadtree,277.750700
+test-0-brc100d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,224.561200
+test-0-brc100d,0,anchor-end,Fixed Regional Scan,625.956900
+test-0-brc100d,1,anchor-start,Fixed Regional Scan,603.167300
+test-0-brc100d,1,method,PR Quadtree,260.599800
+test-0-brc100d,1,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],245.002100
+test-0-brc100d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,226.708700
+test-0-brc100d,1,method,Cost-Aware Greedy Regional Index Selection,273.838300
+test-0-brc100d,1,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],197.396900
+test-0-brc100d,1,method,Fixed Regional Scan,609.206600
+test-0-brc100d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,260.809600
+test-0-brc100d,1,anchor-end,Fixed Regional Scan,628.723800
+test-0-brc100d,2,anchor-start,Fixed Regional Scan,610.473200
+test-0-brc100d,2,method,PR Quadtree,279.696000
+test-0-brc100d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,225.400000
+test-0-brc100d,2,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],239.602000
+test-0-brc100d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,232.311100
+test-0-brc100d,2,method,Fixed Regional Scan,607.155600
+test-0-brc100d,2,method,Cost-Aware Greedy Regional Index Selection,266.519100
+test-0-brc100d,2,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],198.646300
+test-0-brc100d,2,anchor-end,Fixed Regional Scan,590.405100
+test-1-brc203d,0,anchor-start,Fixed Regional Scan,492.633900
+test-1-brc203d,0,method,PR Quadtree,249.888800
+test-1-brc203d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,197.517700
+test-1-brc203d,0,method,Cost-Aware Greedy Regional Index Selection,198.096900
+test-1-brc203d,0,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],207.992100
+test-1-brc203d,0,method,Fixed Regional Scan,478.326200
+test-1-brc203d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,199.517800
+test-1-brc203d,0,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],154.922300
+test-1-brc203d,0,anchor-end,Fixed Regional Scan,494.757400
+test-1-brc203d,1,anchor-start,Fixed Regional Scan,470.257200
+test-1-brc203d,1,method,Fixed Regional Scan,460.381400
+test-1-brc203d,1,method,PR Quadtree,249.614800
+test-1-brc203d,1,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],178.342000
+test-1-brc203d,1,method,Cost-Aware Greedy Regional Index Selection,206.033900
+test-1-brc203d,1,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],195.388000
+test-1-brc203d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,193.803400
+test-1-brc203d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,202.421800
+test-1-brc203d,1,anchor-end,Fixed Regional Scan,463.480000
+test-1-brc203d,2,anchor-start,Fixed Regional Scan,442.816300
+test-1-brc203d,2,method,Cost-Aware Greedy Regional Index Selection,191.699600
+test-1-brc203d,2,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],184.116300
+test-1-brc203d,2,method,PR Quadtree,236.995900
+test-1-brc203d,2,method,Fixed Regional Scan,446.447300
+test-1-brc203d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,199.021100
+test-1-brc203d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,186.689000
+test-1-brc203d,2,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],157.279900
+test-1-brc203d,2,anchor-end,Fixed Regional Scan,428.544100
+test-2-den011d,0,anchor-start,Fixed Regional Scan,481.240000
+test-2-den011d,0,method,Cost-Aware Greedy Regional Index Selection,238.453800
+test-2-den011d,0,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],141.246700
+test-2-den011d,0,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],199.907700
+test-2-den011d,0,method,Fixed Regional Scan,490.507900
+test-2-den011d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,179.938000
+test-2-den011d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,189.302600
+test-2-den011d,0,method,PR Quadtree,242.339400
+test-2-den011d,0,anchor-end,Fixed Regional Scan,510.723900
+test-2-den011d,1,anchor-start,Fixed Regional Scan,505.831400
+test-2-den011d,1,method,Fixed Regional Scan,531.511500
+test-2-den011d,1,method,PR Quadtree,247.282500
+test-2-den011d,1,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],205.333200
+test-2-den011d,1,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],159.316800
+test-2-den011d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,194.475400
+test-2-den011d,1,method,Cost-Aware Greedy Regional Index Selection,214.217600
+test-2-den011d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,193.459400
+test-2-den011d,1,anchor-end,Fixed Regional Scan,490.721700
+test-2-den011d,2,anchor-start,Fixed Regional Scan,505.800400
+test-2-den011d,2,method,Cost-Aware Greedy Regional Index Selection,240.376500
+test-2-den011d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,199.445700
+test-2-den011d,2,method,Fixed Regional Scan,522.576300
+test-2-den011d,2,method,PR Quadtree,245.251500
+test-2-den011d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,191.851100
+test-2-den011d,2,method,Adaptive Partition (uniform 16x16) + Cost Greedy [uniform-16],156.170600
+test-2-den011d,2,method,Adaptive Partition (load-aware) + Cost Greedy [adaptive-combined],205.394400
+test-2-den011d,2,anchor-end,Fixed Regional Scan,522.403400

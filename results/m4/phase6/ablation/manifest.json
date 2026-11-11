@@ -1,0 +1,12 @@
+{
+  "plan_format": "L x0 y0 x1 y1 level; M window leaf mode benefit",
+  "scheduled_by": "myopic cost greedy on the 32-sample prior",
+  "variants": [
+    "uniform-8",
+    "uniform-16",
+    "uniform-32",
+    "adaptive-entity",
+    "adaptive-query",
+    "adaptive-combined"
+  ]
+}

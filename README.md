@@ -139,3 +139,14 @@ python -X utf8 scripts/run_m4_phase5_compare.py
 
 `step <actions>;<benefits>` 让调度器按预计收益执行合法候选；`rejected` 返回拒绝原因。成本口径为查询+基础更新+局部维护+切换，构建只作诊断。详见 [M4.5 报告](M4_PHASE5_REPORT.md)。
 
+## M4.6：负载感知自适应分区
+
+`PartitionIndex` 使用 64×64 子单元、叶子矩形划分与叶内 SCAN/FINE_GRID/LOCAL_QUAD；`spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE` 回放分区计划（`L x0 y0 x1 y1 level` + `M window leaf mode benefit`）。
+
+```powershell
+python -X utf8 scripts/m4_partition_experiment.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/calibration results/m4/phase6/ablation
+python -X utf8 scripts/run_m4_phase6_compare.py
+```
+
+结论：固定 16×16 分区优于自适应分区与 32×32；详见 [M4.6 报告](M4_ADAPTIVE_PARTITION_RL_REPORT.md)。
+
