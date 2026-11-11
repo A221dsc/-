@@ -30,4 +30,5 @@ __pycache__/
 /results/m4_phase3/exit_smoke*
 /results/m4_phase3/*.m3bin
 /results/m4/phase7/plans/
-
+/results/m4/phase8/eval/plans/
+/results/m4/phase8/plans/

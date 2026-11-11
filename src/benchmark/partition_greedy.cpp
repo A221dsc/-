@@ -139,6 +139,7 @@ GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
                          [](const auto& a, const auto& b) { return std::get<0>(a) > std::get<0>(b); });
         unsigned rebuilds = 0;
         double entities = 0.0;
+        std::int64_t switch_inside = 0;
         for (const auto& [benefit, leaf, target] : candidates) {
             const Mode mode = static_cast<Mode>(target);
             const bool demotion = mode == Mode::Scan;
@@ -147,7 +148,9 @@ GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
             if (!demotion && entities + index.entity_count(leaf) > kMaxEntities) continue;
             const auto switch_begin = Clock::now();
             index.set_mode(leaf, mode);
-            outcome.switch_ms += (Clock::now() - switch_begin).count() / 1e6;
+            const auto switch_elapsed = (Clock::now() - switch_begin).count();
+            switch_inside += switch_elapsed;
+            outcome.switch_ms += switch_elapsed / 1e6;
             last_switch[leaf] = step;
             ++outcome.switches;
             if (!demotion) {
@@ -157,7 +160,7 @@ GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
             }
             ++outcome.decisions;
         }
-        outcome.decide_ms += (Clock::now() - begin).count() / 1e6;
+        outcome.decide_ms += ((Clock::now() - begin).count() - switch_inside) / 1e6;
     };
     decide(0, 0);
     for (const M3Event& event : trace.events) {

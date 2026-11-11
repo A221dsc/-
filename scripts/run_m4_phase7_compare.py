@@ -31,7 +31,7 @@ for index in range(3):
     ident = f"test-{index}-{Path(config['maps']['test'][index]).stem}"
     for actual in range(3):
         trace = traces / (f"{ident}.actual.m3bin" if actual == 0 else f"{ident}.actual{actual}.m3bin")
-        jobs = [("anchor", "scan", None, None, None)]
+        jobs = []
         for variant in variants:
             for prior in (1, 0):
                 jobs.append(("partition", variant, prior, None, None))
@@ -40,7 +40,8 @@ for index in range(3):
                   "nominal_samples_m32.csv"),
                  ("classic", "PR Quadtree", None, None, None)]
         random.Random(7100 + index * 10 + actual).shuffle(jobs)
-        jobs += [("anchor", "scan", None, None, None)]
+        jobs = [("anchor", "scan", None, None, None)] + jobs + \
+               [("anchor", "scan", None, None, None)]
         for kind, name, prior, cfg, prior_file in jobs:
             if kind == "anchor":
                 args = ["build_m3/spatial_m3.exe", "measure", "Fixed Regional Scan", str(fine),
@@ -74,8 +75,17 @@ with (out / "metrics.csv").open("w", newline="", encoding="utf-8") as handle:
     writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
     writer.writeheader()
     writer.writerows(rows)
+threshold = 1.15
+drift = (max(anchors) / min(anchors)) if anchors and min(anchors) > 0 else 0.0
+import platform
 json_file(out / "manifest.json", {"anchor_runs": len(anchors),
                                   "anchor_median": sorted(anchors)[len(anchors) // 2],
                                   "anchor_min": min(anchors), "anchor_max": max(anchors),
+                                  "anchor_drift": drift, "drift_threshold": threshold,
+                                  "batch_valid": drift <= threshold,
+                                  "environment": {"platform": platform.platform(),
+                                                  "cpu_count": __import__("os").cpu_count()},
                                   "note": "partition rows include the C++ decision time"})
+if drift > threshold:
+    print(f"WARNING: anchor drift {drift:.2f} exceeds {threshold}, batch marked invalid")
 print("done")

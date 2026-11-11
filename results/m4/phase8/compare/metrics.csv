@@ -1,0 +1,199 @@
+scenario,actual,role,method,online_ms,decide_ms,leaves
+test-0-brc100d,0,anchor,anchor,628.1024,0.0,0
+test-0-brc100d,0,classic,Fixed Regional Scan,614.3826,0.0,0
+test-0-brc100d,0,greedy,adaptive-query + prior cost greedy,225.5639,0.980500,448
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [historical-22],364.48309926705656,0.0,448
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [historical-33],224.19570062820017,0.0,256
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [scenario-33],345.1448001334637,0.0,256
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [historical-11],383.4605995218664,0.0,448
+test-0-brc100d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),326.2414,0.0,0
+test-0-brc100d,0,classic,Uniform Grid,367.1238,0.0,0
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [scenario-22],271.52430034424066,0.0,448
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [historical-22],365.2829994596392,0.0,256
+test-0-brc100d,0,greedy,uniform-16 + prior cost greedy,299.8432,0.571000,256
+test-0-brc100d,0,classic,Fixed Local Quadtree,505.0244,0.0,0
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [scenario-11],461.72170010391176,0.0,256
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [historical-33],335.9435001745522,0.0,448
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [scenario-11],271.4674001753658,0.0,448
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [historical-11],313.33559996117947,0.0,256
+test-0-brc100d,0,classic,Cost-Aware Greedy Regional Index Selection,293.9034,0.0,0
+test-0-brc100d,0,dqn,uniform-16 + prior Double DQN [scenario-22],339.3004999823511,0.0,256
+test-0-brc100d,0,dqn,adaptive-query + prior Double DQN [scenario-33],363.31389999518393,0.0,448
+test-0-brc100d,0,classic,PR Quadtree,298.3991,0.0,0
+test-0-brc100d,0,anchor,anchor,616.2439,0.0,0
+test-0-brc100d,1,anchor,anchor,637.033,0.0,0
+test-0-brc100d,1,greedy,adaptive-query + prior cost greedy,228.5004,0.785900,448
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [historical-33],316.4172002861351,0.0,448
+test-0-brc100d,1,classic,Fixed Local Quadtree,510.2902,0.0,0
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [scenario-33],333.992499933362,0.0,448
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [historical-33],214.81389955338835,0.0,256
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [scenario-11],466.7656003307909,0.0,256
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [scenario-22],259.0820002460003,0.0,448
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [scenario-11],293.2730993756592,0.0,448
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [scenario-33],330.25529964006546,0.0,256
+test-0-brc100d,1,classic,Fixed Regional Scan,670.4719,0.0,0
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [historical-11],339.6049007396102,0.0,448
+test-0-brc100d,1,classic,Cost-Aware Greedy Regional Index Selection,298.2543,0.0,0
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [historical-11],301.9394992615193,0.0,256
+test-0-brc100d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),326.2468,0.0,0
+test-0-brc100d,1,greedy,uniform-16 + prior cost greedy,315.1763,0.479800,256
+test-0-brc100d,1,classic,PR Quadtree,310.3808,0.0,0
+test-0-brc100d,1,classic,Uniform Grid,346.8495,0.0,0
+test-0-brc100d,1,dqn,adaptive-query + prior Double DQN [historical-22],355.97399962990585,0.0,448
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [historical-22],353.9391000807673,0.0,256
+test-0-brc100d,1,dqn,uniform-16 + prior Double DQN [scenario-22],340.05769977566,0.0,256
+test-0-brc100d,1,anchor,anchor,650.074,0.0,0
+test-0-brc100d,2,anchor,anchor,640.1953,0.0,0
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [scenario-33],323.69199984953406,0.0,256
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [scenario-11],507.9677996373862,0.0,256
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [scenario-33],441.67689997662904,0.0,448
+test-0-brc100d,2,classic,PR Quadtree,315.2225,0.0,0
+test-0-brc100d,2,greedy,adaptive-query + prior cost greedy,234.784,0.831100,448
+test-0-brc100d,2,classic,Cost-Aware Greedy Regional Index Selection,319.7412,0.0,0
+test-0-brc100d,2,greedy,uniform-16 + prior cost greedy,296.3157,0.520800,256
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [scenario-22],372.9847995320141,0.0,256
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [historical-33],267.0803000018775,0.0,256
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [scenario-22],275.1771003262371,0.0,448
+test-0-brc100d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),322.6972,0.0,0
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [historical-11],363.61990048956574,0.0,448
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [historical-33],404.6602993916005,0.0,448
+test-0-brc100d,2,classic,Uniform Grid,342.3089,0.0,0
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [scenario-11],271.8455000114411,0.0,448
+test-0-brc100d,2,dqn,adaptive-query + prior Double DQN [historical-22],361.0739007404536,0.0,448
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [historical-11],269.4164998634309,0.0,256
+test-0-brc100d,2,dqn,uniform-16 + prior Double DQN [historical-22],351.84159975921807,0.0,256
+test-0-brc100d,2,classic,Fixed Local Quadtree,435.5166,0.0,0
+test-0-brc100d,2,classic,Fixed Regional Scan,634.0292,0.0,0
+test-0-brc100d,2,anchor,anchor,643.4637,0.0,0
+test-1-brc203d,0,anchor,anchor,521.4543,0.0,0
+test-1-brc203d,0,classic,Fixed Local Quadtree,445.2682,0.0,0
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [scenario-22],272.6928998412162,0.0,256
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [scenario-11],430.40059931836726,0.0,256
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [historical-22],229.11920005440115,0.0,256
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [scenario-11],278.69640008365513,0.0,445
+test-1-brc203d,0,classic,Uniform Grid,314.0837,0.0,0
+test-1-brc203d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),245.5792,0.0,0
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [historical-33],187.448900044173,0.0,256
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [historical-33],273.3567995397508,0.0,445
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [historical-11],212.5228008474618,0.0,256
+test-1-brc203d,0,classic,Cost-Aware Greedy Regional Index Selection,229.2873,0.0,0
+test-1-brc203d,0,dqn,uniform-16 + prior Double DQN [scenario-33],464.20739978669286,0.0,256
+test-1-brc203d,0,greedy,adaptive-query + prior cost greedy,200.564,0.882100,445
+test-1-brc203d,0,classic,Fixed Regional Scan,506.3659,0.0,0
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [scenario-22],216.8282994642198,0.0,445
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [historical-22],349.4431003352016,0.0,445
+test-1-brc203d,0,classic,PR Quadtree,275.3862,0.0,0
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [scenario-33],439.69499996251164,0.0,445
+test-1-brc203d,0,greedy,uniform-16 + prior cost greedy,200.2208,0.533000,256
+test-1-brc203d,0,dqn,adaptive-query + prior Double DQN [historical-11],224.7417994738698,0.0,445
+test-1-brc203d,0,anchor,anchor,521.8999,0.0,0
+test-1-brc203d,1,anchor,anchor,496.9656,0.0,0
+test-1-brc203d,1,greedy,uniform-16 + prior cost greedy,193.8591,0.538100,256
+test-1-brc203d,1,greedy,adaptive-query + prior cost greedy,215.5072,0.790600,445
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [scenario-22],287.54709994099437,0.0,256
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [scenario-22],249.54449954874815,0.0,445
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [historical-22],335.88190080984833,0.0,445
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [historical-33],193.810099258551,0.0,256
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [historical-22],243.30640128558576,0.0,256
+test-1-brc203d,1,classic,PR Quadtree,314.8498,0.0,0
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [historical-11],239.7148008444488,0.0,445
+test-1-brc203d,1,classic,Fixed Local Quadtree,528.9008,0.0,0
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [historical-11],224.67049992400408,0.0,256
+test-1-brc203d,1,classic,Fixed Regional Scan,551.5317,0.0,0
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [historical-33],340.27969950723053,0.0,445
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [scenario-11],259.9141996297061,0.0,256
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [scenario-33],494.0367997402668,0.0,445
+test-1-brc203d,1,classic,Cost-Aware Greedy Regional Index Selection,224.2076,0.0,0
+test-1-brc203d,1,dqn,uniform-16 + prior Double DQN [scenario-33],498.14439995448294,0.0,256
+test-1-brc203d,1,dqn,adaptive-query + prior Double DQN [scenario-11],347.8150997873783,0.0,445
+test-1-brc203d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),237.2934,0.0,0
+test-1-brc203d,1,classic,Uniform Grid,363.5076,0.0,0
+test-1-brc203d,1,anchor,anchor,522.5404,0.0,0
+test-1-brc203d,2,anchor,anchor,522.3692,0.0,0
+test-1-brc203d,2,classic,Uniform Grid,342.1807,0.0,0
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [scenario-11],228.03859909011425,0.0,256
+test-1-brc203d,2,classic,PR Quadtree,309.4949,0.0,0
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [historical-22],336.8482999551058,0.0,445
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [scenario-22],289.0058000581622,0.0,256
+test-1-brc203d,2,classic,Cost-Aware Greedy Regional Index Selection,225.5731,0.0,0
+test-1-brc203d,2,classic,Fixed Local Quadtree,517.9373,0.0,0
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [historical-33],213.6334001250595,0.0,256
+test-1-brc203d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),271.2633,0.0,0
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [scenario-33],500.8629995657027,0.0,256
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [historical-11],228.71230047786833,0.0,445
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [historical-11],212.78939903455674,0.0,256
+test-1-brc203d,2,greedy,adaptive-query + prior cost greedy,190.3522,0.842700,445
+test-1-brc203d,2,dqn,uniform-16 + prior Double DQN [historical-22],224.30449947600366,0.0,256
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [historical-33],327.201100292477,0.0,445
+test-1-brc203d,2,greedy,uniform-16 + prior cost greedy,204.5222,0.539000,256
+test-1-brc203d,2,classic,Fixed Regional Scan,538.2279,0.0,0
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [scenario-33],455.9610996934027,0.0,445
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [scenario-11],332.29500007810293,0.0,445
+test-1-brc203d,2,dqn,adaptive-query + prior Double DQN [scenario-22],235.34469979470074,0.0,445
+test-1-brc203d,2,anchor,anchor,518.8894,0.0,0
+test-2-den011d,0,anchor,anchor,564.019,0.0,0
+test-2-den011d,0,classic,Fixed Local Quadtree,505.7351,0.0,0
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [historical-11],252.49049960381984,0.0,439
+test-2-den011d,0,classic,Cost-Aware Greedy Regional Index Selection,271.6916,0.0,0
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [scenario-11],241.51850010543762,0.0,439
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [historical-11],450.9959000159502,0.0,256
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [historical-22],296.7122997508198,0.0,439
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [scenario-22],225.25140070489942,0.0,439
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [scenario-33],475.4899995677978,0.0,256
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [scenario-33],337.46280032226144,0.0,439
+test-2-den011d,0,classic,Fixed Regional Scan,523.5805,0.0,0
+test-2-den011d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),238.1208,0.0,0
+test-2-den011d,0,dqn,adaptive-query + prior Double DQN [historical-33],282.4751008552551,0.0,439
+test-2-den011d,0,greedy,adaptive-query + prior cost greedy,236.882,0.949900,439
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [scenario-22],260.79180110504035,0.0,256
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [historical-33],435.81059971815347,0.0,256
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [historical-22],233.75820053533613,0.0,256
+test-2-den011d,0,classic,Uniform Grid,309.4367,0.0,0
+test-2-den011d,0,dqn,uniform-16 + prior Double DQN [scenario-11],451.54949966087935,0.0,256
+test-2-den011d,0,classic,PR Quadtree,336.2291,0.0,0
+test-2-den011d,0,greedy,uniform-16 + prior cost greedy,214.8967,0.581000,256
+test-2-den011d,0,anchor,anchor,524.6912,0.0,0
+test-2-den011d,1,anchor,anchor,554.5202,0.0,0
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [historical-22],293.685799903813,0.0,439
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [historical-33],287.1418002015114,0.0,439
+test-2-den011d,1,classic,PR Quadtree,285.7464,0.0,0
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [scenario-33],374.94100013198556,0.0,439
+test-2-den011d,1,classic,Fixed Regional Scan,548.7807,0.0,0
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [historical-33],407.946399689877,0.0,256
+test-2-den011d,1,classic,Cost-Aware Greedy Regional Index Selection,229.1059,0.0,0
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [scenario-22],263.0441001481086,0.0,256
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [scenario-22],223.07109979562162,0.0,439
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [historical-11],230.47559983076454,0.0,439
+test-2-den011d,1,greedy,adaptive-query + prior cost greedy,213.2692,0.896800,439
+test-2-den011d,1,greedy,uniform-16 + prior cost greedy,214.2148,0.527300,256
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [scenario-33],483.6105999482304,0.0,256
+test-2-den011d,1,classic,Uniform Grid,322.3201,0.0,0
+test-2-den011d,1,dqn,adaptive-query + prior Double DQN [scenario-11],258.8741996795446,0.0,439
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [historical-22],234.55030082547367,0.0,256
+test-2-den011d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),255.8025,0.0,0
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [historical-11],461.7822996507049,0.0,256
+test-2-den011d,1,dqn,uniform-16 + prior Double DQN [scenario-11],455.82670030672847,0.0,256
+test-2-den011d,1,classic,Fixed Local Quadtree,422.2333,0.0,0
+test-2-den011d,1,anchor,anchor,537.2036,0.0,0
+test-2-den011d,2,anchor,anchor,544.6681,0.0,0
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [scenario-22],504.60980043144525,0.0,256
+test-2-den011d,2,classic,Fixed Regional Scan,541.0621,0.0,0
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [historical-11],238.0747997388512,0.0,439
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [historical-11],475.34630036750434,0.0,256
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [scenario-33],380.67499986465873,0.0,439
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [historical-33],450.7537998817295,0.0,256
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [historical-22],247.08150118830204,0.0,256
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [scenario-11],265.3121000697851,0.0,439
+test-2-den011d,2,classic,Uniform Grid,324.3473,0.0,0
+test-2-den011d,2,classic,PR Quadtree,282.2354,0.0,0
+test-2-den011d,2,classic,Fixed Local Quadtree,412.8149,0.0,0
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [historical-33],296.54449995629193,0.0,439
+test-2-den011d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),243.3857,0.0,0
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [historical-22],322.3559995533526,0.0,439
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [scenario-11],457.6832997025251,0.0,256
+test-2-den011d,2,classic,Cost-Aware Greedy Regional Index Selection,240.4308,0.0,0
+test-2-den011d,2,dqn,uniform-16 + prior Double DQN [scenario-33],487.78189946008325,0.0,256
+test-2-den011d,2,greedy,adaptive-query + prior cost greedy,219.1252,0.842400,439
+test-2-den011d,2,dqn,adaptive-query + prior Double DQN [scenario-22],236.56140073830485,0.0,439
+test-2-den011d,2,greedy,uniform-16 + prior cost greedy,213.2043,0.698100,256
+test-2-den011d,2,anchor,anchor,563.9739,0.0,0

@@ -1,0 +1,32 @@
+{
+  "historical-11": {
+    "episodes": 40,
+    "train_seconds": 28.499464988708496,
+    "validation_ms": 133.09579999999997
+  },
+  "historical-22": {
+    "episodes": 40,
+    "train_seconds": 27.96056842803955,
+    "validation_ms": 136.30689999999998
+  },
+  "historical-33": {
+    "episodes": 40,
+    "train_seconds": 28.334203958511353,
+    "validation_ms": 123.5703
+  },
+  "scenario-11": {
+    "episodes": 30,
+    "train_seconds": 22.88578701019287,
+    "validation_ms": 141.21399999999997
+  },
+  "scenario-22": {
+    "episodes": 25,
+    "train_seconds": 18.75361394882202,
+    "validation_ms": 160.47509999999997
+  },
+  "scenario-33": {
+    "episodes": 35,
+    "train_seconds": 26.34340500831604,
+    "validation_ms": 146.88980000000004
+  }
+}

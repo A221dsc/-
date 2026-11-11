@@ -1,0 +1,14 @@
+{
+  "anchor_drift": 1.3080865154449322,
+  "anchor_max": 650.074,
+  "anchor_median": 554.5202,
+  "anchor_min": 496.9656,
+  "anchor_runs": 18,
+  "batch_valid": false,
+  "drift_threshold": 1.15,
+  "environment": {
+    "cpu_count": 20,
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "note": "DQN rows add the model inference to the replay time"
+}

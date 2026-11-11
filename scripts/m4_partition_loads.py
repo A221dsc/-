@@ -83,10 +83,11 @@ def main():
     parser.add_argument("plan", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--ident", required=True)
+    parser.add_argument("--split", default="test")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    split, index = "test", int(args.ident.split("-")[1])
-    map_name = config["maps"]["test"][index]
+    split, index = args.split, int(args.ident.split("-")[1])
+    map_name = config["maps"][split][index]
     scenario = json.loads((args.scenarios / "scenarios" / f"{args.ident}.json").read_text(encoding="utf-8"))
     game, rebuilt, entities = build_scenario(config, map_name, split, index, scenario["seeds"])
     prepared = prepare(scenario, game, entities)
