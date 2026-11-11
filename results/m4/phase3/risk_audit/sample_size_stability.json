@@ -1,0 +1,46 @@
+{
+  "risk_definition": "CVaR 0.8 of per-mode cost minus its mean; score = mean + 0.5 * (CVaR - mean)",
+  "rows": [
+    {
+      "decision_flip_rate_expected": 0.0,
+      "decision_flip_rate_risk": 0.0,
+      "draw_seconds_per_repeat": 0.04373749501537531,
+      "points": 384,
+      "relative_std_expected_cost": 0.47067344688547685,
+      "relative_std_tail_component": 0.5147488178350432,
+      "repeats": 20,
+      "samples": 8
+    },
+    {
+      "decision_flip_rate_expected": 0.0,
+      "decision_flip_rate_risk": 0.0,
+      "draw_seconds_per_repeat": 0.14714933499926702,
+      "points": 384,
+      "relative_std_expected_cost": 0.23898954769309919,
+      "relative_std_tail_component": 0.25179369728277995,
+      "repeats": 20,
+      "samples": 32
+    },
+    {
+      "decision_flip_rate_expected": 0.0,
+      "decision_flip_rate_risk": 0.0,
+      "draw_seconds_per_repeat": 0.25317263500764964,
+      "points": 384,
+      "relative_std_expected_cost": 0.16825848883950087,
+      "relative_std_tail_component": 0.17798737700287098,
+      "repeats": 20,
+      "samples": 64
+    },
+    {
+      "decision_flip_rate_expected": 0.0,
+      "decision_flip_rate_risk": 0.0,
+      "draw_seconds_per_repeat": 0.4432784149888903,
+      "points": 384,
+      "relative_std_expected_cost": 0.1195856565679022,
+      "relative_std_tail_component": 0.12693790146655648,
+      "repeats": 20,
+      "samples": 128
+    }
+  ],
+  "scenario": "test-0-brc100d"
+}

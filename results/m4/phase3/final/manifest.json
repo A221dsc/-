@@ -1,0 +1,15 @@
+{
+  "actuals_per_map": 3,
+  "configs": {
+    "cvar": "results\\m4\\phase3_v2\\tmp\\selector_3_0.25_1.txt",
+    "fusion": "results\\m4\\phase3\\tmp\\fusion_0.7.txt",
+    "quantile": "results\\m4\\phase3_v2\\tmp\\selector_2_1.00_1.txt"
+  },
+  "maps": [
+    "brc100d.map",
+    "brc203d.map",
+    "den011d.map"
+  ],
+  "note": "single session; all methods measured on the same machine state",
+  "validation_selection": "quantile lambda=1.0, cvar lambda=0.25, horizon=1 (frozen phase3_v2 tuning)"
+}

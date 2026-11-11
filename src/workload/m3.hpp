@@ -21,6 +21,7 @@ struct M3Trace {
     std::vector<Point> points;   // initial positions, object id = index + 1
     std::vector<M3Event> events;
     std::uint64_t update_count{};
+    std::uint64_t delete_count{};
     std::uint64_t query_count{};
     std::size_t decision_points{};
     std::size_t bytes{};

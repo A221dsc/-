@@ -78,6 +78,13 @@ M3Trace read_m3_trace(const std::filesystem::path& path) {
                 event.point = {a, b};
                 ++trace.update_count;
                 break;
+            case 'D':
+                if (id < 1 || static_cast<std::uint64_t>(id) > entities)
+                    throw std::runtime_error("M3 delete id out of range at event " +
+                                             std::to_string(i));
+                event.id = id;
+                ++trace.delete_count;
+                break;
             case 'R':
                 if (!(c >= a && d >= b))
                     throw std::runtime_error("M3 rectangle is inverted at event " + std::to_string(i));

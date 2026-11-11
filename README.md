@@ -100,3 +100,16 @@ python -X utf8 scripts/run_m4_phase2.py configs/m4.json results/m4/calibration/s
 
 新增完整方法名：History-Load Cost-Aware Greedy Regional Index Selection、Nominal Point Feed-Forward Regional Index Selection、Footprint-Calibrated Feed-Forward Regional Index Selection、Uncertainty-Aware Feed-Forward Regional Index Selection、Risk-Constrained Uncertainty-Aware Feed-Forward Regional Index Selection。详见 [M4 第二阶段报告](M4_PHASE2_REPORT.md)。
 
+## M4 第三阶段：风险度量、实体退出与同场全方法对照
+
+风险度量包含纯期望成本、分位成本惩罚与 CVaR（α=0.8）；样本量 8/32/64/128 的稳定性审计见 `scripts/m4_risk_audit.py`。`.m3bin` 支持实体删除事件（`D`）。新留出地图 `den011d`（测试）、`orz200d`（验证）、`den101d`（训练）已冻结种子。
+
+```powershell
+python -X utf8 scripts/m4_risk_audit.py configs/m4.json data/processed/m4 results/m4/calibration results/m4/phase3/risk_audit
+python -X utf8 scripts/run_m4_phase3.py configs/m4.json results/m4/calibration/selected.json results/m4/calibration/selector_final.txt build_m3/spatial_m3.exe data/processed/m4 results/m4/phase3_v2 --samples-tag _m32
+python -X utf8 scripts/run_m4_final.py
+python -X utf8 scripts/run_m4_exits.py
+```
+
+完整方法名：Uncertainty-Aware Feed-Forward Regional Index Selection、Quantile-Cost-Penalized Feed-Forward Regional Index Selection、CVaR-Risk-Constrained Feed-Forward Regional Index Selection、Historical-Error-Feedback Robust Feed-Forward Regional Index Selection。详见 [M4 第三阶段报告](M4_PHASE3_REPORT.md)。
+

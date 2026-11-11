@@ -1,0 +1,19 @@
+{
+  "exit_share": 0.2,
+  "exit_step": 600,
+  "methods": [
+    "CVaR-Risk-Constrained Feed-Forward Regional Index Selection",
+    "Cost-Aware Greedy Regional Index Selection",
+    "Fixed Local Quadtree",
+    "Fixed Regional Scan",
+    "Nominal Point Feed-Forward Regional Index Selection",
+    "PR Quadtree",
+    "Quantile-Cost-Penalized Feed-Forward Regional Index Selection",
+    "Uncertainty-Aware Feed-Forward Regional Index Selection",
+    "Uniform Grid"
+  ],
+  "traces": [
+    "test-0-brc100d",
+    "test-1-brc203d"
+  ]
+}

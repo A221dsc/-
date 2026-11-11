@@ -23,6 +23,8 @@ def seeds_for(config, split, index):
 def make_actual(config, profile, seeds):
     perturbation = dict(config["mismatch_profiles"][profile])
     perturbation["phase_shift"] = list(perturbation["phase_shift"])
+    perturbation.setdefault("exit_share", 0.0)
+    perturbation.setdefault("exit_step", -1)
     streams = [np.random.default_rng(s) for s in seeds["actual"]]
     focus = np.random.default_rng([seeds["actual"][4], 991]).normal(
         0.0, config["mismatch_profiles"][profile]["focus_offset_m"], (len(config["phases"]), 2))

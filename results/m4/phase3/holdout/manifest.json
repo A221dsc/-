@@ -1,0 +1,19 @@
+{
+  "actuals": 3,
+  "frozen": true,
+  "index": 2,
+  "map": "den011d.map",
+  "note": "new map never used in M1-M4 phase 1/2 studies",
+  "scenario": "test-2-den011d",
+  "seeds": {
+    "actual": [
+      5901,
+      5902,
+      5903,
+      5904,
+      5905
+    ],
+    "scenario": 4403
+  },
+  "split": "test"
+}

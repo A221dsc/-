@@ -39,8 +39,12 @@ struct SelectorConfig {
     double margin{0.1};
     double alpha{1.0};   // EWMA weight of the newest window; 1 = raw last window
     bool fusion{false};  // take the per-region maximum of prior and history forecasts
-    int uncertainty{0};  // 0 point prior, 1 expected cost over samples, 2 add tail risk
+    int uncertainty{0};  // 0 point prior, 1 expected cost, 2 quantile penalty, 3 CVaR penalty
     double risk_lambda{0.0};
+    double cvar_alpha{0.8};   // confidence level of the CVaR risk measure
+    int horizon_windows{1};   // number of 50-step windows summed by the cost model
+    int fusion_mode{0};       // 0 prior only, 1 reliability-weighted prior/history blend
+    double fusion_decay{0.7}; // EWMA factor of the reliability estimate
     CostModel cost;
 };
 
@@ -99,6 +103,7 @@ private:
     std::shared_ptr<const ScenarioPrior> prior_;
     std::array<std::int64_t, AdaptiveRegionalIndex::region_count> last_switch_{};
     std::array<Smoothed, AdaptiveRegionalIndex::region_count> smoothed_{};
+    double reliability_{1.0};
     SelectorCounters counters_{};
 
     double running_cost_ns(Mode mode, std::size_t entities, const WindowLoad& load) const;

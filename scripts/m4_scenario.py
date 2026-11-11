@@ -438,6 +438,10 @@ def actual_events(scenario, game, prepared, actual):
     speed_factor = [p.get("speed_factor", 1.0) for p in phases]
     distance = np.zeros(prepared["count"], dtype=float)
     positions = state["initial"].copy()
+    alive_mask = np.ones(prepared["count"], dtype=bool)
+    alive = np.flatnonzero(alive_mask)
+    exit_share = float(perturbation.get("exit_share", 0.0))
+    exit_step = int(perturbation.get("exit_step", -1))
     for step in range(steps):
         phase = int(phase_at[step])
         w = min(windows - 1, step // window)
@@ -450,9 +454,16 @@ def actual_events(scenario, game, prepared, actual):
             positions[members] = interpolate(route, cum, distance[members]) + prepared["offset"][members]
         if step and step % window == 0:
             events.append(("P", step, 0.0, 0.0, 0.0, 0.0))
+        if step == exit_step and exit_share > 0:
+            leaving = rng.choice(alive, size=max(1, int(round(exit_share * len(alive)))),
+                                 replace=False)
+            alive_mask[leaving] = False
+            alive = np.flatnonzero(alive_mask)
+            for index in leaving:
+                events.append(("D", int(index) + 1, 0.0, 0.0, 0.0, 0.0))
         spec = phases[phase]
-        rate = min(spec["update_rate"], prepared["count"])
-        chosen = rng.choice(prepared["count"], size=rate, replace=False)
+        rate = min(spec["update_rate"], len(alive))
+        chosen = alive[rng.choice(len(alive), size=rate, replace=False)]
         reported[chosen] = positions[chosen] + rng.normal(0.0, perturbation["report_noise_m"],
                                                           (rate, 2))
         update_counts[w] += np.bincount(region_array(reported[chosen], bounds),

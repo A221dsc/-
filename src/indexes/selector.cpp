@@ -90,13 +90,30 @@ SelectorConfig read_selector_config(const std::filesystem::path& path) {
             config.fusion = flag == 1;
         } else if (key == "uncertainty") {
             int level = 0;
-            if (!(tokens >> level) || level < 0 || level > 2)
+            if (!(tokens >> level) || level < 0 || level > 3)
                 throw std::runtime_error("invalid uncertainty level");
             config.uncertainty = level;
         } else if (key == "risk_lambda") {
             if (!(tokens >> config.risk_lambda) || !std::isfinite(config.risk_lambda) ||
                 config.risk_lambda < 0)
                 throw std::runtime_error("invalid risk_lambda");
+        } else if (key == "cvar_alpha") {
+            if (!(tokens >> config.cvar_alpha) || !(config.cvar_alpha > 0 && config.cvar_alpha < 1))
+                throw std::runtime_error("invalid cvar_alpha");
+        } else if (key == "fusion_mode") {
+            int mode = 0;
+            if (!(tokens >> mode) || mode < 0 || mode > 1)
+                throw std::runtime_error("invalid fusion_mode");
+            config.fusion_mode = mode;
+        } else if (key == "fusion_decay") {
+            if (!(tokens >> config.fusion_decay) || !(config.fusion_decay > 0 &&
+                                                      config.fusion_decay < 1))
+                throw std::runtime_error("invalid fusion_decay");
+        } else if (key == "horizon") {
+            int windows = 0;
+            if (!(tokens >> windows) || windows < 1 || windows > 8)
+                throw std::runtime_error("invalid horizon");
+            config.horizon_windows = windows;
         } else if (key == "alpha") {
             if (!(tokens >> config.alpha)) throw std::runtime_error("invalid selector alpha");
             if (!(config.alpha > 0 && config.alpha <= 1))
@@ -282,25 +299,58 @@ std::vector<Decision> Selector::decide(AdaptiveRegionalIndex& index, std::int64_
                 if (!(prior_on && config_.uncertainty > 0 && prior_->samples() > 1 &&
                       region < prior_->regions()))
                     return running_cost_ns(mode, forecast_entities, decision.forecast);
-                const unsigned samples = std::min<unsigned>(prior_->samples(), 64);
-                std::array<double, 64> costs{};
+                const unsigned samples = std::min<unsigned>(prior_->samples(), 256);
+                std::array<double, 256> costs{};
+                const int horizon = std::max(1, std::min(config_.horizon_windows, 8));
                 double sum = 0.0;
                 for (unsigned s = 0; s < samples; ++s) {
-                    const auto& cell = prior_->at(s, prior_window, region);
-                    const WindowLoad load{
-                        static_cast<std::uint64_t>(std::llround(cell.queries)),
-                        static_cast<std::uint64_t>(std::llround(cell.updates)), cell.coverage};
-                    const double cost = running_cost_ns(
-                        mode, static_cast<std::size_t>(std::llround(cell.entities)), load);
-                    costs[s] = cost;
-                    sum += cost;
+                    double total = 0.0;
+                    for (int h = 0; h < horizon; ++h) {
+                        const std::size_t window = std::min(prior_window + h,
+                                                            prior_->windows() - 1);
+                        const auto& cell = prior_->at(s, window, region);
+                        double queries = cell.queries;
+                        double updates = cell.updates;
+                        double coverage = cell.coverage;
+                        double entities = cell.entities;
+                        if (config_.fusion_mode == 1) {
+                            const double weight = reliability_;
+                            queries = weight * cell.queries +
+                                      (1.0 - weight) * decision.forecast.queries;
+                            updates = weight * cell.updates +
+                                      (1.0 - weight) * decision.forecast.updates;
+                            coverage = weight * cell.coverage +
+                                       (1.0 - weight) * decision.forecast.coverage;
+                            entities = weight * cell.entities +
+                                       (1.0 - weight) * static_cast<double>(
+                                           index.entity_count(region));
+                        }
+                        const WindowLoad load{
+                            static_cast<std::uint64_t>(std::llround(queries)),
+                            static_cast<std::uint64_t>(std::llround(updates)), coverage};
+                        total += running_cost_ns(
+                            mode, static_cast<std::size_t>(std::llround(entities)), load);
+                    }
+                    costs[s] = total;
+                    sum += total;
                 }
                 const double mean = sum / static_cast<double>(samples);
                 if (config_.uncertainty < 2 || config_.risk_lambda <= 0) return mean;
                 std::sort(costs.begin(), costs.begin() + samples);
-                const auto index = std::min<unsigned>(
-                    samples - 1, static_cast<unsigned>(std::ceil(0.9 * samples)) - 1);
-                const double tail = std::max(0.0, costs[index] - mean);
+                double tail = 0.0;
+                if (config_.uncertainty == 3) {
+                    // CVaR: mean of the worst (1 - alpha) share of the samples.
+                    const auto count = std::max<unsigned>(
+                        1, static_cast<unsigned>(std::ceil((1.0 - config_.cvar_alpha) * samples)));
+                    double worst = 0.0;
+                    for (unsigned index = samples - count; index < samples; ++index)
+                        worst += costs[index];
+                    tail = std::max(0.0, worst / static_cast<double>(count) - mean);
+                } else {
+                    const auto index = std::min<unsigned>(
+                        samples - 1, static_cast<unsigned>(std::ceil(0.9 * samples)) - 1);
+                    tail = std::max(0.0, costs[index] - mean);
+                }
                 return mean + config_.risk_lambda * tail;
             };
             const double stay = running_score(decision.old_mode);

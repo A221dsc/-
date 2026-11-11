@@ -62,6 +62,7 @@ def compute(world, points, events, window=50):
     area = rw * rh
     last = points.copy()
     last_region = regions_of(last, world)
+    alive = np.ones(len(points), dtype=bool)
     windows = sum(1 for event in events if event[0] == "P") + 1
     data = {"queries": np.zeros((windows, REGIONS)),
             "updates": np.zeros((windows, REGIONS)),
@@ -70,7 +71,7 @@ def compute(world, points, events, window=50):
     window = 0
     for kind, ident, a, b, c, d in events:
         if kind == "P":
-            data["entities"][window] = np.bincount(last_region, minlength=REGIONS)
+            data["entities"][window] = np.bincount(last_region[alive], minlength=REGIONS)
             window += 1
         elif kind == "U":
             new = np.array([[a, b]])
@@ -81,6 +82,11 @@ def compute(world, points, events, window=50):
                 data["updates"][window, old_region] += 1
             last[ident - 1] = (a, b)
             last_region[ident - 1] = new_region
+        elif kind == "D":
+            index = ident - 1
+            region = int(last_region[index])
+            data["updates"][window, region] += 1
+            alive[index] = False
         else:
             if kind == "C":
                 left, right, bottom, top = a - c, a + c, b - c, b + c
@@ -95,7 +101,7 @@ def compute(world, points, events, window=50):
                     region = SIDE * by + bx
                     data["queries"][window, region] += 1
                     data["coverage"][window, region] += min(1.0, ox * oy / area)
-    data["entities"][window] = np.bincount(last_region, minlength=REGIONS)
+    data["entities"][window] = np.bincount(last_region[alive], minlength=REGIONS)
     return data
 
 

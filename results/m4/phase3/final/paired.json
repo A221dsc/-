@@ -1,0 +1,72 @@
+{
+ "Quantile-Cost-Penalized Feed-Forward Regional Index Selection": {
+  "median_online": 287.7543,
+  "ratio_hist": 0.944539183944336,
+  "ci": [
+   0.8718903915587735,
+   1.002737643124195
+  ],
+  "wins": 7,
+  "n": 9
+ },
+ "Uncertainty-Aware Feed-Forward Regional Index Selection": {
+  "median_online": 288.5237,
+  "ratio_hist": 0.90409312648263,
+  "ci": [
+   0.8686348337041474,
+   1.057211671965408
+  ],
+  "wins": 6,
+  "n": 9
+ },
+ "Nominal Point Feed-Forward Regional Index Selection": {
+  "median_online": 295.241,
+  "ratio_hist": 0.9947080599500653,
+  "ci": [
+   0.9357223901978309,
+   1.0211584902809312
+  ],
+  "wins": 6,
+  "n": 9
+ },
+ "Historical-Error-Feedback Robust Feed-Forward Regional Index Selection": {
+  "median_online": 307.1889,
+  "ratio_hist": 0.9266247717154713,
+  "ci": [
+   0.8839380612318837,
+   1.1811684624456513
+  ],
+  "wins": 5,
+  "n": 9
+ },
+ "CVaR-Risk-Constrained Feed-Forward Regional Index Selection": {
+  "median_online": 307.8405,
+  "ratio_hist": 0.9034078436981764,
+  "ci": [
+   0.8488447248676577,
+   1.0001628347604987
+  ],
+  "wins": 7,
+  "n": 9
+ },
+ "Threshold-Based Adaptive Regional Index Selection": {
+  "median_online": 330.738,
+  "ratio_hist": 1.0352761778788622,
+  "ci": [
+   0.9865017336350556,
+   1.085112172808872
+  ],
+  "wins": 4,
+  "n": 9
+ },
+ "PR Quadtree": {
+  "median_online": 398.8305,
+  "ratio_hist": 1.3143594945699708,
+  "ci": [
+   0.988024790963569,
+   1.5420519287770793
+  ],
+  "wins": 2,
+  "n": 9
+ }
+}

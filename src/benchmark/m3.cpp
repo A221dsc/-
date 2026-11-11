@@ -107,8 +107,13 @@ Method parse_method(std::string_view name) {
         { name = "S4_GREEDY"; method.feedforward = true; }
     else if (name == "Uncertainty-Aware Feed-Forward Regional Index Selection")
         { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 1; }
-    else if (name == "Risk-Constrained Uncertainty-Aware Feed-Forward Regional Index Selection")
+    else if (name == "Risk-Constrained Uncertainty-Aware Feed-Forward Regional Index Selection" ||
+             name == "Quantile-Cost-Penalized Feed-Forward Regional Index Selection")
         { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 2; }
+    else if (name == "CVaR-Risk-Constrained Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 3; }
+    else if (name == "Historical-Error-Feedback Robust Feed-Forward Regional Index Selection")
+        { name = "S4_GREEDY"; method.feedforward = true; method.uncertainty = 1; }
     if (const auto mode = fixed_mode(name)) {
         method.fixed = mode;
         return method;
@@ -173,7 +178,7 @@ struct WindowMeta {
 
 struct Outcome {
     double build_ms{}, online_ms{}, query_ms{}, update_ms{}, switch_ms{}, policy_ms{};
-    std::uint64_t query_count{}, update_count{}, result_count{}, candidate_count{};
+    std::uint64_t query_count{}, update_count{}, delete_count{}, result_count{}, candidate_count{};
     std::uint64_t switches{}, decision_calls{};
     double p50_us{}, p95_us{}, p99_us{};
     double peak_rss_mb{}, prebuild_rss_mb{}, trace_load_ms{};
@@ -310,6 +315,14 @@ Outcome replay(Context& context, const M3Trace& trace, ProfileSink* sink) {
             ++outcome.update_count;
             continue;
         }
+        if (event.type == 'D') {
+            const auto begin = Clock::now();
+            context.index->erase(event.id);
+            const auto elapsed = Clock::now() - begin;
+            update_time += elapsed;
+            ++outcome.delete_count;
+            continue;
+        }
         const auto begin = Clock::now();
         Answer answer = context.index->query(event.query);
         const auto elapsed = Clock::now() - begin;
@@ -370,6 +383,9 @@ int validate(const M3Trace& trace, const Method& method, int fine, int quad, int
             context.index->set(event.id, event.point);
             oracle.set(event.id, event.point);
             ++updates;
+        } else if (event.type == 'D') {
+            context.index->erase(event.id);
+            oracle.erase(event.id);
         } else {
             Answer answer = context.index->query(event.query);
             std::sort(answer.ids.begin(), answer.ids.end());
@@ -407,6 +423,7 @@ void print_outcome(const Outcome& outcome, const M3Trace& trace) {
               << " policy_ms=" << outcome.policy_ms
               << " query_count=" << outcome.query_count
               << " update_count=" << outcome.update_count
+              << " delete_count=" << outcome.delete_count
               << " result_count=" << outcome.result_count
               << " candidate_count=" << outcome.candidate_count
               << " p50_us=" << outcome.p50_us
@@ -494,6 +511,8 @@ void probe_loads(const M3Trace& trace, int fine, int quad, const std::string& pr
             index.reset_window();
         } else if (event.type == 'U') {
             index.set(event.id, event.point);
+        } else if (event.type == 'D') {
+            index.erase(event.id);
         } else {
             index.query(event.query);
         }

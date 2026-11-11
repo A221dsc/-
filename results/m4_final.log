@@ -1,0 +1,118 @@
+test-0-brc100d a0 Uniform Grid: 491.502500 ms
+test-0-brc100d a0 PR Quadtree: 366.037200 ms
+test-0-brc100d a0 Boost R*-Tree: 1463.348600 ms
+test-0-brc100d a0 Fixed Regional Scan: 728.726000 ms
+test-0-brc100d a0 Fixed Local Fine Grid: 1065.783400 ms
+test-0-brc100d a0 Fixed Local Quadtree: 771.828800 ms
+test-0-brc100d a0 Threshold-Based Adaptive Regional Index Selection: 369.130200 ms
+test-0-brc100d a0 Cost-Aware Greedy Regional Index Selection: 370.473700 ms
+test-0-brc100d a0 Nominal Point Feed-Forward Regional Index Selection: 377.759000 ms
+test-0-brc100d a0 Uncertainty-Aware Feed-Forward Regional Index Selection: 330.960200 ms
+test-0-brc100d a0 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 358.988600 ms
+test-0-brc100d a0 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 330.634000 ms
+test-0-brc100d a0 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 338.872500 ms
+test-0-brc100d a1 Uniform Grid: 460.849600 ms
+test-0-brc100d a1 PR Quadtree: 370.607600 ms
+test-0-brc100d a1 Boost R*-Tree: 1385.413600 ms
+test-0-brc100d a1 Fixed Regional Scan: 875.357000 ms
+test-0-brc100d a1 Fixed Local Fine Grid: 975.443300 ms
+test-0-brc100d a1 Fixed Local Quadtree: 696.320400 ms
+test-0-brc100d a1 Threshold-Based Adaptive Regional Index Selection: 412.662100 ms
+test-0-brc100d a1 Cost-Aware Greedy Regional Index Selection: 397.311200 ms
+test-0-brc100d a1 Nominal Point Feed-Forward Regional Index Selection: 396.301900 ms
+test-0-brc100d a1 Uncertainty-Aware Feed-Forward Regional Index Selection: 337.347500 ms
+test-0-brc100d a1 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 337.620800 ms
+test-0-brc100d a1 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 320.434000 ms
+test-0-brc100d a1 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 368.158400 ms
+test-0-brc100d a2 Uniform Grid: 481.050200 ms
+test-0-brc100d a2 PR Quadtree: 419.790000 ms
+test-0-brc100d a2 Boost R*-Tree: 1414.871200 ms
+test-0-brc100d a2 Fixed Regional Scan: 743.614000 ms
+test-0-brc100d a2 Fixed Local Fine Grid: 971.948500 ms
+test-0-brc100d a2 Fixed Local Quadtree: 710.404400 ms
+test-0-brc100d a2 Threshold-Based Adaptive Regional Index Selection: 359.806700 ms
+test-0-brc100d a2 Cost-Aware Greedy Regional Index Selection: 362.658200 ms
+test-0-brc100d a2 Nominal Point Feed-Forward Regional Index Selection: 370.331500 ms
+test-0-brc100d a2 Uncertainty-Aware Feed-Forward Regional Index Selection: 326.358500 ms
+test-0-brc100d a2 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 316.198200 ms
+test-0-brc100d a2 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 307.840500 ms
+test-0-brc100d a2 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 307.188900 ms
+test-1-brc203d a0 Uniform Grid: 389.094400 ms
+test-1-brc203d a0 PR Quadtree: 435.550100 ms
+test-1-brc203d a0 Boost R*-Tree: 1372.138000 ms
+test-1-brc203d a0 Fixed Regional Scan: 627.973100 ms
+test-1-brc203d a0 Fixed Local Fine Grid: 994.506100 ms
+test-1-brc203d a0 Fixed Local Quadtree: 741.005700 ms
+test-1-brc203d a0 Threshold-Based Adaptive Regional Index Selection: 292.412100 ms
+test-1-brc203d a0 Cost-Aware Greedy Regional Index Selection: 282.448400 ms
+test-1-brc203d a0 Nominal Point Feed-Forward Regional Index Selection: 280.953700 ms
+test-1-brc203d a0 Uncertainty-Aware Feed-Forward Regional Index Selection: 288.523700 ms
+test-1-brc203d a0 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 276.693300 ms
+test-1-brc203d a0 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 255.166100 ms
+test-1-brc203d a0 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 339.317500 ms
+test-1-brc203d a1 Uniform Grid: 420.311500 ms
+test-1-brc203d a1 PR Quadtree: 347.891900 ms
+test-1-brc203d a1 Boost R*-Tree: 1478.132100 ms
+test-1-brc203d a1 Fixed Regional Scan: 589.724000 ms
+test-1-brc203d a1 Fixed Local Fine Grid: 974.584200 ms
+test-1-brc203d a1 Fixed Local Quadtree: 864.755000 ms
+test-1-brc203d a1 Threshold-Based Adaptive Regional Index Selection: 283.472200 ms
+test-1-brc203d a1 Cost-Aware Greedy Regional Index Selection: 264.685500 ms
+test-1-brc203d a1 Nominal Point Feed-Forward Regional Index Selection: 294.283800 ms
+test-1-brc203d a1 Uncertainty-Aware Feed-Forward Regional Index Selection: 279.828600 ms
+test-1-brc203d a1 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 281.656500 ms
+test-1-brc203d a1 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 264.728600 ms
+test-1-brc203d a1 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 295.578100 ms
+test-1-brc203d a2 Uniform Grid: 426.354800 ms
+test-1-brc203d a2 PR Quadtree: 398.830500 ms
+test-1-brc203d a2 Boost R*-Tree: 1352.175900 ms
+test-1-brc203d a2 Fixed Regional Scan: 612.337200 ms
+test-1-brc203d a2 Fixed Local Fine Grid: 956.046000 ms
+test-1-brc203d a2 Fixed Local Quadtree: 723.086000 ms
+test-1-brc203d a2 Threshold-Based Adaptive Regional Index Selection: 273.465500 ms
+test-1-brc203d a2 Cost-Aware Greedy Regional Index Selection: 298.362000 ms
+test-1-brc203d a2 Nominal Point Feed-Forward Regional Index Selection: 272.545400 ms
+test-1-brc203d a2 Uncertainty-Aware Feed-Forward Regional Index Selection: 280.451800 ms
+test-1-brc203d a2 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 281.814600 ms
+test-1-brc203d a2 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 272.655400 ms
+test-1-brc203d a2 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 266.422600 ms
+test-2-den011d a0 Uniform Grid: 535.402900 ms
+test-2-den011d a0 PR Quadtree: 410.493900 ms
+test-2-den011d a0 Boost R*-Tree: 1437.730500 ms
+test-2-den011d a0 Fixed Regional Scan: 605.061500 ms
+test-2-den011d a0 Fixed Local Fine Grid: 1230.973500 ms
+test-2-den011d a0 Fixed Local Quadtree: 782.011800 ms
+test-2-den011d a0 Threshold-Based Adaptive Regional Index Selection: 342.933100 ms
+test-2-den011d a0 Cost-Aware Greedy Regional Index Selection: 316.034700 ms
+test-2-den011d a0 Nominal Point Feed-Forward Regional Index Selection: 313.549400 ms
+test-2-den011d a0 Uncertainty-Aware Feed-Forward Regional Index Selection: 285.724800 ms
+test-2-den011d a0 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 295.336100 ms
+test-2-den011d a0 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 312.964200 ms
+test-2-den011d a0 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 279.355100 ms
+test-2-den011d a1 Uniform Grid: 458.438200 ms
+test-2-den011d a1 PR Quadtree: 416.929200 ms
+test-2-den011d a1 Boost R*-Tree: 1391.651200 ms
+test-2-den011d a1 Fixed Regional Scan: 627.589000 ms
+test-2-den011d a1 Fixed Local Fine Grid: 1077.509800 ms
+test-2-den011d a1 Fixed Local Quadtree: 928.237900 ms
+test-2-den011d a1 Threshold-Based Adaptive Regional Index Selection: 311.263000 ms
+test-2-den011d a1 Cost-Aware Greedy Regional Index Selection: 315.522000 ms
+test-2-den011d a1 Nominal Point Feed-Forward Regional Index Selection: 295.241000 ms
+test-2-den011d a1 Uncertainty-Aware Feed-Forward Regional Index Selection: 274.073400 ms
+test-2-den011d a1 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 287.754300 ms
+test-2-den011d a1 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 351.512900 ms
+test-2-den011d a1 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 315.777500 ms
+test-2-den011d a2 Uniform Grid: 439.543000 ms
+test-2-den011d a2 PR Quadtree: 398.104200 ms
+test-2-den011d a2 Boost R*-Tree: 1396.944100 ms
+test-2-den011d a2 Fixed Regional Scan: 636.639300 ms
+test-2-den011d a2 Fixed Local Fine Grid: 1063.683800 ms
+test-2-den011d a2 Fixed Local Quadtree: 915.524700 ms
+test-2-den011d a2 Threshold-Based Adaptive Regional Index Selection: 330.738000 ms
+test-2-den011d a2 Cost-Aware Greedy Regional Index Selection: 254.123700 ms
+test-2-den011d a2 Nominal Point Feed-Forward Regional Index Selection: 247.350300 ms
+test-2-den011d a2 Uncertainty-Aware Feed-Forward Regional Index Selection: 288.783600 ms
+test-2-den011d a2 Quantile-Cost-Penalized Feed-Forward Regional Index Selection: 254.819400 ms
+test-2-den011d a2 CVaR-Risk-Constrained Feed-Forward Regional Index Selection: 227.214300 ms
+test-2-den011d a2 Historical-Error-Feedback Robust Feed-Forward Regional Index Selection: 300.162900 ms
+done

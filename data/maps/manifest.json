@@ -1,102 +1,150 @@
 {
-  "source": "https://movingai.com/benchmarks/dao/dao-map.zip",
-  "license": "Moving AI Lab 2D benchmarks: free for research with attribution (Sturtevant 2012); DAO maps distributed with BioWare permission.",
-  "maps": [
-    {
-      "file": "brc202d.map",
-      "sha256": "ee4f1b89431452b6a07f7a56c6ca653edd7f9f9f32906ab8280fb1a76e4b8a24",
-      "width": 530,
-      "height": 481,
-      "walkable_fraction": 0.16926607303965793,
-      "cell_m": 37.735849056603776,
-      "world_bounds": [
-        0.0,
-        0.0,
-        20000.0,
-        18150.943396226416
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    },
-    {
-      "file": "orz100d.map",
-      "sha256": "5b68afc405c940d2347f73f698425036f187f6bc48b4e4ab4dfc3faa784e8391",
-      "width": 412,
-      "height": 395,
-      "walkable_fraction": 0.6121789357256975,
-      "cell_m": 48.54368932038835,
-      "world_bounds": [
-        0.0,
-        0.0,
-        20000.0,
-        19174.7572815534
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    },
-    {
-      "file": "brc204d.map",
-      "sha256": "2aed47727d594f48d49da4afa5a3e4d969112073ea57af6f69aa825a23c51ef6",
-      "width": 431,
-      "height": 429,
-      "walkable_fraction": 0.12808614432744364,
-      "cell_m": 46.403712296983755,
-      "world_bounds": [
-        0.0,
-        0.0,
-        20000.0,
-        19907.192575406032
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    },
-    {
-      "file": "arena2.map",
-      "sha256": "9c8255e89179fa1b8098f5744d9392ed78de479a08fda8fb170c05a10f22ce2a",
-      "width": 281,
-      "height": 209,
-      "walkable_fraction": 0.41395222121949976,
-      "cell_m": 71.17437722419929,
-      "world_bounds": [
-        0.0,
-        0.0,
-        20000.0,
-        14875.444839857651
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    },
-    {
-      "file": "brc100d.map",
-      "sha256": "36bac0dc23b3d25bb1b25e4d1c6aab5b4736e83d72f59e796081f98fd30261aa",
-      "width": 512,
-      "height": 492,
-      "walkable_fraction": 0.12315405868902439,
-      "cell_m": 39.0625,
-      "world_bounds": [
-        0.0,
-        0.0,
-        20000.0,
-        19218.75
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    },
-    {
-      "file": "brc203d.map",
-      "sha256": "1695b540c444f8d7e3693c48bb4481dfe0333046dd8754848d6c82850941779d",
-      "width": 274,
-      "height": 391,
-      "walkable_fraction": 0.19332798177982713,
-      "cell_m": 51.150895140664964,
-      "world_bounds": [
-        0.0,
-        0.0,
-        14015.3452685422,
-        20000.0
-      ],
-      "format": "octile",
-      "source": "https://movingai.com/benchmarks/grids.html"
-    }
-  ]
+ "source": "https://movingai.com/benchmarks/dao/dao-map.zip",
+ "license": "Moving AI Lab 2D benchmarks: free for research with attribution (Sturtevant 2012); DAO maps distributed with BioWare permission.",
+ "maps": [
+  {
+   "file": "brc202d.map",
+   "sha256": "ee4f1b89431452b6a07f7a56c6ca653edd7f9f9f32906ab8280fb1a76e4b8a24",
+   "width": 530,
+   "height": 481,
+   "walkable_fraction": 0.16926607303965793,
+   "cell_m": 37.735849056603776,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    18150.943396226416
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "orz100d.map",
+   "sha256": "5b68afc405c940d2347f73f698425036f187f6bc48b4e4ab4dfc3faa784e8391",
+   "width": 412,
+   "height": 395,
+   "walkable_fraction": 0.6121789357256975,
+   "cell_m": 48.54368932038835,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    19174.7572815534
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "brc204d.map",
+   "sha256": "2aed47727d594f48d49da4afa5a3e4d969112073ea57af6f69aa825a23c51ef6",
+   "width": 431,
+   "height": 429,
+   "walkable_fraction": 0.12808614432744364,
+   "cell_m": 46.403712296983755,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    19907.192575406032
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "arena2.map",
+   "sha256": "9c8255e89179fa1b8098f5744d9392ed78de479a08fda8fb170c05a10f22ce2a",
+   "width": 281,
+   "height": 209,
+   "walkable_fraction": 0.41395222121949976,
+   "cell_m": 71.17437722419929,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    14875.444839857651
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "brc100d.map",
+   "sha256": "36bac0dc23b3d25bb1b25e4d1c6aab5b4736e83d72f59e796081f98fd30261aa",
+   "width": 512,
+   "height": 492,
+   "walkable_fraction": 0.12315405868902439,
+   "cell_m": 39.0625,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    19218.75
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "brc203d.map",
+   "sha256": "1695b540c444f8d7e3693c48bb4481dfe0333046dd8754848d6c82850941779d",
+   "width": 274,
+   "height": 391,
+   "walkable_fraction": 0.19332798177982713,
+   "cell_m": 51.150895140664964,
+   "world_bounds": [
+    0.0,
+    0.0,
+    14015.3452685422,
+    20000.0
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "den011d.map",
+   "sha256": "04963d72d7ced037a734ef24609ce669bc5ffcf29cc5b73368d0604b8b8a54b6",
+   "width": 247,
+   "height": 167,
+   "walkable_fraction": 0.35166913137288175,
+   "cell_m": 80.97165991902834,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    13522.267206477733
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "orz200d.map",
+   "sha256": "96c3cab6a2bdd82d6f50a3be97e6ed53ae2baff16f9ec674b769663c084d73af",
+   "width": 272,
+   "height": 260,
+   "walkable_fraction": 0.07252545248868779,
+   "cell_m": 73.52941176470588,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    19117.64705882353
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  },
+  {
+   "file": "den101d.map",
+   "sha256": "a43f92df61f9bda523686b568127e410a79fc8dd460feaa06ed315bb7fb816a5",
+   "width": 73,
+   "height": 41,
+   "walkable_fraction": 0.45372535917139994,
+   "cell_m": 273.972602739726,
+   "world_bounds": [
+    0.0,
+    0.0,
+    20000.0,
+    11232.876712328767
+   ],
+   "format": "octile",
+   "source": "https://movingai.com/benchmarks/grids.html"
+  }
+ ]
 }
