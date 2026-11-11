@@ -1,0 +1,566 @@
+{
+ "linear": {
+  "accuracy": 0.4166666666666667,
+  "mean_cost_ms": 33.89418333333333,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.03765861112773886,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 32,
+    "cost": 12.5521,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 8.7701,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 4,
+    "cost": 86.3766,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 18.3435,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 4,
+    "cost": 25.7212,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 4,
+    "cost": 52.6731,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 17.6414,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 4,
+    "cost": 21.1324,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 32,
+    "cost": 16.4783,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "log": {
+  "accuracy": 0.4166666666666667,
+  "mean_cost_ms": 33.488524999999996,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.017519371521185847,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 32,
+    "cost": 12.5521,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 8.7701,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 4,
+    "cost": 86.3766,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 4,
+    "cost": 18.4725,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 23.2032,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 4,
+    "cost": 52.6731,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 4,
+    "cost": 17.5363,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 18.7586,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 32,
+    "cost": 16.4783,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "rule": {
+  "accuracy": 0.3333333333333333,
+  "mean_cost_ms": 34.20291666666667,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.0646358268645476,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 13.5956,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 8.7701,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 8,
+    "cost": 86.984,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 18.3435,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 26.9395,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 49.6284,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 17.6414,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 20.5665,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 0,
+    "cost": 20.9245,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "binary": {
+  "accuracy": 0.4166666666666667,
+  "mean_cost_ms": 33.417775,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.014456794388639935,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 32,
+    "cost": 12.5521,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 8.7701,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 0,
+    "cost": 88.5962,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 18.3435,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 23.2032,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 49.6284,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 17.6414,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 32,
+    "cost": 18.7586,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 32,
+    "cost": 16.4783,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "fixed": {
+  "accuracy": 0.3333333333333333,
+  "mean_cost_ms": 34.38885,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.07207556862332733,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 13.5956,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 9.3891,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 0,
+    "cost": 88.5962,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 18.3435,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 26.9395,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 49.6284,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 17.6414,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 20.5665,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 0,
+    "cost": 20.9245,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "direct": {
+  "accuracy": 0.3333333333333333,
+  "mean_cost_ms": 34.38885,
+  "oracle_ms": 33.014574999999994,
+  "regret": 0.07207556862332733,
+  "per_scenario": [
+   {
+    "scenario": "N10_fast_migrate",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 13.5956,
+    "oracle_cost": 12.2301
+   },
+   {
+    "scenario": "N11_slow_migrate",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 9.3891,
+    "oracle_cost": 8.7662
+   },
+   {
+    "scenario": "N12_qbox300_ups200",
+    "oracle": 4,
+    "chosen": 0,
+    "cost": 88.5962,
+    "oracle_cost": 86.3766
+   },
+   {
+    "scenario": "N1_qbox100",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 18.3435,
+    "oracle_cost": 17.8554
+   },
+   {
+    "scenario": "N2_qbox500",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 46.1705,
+    "oracle_cost": 46.1705
+   },
+   {
+    "scenario": "N3_hot2_qps60",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 26.9395,
+    "oracle_cost": 22.514
+   },
+   {
+    "scenario": "N4_ups50",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 49.6284,
+    "oracle_cost": 49.6284
+   },
+   {
+    "scenario": "N5_move20",
+    "oracle": 8,
+    "chosen": 0,
+    "cost": 17.6414,
+    "oracle_cost": 17.1537
+   },
+   {
+    "scenario": "N6_hot8",
+    "oracle": 16,
+    "chosen": 0,
+    "cost": 20.5665,
+    "oracle_cost": 18.1307
+   },
+   {
+    "scenario": "N7_small_ups20",
+    "oracle": 32,
+    "chosen": 0,
+    "cost": 20.9245,
+    "oracle_cost": 16.4783
+   },
+   {
+    "scenario": "N8_large_ups20",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 75.0403,
+    "oracle_cost": 75.0403
+   },
+   {
+    "scenario": "N9_mix05",
+    "oracle": 0,
+    "chosen": 0,
+    "cost": 25.8307,
+    "oracle_cost": 25.8307
+   }
+  ]
+ },
+ "error_linear": {
+  "mae_ms": 480848038076532.7,
+  "rmse_ms": 1665706465336707.2,
+  "mean_relative": 16272755599154.81,
+  "max_ms": 5770176456918291.0
+ },
+ "error_log": {
+  "mae_ms": 14.471068993379681,
+  "rmse_ms": 19.599232842623174,
+  "mean_relative": 0.42809911089837865,
+  "max_ms": 104.19752359274649
+ }
+}

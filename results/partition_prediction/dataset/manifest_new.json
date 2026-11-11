@@ -1,0 +1,12 @@
+{
+ "set": "new",
+ "rows": 216,
+ "scenarios": 12,
+ "sentinel": {
+  "start": 74.8459,
+  "end": 49.2665,
+  "drift": 1.5192047334395582
+ },
+ "threshold": 1.15,
+ "valid": false
+}
