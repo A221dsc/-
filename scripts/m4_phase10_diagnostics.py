@@ -87,7 +87,7 @@ def main():
                         "q_quad": float(q[leaf, 2]), "requested": int(actions[leaf]),
                         "applied": int(applied[leaf]), "rejected": int(rejected[leaf]),
                         "benefit": float(benefit[leaf]), "cost_us": float(region_us[leaf]),
-                        "delta_cost": (float(region_us[leaf] - previous_cost[leaf])
+                        "window_cost_change": (float(region_us[leaf] - previous_cost[leaf])
                                        if previous_cost is not None else 0.0)})
                 previous_cost = region_us
                 previous_mode = applied
@@ -117,9 +117,14 @@ def main():
                 per_leaf[r["leaf"]].append((r["window"], r["applied"]))
             for leaf, seq in per_leaf.items():
                 seq.sort()
-                for i in range(len(seq) - 1):
-                    if seq[i][1] != 0 and seq[i + 1][1] == 0 and seq[i + 1][0] - seq[i][0] <= 3:
+                first_promotion = None
+                for window, mode in seq:
+                    if first_promotion is None and mode != 0:
+                        first_promotion = window
+                    if first_promotion is not None and mode == 0 and \
+                            window - first_promotion <= 3:
                         short_release += 1
+                        first_promotion = None
             budget = []
             benefits, deltas = [], []
             missed = 0
@@ -127,10 +132,11 @@ def main():
                 queries = np.array([r["queries"] for r in group], dtype=float)
                 updates = np.array([r["updates"] for r in group], dtype=float)
                 modes = np.array([r["mode"] for r in group])
+                applied = np.array([r["applied"] for r in group])
                 if queries.max() > 0:
                     hot = queries >= np.percentile(queries, 90)
                     hot_total += int(hot.sum())
-                    hot_upgraded += int((modes[hot] != 0).sum())
+                    hot_upgraded += int((applied[hot] != 0).sum())
                 if updates.max() > 0:
                     upd = (updates >= np.percentile(updates, 90)) & \
                           (queries <= np.median(queries))
@@ -141,31 +147,33 @@ def main():
                         promotions += 1
                     if r["applied"] != r["mode"]:
                         benefits.append(r["benefit"])
-                        deltas.append(-r["delta_cost"])
+                        deltas.append(-r["window_cost_change"])
                 budget.append(sum(1 for r in group if r["applied"] != r["mode"] and r["applied"] != 0))
                 top = sorted(group, key=lambda r: -r["benefit"])[:4]
                 applied_now = [r for r in group if r["applied"] != r["mode"]]
                 missed += sum(1 for r in top if r["applied"] == r["mode"] and r["benefit"] > 0)
             metrics.append({
                 "seed": seed, "partition": partition,
-                "hot_upgrade_ratio": hot_upgraded / hot_total if hot_total else 0.0,
+                "hot_upgrade_ratio_executed": hot_upgraded / hot_total if hot_total else 0.0,
                 "update_heavy_scan_ratio": upd_scan / upd_total if upd_total else 0.0,
                 "promotions": promotions,
                 "short_release": short_release,
                 "budget_use": statistics.mean(budget) / 4.0 if budget else 0.0,
                 "q_real_spearman": spearman(np.array(benefits), np.array(deltas)),
-                "missed_top_candidates": missed,
-                "mean_abs_q_spread": float(np.mean([abs(r["q_scan"] - r["q_quad"]) for r in subset])),
+                "missed_by_model_score": missed,
+                "mean_q_range": float(np.mean([max(r["q_scan"], r["q_fine"], r["q_quad"]) -
+                                               min(r["q_scan"], r["q_fine"], r["q_quad"])
+                                               for r in subset])),
             })
     with (args.output / "selection_quality.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(metrics[0]))
         writer.writeheader()
         writer.writerows(metrics)
     for m in metrics:
-        print(f"seed {m['seed']} {m['partition']}: hot_upgrade {m['hot_upgrade_ratio']:.2f} "
+        print(f"seed {m['seed']} {m['partition']}: hot_upgrade {m['hot_upgrade_ratio_executed']:.2f} "
               f"upd_scan {m['update_heavy_scan_ratio']:.2f} promotions {m['promotions']} "
               f"budget {m['budget_use']:.2f} spearman {m['q_real_spearman']:.2f} "
-              f"missed {m['missed_top_candidates']} q_spread {m['mean_abs_q_spread']:.3f}")
+              f"missed {m['missed_by_model_score']} q_range {m['mean_q_range']:.3f}")
 
 
 if __name__ == "__main__":

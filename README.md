@@ -189,3 +189,12 @@ python -X utf8 scripts/run_m4_phase9_compare.py
 
 锚点改为双向漂移（max/min），DQN 在线时间补计特征生成；逐叶决策日志与选型质量见 [M4.10 报告](M4_PARTITION_RL_DIAGNOSTIC_REPORT.md)。
 
+## M4.11：反事实收益测量
+
+```powershell
+python -X utf8 scripts/m4_counterfactual_test.py
+python -X utf8 scripts/m4_counterfactual.py build_m3/spatial_m3.exe results/m4/phase8/plans data/processed/m4/traces results/m4/phase11/cf --windows 12 --top 2 --repeats 2 --horizons 1 2 4 --noise-ms 2.0
+```
+
+`partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY` 在相同状态下测量“保持 vs 切换”的真实窗口成本；噪声底约 2 ms，低于该值的标签标记为不确定。详见 [M4.11 报告](M4_COUNTERFACTUAL_SELECTION_REPORT.md)。
+
