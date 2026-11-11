@@ -1,0 +1,64 @@
+scenario,actual,role,method,online_ms,decide_ms,promotions,leaves
+test-0-brc100d,0,greedy,history greedy H1,274.1079,0.9983,14,256
+test-0-brc100d,0,greedy,prior greedy H1,215.8166,1.2276,12,256
+test-0-brc100d,0,quantile,quantile feed-forward,183.9342,0.0,8,0
+test-0-brc100d,0,greedy,prior greedy H4,179.2117,3.1678,11,256
+test-0-brc100d,0,greedy,history greedy H4,282.3647,2.938,15,256
+test-0-brc100d,0,scan,all-SCAN,504.1216,0.0,0,256
+test-0-brc100d,0,greedy,prior greedy H2,178.2242,1.8864,10,256
+test-0-brc100d,1,greedy,history greedy H4,286.9361,2.9258,15,256
+test-0-brc100d,1,greedy,prior greedy H4,179.9152,3.0671,11,256
+test-0-brc100d,1,quantile,quantile feed-forward,186.5628,0.0,8,0
+test-0-brc100d,1,greedy,prior greedy H2,182.2655,1.9086,10,256
+test-0-brc100d,1,greedy,prior greedy H1,216.8983,1.3277,12,256
+test-0-brc100d,1,greedy,history greedy H1,270.767,1.018,14,256
+test-0-brc100d,1,scan,all-SCAN,513.666,0.0,0,256
+test-0-brc100d,2,greedy,prior greedy H4,167.955,3.0551,12,256
+test-0-brc100d,2,greedy,history greedy H1,286.0133,1.0007,16,256
+test-0-brc100d,2,greedy,prior greedy H2,170.7256,1.9283,10,256
+test-0-brc100d,2,quantile,quantile feed-forward,174.468,0.0,8,0
+test-0-brc100d,2,greedy,prior greedy H1,217.8237,1.2234,13,256
+test-0-brc100d,2,scan,all-SCAN,502.1838,0.0,0,256
+test-0-brc100d,2,greedy,history greedy H4,286.3084,2.848,16,256
+test-1-brc203d,0,greedy,history greedy H4,191.6759,3.3524,14,256
+test-1-brc203d,0,greedy,prior greedy H1,150.5335,1.2447,12,256
+test-1-brc203d,0,scan,all-SCAN,410.071,0.0,0,256
+test-1-brc203d,0,greedy,prior greedy H2,148.3322,1.9718,11,256
+test-1-brc203d,0,greedy,history greedy H1,189.3322,1.0036,13,256
+test-1-brc203d,0,quantile,quantile feed-forward,164.6248,0.0,8,0
+test-1-brc203d,0,greedy,prior greedy H4,153.0979,3.1961,11,256
+test-1-brc203d,1,greedy,prior greedy H2,143.0891,1.8805,11,256
+test-1-brc203d,1,greedy,prior greedy H4,146.2676,3.4059,11,256
+test-1-brc203d,1,greedy,history greedy H4,181.2137,2.9062,12,256
+test-1-brc203d,1,greedy,history greedy H1,183.0744,0.9778,11,256
+test-1-brc203d,1,scan,all-SCAN,378.7038,0.0,0,256
+test-1-brc203d,1,greedy,prior greedy H1,145.3228,1.2371,12,256
+test-1-brc203d,1,quantile,quantile feed-forward,150.6204,0.0,8,0
+test-1-brc203d,2,scan,all-SCAN,363.405,0.0,0,256
+test-1-brc203d,2,greedy,prior greedy H2,139.52,1.9232,11,256
+test-1-brc203d,2,greedy,history greedy H4,181.1329,2.772,13,256
+test-1-brc203d,2,greedy,prior greedy H4,142.6109,3.1201,11,256
+test-1-brc203d,2,greedy,prior greedy H1,140.8232,1.2077,12,256
+test-1-brc203d,2,greedy,history greedy H1,175.4276,1.0224,13,256
+test-1-brc203d,2,quantile,quantile feed-forward,146.3219,0.0,8,0
+test-2-den011d,0,greedy,prior greedy H2,137.4397,1.919,12,256
+test-2-den011d,0,quantile,quantile feed-forward,151.7833,0.0,10,0
+test-2-den011d,0,greedy,history greedy H4,215.219,2.8491,14,256
+test-2-den011d,0,greedy,prior greedy H1,158.1901,1.2236,12,256
+test-2-den011d,0,greedy,prior greedy H4,140.6462,3.0558,12,256
+test-2-den011d,0,greedy,history greedy H1,206.9815,1.0867,12,256
+test-2-den011d,0,scan,all-SCAN,407.5558,0.0,0,256
+test-2-den011d,1,greedy,prior greedy H4,141.4045,2.9583,12,256
+test-2-den011d,1,quantile,quantile feed-forward,150.4197,0.0,10,0
+test-2-den011d,1,greedy,history greedy H1,218.5022,1.015,12,256
+test-2-den011d,1,scan,all-SCAN,416.637,0.0,0,256
+test-2-den011d,1,greedy,prior greedy H2,141.3113,1.9367,12,256
+test-2-den011d,1,greedy,history greedy H4,220.4075,3.0935,13,256
+test-2-den011d,1,greedy,prior greedy H1,158.4336,1.182,12,256
+test-2-den011d,2,quantile,quantile feed-forward,154.3121,0.0,10,0
+test-2-den011d,2,greedy,prior greedy H4,159.8131,4.469,12,256
+test-2-den011d,2,greedy,prior greedy H1,168.1782,1.2335,12,256
+test-2-den011d,2,greedy,history greedy H4,231.4014,2.8841,15,256
+test-2-den011d,2,scan,all-SCAN,464.1734,0.0,0,256
+test-2-den011d,2,greedy,history greedy H1,227.5949,1.0241,14,256
+test-2-den011d,2,greedy,prior greedy H2,148.3717,2.0372,12,256

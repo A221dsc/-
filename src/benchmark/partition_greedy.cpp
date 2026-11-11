@@ -89,7 +89,7 @@ struct GreedyOutcome {
 
 GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
                             const SelectorConfig& config, int fine, int quad,
-                            bool use_prior, bool validate) {
+                            bool use_prior, bool validate, int amortize) {
     PartitionIndex index(trace.bounds, fine, quad, false, true);
     index.set_partition(plan.rects, plan.levels);
     std::unique_ptr<ArrayOracle> oracle;
@@ -108,30 +108,43 @@ GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
         const auto begin = Clock::now();
         std::vector<std::tuple<double, unsigned, int>> candidates;
         for (unsigned leaf = 0; leaf < plan.rects.size(); ++leaf) {
-            std::array<double, 4> load{};
+            std::array<double, 4> now{};
             if (use_prior) {
                 const auto found = plan.loads.find({next_window, leaf});
-                if (found != plan.loads.end()) load = found->second;
+                if (found != plan.loads.end()) now = found->second;
             } else {
                 const auto& observed = index.window_load(leaf);
-                load = {static_cast<double>(observed.queries),
-                        static_cast<double>(index.entity_count(leaf)),
-                        static_cast<double>(observed.updates), observed.coverage};
+                now = {static_cast<double>(observed.queries),
+                       static_cast<double>(index.entity_count(leaf)),
+                       static_cast<double>(observed.updates), observed.coverage};
             }
             const Mode current = index.mode(leaf);
             const double entities = static_cast<double>(index.entity_count(leaf));
-            double best = cost_ns(config, current, load);
+            const int horizon = std::max(1, amortize);
+            // Amortized cost over the declared future windows: the prior loads
+            // are used when available (never actual future events); the history
+            // mode repeats the observed load (persistence).
+            auto sustained = [&](Mode mode) {
+                double total = 0.0;
+                for (int h = 0; h < horizon; ++h) {
+                    std::array<double, 4> load = now;
+                    const auto found = plan.loads.find({next_window + h, leaf});
+                    if (use_prior && found != plan.loads.end()) load = found->second;
+                    total += cost_ns(config, mode, load);
+                }
+                return total;
+            };
+            double best = sustained(current) + switch_ns(config, current, current, entities);
             Mode target = current;
             for (Mode mode : {Mode::Scan, Mode::FineGrid, Mode::LocalQuad}) {
-                const double value = cost_ns(config, mode, load) +
-                                     switch_ns(config, current, mode, entities);
+                const double value = sustained(mode) + switch_ns(config, current, mode, entities);
                 if (value < best) {
                     best = value;
                     target = mode;
                 }
             }
             if (target == current) continue;
-            const double benefit = cost_ns(config, current, load) - best;
+            const double benefit = sustained(current) - best;
             if (benefit <= 0) continue;
             candidates.emplace_back(benefit, leaf, static_cast<int>(target));
         }
@@ -199,11 +212,12 @@ GreedyOutcome replay_greedy(const M3Trace& trace, const GreedyPlan& plan,
 }  // namespace
 
 int run_partition_greedy(const M3Trace& trace, int fine, int quad, const std::string& plan_path,
-                         const std::string& config_path, bool use_prior, bool validate) {
+                         const std::string& config_path, bool use_prior, bool validate,
+                         int amortize) {
     const GreedyPlan plan = read_greedy_plan(plan_path);
     const SelectorConfig config = read_selector_config(config_path);
     const GreedyOutcome outcome = replay_greedy(trace, plan, config, fine, quad, use_prior,
-                                                validate);
+                                                validate, amortize);
     std::cout << std::fixed << std::setprecision(6)
               << "online_ms=" << outcome.online_ms
               << " query_ms=" << outcome.query_ms

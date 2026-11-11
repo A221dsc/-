@@ -1,19 +1,18 @@
-"""Controlled separability scenarios: query-dominant vs update-dominant leaves.
+"""Controlled heterogeneous scenarios with per-leaf cross configurations.
 
-A 2x2 partition over a 2 km world. Leaf 0 holds the query-dominant workload
-(800 entities, 20 repeated queries per step, few updates); leaf 1 holds the
-update-dominant workload (800 entities, 200 updates per step, few queries). The
-fixed-mode replays compare SCAN / FINE_GRID / LOCAL_QUAD on the real index, and
-the counterfactual harness measures the switch benefit for the target leaf.
+A single 2x2 instance: leaf 0 is query-dominant (repeated queries, few updates)
+and leaf 1 is update-dominant (heavy updates, no queries); leaves 2 and 3 are
+cold. The initial positions are kept as a separate copy so the update stream
+cannot overwrite the replay origin. The plan P lines carry the *planned*
+per-window loads (legal prior, not the actual future events).
 """
 import argparse
-import math
+import csv
+import itertools
 import random
 import subprocess
 import sys
 from pathlib import Path
-
-import numpy as np
 
 sys.path.insert(0, "scripts")
 from m4_scenario import write_trace  # noqa: E402
@@ -22,64 +21,82 @@ STEPS = 1200
 WINDOW = 50
 WINDOWS = STEPS // WINDOW
 WORLD = (0.0, 0.0, 2000.0, 2000.0)
+RECTS = [(0, 0, 32, 32), (32, 0, 64, 32), (0, 32, 32, 64), (32, 32, 64, 64)]
 
 
-def build(kind, seed=7):
+def build(seed=7):
     rng = random.Random(seed)
     n0, n1 = 800, 800
-    points = []
-    for _ in range(n0):
-        points.append((200 + 600 * rng.random(), 200 + 600 * rng.random()))
-    for _ in range(n1):
-        points.append((1200 + 600 * rng.random(), 200 + 600 * rng.random()))
+    points = [(200 + 600 * rng.random(), 200 + 600 * rng.random()) for _ in range(n0)]
+    points += [(1200 + 600 * rng.random(), 200 + 600 * rng.random()) for _ in range(n1)]
+    initial = list(points)  # the replay origin must not be the post-update state
     ids0 = list(range(1, n0 + 1))
     ids1 = list(range(n0 + 1, n0 + n1 + 1))
     events = []
+    planned = {}
+
+    def bump(window, leaf, dq, du):
+        cell = planned.setdefault((window, leaf), [0, 0])
+        cell[0] += dq
+        cell[1] += du
+
     for step in range(STEPS):
         if step and step % WINDOW == 0:
             events.append(("P", step, 0.0, 0.0, 0.0, 0.0))
-        if kind == "query":
-            for _ in range(20):
-                cx = 300 + 400 * rng.random()
-                cy = 300 + 400 * rng.random()
-                events.append(("R", 0, cx - 40, cy - 40, cx + 40, cy + 40))
-            for ident in rng.sample(ids0, 6):
-                x, y = points[ident - 1]
-                points[ident - 1] = (x + rng.uniform(-2, 2), y + rng.uniform(-2, 2))
-                events.append(("U", ident, points[ident - 1][0], points[ident - 1][1], 0, 0))
-        else:
-            for ident in rng.sample(ids1, 200):
-                x, y = points[ident - 1]
-                points[ident - 1] = (x + rng.uniform(-2, 2), y + rng.uniform(-2, 2))
-                events.append(("U", ident, points[ident - 1][0], points[ident - 1][1], 0, 0))
-            for _ in range(2):
-                cx = 300 + 400 * rng.random()
-                cy = 300 + 400 * rng.random()
-                events.append(("R", 0, cx - 40, cy - 40, cx + 40, cy + 40))
-    return points, events
+        window = step // WINDOW
+        for _ in range(20):
+            cx = 300 + 400 * rng.random()
+            cy = 300 + 400 * rng.random()
+            events.append(("R", 0, cx - 40, cy - 40, cx + 40, cy + 40))
+            bump(window, 0, 1, 0)
+        for ident in rng.sample(ids0, 6):
+            x, y = points[ident - 1]
+            points[ident - 1] = (x + rng.uniform(-2, 2), y + rng.uniform(-2, 2))
+            events.append(("U", ident, points[ident - 1][0], points[ident - 1][1], 0, 0))
+            bump(window, 0, 0, 1)
+        for ident in rng.sample(ids1, 200):
+            x, y = points[ident - 1]
+            points[ident - 1] = (x + rng.uniform(-2, 2), y + rng.uniform(-2, 2))
+            events.append(("U", ident, points[ident - 1][0], points[ident - 1][1], 0, 0))
+            bump(window, 1, 0, 1)
+    return initial, events, planned
 
 
-def leaf_plan(path):
-    rects = [(0, 0, 32, 32), (32, 0, 64, 32), (0, 32, 32, 64), (32, 32, 64, 64)]
-    lines = [f"L {x0} {y0} {x1} {y1} 1" for (x0, y0, x1, y1) in rects]
-    Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return rects
-
-
-def mode_plan(path, rects, mode):
-    lines = [f"L {x0} {y0} {x1} {y1} 1" for (x0, y0, x1, y1) in rects]
-    for leaf in range(len(rects)):
+def write_plan(path, modes, planned, entities=(800, 800, 0, 0)):
+    lines = [f"L {x0} {y0} {x1} {y1} 1" for (x0, y0, x1, y1) in RECTS]
+    for leaf, mode in enumerate(modes):
         if mode != 0:
             lines.append(f"M 0 {leaf} {mode} 1.0")
+    for window in range(WINDOWS):
+        for leaf in range(4):
+            q, u = planned.get((window, leaf), (0, 0))
+            coverage = min(1.0, q / 20.0) if q else 0.0
+            lines.append(f"P {window} {leaf} {q:.3f} {entities[leaf]:.1f} {u:.3f} {coverage:.4f}")
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def run(binary, trace, plan):
-    result = subprocess.run([str(binary), "partition", "160", "32", "0", str(trace), str(plan),
-                             "0"], capture_output=True, text=True)
+def run(binary, trace, plan, profile):
+    args = [str(binary), "partition", "160", "32", "0", str(trace), str(plan), "0",
+            "1" if profile else "0"]
+    result = subprocess.run(args, capture_output=True, text=True)
     if result.returncode:
         raise SystemExit(result.stderr)
-    return {k: float(v) for k, v in (token.split("=", 1) for token in result.stdout.split())}
+    out = {}
+    for token in result.stdout.split():
+        key, value = token.split("=", 1)
+        if key == "leaf_profile":
+            leaves = []
+            for row in value.split("|"):
+                name, rest = row.split("=")
+                q, b, l, s, n = (float(v) for v in rest.split(","))
+                leaves.append({"leaf": int(name[4:]), "q": q, "base": b, "local": l,
+                               "switch": s, "entities": n})
+            out["leaves"] = leaves
+            continue
+        if "/" in value:
+            value = value.split("/")[0]
+        out[key] = float(value)
+    return out
 
 
 def main():
@@ -88,57 +105,45 @@ def main():
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
+    initial, events, planned = build()
+    trace = args.output / "controlled-combined.m3bin"
+    write_trace(trace, WORLD, initial, events)
+    configs = {
+        "all_scan": (0, 0, 0, 0), "all_fine": (1, 1, 1, 1), "all_quad": (2, 2, 2, 2),
+        "query_fine": (1, 0, 0, 0), "query_quad": (2, 0, 0, 0),
+        "update_fine": (0, 1, 0, 0), "update_quad": (0, 2, 0, 0),
+        "query_quad_update_scan": (2, 0, 0, 0),
+        "query_quad_update_fine": (2, 1, 0, 0),
+    }
     rows = []
-    for kind, target_leaf in (("query", 0), ("update", 1)):
-        points, events = build(kind)
-        trace = args.output / f"controlled-{kind}.m3bin"
-        write_trace(trace, WORLD, points, events)
-        base = args.output / f"controlled-{kind}.base.plan"
-        rects = leaf_plan(base)
-        for mode, name in ((0, "SCAN"), (1, "FINE_GRID"), (2, "LOCAL_QUAD")):
-            plan = args.output / f"controlled-{kind}.{name}.plan"
-            mode_plan(plan, rects, mode)
-            out = run(args.binary, trace, plan)
-            rows.append({"scenario": kind, "mode": name, "online_ms": out["online_ms"],
-                         "query_ms": out["query_ms"], "update_ms": out["update_ms"],
-                         "switch_ms": out["switch_ms"]})
-            print(f"{kind} {name}: {out['online_ms']:.2f} ms "
-                  f"(q {out['query_ms']:.2f}, u {out['update_ms']:.2f})", flush=True)
-        for horizon in (1, 4):
-            for pair in range(5):
-                order = "1" if pair % 2 else "0"
-                result = subprocess.run(
-                    [str(args.binary), "partition_cf", "160", "32", "0", str(trace), str(base),
-                     "8", str(target_leaf), "0", "2", str(horizon), "0", "0", order],
-                    capture_output=True, text=True)
-                if result.returncode:
-                    raise SystemExit(result.stderr)
-                out = {}
-                for token in result.stdout.split():
-                    key, value = token.split("=", 1)
-                    if key in ("window_q", "window_u"):
-                        continue
-                    if "/" in value:
-                        value = value.split("/")[0]
-                    out[key] = float(value)
-                rows.append({"scenario": kind, "mode": f"CF_QUAD_h{horizon}", "pair": pair,
-                             "online_ms": out["net_ms"], "query_ms": out["query_a_ms"],
-                             "update_ms": out["query_b_ms"],
-                             "switch_ms": out["switch_b_ms"],
-                             "obs_prev_q": out["obs_prev_q"], "prior_q": out["prior_q"],
-                             "actual_future_q": out["actual_future_q"],
-                             "state_equal": out["state_equal"],
-                             "mismatches": out["mismatches"]})
-                print(f"{kind} CF quad h{horizon} pair {pair}: net {out['net_ms']:+.2f} "
-                      f"(obs {out['obs_prev_q']:.0f}, prior {out['prior_q']:.0f}, "
-                      f"actual {out['actual_future_q']:.0f})", flush=True)
-    import csv
-    fieldnames = sorted({key for row in rows for key in row})
-    with (args.output / "controlled_results.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+    for name, modes in configs.items():
+        plan = args.output / f"combined.{name}.plan"
+        write_plan(plan, modes, planned)
+        out = run(args.binary, trace, plan, True)
+        rows.append({"config": name, "modes": "|".join(str(m) for m in modes),
+                     "online_ms": out["online_ms"], "query_ms": out["query_ms"],
+                     "update_ms": out["update_ms"], "switch_ms": out["switch_ms"],
+                     "leaves": "|".join(f"L{l['leaf']}:q{l['q']:.2f}/b{l['base']:.2f}/"
+                                        f"m{l['local']:.2f}/s{l['switch']:.2f}"
+                                        for l in out["leaves"])})
+        print(f"{name}: {out['online_ms']:.2f} ms "
+              f"(q {out['query_ms']:.2f}, u {out['update_ms']:.2f})", flush=True)
+    best = None
+    for modes in itertools.product(range(3), repeat=4):
+        plan = args.output / "combined.enum.plan"
+        write_plan(plan, modes, planned)
+        out = run(args.binary, trace, plan, False)
+        if best is None or out["online_ms"] < best[1]:
+            best = (modes, out["online_ms"])
+    print("best static config", best, flush=True)
+    with (args.output / "controlled_configs.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
         writer.writeheader()
-        for row in rows:
-            writer.writerow(row)
+        writer.writerows(rows)
+    import json
+    (args.output / "controlled_summary.json").write_text(json.dumps(
+        {"best_static_modes": list(best[0]), "best_static_ms": best[1],
+         "configs": rows}, indent=1) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

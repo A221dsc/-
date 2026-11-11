@@ -216,3 +216,12 @@ python -X utf8 scripts/m4_stratified_cf.py build_m3/spatial_m3.exe results/m4/ph
 
 `partition_cf` 输出 `obs_prev_*`（w−1 观测）、`prior_*`（w 名义预测）、`actual_future_*`（仅离线）三组负载；受控场景给出 QUAD 的可靠正/负收益。详见 [M4.13 报告](M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md)。
 
+## M4.14：异构区域配置与摊销选型
+
+```powershell
+python -X utf8 scripts/m4_controlled.py build_m3/spatial_m3.exe results/m4/phase14/controlled
+python -X utf8 scripts/run_m4_phase14_compare.py
+```
+
+`partition` 支持 `PROFILE` 输出逐叶分量；`partition_greedy` 末尾参数为摊销窗口（1=近视、2/4=回本窗口）。受控异构最优 23.1–24.2 ms（全 SCAN 174.8），真实地图 H2 148.3 优于分位前馈 154.3。详见 [M4.14 报告](M4_HETEROGENEOUS_SELECTION_REPORT.md)。
+

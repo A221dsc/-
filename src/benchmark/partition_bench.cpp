@@ -68,14 +68,16 @@ Plan read_plan(const std::string& path) {
 struct Outcome {
     double online_ms{}, query_ms{}, update_ms{}, switch_ms{};
     std::uint64_t queries{}, promotions{}, switches{}, mismatches{};
+    std::vector<std::string> leaf_profile;
 };
 
 Mode mode_of(int value) {
     return value == 1 ? Mode::FineGrid : value == 2 ? Mode::LocalQuad : Mode::Scan;
 }
 
-Outcome replay(const M3Trace& trace, const Plan& plan, int fine, int quad, bool validate) {
-    PartitionIndex index(trace.bounds, fine, quad, false, false);
+Outcome replay(const M3Trace& trace, const Plan& plan, int fine, int quad, bool validate,
+               bool profile) {
+    PartitionIndex index(trace.bounds, fine, quad, profile, false);
     index.set_partition(plan.rects, plan.levels);
     std::unique_ptr<ArrayOracle> oracle;
     if (validate) oracle = std::make_unique<ArrayOracle>();
@@ -152,15 +154,29 @@ Outcome replay(const M3Trace& trace, const Plan& plan, int fine, int quad, bool 
         }
     }
     outcome.online_ms = outcome.query_ms + outcome.update_ms + outcome.switch_ms;
+    outcome.leaf_profile.clear();
+    if (profile) {
+        for (unsigned leaf = 0; leaf < plan.rects.size(); ++leaf) {
+            const auto& t = index.leaf_times(leaf);
+            std::ostringstream row;
+            row << std::fixed << std::setprecision(4)
+                << "leaf" << leaf << "="
+                << static_cast<double>(t.query_ns) / 1e6 << ','
+                << static_cast<double>(t.base_ns) / 1e6 << ','
+                << static_cast<double>(t.local_ns) / 1e6 << ','
+                << static_cast<double>(t.switch_ns) / 1e6 << ',' << index.entity_count(leaf);
+            outcome.leaf_profile.push_back(row.str());
+        }
+    }
     return outcome;
 }
 
 }  // namespace
 
 int run_partition(const M3Trace& trace, int fine, int quad, const std::string& plan_path,
-                  bool validate) {
+                  bool validate, bool profile) {
     const Plan plan = read_plan(plan_path);
-    const Outcome outcome = replay(trace, plan, fine, quad, validate);
+    const Outcome outcome = replay(trace, plan, fine, quad, validate, profile);
     std::cout << std::fixed << std::setprecision(6)
               << "online_ms=" << outcome.online_ms
               << " query_ms=" << outcome.query_ms
@@ -170,7 +186,15 @@ int run_partition(const M3Trace& trace, int fine, int quad, const std::string& p
               << " promotions=" << outcome.promotions
               << " switches=" << outcome.switches
               << " leaves=" << plan.rects.size()
-              << " mismatches=" << outcome.mismatches << "\n";
+              << " mismatches=" << outcome.mismatches;
+    if (!outcome.leaf_profile.empty()) {
+        std::cout << " leaf_profile=";
+        for (std::size_t i = 0; i < outcome.leaf_profile.size(); ++i) {
+            if (i) std::cout << '|';
+            std::cout << outcome.leaf_profile[i];
+        }
+    }
+    std::cout << "\n";
     return outcome.mismatches == 0 ? 0 : 1;
 }
 }  // namespace spatial
