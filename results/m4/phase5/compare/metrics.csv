@@ -1,0 +1,118 @@
+scenario,actual,role,method,online_ms,index_ms,inference_ms
+test-0-brc100d,0,anchor-start,Fixed Regional Scan,625.297800,625.297800,0.0
+test-0-brc100d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,257.102600,257.102600,0.0
+test-0-brc100d,0,method,PR Quadtree,293.994200,293.994200,0.0
+test-0-brc100d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,246.445900,246.445900,0.0
+test-0-brc100d,0,method,Cost-Aware Greedy Regional Index Selection,298.099700,298.099700,0.0
+test-0-brc100d,0,method,Fixed Regional Scan,697.263400,697.263400,0.0
+test-0-brc100d,0,anchor-end,Fixed Regional Scan,675.908100,675.908100,0.0
+test-0-brc100d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-11],346.0030008280188,326.844600,19.158400828018785
+test-0-brc100d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-22],306.256999727574,290.637200,15.61979972757399
+test-0-brc100d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-33],428.0220002522558,408.419400,19.602600252255797
+test-0-brc100d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],324.42760062307417,306.259300,18.168300623074174
+test-0-brc100d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],272.8707997589022,260.595100,12.275699758902192
+test-0-brc100d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],300.4666008363992,289.792300,10.674300836399198
+test-0-brc100d,1,anchor-start,Fixed Regional Scan,652.900800,652.900800,0.0
+test-0-brc100d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,259.249200,259.249200,0.0
+test-0-brc100d,1,method,Cost-Aware Greedy Regional Index Selection,316.512000,316.512000,0.0
+test-0-brc100d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,250.424900,250.424900,0.0
+test-0-brc100d,1,method,PR Quadtree,294.879800,294.879800,0.0
+test-0-brc100d,1,method,Fixed Regional Scan,661.833600,661.833600,0.0
+test-0-brc100d,1,anchor-end,Fixed Regional Scan,653.158600,653.158600,0.0
+test-0-brc100d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-11],375.9599997881353,359.048000,16.91199978813529
+test-0-brc100d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-22],320.56019992723765,303.538200,17.02199992723763
+test-0-brc100d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-33],424.2921999750525,407.156900,17.135299975052476
+test-0-brc100d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],310.5922999378175,289.272800,21.319499937817454
+test-0-brc100d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],259.2499003927737,246.829800,12.420100392773747
+test-0-brc100d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],276.60580054396985,266.245100,10.36070054396987
+test-0-brc100d,2,anchor-start,Fixed Regional Scan,625.392500,625.392500,0.0
+test-0-brc100d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,233.515200,233.515200,0.0
+test-0-brc100d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,230.955400,230.955400,0.0
+test-0-brc100d,2,method,Fixed Regional Scan,610.913600,610.913600,0.0
+test-0-brc100d,2,method,PR Quadtree,265.604800,265.604800,0.0
+test-0-brc100d,2,method,Cost-Aware Greedy Regional Index Selection,285.685300,285.685300,0.0
+test-0-brc100d,2,anchor-end,Fixed Regional Scan,645.151100,645.151100,0.0
+test-0-brc100d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-11],341.3653005032927,324.466400,16.89890050329268
+test-0-brc100d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-22],357.134399391675,339.555900,17.578499391674995
+test-0-brc100d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-33],391.79110027863084,372.368500,19.422600278630853
+test-0-brc100d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],311.1796005806506,291.900800,19.278800580650568
+test-0-brc100d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],287.66490058408675,275.051500,12.613400584086776
+test-0-brc100d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],274.7393999961376,263.839100,10.900299996137619
+test-1-brc203d,0,anchor-start,Fixed Regional Scan,473.214100,473.214100,0.0
+test-1-brc203d,0,method,PR Quadtree,267.622000,267.622000,0.0
+test-1-brc203d,0,method,Cost-Aware Greedy Regional Index Selection,203.709300,203.709300,0.0
+test-1-brc203d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,209.988100,209.988100,0.0
+test-1-brc203d,0,method,Fixed Regional Scan,481.259400,481.259400,0.0
+test-1-brc203d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,208.837600,208.837600,0.0
+test-1-brc203d,0,anchor-end,Fixed Regional Scan,478.740500,478.740500,0.0
+test-1-brc203d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-11],305.4910005220324,288.238000,17.25300052203238
+test-1-brc203d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-22],297.24419967377486,282.258300,14.985899673774838
+test-1-brc203d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-33],411.97239935474994,392.579400,19.392999354749918
+test-1-brc203d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],326.6928998492062,307.051500,19.64139984920621
+test-1-brc203d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],199.1668997472912,187.060900,12.105999747291207
+test-1-brc203d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],204.41729969418645,190.667100,13.750199694186449
+test-1-brc203d,1,anchor-start,Fixed Regional Scan,482.371000,482.371000,0.0
+test-1-brc203d,1,method,Cost-Aware Greedy Regional Index Selection,206.396000,206.396000,0.0
+test-1-brc203d,1,method,Fixed Regional Scan,515.703300,515.703300,0.0
+test-1-brc203d,1,method,PR Quadtree,272.574400,272.574400,0.0
+test-1-brc203d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,187.233100,187.233100,0.0
+test-1-brc203d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,189.053500,189.053500,0.0
+test-1-brc203d,1,anchor-end,Fixed Regional Scan,476.199300,476.199300,0.0
+test-1-brc203d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-11],242.34930049718022,224.916100,17.433200497180223
+test-1-brc203d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-22],250.34990055187345,234.010300,16.339600551873446
+test-1-brc203d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-33],520.7724993694872,505.505500,15.266999369487166
+test-1-brc203d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],337.61309978933633,319.141500,18.471599789336324
+test-1-brc203d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],204.68219956381918,192.997800,11.68439956381917
+test-1-brc203d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],209.5382995211661,198.669800,10.868499521166086
+test-1-brc203d,2,anchor-start,Fixed Regional Scan,450.316000,450.316000,0.0
+test-1-brc203d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,197.015000,197.015000,0.0
+test-1-brc203d,2,method,Cost-Aware Greedy Regional Index Selection,537.981500,537.981500,0.0
+test-1-brc203d,2,method,Fixed Regional Scan,704.057900,704.057900,0.0
+test-1-brc203d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,340.867800,340.867800,0.0
+test-1-brc203d,2,method,PR Quadtree,383.554100,383.554100,0.0
+test-1-brc203d,2,anchor-end,Fixed Regional Scan,721.844700,721.844700,0.0
+test-1-brc203d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-11],257.07930018514696,240.466800,16.612500185146928
+test-1-brc203d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-22],231.97220021950602,213.856900,18.115300219506025
+test-1-brc203d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-33],339.34619965822696,320.647200,18.698999658226967
+test-1-brc203d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],288.1357000978053,268.935600,19.20010009780526
+test-1-brc203d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],176.46439976710974,164.890900,11.573499767109752
+test-1-brc203d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],206.94690047163962,195.112700,11.834200471639633
+test-2-den011d,0,anchor-start,Fixed Regional Scan,735.212300,735.212300,0.0
+test-2-den011d,0,method,Fixed Regional Scan,603.278800,603.278800,0.0
+test-2-den011d,0,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,232.015800,232.015800,0.0
+test-2-den011d,0,method,Uncertainty-Aware Feed-Forward Regional Index Selection,251.644500,251.644500,0.0
+test-2-den011d,0,method,PR Quadtree,418.790000,418.790000,0.0
+test-2-den011d,0,method,Cost-Aware Greedy Regional Index Selection,270.030200,270.030200,0.0
+test-2-den011d,0,anchor-end,Fixed Regional Scan,595.706400,595.706400,0.0
+test-2-den011d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-11],403.1104999816865,384.262000,18.848499981686473
+test-2-den011d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-22],313.57669943739774,293.561300,20.01539943739772
+test-2-den011d,0,rl,Historical-Load Double DQN Regional Index Selection [historical-33],473.440800394544,453.972400,19.468400394544005
+test-2-den011d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],390.0696004515827,370.471400,19.59820045158267
+test-2-den011d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],270.85190018444956,258.673200,12.178700184449553
+test-2-den011d,0,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],279.9816997677565,269.371300,10.610399767756462
+test-2-den011d,1,anchor-start,Fixed Regional Scan,626.022500,626.022500,0.0
+test-2-den011d,1,method,Cost-Aware Greedy Regional Index Selection,249.438800,249.438800,0.0
+test-2-den011d,1,method,Uncertainty-Aware Feed-Forward Regional Index Selection,206.802700,206.802700,0.0
+test-2-den011d,1,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,257.017100,257.017100,0.0
+test-2-den011d,1,method,PR Quadtree,306.141800,306.141800,0.0
+test-2-den011d,1,method,Fixed Regional Scan,590.594100,590.594100,0.0
+test-2-den011d,1,anchor-end,Fixed Regional Scan,571.047300,571.047300,0.0
+test-2-den011d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-11],331.71740016593037,316.621000,15.09640016593039
+test-2-den011d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-22],330.5565000375599,310.706900,19.849600037559867
+test-2-den011d,1,rl,Historical-Load Double DQN Regional Index Selection [historical-33],469.84489988822935,450.030200,19.81469988822937
+test-2-den011d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],370.58300046625436,355.661200,14.921800466254354
+test-2-den011d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],245.4772000010401,235.325400,10.151800001040101
+test-2-den011d,1,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],266.34120024599133,254.582500,11.75870024599135
+test-2-den011d,2,anchor-start,Fixed Regional Scan,615.818100,615.818100,0.0
+test-2-den011d,2,method,Cost-Aware Greedy Regional Index Selection,228.006400,228.006400,0.0
+test-2-den011d,2,method,Quantile-Cost-Penalized Feed-Forward Regional Index Selection,205.440900,205.440900,0.0
+test-2-den011d,2,method,Uncertainty-Aware Feed-Forward Regional Index Selection,208.428100,208.428100,0.0
+test-2-den011d,2,method,PR Quadtree,280.710900,280.710900,0.0
+test-2-den011d,2,method,Fixed Regional Scan,538.284200,538.284200,0.0
+test-2-den011d,2,anchor-end,Fixed Regional Scan,554.720400,554.720400,0.0
+test-2-den011d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-11],292.7606014571041,274.574500,18.186101457104087
+test-2-den011d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-22],313.13230007412136,292.467600,20.664700074121356
+test-2-den011d,2,rl,Historical-Load Double DQN Regional Index Selection [historical-33],424.05180040439365,404.994900,19.056900404393673
+test-2-den011d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-11],354.709100255093,337.567600,17.14150025509298
+test-2-den011d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-22],217.3718007184565,206.025000,11.346800718456507
+test-2-den011d,2,rl,Scenario-Forward-Enhanced Double DQN Regional Index Selection [scenario-33],236.0973997635007,225.701600,10.39579976350069

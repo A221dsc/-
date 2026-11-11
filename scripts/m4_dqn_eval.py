@@ -39,9 +39,9 @@ def plan_episode(agent, binary, trace, prior_path):
         prior = prior_features(prior_path, min(23, window + 1))
         feats = build_features(env.state, window, prior, agent.has_scenario)
         start = time.perf_counter()
-        actions, _ = agent.act(feats, env.state, 0.0)
+        actions, q = agent.act(feats, env.state, 0.0)
         inference += time.perf_counter() - start
-        result = env.step(actions)
+        result = env.step(actions, agent.benefits(q, env.state))
         plan.append([int(a) for a in result["applied"]])
     env.close()
     return plan, inference

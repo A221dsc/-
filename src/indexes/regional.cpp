@@ -98,7 +98,11 @@ void AdaptiveRegionalIndex::set(Id id, Point point) {
         throw std::invalid_argument("nonfinite point");
     auto old = objects_.find(id);
     if (old != objects_.end() && old->second.point == point) {
-        if (profile_) times_.base_ns += Tick::ns(Tick::now()-begin);
+        if (profile_) {
+            const auto base = Tick::ns(Tick::now()-begin);
+            times_.base_ns += base;
+            stats_[old->second.region].base_ns += base;
+        }
         if (observe_) ++loads_[old->second.region].updates;
         if (profile_) ++stats_[old->second.region].object_updates;
         return;
@@ -123,7 +127,11 @@ void AdaptiveRegionalIndex::set(Id id, Point point) {
             old->second = {point,next,slot};
         }
     }
-    if (profile_) times_.base_ns += Tick::ns(Tick::now()-begin);
+    if (profile_) {
+        const auto base = Tick::ns(Tick::now()-begin);
+        times_.base_ns += base;
+        stats_[next].base_ns += base;
+    }
     if (previous_bucket) maintain(previous,*previous_bucket,id,std::nullopt);
     maintain(next,*bucket,id,point);
 }
@@ -139,7 +147,11 @@ void AdaptiveRegionalIndex::erase(Id id) {
     auto& bucket = regions_.at(r);
     detach(bucket,found->second);
     objects_.erase(found);
-    if (profile_) times_.base_ns += Tick::ns(Tick::now()-begin);
+    if (profile_) {
+        const auto base = Tick::ns(Tick::now()-begin);
+        times_.base_ns += base;
+        stats_[r].base_ns += base;
+    }
     maintain(r,bucket,id,std::nullopt);
 }
 

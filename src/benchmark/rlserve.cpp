@@ -1,16 +1,18 @@
 // Persistent interactive replay environment for reinforcement learning.
 //
 // One AdaptiveRegionalIndex stays alive and advances one 50-step window per
-// `step` command. Every reported cost is measured on the real index: per-region
-// query/local-update/build/switch nanoseconds come from the index profile
-// stats, base update time is measured around set/erase, and query correctness
-// can be checked against an independent array oracle.
+// `step` command. Cost accounting uses the index's own decomposition:
+//   window total = base update + local maintenance + mode switch (+ policy)
+// where the base interval stops before maintain() and the local interval covers
+// the lazy build inside maintain(); a build inside switch_mode is counted only
+// by switch_ns. The separate build_ns counter is diagnostic and is never added.
 #include "core/clock.hpp"
 #include "indexes/regional.hpp"
 #include "validation/oracle.hpp"
 #include "workload/m3.hpp"
 #include <algorithm>
-#include <cstdio>
+#include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <memory>
@@ -27,6 +29,11 @@ constexpr unsigned region_limit = AdaptiveRegionalIndex::region_count;
 constexpr unsigned max_rebuilds = 4;
 constexpr double max_rebuild_entities = 6000.0;
 
+enum Reject : int {
+    Applied = 0, NoChange = 1, Cooling = 2, RebuildBudget = 3, EntityBudget = 4,
+    NegativeBenefit = 5
+};
+
 class Server {
 public:
     Server(const M3Trace& trace, int fine, int quad, bool verify)
@@ -41,6 +48,7 @@ public:
         Id id = 0;
         for (const Point& point : trace_.points) index_->set(++id, point);
         index_->reset_window();
+        base_clock_ = index_->times();
         oracle_.reset();
         if (verify_) {
             oracle_ = std::make_unique<ArrayOracle>();
@@ -52,7 +60,6 @@ public:
         step_ = 0;
         done_ = false;
         last_switch_.fill(std::numeric_limits<std::int64_t>::min() / 2);
-        base_ns_.fill(0.0);
         mismatch_ = 0;
         query_events_ = 0;
     }
@@ -99,79 +106,93 @@ public:
         return out.str();
     }
 
-    std::string step_json(const std::vector<int>& actions) {
-        unsigned rebuilds = 0;
-        double entities = 0.0;
-        std::vector<int> applied(region_limit, 0);
+    std::string step_json(const std::vector<int>& actions, const std::vector<double>& benefits) {
+        std::vector<int> applied(region_limit, 0), rejected(region_limit, NoChange);
         for (unsigned r = 0; r < region_limit; ++r) applied[r] = static_cast<int>(index_->mode(r));
+        struct Candidate { unsigned region; Mode target; double benefit; double entities; };
+        std::vector<Candidate> candidates;
         for (unsigned region = 0; region < region_limit && region < actions.size(); ++region) {
             const int requested = actions[region];
             const Mode target = requested == 1 ? Mode::FineGrid
                                : requested == 2 ? Mode::LocalQuad : Mode::Scan;
             if (target == index_->mode(region)) continue;
-            const std::int64_t since = step_ - last_switch_[region];
-            const bool cooling = since < cooldown_steps;
+            const double benefit = region < benefits.size() ? benefits[region] : 1.0;
+            candidates.push_back({region, target, benefit,
+                                  static_cast<double>(index_->entity_count(region))});
+        }
+        std::stable_sort(candidates.begin(), candidates.end(),
+                         [](const Candidate& a, const Candidate& b) {
+                             return a.benefit > b.benefit;
+                         });
+        unsigned rebuilds = 0;
+        double entities = 0.0;
+        for (const Candidate& candidate : candidates) {
+            const unsigned region = candidate.region;
+            const Mode target = candidate.target;
             const bool demotion = target == Mode::Scan;
-            const double count = static_cast<double>(index_->entity_count(region));
-            const bool budget = demotion || (rebuilds < max_rebuilds &&
-                                             entities + count <= max_rebuild_entities);
-            if (cooling || !budget) continue;
+            const std::int64_t since = step_ - last_switch_[region];
+            if (since < cooldown_steps) { rejected[region] = Cooling; continue; }
+            if (!demotion && candidate.benefit <= 0.0) {
+                rejected[region] = NegativeBenefit;
+                continue;
+            }
+            if (!demotion && rebuilds >= max_rebuilds) {
+                rejected[region] = RebuildBudget;
+                continue;
+            }
+            if (!demotion && entities + candidate.entities > max_rebuild_entities) {
+                rejected[region] = EntityBudget;
+                continue;
+            }
             index_->switch_mode(region, target);
             last_switch_[region] = step_;
             if (!demotion) {
                 ++rebuilds;
-                entities += count;
+                entities += candidate.entities;
             }
-            applied[region] = requested;
+            applied[region] = static_cast<int>(target);
+            rejected[region] = Applied;
         }
-        std::fill(base_ns_.begin(), base_ns_.end(), 0.0);
-        std::int64_t window_update_ns = 0;
-        bool finished = false;
         while (cursor_ < trace_.events.size()) {
             const M3Event& event = trace_.events[cursor_++];
             if (event.type == 'P') {
                 step_ = event.step;
-                finished = true;
                 break;
             }
             if (event.type == 'U') {
-                const auto begin = Clock::now();
                 index_->set(event.id, event.point);
-                const auto elapsed = Clock::now() - begin;
-                window_update_ns += elapsed.count();
-                base_ns_[index_->region_of(event.point)] += static_cast<double>(elapsed.count());
                 if (verify_) oracle_->set(event.id, event.point);
             } else if (event.type == 'D') {
-                const auto begin = Clock::now();
                 index_->erase(event.id);
-                const auto elapsed = Clock::now() - begin;
-                window_update_ns += elapsed.count();
                 if (verify_) oracle_->erase(event.id);
             } else {
                 Answer answer = index_->query(event.query);
                 ++query_events_;
                 if (verify_) {
                     std::sort(answer.ids.begin(), answer.ids.end());
-                    const auto truth = oracle_->query(event.query);
-                    if (answer.ids != truth) ++mismatch_;
+                    if (answer.ids != oracle_->query(event.query)) ++mismatch_;
                 }
             }
         }
         if (cursor_ >= trace_.events.size()) done_ = true;
-        double query_ns = 0, update_ns = 0, build_ns = 0, switch_ns = 0;
+        const RegionalTimes now = index_->times();
+        const std::int64_t base = now.base_ns - base_clock_.base_ns;
+        const std::int64_t local = now.local_ns - base_clock_.local_ns;
+        const std::int64_t switching = now.switch_ns - base_clock_.switch_ns;
+        base_clock_ = now;
+        double query_ns = 0, base_ns = 0, local_ns = 0, switch_ns = 0, build_ns = 0;
         std::vector<double> region_us(region_limit, 0.0);
         for (unsigned r = 0; r < region_limit; ++r) {
             const auto& stats = index_->region_stats(r);
-            const double ns = static_cast<double>(stats.query_ns + stats.local_update_ns +
-                                                  stats.build_ns + stats.switch_ns) +
-                              base_ns_[r];
-            region_us[r] = ns / 1000.0;
             query_ns += static_cast<double>(stats.query_ns);
-            update_ns += static_cast<double>(stats.local_update_ns) + base_ns_[r];
-            build_ns += static_cast<double>(stats.build_ns);
+            base_ns += static_cast<double>(stats.base_ns);
+            local_ns += static_cast<double>(stats.local_update_ns);
             switch_ns += static_cast<double>(stats.switch_ns);
+            build_ns += static_cast<double>(stats.build_ns);  // diagnostic only
+            region_us[r] = static_cast<double>(stats.query_ns + stats.base_ns +
+                                              stats.local_update_ns + stats.switch_ns) / 1000.0;
         }
-        const double total_ns = query_ns + update_ns + build_ns + switch_ns;
+        const double total_ns = query_ns + static_cast<double>(base + local + switching);
         std::ostringstream out;
         out << std::fixed << std::setprecision(4);
         out << "{\"ok\":true,\"window\":" << window_ << ",\"step\":" << step_
@@ -180,12 +201,18 @@ public:
             if (r) out << ',';
             out << applied[r];
         }
+        out << "],\"rejected\":[";
+        for (unsigned r = 0; r < region_limit; ++r) {
+            if (r) out << ',';
+            out << rejected[r];
+        }
         out << "],\"cost_ms\":" << total_ns / 1e6
             << ",\"query_ms\":" << query_ns / 1e6
-            << ",\"base_update_ms\":" << window_update_ns / 1e6
-            << ",\"maintenance_ms\":" << (update_ns - window_update_ns) / 1e6
+            << ",\"base_update_ms\":" << static_cast<double>(base) / 1e6
+            << ",\"maintenance_ms\":" << static_cast<double>(local) / 1e6
+            << ",\"switch_ms\":" << static_cast<double>(switching) / 1e6
             << ",\"build_ms\":" << build_ns / 1e6
-            << ",\"switch_ms\":" << switch_ns / 1e6
+            << ",\"region_sum_ms\":" << (query_ns + base_ns + local_ns + switch_ns) / 1e6
             << ",\"policy_ms\":0,\"queries\":" << query_events_
             << ",\"mismatches\":" << mismatch_ << ",\"region_us\":[";
         for (unsigned r = 0; r < region_limit; ++r) {
@@ -195,7 +222,6 @@ public:
         out << "],\"state\":" << state_json() << "}";
         index_->reset_window();
         ++window_;
-        (void)finished;
         return out.str();
     }
 
@@ -208,19 +234,57 @@ private:
     std::int64_t step_{0};
     bool done_{false};
     std::array<std::int64_t, region_limit> last_switch_{};
-    std::array<double, region_limit> base_ns_{};
     std::uint64_t mismatch_{0};
     std::uint64_t query_events_{0};
     std::unique_ptr<AdaptiveRegionalIndex> index_;
     std::unique_ptr<ArrayOracle> oracle_;
+    RegionalTimes base_clock_{};
 };
 
 }  // namespace
 
+int run_rlserve(const M3Trace& trace, int fine, int quad, bool verify) {
+    Server server(trace, fine, quad, verify);
+    server.reset();
+    std::cout << server.state_json() << '\n' << std::flush;
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        if (line == "close") break;
+        if (line == "reset") {
+            server.reset();
+            std::cout << server.state_json() << '\n' << std::flush;
+            continue;
+        }
+        if (line == "state") {
+            std::cout << server.state_json() << '\n' << std::flush;
+            continue;
+        }
+        if (line.rfind("step", 0) == 0) {
+            std::vector<int> actions;
+            std::vector<double> benefits;
+            std::string body = line.substr(4);
+            const auto split = body.find(';');
+            std::string actions_text = split == std::string::npos ? body : body.substr(0, split);
+            std::stringstream stream(actions_text);
+            std::string token;
+            while (std::getline(stream, token, ',')) {
+                if (!token.empty()) actions.push_back(std::stoi(token));
+            }
+            if (split != std::string::npos) {
+                std::stringstream extra(body.substr(split + 1));
+                while (std::getline(extra, token, ',')) {
+                    if (!token.empty()) benefits.push_back(std::stod(token));
+                }
+            }
+            std::cout << server.step_json(actions, benefits) << '\n' << std::flush;
+            continue;
+        }
+        std::cout << "{\"ok\":false,\"error\":\"unknown command\"}" << '\n' << std::flush;
+    }
+    return 0;
+}
 
-// Replay a fixed per-window action plan through the real index on the same
-// QPC timing path as `measure`. Used to time a learned policy fairly against
-// the built-in selectors without the profile timers.
+// Replay a fixed per-window action plan on the same QPC path as `measure`.
 int run_replayplan(const M3Trace& trace, int fine, int quad,
                    const std::vector<std::vector<int>>& plan) {
     AdaptiveRegionalIndex index(trace.bounds, Mode::Scan, fine, quad, false, false);
@@ -286,38 +350,6 @@ int run_replayplan(const M3Trace& trace, int fine, int quad,
               << " switch_ms=" << static_cast<double>(switch_ns) / 1e6
               << " promotions=" << promotions << " switches=" << switches
               << " queries=" << queries << "\n";
-    return 0;
-}
-
-int run_rlserve(const M3Trace& trace, int fine, int quad, bool verify) {
-    Server server(trace, fine, quad, verify);
-    server.reset();
-    std::cout << server.state_json() << '\n' << std::flush;
-    std::string line;
-    while (std::getline(std::cin, line)) {
-        if (line == "close") break;
-        if (line == "reset") {
-            server.reset();
-            std::cout << server.state_json() << '\n' << std::flush;
-            continue;
-        }
-        if (line == "state") {
-            std::cout << server.state_json() << '\n' << std::flush;
-            continue;
-        }
-        if (line.rfind("step", 0) == 0) {
-            std::vector<int> actions;
-            std::stringstream stream(line.substr(4));
-            std::string token;
-            while (std::getline(stream, token, ',')) {
-                if (token.empty()) continue;
-                actions.push_back(std::stoi(token));
-            }
-            std::cout << server.step_json(actions) << '\n' << std::flush;
-            continue;
-        }
-        std::cout << "{\"ok\":false,\"error\":\"unknown command\"}" << '\n' << std::flush;
-    }
     return 0;
 }
 

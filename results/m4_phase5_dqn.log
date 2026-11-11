@@ -1,0 +1,58 @@
+historical seed 11 episode 5: validation 768.0 ms over 72 windows, train 13s
+historical seed 11 episode 10: validation 920.6 ms over 72 windows, train 25s
+historical seed 11 episode 15: validation 787.8 ms over 72 windows, train 37s
+historical seed 11 episode 20: validation 785.5 ms over 72 windows, train 49s
+historical seed 11: early stop at episode 20
+historical seed 11: validation 766.7 ms, train 52s
+historical seed 22 episode 5: validation 753.2 ms over 72 windows, train 13s
+historical seed 22 episode 10: validation 641.8 ms over 72 windows, train 26s
+historical seed 22 episode 15: validation 1520.5 ms over 72 windows, train 41s
+historical seed 22 episode 20: validation 698.1 ms over 72 windows, train 54s
+historical seed 22 episode 25: validation 656.5 ms over 72 windows, train 66s
+historical seed 22: early stop at episode 25
+historical seed 22: validation 667.0 ms, train 69s
+historical seed 33 episode 5: validation 1414.7 ms over 72 windows, train 13s
+historical seed 33 episode 10: validation 1455.1 ms over 72 windows, train 25s
+historical seed 33 episode 15: validation 1520.6 ms over 72 windows, train 38s
+historical seed 33 episode 20: validation 1157.5 ms over 72 windows, train 50s
+historical seed 33 episode 25: validation 1072.3 ms over 72 windows, train 63s
+historical seed 33 episode 30: validation 778.3 ms over 72 windows, train 75s
+historical seed 33 episode 35: validation 794.0 ms over 72 windows, train 87s
+historical seed 33 episode 40: validation 675.6 ms over 72 windows, train 99s
+historical seed 33 episode 45: validation 939.8 ms over 72 windows, train 111s
+historical seed 33 episode 50: validation 808.1 ms over 72 windows, train 122s
+historical seed 33 episode 55: validation 951.6 ms over 72 windows, train 134s
+historical seed 33: early stop at episode 55
+historical seed 33: validation 948.5 ms, train 137s
+scenario seed 11 episode 5: validation 1595.8 ms over 72 windows, train 13s
+scenario seed 11 episode 10: validation 957.8 ms over 72 windows, train 27s
+scenario seed 11 episode 15: validation 1219.3 ms over 72 windows, train 41s
+scenario seed 11 episode 20: validation 604.2 ms over 72 windows, train 55s
+scenario seed 11 episode 25: validation 561.8 ms over 72 windows, train 68s
+scenario seed 11 episode 30: validation 739.8 ms over 72 windows, train 81s
+scenario seed 11 episode 35: validation 1395.2 ms over 72 windows, train 95s
+scenario seed 11 episode 40: validation 849.7 ms over 72 windows, train 109s
+scenario seed 11: early stop at episode 40
+scenario seed 11: validation 864.4 ms, train 112s
+scenario seed 22 episode 5: validation 1033.5 ms over 72 windows, train 14s
+scenario seed 22 episode 10: validation 882.8 ms over 72 windows, train 27s
+scenario seed 22 episode 15: validation 720.4 ms over 72 windows, train 40s
+scenario seed 22 episode 20: validation 830.5 ms over 72 windows, train 53s
+scenario seed 22 episode 25: validation 539.0 ms over 72 windows, train 65s
+scenario seed 22 episode 30: validation 585.1 ms over 72 windows, train 77s
+scenario seed 22 episode 35: validation 783.1 ms over 72 windows, train 90s
+scenario seed 22 episode 40: validation 583.6 ms over 72 windows, train 103s
+scenario seed 22: early stop at episode 40
+scenario seed 22: validation 587.6 ms, train 106s
+scenario seed 33 episode 5: validation 1452.0 ms over 72 windows, train 14s
+scenario seed 33 episode 10: validation 1509.0 ms over 72 windows, train 27s
+scenario seed 33 episode 15: validation 884.1 ms over 72 windows, train 40s
+scenario seed 33 episode 20: validation 1193.5 ms over 72 windows, train 52s
+scenario seed 33 episode 25: validation 655.9 ms over 72 windows, train 65s
+scenario seed 33 episode 30: validation 854.1 ms over 72 windows, train 79s
+scenario seed 33 episode 35: validation 528.5 ms over 72 windows, train 91s
+scenario seed 33 episode 40: validation 674.4 ms over 72 windows, train 103s
+scenario seed 33 episode 45: validation 553.2 ms over 72 windows, train 117s
+scenario seed 33 episode 50: validation 661.7 ms over 72 windows, train 129s
+scenario seed 33: early stop at episode 50
+scenario seed 33: validation 614.2 ms, train 132s

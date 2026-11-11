@@ -1,0 +1,3 @@
+instance,method,beam_width,cost_ms
+test-2-den011d,beam search (approximate),16,422.6099135776981
+test-2-den011d,idealized lower bound,0,147.35291422315123

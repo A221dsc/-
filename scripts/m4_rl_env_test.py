@@ -1,4 +1,4 @@
-"""Interface, determinism and cost-consistency tests for the C++ RL server."""
+"""Interface, determinism, cost conservation and scheduler tests for the RL server."""
 import json
 import subprocess
 import sys
@@ -26,11 +26,13 @@ class Env:
     def command(self, text):
         self.proc.stdin.write(text + "\n")
         self.proc.stdin.flush()
-        line = self.proc.stdout.readline()
-        return json.loads(line)
+        return json.loads(self.proc.stdout.readline())
 
-    def step(self, actions):
-        result = self.command("step " + ",".join(str(a) for a in actions))
+    def step(self, actions, benefits=None):
+        text = "step " + ",".join(str(int(a)) for a in actions)
+        if benefits is not None:
+            text += ";" + ",".join(f"{float(b):.6f}" for b in benefits)
+        result = self.command(text)
         self.state = result["state"]
         return result
 
@@ -39,57 +41,67 @@ class Env:
             self.command("close")
         except Exception:
             pass
-        self.proc.wait(timeout=10)
+        try:
+            self.proc.wait(timeout=5)
+        except Exception:
+            self.proc.kill()
 
 
-def policy_scan(step):
-    return [0] * REGIONS
-
-
-def policy_bandit(step):
-    # Promote only the four hottest regions of the last window.
-    state = step
-    order = sorted(range(REGIONS), key=lambda r: -state["queries"][r])[:4]
-    actions = list(state["modes"])
-    for region in order:
-        actions[region] = 2
-    return actions
-
-
-def run_episode(policy, trace=TRACE):
-    env = Env(trace)
-    states, applied, costs = [env.state], [], []
+def run_episode(policy):
+    env = Env()
+    states, applied, costs, rejected = [env.state], [], [], []
     while not env.state["done"]:
-        actions = policy(env.state)
-        result = env.step(actions)
+        actions, benefits = policy(env.state)
+        result = env.step(actions, benefits)
         applied.append(result["applied"])
-        costs.append(result["cost_ms"])
+        rejected.append(result["rejected"])
+        costs.append(result)
         states.append(env.state)
     env.close()
-    return states, applied, costs
+    return states, applied, costs, rejected
+
+
+def policy_scan(state):
+    return [0] * REGIONS, None
+
+
+def policy_bandit(state):
+    order = sorted(range(REGIONS), key=lambda r: -state["queries"][r])[:8]
+    actions = list(state["modes"])
+    benefits = [0.0] * REGIONS
+    for rank, region in enumerate(order):
+        actions[region] = 2
+        benefits[region] = 1.0 - rank * 0.01
+    return actions, benefits
+
+
+def policy_all_promote(state):
+    return [2] * REGIONS, [1.0] * REGIONS
 
 
 def main():
-    assert Env(TRACE).state["done"] is False
-    states_a, applied_a, costs_a = run_episode(policy_scan)
-    states_b, applied_b, costs_b = run_episode(policy_scan)
+    states_a, applied_a, costs_a, _ = run_episode(policy_scan)
+    states_b, applied_b, _, _ = run_episode(policy_scan)
     assert states_a == states_b, "state replay is not deterministic"
     assert applied_a == applied_b, "applied actions are not deterministic"
-    print(f"scan determinism: {len(costs_a)} windows, states identical")
-    print(f"scan window cost sum: {sum(costs_a):.2f} ms (timing may vary)")
+    print(f"scan determinism: {len(costs_a)} windows")
 
-    states_c, applied_c, costs_c = run_episode(policy_bandit)
-    changes = sum(1 for a, b in zip(states_c[:-1], states_c[1:])
-                  if a["modes"] != b["modes"])
+    for result in costs_a:
+        parts = (result["query_ms"] + result["base_update_ms"] +
+                 result["maintenance_ms"] + result["switch_ms"])
+        assert abs(parts - result["cost_ms"]) < 1e-3, "cost components do not sum"
+        assert abs(result["region_sum_ms"] - result["cost_ms"]) <= 0.02 * result["cost_ms"] + 1e-6, \
+            "regional attribution does not conserve the window cost"
+    print("cost conservation: components sum and regional attribution agree")
+
+    states_c, _, costs_c, _ = run_episode(policy_bandit)
     promotions = []
     for w in range(len(states_c) - 1):
         pre, post = states_c[w]["modes"], states_c[w + 1]["modes"]
         promotions.append(sum(1 for r in range(REGIONS)
                               if post[r] != pre[r] and post[r] != 0))
-    print(f"bandit: {changes} windows changed modes; "
-          f"max promotions per window {max(promotions)} (<=4)")
-    assert max(promotions) <= 4, "rebuild budget violated"
-    # cooldown: a region switched in window k must not switch again before 2 windows later
+    print(f"bandit: max promotions per window {max(promotions)} (<=4)")
+    assert max(promotions) <= 4
     last = {}
     for w in range(len(states_c) - 1):
         pre, post = states_c[w]["modes"], states_c[w + 1]["modes"]
@@ -98,17 +110,31 @@ def main():
                 if region in last:
                     assert w - last[region] >= 2, "cooldown violated"
                 last[region] = w
-    # query count consistency
-    total_queries = sum(sum(state["queries"]) for state in states_a[:-1])
-    total_updates = sum(sum(state["updates"]) for state in states_a[:-1])
-    print(f"replayed queries {total_queries:.0f}, update touches {total_updates:.0f}")
-    assert total_queries > 40000
-    # verify path
-    env = Env(TRACE, verify=True)
-    env.step(policy_scan(env.state))
+    first = costs_c[0]
+    assert len(first["rejected"]) == REGIONS
+    assert sum(first["rejected"]) > 0
+    print("cooldown respected, scheduler reported rejection codes")
+
+    env = Env()
+    result = env.step([2] * REGIONS, benefits=[1.0] * REGIONS)
+    applied = result["applied"]
+    assert sum(1 for a in applied if a != 0) <= 4
+    assert 3 in result["rejected"] or 4 in result["rejected"], "budget rejection not reported"
+    print("budget scheduler: at most four promotions, rejections reported")
+    env.close()
+
+    env = Env()
+    result = env.step([2] * REGIONS, benefits=[-1.0] * REGIONS)
+    assert all(a == 0 for a in result["applied"]), "negative benefit promoted a region"
+    assert result["rejected"].count(5) > 0
+    print("negative benefit rejected")
+    env.close()
+
+    env = Env(verify=True)
+    result = env.step(*policy_scan(env.state))
     assert env.state["mismatches"] == 0
     env.close()
-    print("cooldown, budget and query correctness checks passed")
+    print("query correctness verified against the array oracle")
     print("trace sha256", sha(TRACE)[:16])
 
 

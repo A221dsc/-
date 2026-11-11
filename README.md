@@ -125,3 +125,17 @@ python -X utf8 scripts/m4_offline_ref.py configs/m4.json data/processed/m4 resul
 
 `spatial_m3 rlserve FINE QUAD CPU TRACE VERIFY` 提供持久化交互回放；`replayplan FINE QUAD CPU TRACE PLAN` 对学习策略做同路径计时。完整方法名：Historical-Load Double DQN Regional Index Selection、Scenario-Forward-Enhanced Double DQN Regional Index Selection。详见 [M4.4 报告](M4_PHASE4_REPORT.md)。
 
+## M4.5：成本审计、共享预算调度器与小规模学习验证
+
+```powershell
+python -X utf8 scripts/m4_rl_env_test.py
+python -X utf8 scripts/m4_small_learnability.py results/m4/calibration data/processed/m4 results/m4/phase5/small
+python -X utf8 scripts/m4_offline_ref.py configs/m4.json data/processed/m4 results/m4/calibration results/m4/phase5/offline
+python -X utf8 scripts/m4_beam_ref.py results/m4/calibration data/processed/m4 results/m4/phase5/offline --width 16
+python -X utf8 scripts/m4_dqn.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase5/dqn --seeds 11 22 33 --episodes 60
+python -X utf8 scripts/m4_dqn_eval.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase5/dqn results/m4/phase5/eval
+python -X utf8 scripts/run_m4_phase5_compare.py
+```
+
+`step <actions>;<benefits>` 让调度器按预计收益执行合法候选；`rejected` 返回拒绝原因。成本口径为查询+基础更新+局部维护+切换，构建只作诊断。详见 [M4.5 报告](M4_PHASE5_REPORT.md)。
+

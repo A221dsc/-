@@ -1,0 +1,5 @@
+instance,method,cost
+"hottest 2x2 block at (12,7); 24 windows",exact DP,29007032.76609257
+"same, 2-window horizon",exact DP,201913.01894501055
+"same, 2-window horizon",brute force,201913.01894501055
+"full 256 regions, 24 windows",idealized lower bound,147352914.2231511

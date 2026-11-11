@@ -38,8 +38,11 @@ class Env:
         self.proc.stdin.flush()
         return json.loads(self.proc.stdout.readline())
 
-    def step(self, actions):
-        result = self.command("step " + ",".join(str(int(a)) for a in actions))
+    def step(self, actions, benefits=None):
+        text = "step " + ",".join(str(int(a)) for a in actions)
+        if benefits is not None:
+            text += ";" + ",".join(f"{float(b):.6f}" for b in benefits)
+        result = self.command(text)
         self.state = result["state"]
         return result
 
@@ -166,6 +169,8 @@ class Agent:
         self.has_scenario = has_scenario
         self.buffer = []
         self.rng = np.random.default_rng(seed + 7)
+        self.soft_target = False
+        self.tau = 0.005
 
     def mask(self, state):
         mode = np.asarray(state["modes"])
@@ -174,6 +179,13 @@ class Agent:
         mask[cool > 0] = False
         mask[cool > 0, mode[cool > 0]] = True
         return mask
+
+    @staticmethod
+    def benefits(q, state):
+        """Expected advantage of each requested mode over keeping the current one."""
+        mode = np.asarray(state["modes"])
+        current = q[np.arange(REGIONS), mode]
+        return (q - current[:, None]).max(axis=1)
 
     def act(self, feats, state, epsilon):
         mask = self.mask(state)
@@ -187,12 +199,12 @@ class Agent:
                 actions[region] = self.rng.choice(choices)
         return actions.astype(int), q
 
-    def remember(self, feats, actions, rewards, next_feats, done):
+    def remember(self, feats, actions, rewards, next_feats, next_mask, done):
         if len(self.buffer) > 150000:
             self.buffer = self.buffer[50000:]
         for region in range(REGIONS):
             self.buffer.append((feats[region], actions[region], rewards[region],
-                                next_feats[region], done))
+                                next_feats[region], next_mask[region], done))
 
     def train(self, batch=256, gamma=0.9):
         if len(self.buffer) < batch:
@@ -202,8 +214,10 @@ class Agent:
         actions = np.array([self.buffer[i][1] for i in idx])
         rewards = np.array([self.buffer[i][2] for i in idx], dtype=np.float32)
         next_states = np.stack([self.buffer[i][3] for i in idx])
-        dones = np.array([self.buffer[i][4] for i in idx], dtype=np.float32)
+        next_masks = np.stack([self.buffer[i][4] for i in idx])
+        dones = np.array([self.buffer[i][5] for i in idx], dtype=np.float32)
         q_next_online = self.online.forward(next_states)
+        q_next_online = np.where(next_masks, q_next_online, -1e9)
         best = q_next_online.argmax(axis=1)
         q_next_target = self.target.forward(next_states)
         targets = rewards + gamma * (1 - dones) * q_next_target[np.arange(batch), best]
@@ -215,7 +229,11 @@ class Agent:
         grads = self.online.backward(dq)
         self.online.update(grads)
         self.updates = getattr(self, "updates", 0) + 1
-        if self.updates % 200 == 0:
+        if self.soft_target:
+            for p, q in zip(self.target.params(), self.online.params()):
+                p *= 1.0 - self.tau
+                p += self.tau * q
+        elif self.updates % 200 == 0:
             self.target.copy_from(self.online)
         return loss
 
@@ -232,9 +250,9 @@ def evaluate(agent, binary, traces, scenario_paths, epsilon=0.0, export=None):
             prior = prior_features(prior_path, min(23, env.state["window"] + 1))
             feats = build_features(env.state, env.state["window"], prior, agent.has_scenario)
             start = time.perf_counter()
-            actions, _ = agent.act(feats, env.state, epsilon)
+            actions, q = agent.act(feats, env.state, epsilon)
             inference += time.perf_counter() - start
-            result = env.step(actions)
+            result = env.step(actions, agent.benefits(q, env.state))
             plan.append([int(a) for a in result["applied"]])
             total += result["cost_ms"]
             windows += 1
@@ -266,6 +284,8 @@ def run(args):
             agent = Agent(seed, has_scenario=(variant == "scenario"))
             losses = []
             start = time.time()
+            best_validation = float("inf")
+            stale = 0
             for episode in range(args.episodes):
                 trace, prior_path = train[episode % len(train)]
                 env = Env(args.binary, trace)
@@ -274,25 +294,37 @@ def run(args):
                     prior = prior_features(prior_path, min(23, window + 1))
                     feats = build_features(env.state, window, prior, agent.has_scenario)
                     epsilon = max(0.05, 1.0 - episode / max(1, args.episodes * 0.7))
-                    actions, _ = agent.act(feats, env.state, epsilon)
-                    result = env.step(actions)
+                    actions, q = agent.act(feats, env.state, epsilon)
+                    benefits = agent.benefits(q, env.state)
+                    result = env.step(actions, benefits)
                     next_prior = prior_features(prior_path, min(23, window + 2))
                     next_feats = build_features(env.state, window + 1, next_prior,
                                                 agent.has_scenario)
-                    rewards = -np.asarray(result["region_us"], dtype=np.float32) / 1000.0
+                    next_mask = agent.mask(env.state)
+                    rewards = -np.asarray(result["region_us"], dtype=np.float32) / (1000.0 * 5.0)
+                    rewards = np.clip(rewards, -5.0, 0.0)
                     # The scheduler may reject illegal requests; learn from the
-                    # executed action, never from the requested one.
+                    # executed action and keep the next-state legal mask.
                     agent.remember(feats, np.asarray(result["applied"], dtype=int),
-                                   rewards, next_feats, float(result["done"]))
+                                   rewards, next_feats, next_mask, float(result["done"]))
                     for _ in range(4):
                         losses.append(agent.train())
                 env.close()
-                if (episode + 1) % 3 == 0:
+                if (episode + 1) % 5 == 0:
                     value, windows, _ = evaluate(agent, args.binary, [v[0] for v in validation],
                                                  [v[1] for v in validation])
                     print(f"{variant} seed {seed} episode {episode + 1}: "
                           f"validation {value:.1f} ms over {windows} windows, "
                           f"train {time.time() - start:.0f}s", flush=True)
+                    if value < best_validation - 1.0:
+                        best_validation = value
+                        stale = 0
+                    else:
+                        stale += 1
+                        if stale >= 3:
+                            print(f"{variant} seed {seed}: early stop at episode {episode + 1}",
+                                  flush=True)
+                            break
             value, windows, inference = evaluate(agent, args.binary, [v[0] for v in validation],
                                                  [v[1] for v in validation])
             results[f"{variant}-{seed}"] = {"validation_ms": value, "windows": windows,
@@ -317,7 +349,7 @@ def main():
     parser.add_argument("binary", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--seeds", nargs="+", type=int, default=[11, 22])
-    parser.add_argument("--episodes", type=int, default=12)
+    parser.add_argument("--episodes", type=int, default=60)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     run(args)

@@ -54,10 +54,8 @@ def switch_matrix(model, entity):
 
 def exact_dp(loads, regions, wcost, sw):
     windows = wcost.shape[0]
-    states = {}
-    for modes in itertools.product(range(MODES), repeat=4):
-        states[(modes, (0, 0, 0, 0))] = sum(wcost[0, i, modes[i]] for i in range(4))
-    for w in range(1, windows):
+    states = {((0, 0, 0, 0), (0, 0, 0, 0)): 0.0}  # the environment starts in SCAN
+    for w in range(windows):
         nxt = {}
         for (modes, cooldown), value in states.items():
             for target in itertools.product(range(MODES), repeat=4):

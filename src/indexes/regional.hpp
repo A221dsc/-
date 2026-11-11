@@ -10,7 +10,7 @@ struct WindowLoad {
 };
 struct RegionalStats {
     std::uint64_t queries{}, object_updates{}, local_updates{}, builds{}, switches{};
-    std::int64_t query_ns{}, local_update_ns{}, build_ns{}, switch_ns{};
+    std::int64_t query_ns{}, base_ns{}, local_update_ns{}, build_ns{}, switch_ns{};
 };
 struct RegionalTimes {
     std::int64_t base_ns{}, local_ns{}, switch_ns{};

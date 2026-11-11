@@ -1,0 +1,56 @@
+{
+  "historical-11": {
+    "buffer": 122880,
+    "episodes": 60,
+    "inference_s": 0.04600649978965521,
+    "loss_last": 0.04206019975244999,
+    "train_seconds": 52.32834839820862,
+    "validation_ms": 766.7367000000002,
+    "windows": 72
+  },
+  "historical-22": {
+    "buffer": 103600,
+    "episodes": 60,
+    "inference_s": 0.04523369949311018,
+    "loss_last": 0.0178609477810096,
+    "train_seconds": 68.82494115829468,
+    "validation_ms": 666.9601,
+    "windows": 72
+  },
+  "historical-33": {
+    "buffer": 137920,
+    "episodes": 60,
+    "inference_s": 0.04801039956510067,
+    "loss_last": 0.012405169536941684,
+    "train_seconds": 136.92814469337463,
+    "validation_ms": 948.5099000000001,
+    "windows": 72
+  },
+  "scenario-11": {
+    "buffer": 145760,
+    "episodes": 60,
+    "inference_s": 0.043622999684885144,
+    "loss_last": 0.021316026696003975,
+    "train_seconds": 111.82807493209839,
+    "validation_ms": 864.4148000000001,
+    "windows": 72
+  },
+  "scenario-22": {
+    "buffer": 145760,
+    "episodes": 60,
+    "inference_s": 0.044737900607287884,
+    "loss_last": 0.005960745193297043,
+    "train_seconds": 105.91522789001465,
+    "validation_ms": 587.5577,
+    "windows": 72
+  },
+  "scenario-33": {
+    "buffer": 107200,
+    "episodes": 60,
+    "inference_s": 0.044444499304518104,
+    "loss_last": 0.012300153772812336,
+    "train_seconds": 132.25733947753906,
+    "validation_ms": 614.2198999999999,
+    "windows": 72
+  }
+}
