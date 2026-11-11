@@ -25,12 +25,17 @@ out = Path("results/m4/phase9/compare")
 out.mkdir(parents=True, exist_ok=True)
 
 inference = {}
+feature_time = {}
 rl_plans = []
 for train_set, directory in eval_sets:
     metrics = list(csv.DictReader(open(directory / "metrics.csv")))
     for r in metrics:
-        inference[(train_set, r["variant"], int(r["seed"]), r["partition"], r["scenario"],
-                   int(r["actual"]))] = float(r["inference_ms"])
+        key = (train_set, r["variant"], int(r["seed"]), r["partition"], r["scenario"],
+               int(r["actual"]))
+        inference[key] = float(r["inference_ms"])
+        if "feature_ms" not in r:
+            raise SystemExit(f"missing feature_ms for {key}")
+        feature_time[key] = float(r["feature_ms"])
     for path in (directory / "plans").glob("*.plan"):
         parts = path.stem.split("-")
         rl_plans.append((train_set, parts[0], int(parts[1]), path))
@@ -47,6 +52,9 @@ def measure(trace):
     head = dict(token.split("=", 1) for token in result.stdout.strip().split())
     return float(head["online_ms"])
 
+# Fixed warm-up: run the reference twice before any measurement, then discard.
+for _ in range(2):
+    measure(sentinel_trace)
 sentinel.append(("start", measure(sentinel_trace)))
 for index in range(3):
     ident = f"test-{index}-{Path(config['maps']['test'][index]).stem}"
@@ -90,7 +98,10 @@ for index in range(3):
             head = dict(token.split("=", 1) for token in result.stdout.strip().split())
             online = float(head["online_ms"])
             if kind == "dqn":
-                online += inference.get((extra[0], extra[1], extra[2], name, ident, actual), 0.0)
+                key = (extra[0], extra[1], extra[2], name, ident, actual)
+                if key not in inference or key not in feature_time:
+                    raise SystemExit(f"missing model timing record for {key}")
+                online += inference[key] + feature_time[key]
             rows.append({"scenario": ident, "actual": actual, "role": kind, "method": label,
                          "online_ms": online, "leaves": head.get("leaves", 0)})
         end = measure(trace)
@@ -101,16 +112,21 @@ with (out / "metrics.csv").open("w", newline="", encoding="utf-8") as handle:
     writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
     writer.writeheader()
     writer.writerows(rows)
-ratios = [(s, a, s0, e0, e0 / s0 if s0 > 0 else 0.0) for s, a, s0, e0 in anchor_pairs]
+def drift_ratio(start, end):
+    return max(start, end) / min(start, end) if min(start, end) > 0 else float("inf")
+
+
+ratios = [(s, a, s0, e0, drift_ratio(s0, e0)) for s, a, s0, e0 in anchor_pairs]
 threshold = 1.15
-valid = all(r[4] <= threshold for r in ratios) and sentinel[1][1] / sentinel[0][1] <= threshold
+sentinel_ratio = drift_ratio(sentinel[0][1], sentinel[1][1])
+valid = all(r[4] <= threshold for r in ratios) and sentinel_ratio <= threshold
 json_file(out / "manifest.json", {
     "per_trace_anchor": [{"scenario": s, "actual": a, "start": s0, "end": e0, "ratio": r}
                          for s, a, s0, e0, r in ratios],
     "max_per_trace_ratio": max(r[4] for r in ratios),
     "sentinel": {"start": sentinel[0][1], "end": sentinel[1][1],
-                 "ratio": sentinel[1][1] / sentinel[0][1]},
+                 "ratio": sentinel_ratio},
     "threshold": threshold, "batch_valid": valid,
     "environment": {"platform": platform.platform(), "cpu_count": os.cpu_count()}})
-print(f"max per-trace ratio {max(r[4] for r in ratios):.3f}, sentinel "
-      f"{sentinel[1][1]/sentinel[0][1]:.3f}, valid={valid}")
+print(f"max per-trace drift {max(r[4] for r in ratios):.3f}, sentinel "
+      f"{sentinel_ratio:.3f}, valid={valid}")

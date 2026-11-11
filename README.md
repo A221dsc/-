@@ -179,3 +179,13 @@ python -X utf8 scripts/run_m4_phase9_compare.py
 
 窗口对齐、独立验证、动作收益、特征/推理计时与“逐轨迹 + 哨兵”锚点已修复；M4.8 标签以 [M4.9 报告](M4_PARTITION_RL_CORRECTED_REPORT.md) 为准。
 
+## M4.10：RL 选型诊断与双向锚点
+
+```powershell
+python -X utf8 scripts/m4_phase10_tests.py
+python -X utf8 scripts/m4_phase10_diagnostics.py build_m3/spatial_m3.exe results/m4/phase9/dqn results/m4/phase7/plans data/processed/m4/traces results/m4/phase10/diag --scenario test-0-brc100d
+python -X utf8 scripts/run_m4_phase9_compare.py
+```
+
+锚点改为双向漂移（max/min），DQN 在线时间补计特征生成；逐叶决策日志与选型质量见 [M4.10 报告](M4_PARTITION_RL_DIAGNOSTIC_REPORT.md)。
+

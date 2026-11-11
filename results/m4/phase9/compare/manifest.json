@@ -4,76 +4,76 @@
     "cpu_count": 20,
     "platform": "Windows-11-10.0.26300-SP0"
   },
-  "max_per_trace_ratio": 1.0107373728630082,
+  "max_per_trace_ratio": 1.0943754477082568,
   "per_trace_anchor": [
     {
       "actual": 0,
-      "end": 628.9507,
-      "ratio": 0.7714222916325029,
+      "end": 599.0116,
+      "ratio": 1.0151465748363766,
       "scenario": "test-0-brc100d",
-      "start": 815.3131
+      "start": 590.074
     },
     {
       "actual": 1,
-      "end": 649.0512,
-      "ratio": 0.9904072358419178,
+      "end": 657.5515,
+      "ratio": 1.0751531216976378,
       "scenario": "test-0-brc100d",
-      "start": 655.3377
+      "start": 611.5887
     },
     {
       "actual": 2,
-      "end": 642.8743,
-      "ratio": 0.9834886927170278,
+      "end": 660.8382,
+      "ratio": 1.0751766666308729,
       "scenario": "test-0-brc100d",
-      "start": 653.6672
+      "start": 614.6322
     },
     {
       "actual": 0,
-      "end": 533.0022,
-      "ratio": 0.9990652311926747,
+      "end": 516.6987,
+      "ratio": 1.0191008802615527,
       "scenario": "test-1-brc203d",
-      "start": 533.5009
+      "start": 526.5681
     },
     {
       "actual": 1,
-      "end": 484.313,
-      "ratio": 0.985366389592792,
+      "end": 479.9,
+      "ratio": 1.0119943738278807,
       "scenario": "test-1-brc203d",
-      "start": 491.5055
+      "start": 485.6561
     },
     {
       "actual": 2,
-      "end": 483.6752,
-      "ratio": 0.9642166957388488,
+      "end": 454.2461,
+      "ratio": 1.0237276665666475,
       "scenario": "test-1-brc203d",
-      "start": 501.625
+      "start": 465.0243
     },
     {
       "actual": 0,
-      "end": 504.3256,
-      "ratio": 0.9465266786670323,
+      "end": 564.9606,
+      "ratio": 1.0943754477082568,
       "scenario": "test-2-den011d",
-      "start": 532.8171
+      "start": 516.2402
     },
     {
       "actual": 1,
-      "end": 524.2718,
-      "ratio": 1.0107373728630082,
+      "end": 525.0063,
+      "ratio": 1.006682776949534,
       "scenario": "test-2-den011d",
-      "start": 518.7023
+      "start": 528.5148
     },
     {
       "actual": 2,
-      "end": 536.213,
-      "ratio": 0.9832580626765057,
+      "end": 572.1829,
+      "ratio": 1.0529671945461958,
       "scenario": "test-2-den011d",
-      "start": 545.3431
+      "start": 543.4005
     }
   ],
   "sentinel": {
-    "end": 263.9496,
-    "ratio": 0.6563010968288636,
-    "start": 402.1776
+    "end": 282.1404,
+    "ratio": 1.0763286616447731,
+    "start": 262.1322
   },
   "threshold": 1.15
 }
