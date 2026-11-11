@@ -21,6 +21,7 @@ HEADER = struct.Struct("<8s4d2Q")
 POINT = struct.Struct("<2d")
 EVENT = struct.Struct("<c7xq4d")
 SIDE = 16
+SUBCELL = 64
 CATEGORY_SPEED = {"infantry": 6.0, "vehicle": 14.0, "supply": 3.0}
 CATEGORY_SHARE = {"infantry": 0.60, "vehicle": 0.30, "supply": 0.10}
 
@@ -35,6 +36,14 @@ def region_array(points, bounds):
     bx = np.clip(((points[:, 0] - x0) / w).astype(np.int64), 0, SIDE - 1)
     by = np.clip(((points[:, 1] - y0) / h).astype(np.int64), 0, SIDE - 1)
     return SIDE * by + bx
+
+
+def subcell_array(points, bounds):
+    x0, y0, x1, y1 = bounds
+    w, h = (x1 - x0) / SUBCELL, (y1 - y0) / SUBCELL
+    bx = np.clip(((points[:, 0] - x0) / w).astype(np.int64), 0, SUBCELL - 1)
+    by = np.clip(((points[:, 1] - y0) / h).astype(np.int64), 0, SUBCELL - 1)
+    return SUBCELL * by + bx
 
 
 def region_of(point, bounds):
@@ -214,9 +223,12 @@ def simulate(scenario, game, prepared, actual=None, reporting=False):
     counts = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
     updates = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
     entities = np.zeros((windows, SIDE * SIDE), dtype=np.int64)
+    entities_sub = np.zeros((windows, SUBCELL * SUBCELL), dtype=np.int64)
+    updates_sub = np.zeros((windows, SUBCELL * SUBCELL), dtype=np.int64)
     bounds = scenario["world"]
     report_rng = np.random.default_rng(scenario["seeds"]["query"] + 104729)
     reported_region_ids = region_array(initial, bounds)
+    reported_sub_ids = subcell_array(initial, bounds)
     for step in range(steps):
         phase = int(phase_at[step])
         moving = delay <= step
@@ -237,14 +249,25 @@ def simulate(scenario, game, prepared, actual=None, reporting=False):
             if moved.any():
                 updates[w] += np.bincount(old_region[moved], minlength=SIDE * SIDE)
             reported_region_ids[chosen] = new_region
+            new_sub = subcell_array(positions[chosen], bounds)
+            old_sub = reported_sub_ids[chosen]
+            updates_sub[w] += np.bincount(new_sub, minlength=SUBCELL * SUBCELL)
+            moved_sub = new_sub != old_sub
+            if moved_sub.any():
+                updates_sub[w] += np.bincount(old_sub[moved_sub], minlength=SUBCELL * SUBCELL)
+            reported_sub_ids[chosen] = new_sub
         if (step + 1) % window == 0:
             counts[(step + 1) // window - 1] = np.bincount(
                 region_array(positions, bounds), minlength=SIDE * SIDE)
             if reporting:
                 entities[(step + 1) // window - 1] = np.bincount(
                     reported_region_ids, minlength=SIDE * SIDE)
+                entities_sub[(step + 1) // window - 1] = np.bincount(
+                    reported_sub_ids, minlength=SUBCELL * SUBCELL)
     return {"initial": initial, "final": positions.copy(), "window_counts": counts,
-            "window_updates": updates, "window_entities": entities, "phase_at": phase_at}
+            "window_updates": updates, "window_entities": entities,
+            "window_entities_sub": entities_sub, "window_updates_sub": updates_sub,
+            "phase_at": phase_at}
 
 
 def planned_query_schedule(scenario, game):

@@ -1,0 +1,154 @@
+scenario,actual,role,method,online_ms,decide_ms,leaves,promotions
+test-0-brc100d,0,partition,Partition uniform-32 + C++ prior greedy,224.240000,3.273100,1024,18
+test-0-brc100d,0,partition,Partition uniform-32 + C++ history greedy,267.733100,2.382700,1024,22
+test-0-brc100d,0,partition,Partition adaptive-query + C++ history greedy,274.464300,2.113200,448,22
+test-0-brc100d,0,partition,Partition adaptive-entity + C++ history greedy,277.160800,4.040700,367,22
+test-0-brc100d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),297.456000,0.0,0,10
+test-0-brc100d,0,partition,Partition uniform-16 + C++ prior greedy,288.868900,2.805700,256,12
+test-0-brc100d,0,partition,Partition uniform-8 + C++ history greedy,504.823200,3.698200,64,10
+test-0-brc100d,0,partition,Partition adaptive-entity + C++ prior greedy,247.265000,2.837500,367,18
+test-0-brc100d,0,partition,Partition uniform-16 + C++ history greedy,348.412000,2.881000,256,14
+test-0-brc100d,0,partition,Partition uniform-8 + C++ prior greedy,349.212600,6.939800,64,9
+test-0-brc100d,0,anchor,Fixed Regional Scan,594.952900,0.0,0,0
+test-0-brc100d,0,classic,PR Quadtree,303.150100,0.0,0,0
+test-0-brc100d,0,partition,Partition adaptive-combined + C++ prior greedy,223.835400,2.435900,448,18
+test-0-brc100d,0,classic,Cost-Aware Greedy Regional Index Selection,287.523300,0.0,0,10
+test-0-brc100d,0,partition,Partition adaptive-query + C++ prior greedy,224.765500,2.618500,448,18
+test-0-brc100d,0,partition,Partition adaptive-combined + C++ history greedy,273.865500,2.014000,448,22
+test-0-brc100d,0,anchor,Fixed Regional Scan,613.123900,0.0,0,0
+test-0-brc100d,1,partition,Partition adaptive-entity + C++ history greedy,290.328300,2.240900,367,21
+test-0-brc100d,1,partition,Partition uniform-8 + C++ history greedy,491.764900,5.259800,64,10
+test-0-brc100d,1,partition,Partition uniform-8 + C++ prior greedy,357.843900,3.858400,64,10
+test-0-brc100d,1,partition,Partition uniform-32 + C++ history greedy,264.597700,2.280400,1024,21
+test-0-brc100d,1,partition,Partition uniform-16 + C++ history greedy,362.741900,2.710900,256,14
+test-0-brc100d,1,partition,Partition adaptive-combined + C++ prior greedy,241.892800,3.435000,448,18
+test-0-brc100d,1,partition,Partition uniform-16 + C++ prior greedy,283.227200,3.746900,256,12
+test-0-brc100d,1,partition,Partition adaptive-combined + C++ history greedy,302.978200,2.208200,448,21
+test-0-brc100d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),324.823400,0.0,0,10
+test-0-brc100d,1,classic,Cost-Aware Greedy Regional Index Selection,319.521200,0.0,0,10
+test-0-brc100d,1,partition,Partition uniform-32 + C++ prior greedy,261.982300,4.929800,1024,18
+test-0-brc100d,1,partition,Partition adaptive-query + C++ history greedy,297.365100,2.291600,448,21
+test-0-brc100d,1,partition,Partition adaptive-entity + C++ prior greedy,263.079200,3.324500,367,18
+test-0-brc100d,1,classic,PR Quadtree,337.214000,0.0,0,0
+test-0-brc100d,1,anchor,Fixed Regional Scan,673.214400,0.0,0,0
+test-0-brc100d,1,partition,Partition adaptive-query + C++ prior greedy,242.788500,2.891800,448,18
+test-0-brc100d,1,anchor,Fixed Regional Scan,695.874500,0.0,0,0
+test-0-brc100d,2,partition,Partition adaptive-entity + C++ history greedy,270.488400,2.059900,367,22
+test-0-brc100d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),289.798500,0.0,0,10
+test-0-brc100d,2,partition,Partition adaptive-combined + C++ prior greedy,230.994500,2.526800,448,17
+test-0-brc100d,2,classic,PR Quadtree,271.781500,0.0,0,0
+test-0-brc100d,2,partition,Partition adaptive-query + C++ history greedy,291.213300,2.228600,448,22
+test-0-brc100d,2,partition,Partition uniform-8 + C++ prior greedy,366.003500,3.165700,64,9
+test-0-brc100d,2,anchor,Fixed Regional Scan,652.686300,0.0,0,0
+test-0-brc100d,2,partition,Partition uniform-16 + C++ history greedy,385.004200,4.500800,256,16
+test-0-brc100d,2,partition,Partition adaptive-query + C++ prior greedy,228.677400,2.511100,448,17
+test-0-brc100d,2,partition,Partition uniform-16 + C++ prior greedy,305.896700,3.302500,256,13
+test-0-brc100d,2,partition,Partition adaptive-combined + C++ history greedy,276.348700,2.156300,448,22
+test-0-brc100d,2,partition,Partition uniform-8 + C++ history greedy,474.627700,3.518900,64,10
+test-0-brc100d,2,partition,Partition uniform-32 + C++ prior greedy,225.075700,3.169200,1024,17
+test-0-brc100d,2,classic,Cost-Aware Greedy Regional Index Selection,269.498000,0.0,0,11
+test-0-brc100d,2,partition,Partition adaptive-entity + C++ prior greedy,214.592500,2.663300,367,17
+test-0-brc100d,2,partition,Partition uniform-32 + C++ history greedy,272.949400,2.110600,1024,22
+test-0-brc100d,2,anchor,Fixed Regional Scan,657.623100,0.0,0,0
+test-1-brc203d,0,partition,Partition adaptive-entity + C++ prior greedy,201.055000,2.151600,370,16
+test-1-brc203d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),228.292500,0.0,0,10
+test-1-brc203d,0,partition,Partition uniform-8 + C++ prior greedy,244.011900,3.352000,64,10
+test-1-brc203d,0,partition,Partition adaptive-query + C++ prior greedy,208.210800,2.116300,445,16
+test-1-brc203d,0,partition,Partition uniform-16 + C++ prior greedy,202.910700,2.161300,256,12
+test-1-brc203d,0,partition,Partition uniform-32 + C++ history greedy,226.532000,1.723800,1024,22
+test-1-brc203d,0,partition,Partition uniform-8 + C++ history greedy,331.055400,4.172600,64,10
+test-1-brc203d,0,partition,Partition adaptive-combined + C++ history greedy,220.422600,2.576800,445,22
+test-1-brc203d,0,partition,Partition adaptive-combined + C++ prior greedy,196.601700,2.007500,445,16
+test-1-brc203d,0,classic,PR Quadtree,299.618100,0.0,0,0
+test-1-brc203d,0,anchor,Fixed Regional Scan,542.803000,0.0,0,0
+test-1-brc203d,0,classic,Cost-Aware Greedy Regional Index Selection,219.503800,0.0,0,9
+test-1-brc203d,0,partition,Partition adaptive-entity + C++ history greedy,217.181700,1.494000,370,22
+test-1-brc203d,0,partition,Partition adaptive-query + C++ history greedy,217.932900,1.588700,445,22
+test-1-brc203d,0,partition,Partition uniform-16 + C++ history greedy,250.849300,1.995200,256,13
+test-1-brc203d,0,partition,Partition uniform-32 + C++ prior greedy,200.323200,4.744800,1024,16
+test-1-brc203d,0,anchor,Fixed Regional Scan,537.582000,0.0,0,0
+test-1-brc203d,1,partition,Partition adaptive-query + C++ prior greedy,190.467800,2.474100,445,16
+test-1-brc203d,1,partition,Partition adaptive-combined + C++ prior greedy,197.537900,4.347000,445,16
+test-1-brc203d,1,partition,Partition uniform-32 + C++ prior greedy,193.353300,3.361300,1024,16
+test-1-brc203d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),221.877500,0.0,0,10
+test-1-brc203d,1,partition,Partition uniform-8 + C++ prior greedy,232.078800,3.245500,64,10
+test-1-brc203d,1,anchor,Fixed Regional Scan,494.904700,0.0,0,0
+test-1-brc203d,1,partition,Partition adaptive-entity + C++ history greedy,236.223100,1.840000,370,18
+test-1-brc203d,1,partition,Partition adaptive-entity + C++ prior greedy,186.432600,2.372300,370,16
+test-1-brc203d,1,partition,Partition uniform-32 + C++ history greedy,213.774400,1.770800,1024,18
+test-1-brc203d,1,partition,Partition adaptive-query + C++ history greedy,259.528000,1.468200,445,18
+test-1-brc203d,1,partition,Partition adaptive-combined + C++ history greedy,214.867100,1.450500,445,18
+test-1-brc203d,1,classic,Cost-Aware Greedy Regional Index Selection,220.745500,0.0,0,8
+test-1-brc203d,1,partition,Partition uniform-8 + C++ history greedy,336.777100,2.630900,64,8
+test-1-brc203d,1,partition,Partition uniform-16 + C++ prior greedy,195.621500,2.311900,256,12
+test-1-brc203d,1,partition,Partition uniform-16 + C++ history greedy,235.189200,1.877300,256,11
+test-1-brc203d,1,classic,PR Quadtree,259.453900,0.0,0,0
+test-1-brc203d,1,anchor,Fixed Regional Scan,495.889800,0.0,0,0
+test-1-brc203d,2,classic,Cost-Aware Greedy Regional Index Selection,195.757100,0.0,0,10
+test-1-brc203d,2,partition,Partition adaptive-combined + C++ prior greedy,176.246800,2.176200,445,16
+test-1-brc203d,2,partition,Partition uniform-8 + C++ history greedy,296.698400,2.661200,64,10
+test-1-brc203d,2,partition,Partition adaptive-query + C++ history greedy,194.009100,1.840500,445,18
+test-1-brc203d,2,partition,Partition uniform-8 + C++ prior greedy,211.878200,2.572500,64,10
+test-1-brc203d,2,classic,PR Quadtree,253.894900,0.0,0,0
+test-1-brc203d,2,partition,Partition uniform-16 + C++ history greedy,227.825700,1.856200,256,13
+test-1-brc203d,2,partition,Partition uniform-32 + C++ prior greedy,182.629000,3.092500,1024,16
+test-1-brc203d,2,partition,Partition adaptive-query + C++ prior greedy,177.961000,2.092200,445,16
+test-1-brc203d,2,partition,Partition uniform-32 + C++ history greedy,201.219800,1.770400,1024,18
+test-1-brc203d,2,partition,Partition adaptive-entity + C++ prior greedy,172.401100,3.761300,370,16
+test-1-brc203d,2,partition,Partition uniform-16 + C++ prior greedy,181.364800,2.233600,256,12
+test-1-brc203d,2,anchor,Fixed Regional Scan,453.151400,0.0,0,0
+test-1-brc203d,2,partition,Partition adaptive-combined + C++ history greedy,208.587200,1.561000,445,18
+test-1-brc203d,2,partition,Partition adaptive-entity + C++ history greedy,197.313800,1.324700,370,18
+test-1-brc203d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),197.766800,0.0,0,10
+test-1-brc203d,2,anchor,Fixed Regional Scan,453.587000,0.0,0,0
+test-2-den011d,0,partition,Partition uniform-16 + C++ history greedy,263.575200,2.055800,256,12
+test-2-den011d,0,partition,Partition adaptive-entity + C++ history greedy,224.528300,1.542600,424,26
+test-2-den011d,0,partition,Partition adaptive-combined + C++ prior greedy,224.023300,2.222500,439,25
+test-2-den011d,0,partition,Partition uniform-8 + C++ prior greedy,282.659600,3.737100,64,8
+test-2-den011d,0,partition,Partition uniform-16 + C++ prior greedy,214.695100,2.081800,256,12
+test-2-den011d,0,partition,Partition adaptive-combined + C++ history greedy,219.926000,1.481400,439,26
+test-2-den011d,0,classic,Cost-Aware Greedy Regional Index Selection (Scenario),248.843200,0.0,0,10
+test-2-den011d,0,partition,Partition uniform-8 + C++ history greedy,417.559200,4.493300,64,9
+test-2-den011d,0,partition,Partition adaptive-query + C++ prior greedy,206.204000,2.668000,439,25
+test-2-den011d,0,partition,Partition adaptive-query + C++ history greedy,241.958800,1.480100,439,26
+test-2-den011d,0,partition,Partition uniform-32 + C++ prior greedy,217.620100,4.630900,1024,25
+test-2-den011d,0,classic,PR Quadtree,285.681500,0.0,0,0
+test-2-den011d,0,classic,Cost-Aware Greedy Regional Index Selection,232.580900,0.0,0,9
+test-2-den011d,0,partition,Partition adaptive-entity + C++ prior greedy,208.135500,2.044500,424,25
+test-2-den011d,0,anchor,Fixed Regional Scan,553.557400,0.0,0,0
+test-2-den011d,0,partition,Partition uniform-32 + C++ history greedy,214.380700,1.756800,1024,26
+test-2-den011d,0,anchor,Fixed Regional Scan,540.436500,0.0,0,0
+test-2-den011d,1,partition,Partition uniform-32 + C++ prior greedy,224.682200,2.768300,1024,25
+test-2-den011d,1,classic,PR Quadtree,287.044700,0.0,0,0
+test-2-den011d,1,partition,Partition adaptive-entity + C++ prior greedy,221.264900,1.913200,424,25
+test-2-den011d,1,partition,Partition adaptive-query + C++ prior greedy,211.685500,1.856100,439,25
+test-2-den011d,1,anchor,Fixed Regional Scan,573.421900,0.0,0,0
+test-2-den011d,1,partition,Partition uniform-32 + C++ history greedy,236.605400,1.745100,1024,24
+test-2-den011d,1,partition,Partition adaptive-combined + C++ history greedy,279.303800,1.893600,439,24
+test-2-den011d,1,partition,Partition adaptive-combined + C++ prior greedy,207.948200,2.515400,439,25
+test-2-den011d,1,partition,Partition uniform-8 + C++ history greedy,408.616500,2.937200,64,9
+test-2-den011d,1,partition,Partition adaptive-query + C++ history greedy,265.193400,1.963800,439,24
+test-2-den011d,1,partition,Partition adaptive-entity + C++ history greedy,245.044700,1.465400,424,24
+test-2-den011d,1,classic,Cost-Aware Greedy Regional Index Selection (Scenario),234.501100,0.0,0,10
+test-2-den011d,1,partition,Partition uniform-16 + C++ prior greedy,210.853100,2.133700,256,12
+test-2-den011d,1,classic,Cost-Aware Greedy Regional Index Selection,229.097200,0.0,0,9
+test-2-den011d,1,partition,Partition uniform-8 + C++ prior greedy,279.969400,6.398000,64,8
+test-2-den011d,1,partition,Partition uniform-16 + C++ history greedy,284.959600,1.774500,256,12
+test-2-den011d,1,anchor,Fixed Regional Scan,536.054700,0.0,0,0
+test-2-den011d,2,anchor,Fixed Regional Scan,533.023500,0.0,0,0
+test-2-den011d,2,partition,Partition uniform-16 + C++ history greedy,268.930200,1.978300,256,14
+test-2-den011d,2,partition,Partition uniform-8 + C++ prior greedy,294.805800,3.418300,64,8
+test-2-den011d,2,partition,Partition adaptive-entity + C++ prior greedy,217.199900,1.983500,424,25
+test-2-den011d,2,partition,Partition adaptive-query + C++ history greedy,241.150100,2.180300,439,27
+test-2-den011d,2,classic,Cost-Aware Greedy Regional Index Selection,245.148400,0.0,0,9
+test-2-den011d,2,partition,Partition uniform-32 + C++ history greedy,235.464900,1.830500,1024,27
+test-2-den011d,2,partition,Partition adaptive-entity + C++ history greedy,244.852400,2.602900,424,27
+test-2-den011d,2,partition,Partition adaptive-combined + C++ prior greedy,232.742000,2.492600,439,25
+test-2-den011d,2,partition,Partition uniform-32 + C++ prior greedy,219.248900,3.060900,1024,25
+test-2-den011d,2,partition,Partition adaptive-query + C++ prior greedy,217.281500,1.993100,439,25
+test-2-den011d,2,partition,Partition uniform-8 + C++ history greedy,441.257600,4.745600,64,9
+test-2-den011d,2,partition,Partition adaptive-combined + C++ history greedy,252.107000,1.413900,439,27
+test-2-den011d,2,classic,Cost-Aware Greedy Regional Index Selection (Scenario),272.232000,0.0,0,10
+test-2-den011d,2,partition,Partition uniform-16 + C++ prior greedy,223.447900,2.046800,256,12
+test-2-den011d,2,classic,PR Quadtree,277.656100,0.0,0,0
+test-2-den011d,2,anchor,Fixed Regional Scan,557.134400,0.0,0,0

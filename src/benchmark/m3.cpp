@@ -42,6 +42,9 @@ namespace spatial {
 int run_rlserve(const M3Trace& trace, int fine, int quad, bool verify);
 int run_partition(const M3Trace& trace, int fine, int quad,
                   const std::string& plan_path, bool validate);
+int run_partition_greedy(const M3Trace& trace, int fine, int quad,
+                         const std::string& plan_path, const std::string& config_path,
+                         bool use_prior, bool validate);
 int run_replayplan(const M3Trace& trace, int fine, int quad,
                    const std::vector<std::vector<int>>& plan);
 }
@@ -599,6 +602,14 @@ int main(int argc, char** argv) {
                                   config ? &*config : nullptr, true, prior);
             run_profile(context, trace, argv[9], load_ms);
             return 0;
+        }
+        if (mode == "partition_greedy") {
+            if (argc != 10) throw std::invalid_argument("usage: spatial_m3 partition_greedy FINE QUAD CPU TRACE PLAN CONFIG PRIOR VALIDATE");
+            pin(std::stoi(argv[4]));
+            const auto trace = read_m3_trace(argv[5]);
+            return run_partition_greedy(trace, std::stoi(argv[2]), std::stoi(argv[3]), argv[6],
+                                        argv[7], std::stoi(argv[8]) != 0,
+                                        std::stoi(argv[9]) != 0);
         }
         if (mode == "partition") {
             if (argc != 8) throw std::invalid_argument("usage: spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE");

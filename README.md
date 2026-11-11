@@ -150,3 +150,12 @@ python -X utf8 scripts/run_m4_phase6_compare.py
 
 结论：固定 16×16 分区优于自适应分区与 32×32；详见 [M4.6 报告](M4_ADAPTIVE_PARTITION_RL_REPORT.md)。
 
+## M4.7：分区语义修复与在线选型闭环
+
+```powershell
+python -X utf8 scripts/m4_partition_plans.py configs/m4.json data/processed/m4 results/m4/phase6/ablation/plans results/m4/phase7/plans
+python -X utf8 scripts/run_m4_phase7_compare.py
+```
+
+`partition_greedy FINE QUAD CPU TRACE PLAN CONFIG PRIOR VALIDATE` 在分区叶子上做在线成本贪心（先验或历史负载），切换成本使用叶子当前实体数，决策时间计入在线时间。详见 [M4.7 报告](M4_PARTITION_ONLINE_REPORT.md)。
+
