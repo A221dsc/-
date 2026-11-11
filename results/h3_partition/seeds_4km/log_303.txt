@@ -1,0 +1,33 @@
+cover=241 cells, entities=20000, queries=20000, updates=20000, clustered=1
+GLOBAL_H3 size=20000 buckets=232 partitions=1
+  sentinel GLOBAL_H3 pass=0 before=84.542 after=83.584 drift=1.01146
+  sentinel GLOBAL_H3 pass=1 before=84.05 after=94.271 drift=1.12161
+  sentinel GLOBAL_H3 pass=2 before=102.651 after=92.229 drift=1.113
+GLOBAL_H3: build=17.301 ms, q=1797.36 ms, updates=27.161 ms, partitions=1, leaves_visited/q=1
+FIXED_K8_UNIFORM size=20000 buckets=232 partitions=8
+  sentinel FIXED_K8_UNIFORM pass=0 before=104.256 after=118.235 drift=1.13408
+  sentinel FIXED_K8_UNIFORM pass=1 before=110.626 after=101.876 drift=1.08589
+  sentinel FIXED_K8_UNIFORM pass=2 before=98.817 after=114.356 drift=1.15725
+  WARNING FIXED_K8_UNIFORM host timing drift exceeded 1.15 (max=1.15725); deterministic counters remain valid
+FIXED_K8_UNIFORM: build=36.279 ms, q=2087.32 ms, updates=40.577 ms, partitions=8, leaves_visited/q=3.2512
+FIXED_K8_ENTITY size=20000 buckets=232 partitions=8
+  sentinel FIXED_K8_ENTITY pass=0 before=112.002 after=99.83 drift=1.12193
+  sentinel FIXED_K8_ENTITY pass=1 before=106.108 after=100.472 drift=1.0561
+  sentinel FIXED_K8_ENTITY pass=2 before=103.664 after=97.351 drift=1.06485
+FIXED_K8_ENTITY: build=33.95 ms, q=2144.34 ms, updates=28.809 ms, partitions=8, leaves_visited/q=3.1701
+FIXED_K8_QUERY_TRAIN size=20000 buckets=232 partitions=8
+  sentinel FIXED_K8_QUERY_TRAIN pass=0 before=95.992 after=103.933 drift=1.08273
+  sentinel FIXED_K8_QUERY_TRAIN pass=1 before=105.558 after=102.485 drift=1.02998
+  sentinel FIXED_K8_QUERY_TRAIN pass=2 before=90.488 after=102.792 drift=1.13597
+FIXED_K8_QUERY_TRAIN: build=30.148 ms, q=2072.92 ms, updates=29.924 ms, partitions=8, leaves_visited/q=3.35995
+FIXED_K8_MOVEMENT_TRAIN size=20000 buckets=232 partitions=8
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=0 before=100.366 after=100.437 drift=1.00071
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=1 before=105.06 after=98.831 drift=1.06303
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=2 before=101.97 after=114.405 drift=1.12195
+FIXED_K8_MOVEMENT_TRAIN: build=25.124 ms, q=2088.66 ms, updates=27.19 ms, partitions=8, leaves_visited/q=3.67325
+CAPACITY_512_128 size=20000 buckets=232 partitions=53
+  sentinel CAPACITY_512_128 pass=0 before=111.185 after=115.664 drift=1.04028
+  sentinel CAPACITY_512_128 pass=1 before=101.506 after=102.965 drift=1.01437
+  sentinel CAPACITY_512_128 pass=2 before=100.823 after=111.229 drift=1.10321
+CAPACITY_512_128: build=40.359 ms, q=2183.07 ms, updates=29.583 ms, partitions=59, leaves_visited/q=11.661
+wrote results/h3_partition/seeds_4km/bench_303.csv

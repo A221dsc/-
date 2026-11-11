@@ -1,0 +1,15 @@
+built build_h3_p0/h3_management_tests.exe and build_h3_p0/h3_partition_bench.exe
+cover: 241 H3 cells, max radius 187.798 m
+candidates: small=3 large=240
+global H3: 2000 entities, updates, 401+ queries passed
+fixed H3 partition: 8 partitions, 2000 entities, updates, queries passed
+capacity tree: partitions=38 nodes=75 splits=37 merges=0
+capacity tree after deletes: partitions=23 nodes=45 merges=15
+capacity stress: partitions=229 nodes=457 splits=229 merges=1
+H3 management partition tests passed
+seed 101 done
+seed 202 done
+seed 303 done
+wrote results\h3_partition\summary_4km.csv from 3 seeds
+wrote results\h3_partition\summary_20km.csv from 3 seeds
+H3-P0 management-partition experiment complete

@@ -1,0 +1,34 @@
+cover=241 cells, entities=20000, queries=20000, updates=20000, clustered=1
+GLOBAL_H3 size=20000 buckets=233 partitions=1
+  sentinel GLOBAL_H3 pass=0 before=104.683 after=107.047 drift=1.02258
+  sentinel GLOBAL_H3 pass=1 before=112.366 after=126.621 drift=1.12686
+  sentinel GLOBAL_H3 pass=2 before=142.709 after=139.911 drift=1.02
+GLOBAL_H3: build=17.038 ms, q=2387.2 ms, updates=34.248 ms, partitions=1, leaves_visited/q=1
+FIXED_K8_UNIFORM size=20000 buckets=233 partitions=8
+  sentinel FIXED_K8_UNIFORM pass=0 before=141.611 after=141.133 drift=1.00339
+  sentinel FIXED_K8_UNIFORM pass=1 before=154.512 after=139.143 drift=1.11045
+  sentinel FIXED_K8_UNIFORM pass=2 before=139.961 after=138.65 drift=1.00946
+FIXED_K8_UNIFORM: build=23.918 ms, q=2940.94 ms, updates=21.246 ms, partitions=8, leaves_visited/q=2.91245
+FIXED_K8_ENTITY size=20000 buckets=233 partitions=8
+  sentinel FIXED_K8_ENTITY pass=0 before=121.07 after=126.296 drift=1.04317
+  sentinel FIXED_K8_ENTITY pass=1 before=129.89 after=132.164 drift=1.01751
+  sentinel FIXED_K8_ENTITY pass=2 before=123.456 after=124.653 drift=1.0097
+FIXED_K8_ENTITY: build=19.895 ms, q=2551.63 ms, updates=32.194 ms, partitions=8, leaves_visited/q=4.08305
+FIXED_K8_QUERY_TRAIN size=20000 buckets=233 partitions=8
+  sentinel FIXED_K8_QUERY_TRAIN pass=0 before=139.189 after=144.958 drift=1.04145
+  sentinel FIXED_K8_QUERY_TRAIN pass=1 before=148.391 after=136.532 drift=1.08686
+  sentinel FIXED_K8_QUERY_TRAIN pass=2 before=153.834 after=126.792 drift=1.21328
+  WARNING FIXED_K8_QUERY_TRAIN host timing drift exceeded 1.15 (max=1.21328); deterministic counters remain valid
+FIXED_K8_QUERY_TRAIN: build=25.517 ms, q=2662.54 ms, updates=28.113 ms, partitions=8, leaves_visited/q=3.97625
+FIXED_K8_MOVEMENT_TRAIN size=20000 buckets=233 partitions=8
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=0 before=147.471 after=132.712 drift=1.11121
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=1 before=133.766 after=125.654 drift=1.06456
+  sentinel FIXED_K8_MOVEMENT_TRAIN pass=2 before=126.364 after=147.65 drift=1.16845
+  WARNING FIXED_K8_MOVEMENT_TRAIN host timing drift exceeded 1.15 (max=1.16845); deterministic counters remain valid
+FIXED_K8_MOVEMENT_TRAIN: build=39.256 ms, q=2672.4 ms, updates=24.732 ms, partitions=8, leaves_visited/q=4.10945
+CAPACITY_512_128 size=20000 buckets=233 partitions=53
+  sentinel CAPACITY_512_128 pass=0 before=132.048 after=134.914 drift=1.0217
+  sentinel CAPACITY_512_128 pass=1 before=139.454 after=144.801 drift=1.03834
+  sentinel CAPACITY_512_128 pass=2 before=126.606 after=125.917 drift=1.00547
+CAPACITY_512_128: build=34.727 ms, q=2616.65 ms, updates=27.309 ms, partitions=55, leaves_visited/q=13.7766
+wrote results/h3_partition/seeds_4km/bench_202.csv
