@@ -216,3 +216,14 @@ python -X utf8 scripts/m4_stratified_cf.py build_m3/spatial_m3.exe results/m4/ph
 
 `partition_cf` 输出 `obs_prev_*`（w−1 观测）、`prior_*`（w 名义预测）、`actual_future_*`（仅离线）三组负载；受控场景给出 QUAD 的可靠正/负收益。详见 [M4.13 报告](M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md)。
 
+## H0：同构空间分区（新分支 research/scenario-aware-partition）
+
+```powershell
+git switch research/scenario-aware-partition
+./scripts/build_mingw.ps1 -Build build_m3
+python -X utf8 scripts/homogeneous_partition_baselines.py
+python -X utf8 scripts/homogeneous_partition_experiment.py
+```
+
+`spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE STATIC_MODE` 的 STATIC_MODE=2 把所有叶固定为同一 PR Quadtree；H0 对照全图 vs 4×4/8×8/16×16/32×32 vs 非均匀分区。结论与复现见 [H0 报告](H0_HOMOGENEOUS_PARTITION_REPORT.md)。
+

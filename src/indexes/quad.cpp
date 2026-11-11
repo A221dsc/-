@@ -28,6 +28,13 @@ struct Node {
 };
 
 class Quad final : public Index {
+    static std::size_t count_nodes(const Node& n) {
+        std::size_t total = 1;
+        if (n.children)
+            for (const auto& child : *n.children) total += count_nodes(child);
+        return total;
+    }
+
     Node root_;
     std::size_t cap_;
     void add(Node& n, Entry e, int depth) {
@@ -100,6 +107,7 @@ public:
         visit(root_,q,a);
         return a;
     }
+    std::size_t nodes() const override { return count_nodes(root_); }
 };
 }
 std::unique_ptr<Index> make_quad(int capacity, Box bounds) {

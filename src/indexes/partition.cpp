@@ -204,6 +204,14 @@ Answer PartitionIndex::query(Query q) const {
     return result;
 }
 
+std::size_t PartitionIndex::index_nodes() const {
+    std::size_t total = leaves_.size();
+    for (const auto& leaf : leaves_) {
+        if (leaf.aux) total += leaf.aux->nodes();
+    }
+    return total;
+}
+
 std::uint64_t PartitionIndex::state_digest() const {
     std::vector<std::uint64_t> rows;
     rows.reserve(objects_.size());

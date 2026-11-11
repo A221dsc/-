@@ -38,6 +38,7 @@ public:
     const WindowLoad& window_load(unsigned leaf) const { return loads_.at(leaf); }
     const LeafTimes& leaf_times(unsigned leaf) const { return times_.at(leaf); }
     std::uint64_t state_digest() const;
+    std::size_t index_nodes() const;
     void reset_window();
 
     void set(Id id, Point point) override;

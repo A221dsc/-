@@ -175,3 +175,13 @@
 - 旧想定 DQN（种子 22）受控复核：查询叶 24 窗全保持 SCAN（错过 +23.5），更新叶从窗口 1 起持续 QUAD（最差）——两个方向都选反；注明 Q 长期折扣与 4 窗反事实的时域差异。
 - 裁决：情况 B（受控可分、真实机会有限）叠加模型未学到；下一步以受控场景作单元测试、研究保守保持与成本摊销、修复成本模型 FINE 区间，不再扩大 DQN 训练。报告 [M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md](M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md)。
 
+## H0：同构空间分区索引可行性（新分支 research/scenario-aware-partition，起点 1b3f811）
+
+- 研究方向正式调整为“统一基础索引 + 想定预测驱动的空间分区优化”；M1–M4.13 保留为历史基线。
+- 审计：全图 PR Quadtree 与每叶 LOCAL_QUAD 是同一个 `Quad` 类、同容量/分裂规则，仅边界不同；`PartitionIndex` 存在 `objects_`/`ids`/`aux.points_` 三处重复存储与子格路由开销。
+- 新基准：`partition STATIC_MODE=2` 把所有叶固定为同一 PR Quadtree；新增构建耗时、p50/p95/p99、节点数与进程峰值输出；81 组同构分区计划（1/4/8/16/32、实体/查询/组合非均匀）。
+- 9 条真实轨迹（批次有效：双向漂移 ≤1.138、哨兵 1.040，mismatches=0）：
+  - 全图 PR Quadtree（直接）**248.6 ms**；1×1 分区 475.0、4×4 510.1、8×8 527.7、16×16 578.8、32×32 620.0、实体/查询/组合 627.9/648.0/641.0。
+  - 分区越多越慢；节点数 2970→4716（+59%）；进程峰值 80.1 MB（轨迹主导）。
+- 裁决：在当前容器与真实轨迹上，同构分区无净收益；不进入 H1。先修复容器（实体单份存储、降低路由/簿记、隔离内存测量）并补齐受控负载，再判断分区价值。报告 [H0_HOMOGENEOUS_PARTITION_REPORT.md](H0_HOMOGENEOUS_PARTITION_REPORT.md)、审计 [H0_INDEX_AUDIT.md](H0_INDEX_AUDIT.md)、计划 [RESEARCH_PARTITION_PLAN.md](RESEARCH_PARTITION_PLAN.md)。
+

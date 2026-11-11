@@ -41,7 +41,7 @@ using namespace spatial;
 namespace spatial {
 int run_rlserve(const M3Trace& trace, int fine, int quad, bool verify);
 int run_partition(const M3Trace& trace, int fine, int quad,
-                  const std::string& plan_path, bool validate);
+                  const std::string& plan_path, bool validate, int static_mode);
 int run_partition_greedy(const M3Trace& trace, int fine, int quad,
                          const std::string& plan_path, const std::string& config_path,
                          bool use_prior, bool validate);
@@ -634,11 +634,11 @@ int main(int argc, char** argv) {
                                         std::stoi(argv[9]) != 0);
         }
         if (mode == "partition") {
-            if (argc != 8) throw std::invalid_argument("usage: spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE");
+            if (argc != 9) throw std::invalid_argument("usage: spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE STATIC_MODE");
             pin(std::stoi(argv[4]));
             const auto trace = read_m3_trace(argv[5]);
             return run_partition(trace, std::stoi(argv[2]), std::stoi(argv[3]), argv[6],
-                                 std::stoi(argv[7]) != 0);
+                                 std::stoi(argv[7]) != 0, std::stoi(argv[8]));
         }
         if (mode == "replayplan") {
             if (argc != 7) throw std::invalid_argument("usage: spatial_m3 replayplan FINE QUAD CPU TRACE PLAN");

@@ -1,0 +1,91 @@
+scenario,actual,method,online_ms,query_ms,update_ms,build_ms,peak_mib,p50_us,p95_us,p99_us,candidate_count,index_nodes,leaves,mismatches
+test-0-brc100d,0,partition combined (uniform PR Quadtree per leaf),564.3679,134.3459,430.022,7.2234,80.066406,1.4,13.7,20.6,16030075,3814,445,0
+test-0-brc100d,0,partition uniform-1 (uniform PR Quadtree per leaf),463.6484,120.0802,343.5682,9.8877,80.074219,1.3,11.4,16.3,16035053,3146,1,0
+test-0-brc100d,0,partition uniform-32 (uniform PR Quadtree per leaf),605.6082,144.4548,461.1534,8.543,80.058594,1.4,13.6,20.8,16030075,4972,1024,0
+test-0-brc100d,0,partition uniform-16 (uniform PR Quadtree per leaf),524.8073,132.6096,392.1977,7.2691,80.066406,1.3,13.1,19.7,16034098,3552,256,0
+test-0-brc100d,0,partition uniform-4 (uniform PR Quadtree per leaf),466.3023,117.7556,348.5467,7.0887,80.070312,1.3,11.4,16.6,16035053,3156,16,0
+test-0-brc100d,0,"Uniform Grid (single index, direct)",306.2429,195.2402,89.0764,2.5632,80.074219,2.0,19.3,28.5,22274072,0,0,0
+test-0-brc100d,0,partition query (uniform PR Quadtree per leaf),584.5789,137.0946,447.4843,8.8317,80.0625,1.4,13.6,20.5,16030111,3828,448,0
+test-0-brc100d,0,partition entity (uniform PR Quadtree per leaf),542.7643,132.7867,409.9776,8.4427,80.066406,1.4,13.3,20.3,16030622,3658,367,0
+test-0-brc100d,0,"PR Quadtree (single index, direct)",266.4217,82.6554,168.6648,5.2765,80.074219,0.9,8.6,11.1,16035053,0,0,0
+test-0-brc100d,0,partition uniform-8 (uniform PR Quadtree per leaf),551.0646,132.1873,418.8773,14.7853,80.0625,1.3,11.9,17.5,16034736,3224,64,0
+test-0-brc100d,1,"PR Quadtree (single index, direct)",274.2056,94.7168,163.4895,4.2093,80.070312,1.0,8.6,11.3,15753580,0,0,0
+test-0-brc100d,1,"Uniform Grid (single index, direct)",317.8491,208.7263,92.6403,2.854,80.082031,2.0,19.1,28.3,22048585,0,0,0
+test-0-brc100d,1,partition entity (uniform PR Quadtree per leaf),557.8969,128.8579,429.039,13.2865,80.0625,1.4,13.0,20.2,15749662,3638,367,0
+test-0-brc100d,1,partition uniform-4 (uniform PR Quadtree per leaf),488.8696,126.4825,362.3871,7.3222,80.066406,1.3,11.3,17.2,15753580,3136,16,0
+test-0-brc100d,1,partition uniform-32 (uniform PR Quadtree per leaf),584.1961,140.2948,443.9013,9.8191,80.066406,1.5,13.2,20.5,15748911,4952,1024,0
+test-0-brc100d,1,partition query (uniform PR Quadtree per leaf),612.4872,153.0846,459.4026,6.5794,80.0625,1.5,13.2,20.7,15748990,3808,448,0
+test-0-brc100d,1,partition uniform-16 (uniform PR Quadtree per leaf),514.0473,133.8057,380.2416,6.5364,80.066406,1.4,12.9,20.0,15752768,3532,256,0
+test-0-brc100d,1,partition uniform-8 (uniform PR Quadtree per leaf),527.6781,120.302,407.3761,13.1657,80.0625,1.3,11.7,17.2,15753254,3204,64,0
+test-0-brc100d,1,partition uniform-1 (uniform PR Quadtree per leaf),452.5539,110.4484,342.1055,6.2306,80.0625,1.3,11.2,16.7,15753580,3126,1,0
+test-0-brc100d,1,partition combined (uniform PR Quadtree per leaf),553.922,135.5084,418.4136,6.5921,80.074219,1.4,13.0,20.3,15748911,3794,445,0
+test-0-brc100d,2,partition entity (uniform PR Quadtree per leaf),632.427,135.6859,496.7411,7.1656,80.0625,1.3,12.7,20.7,15159199,3646,367,0
+test-0-brc100d,2,partition uniform-16 (uniform PR Quadtree per leaf),516.6198,119.9768,396.643,6.9679,80.066406,1.3,12.2,19.9,15161823,3540,256,0
+test-0-brc100d,2,partition uniform-4 (uniform PR Quadtree per leaf),460.9034,107.2687,353.6347,7.479,80.066406,1.3,10.9,16.3,15162943,3144,16,0
+test-0-brc100d,2,partition query (uniform PR Quadtree per leaf),590.8725,133.073,457.7995,6.587,80.070312,1.3,12.6,20.3,15158603,3816,448,0
+test-0-brc100d,2,partition combined (uniform PR Quadtree per leaf),565.8076,137.9662,427.8414,12.8319,80.0625,1.3,12.8,20.8,15158516,3802,445,0
+test-0-brc100d,2,partition uniform-32 (uniform PR Quadtree per leaf),536.9582,126.5697,410.3885,6.3003,80.066406,1.3,12.6,20.4,15158516,4960,1024,0
+test-0-brc100d,2,partition uniform-8 (uniform PR Quadtree per leaf),490.9566,110.9504,380.0062,13.7503,80.066406,1.2,11.1,17.2,15162521,3212,64,0
+test-0-brc100d,2,"PR Quadtree (single index, direct)",318.4514,89.5021,211.9764,5.78,80.078125,0.9,8.3,11.4,15162943,0,0,0
+test-0-brc100d,2,partition uniform-1 (uniform PR Quadtree per leaf),454.4487,115.315,339.1337,13.0056,80.070312,1.2,10.8,16.2,15162943,3134,1,0
+test-0-brc100d,2,"Uniform Grid (single index, direct)",297.5782,191.4682,83.7977,2.7755,80.074219,1.8,18.7,28.7,21048195,0,0,0
+test-1-brc203d,0,partition uniform-8 (uniform PR Quadtree per leaf),575.7076,124.283,451.4246,9.7876,80.074219,1.1,10.3,16.1,13159270,3008,64,0
+test-1-brc203d,0,partition uniform-16 (uniform PR Quadtree per leaf),613.1075,118.2266,494.8809,6.4,80.066406,1.1,10.5,17.0,13156530,3324,256,0
+test-1-brc203d,0,partition uniform-1 (uniform PR Quadtree per leaf),506.506,101.8806,404.6254,6.7069,80.058594,1.1,10.0,15.3,13174621,2930,1,0
+test-1-brc203d,0,"PR Quadtree (single index, direct)",248.5622,75.7672,157.7602,3.8927,80.074219,0.7,7.6,11.2,13174621,0,0,0
+test-1-brc203d,0,partition uniform-4 (uniform PR Quadtree per leaf),579.0368,112.2763,466.7605,13.0902,80.0625,1.1,10.0,15.4,13174621,2940,16,0
+test-1-brc203d,0,"Uniform Grid (single index, direct)",260.9417,159.0962,85.6485,2.471,80.078125,1.4,15.9,22.6,17724743,0,0,0
+test-1-brc203d,0,partition combined (uniform PR Quadtree per leaf),641.0462,128.0625,512.9837,7.6811,80.0625,1.2,12.3,19.2,13125745,3564,442,0
+test-1-brc203d,0,partition query (uniform PR Quadtree per leaf),665.1517,129.6002,535.5515,8.6564,80.066406,1.2,12.1,19.3,13126019,3598,445,0
+test-1-brc203d,0,partition entity (uniform PR Quadtree per leaf),653.1411,133.2457,519.8954,7.7145,80.070312,1.2,11.9,18.5,13125746,3420,370,0
+test-1-brc203d,0,partition uniform-32 (uniform PR Quadtree per leaf),644.3091,133.8501,510.459,6.7019,80.0625,1.2,12.1,18.8,13125745,4728,1024,0
+test-1-brc203d,1,partition entity (uniform PR Quadtree per leaf),656.2467,126.7434,529.5033,6.5345,80.0625,1.2,11.9,19.8,12593988,3408,370,0
+test-1-brc203d,1,partition query (uniform PR Quadtree per leaf),656.0037,133.6678,522.3359,6.5756,80.070312,1.2,11.8,19.1,12594355,3582,445,0
+test-1-brc203d,1,partition uniform-32 (uniform PR Quadtree per leaf),655.0768,131.8197,523.2571,17.2044,80.074219,1.2,11.9,19.9,12593986,4716,1024,0
+test-1-brc203d,1,partition uniform-8 (uniform PR Quadtree per leaf),543.2483,104.2512,438.9971,7.2186,80.066406,1.0,9.8,15.9,12638844,2992,64,0
+test-1-brc203d,1,partition uniform-16 (uniform PR Quadtree per leaf),593.5171,115.1366,478.3805,9.1001,80.066406,1.1,10.5,17.1,12634137,3308,256,0
+test-1-brc203d,1,"Uniform Grid (single index, direct)",255.1867,156.6395,83.0041,2.5837,80.074219,1.3,16.1,23.8,17163660,0,0,0
+test-1-brc203d,1,"PR Quadtree (single index, direct)",241.0945,68.9505,157.2416,4.2238,80.074219,0.7,7.3,10.7,12652070,0,0,0
+test-1-brc203d,1,partition combined (uniform PR Quadtree per leaf),642.264,128.0574,514.2066,9.1657,80.066406,1.2,11.8,19.1,12593986,3552,442,0
+test-1-brc203d,1,partition uniform-1 (uniform PR Quadtree per leaf),530.8041,106.8455,423.9586,6.6121,80.070312,1.0,9.8,15.6,12652070,2914,1,0
+test-1-brc203d,1,partition uniform-4 (uniform PR Quadtree per leaf),552.0598,104.6695,447.3903,7.9937,80.066406,1.0,10.0,16.4,12652070,2924,16,0
+test-1-brc203d,2,"PR Quadtree (single index, direct)",239.8494,64.9866,159.3766,5.264,80.074219,0.7,6.3,10.3,11704825,0,0,0
+test-1-brc203d,2,partition entity (uniform PR Quadtree per leaf),661.2044,123.8908,537.3136,12.8613,80.066406,1.2,11.0,19.3,11650535,3384,370,0
+test-1-brc203d,2,"Uniform Grid (single index, direct)",259.4035,149.2191,91.6477,2.1717,80.078125,1.3,14.5,22.1,15825328,0,0,0
+test-1-brc203d,2,partition uniform-8 (uniform PR Quadtree per leaf),554.1699,104.3622,449.8077,7.079,80.070312,1.0,9.1,15.7,11686025,2968,64,0
+test-1-brc203d,2,partition query (uniform PR Quadtree per leaf),659.414,127.2884,532.1256,8.5049,80.070312,1.1,11.0,19.3,11650865,3558,445,0
+test-1-brc203d,2,partition uniform-16 (uniform PR Quadtree per leaf),582.3117,109.5451,472.7666,9.4997,80.066406,1.1,9.8,17.7,11681407,3284,256,0
+test-1-brc203d,2,partition uniform-4 (uniform PR Quadtree per leaf),552.2646,106.2848,445.9798,7.1306,80.0625,1.0,8.7,15.5,11704825,2900,16,0
+test-1-brc203d,2,partition uniform-32 (uniform PR Quadtree per leaf),661.1959,142.9151,518.2808,6.9271,80.074219,1.2,11.1,19.4,11650535,4692,1024,0
+test-1-brc203d,2,partition uniform-1 (uniform PR Quadtree per leaf),475.048,95.0706,379.9774,6.9765,80.070312,1.0,8.8,15.5,11704825,2890,1,0
+test-1-brc203d,2,partition combined (uniform PR Quadtree per leaf),657.6038,130.4144,527.1894,6.9778,80.066406,1.2,11.0,19.4,11650535,3528,442,0
+test-2-den011d,0,"Uniform Grid (single index, direct)",268.804,156.5657,95.8229,2.5925,80.074219,1.6,16.5,23.6,16590549,0,0,0
+test-2-den011d,0,partition uniform-16 (uniform PR Quadtree per leaf),578.8493,109.6889,469.1604,7.9095,80.066406,1.3,9.6,16.5,12433326,3344,256,0
+test-2-den011d,0,"PR Quadtree (single index, direct)",242.2898,75.096,151.061,4.1593,80.070312,0.8,6.7,11.1,12436005,0,0,0
+test-2-den011d,0,partition uniform-8 (uniform PR Quadtree per leaf),514.4365,111.9983,402.4382,7.0352,80.070312,1.2,9.5,16.6,12435265,3040,64,0
+test-2-den011d,0,partition uniform-4 (uniform PR Quadtree per leaf),519.612,102.1565,417.4555,7.3285,80.0625,1.2,8.8,15.2,12436005,2980,16,0
+test-2-den011d,0,partition combined (uniform PR Quadtree per leaf),604.1507,139.5532,464.5975,6.6481,80.070312,1.5,11.0,19.1,12426754,3502,433,0
+test-2-den011d,0,partition uniform-32 (uniform PR Quadtree per leaf),584.4933,125.1355,459.3578,6.3716,80.066406,1.5,10.8,18.6,12426722,4684,1024,0
+test-2-den011d,0,partition uniform-1 (uniform PR Quadtree per leaf),494.873,110.3812,384.4918,6.4816,80.070312,1.2,8.7,15.1,12436005,2970,1,0
+test-2-den011d,0,partition entity (uniform PR Quadtree per leaf),627.8954,139.513,488.3824,9.2117,80.0625,1.5,11.4,19.8,12426740,3484,424,0
+test-2-den011d,0,partition query (uniform PR Quadtree per leaf),648.0433,134.6227,513.4206,9.2826,80.066406,1.5,11.3,20.0,12427602,3594,439,0
+test-2-den011d,1,partition uniform-16 (uniform PR Quadtree per leaf),553.1213,122.9543,430.167,7.1097,80.070312,1.3,10.2,17.1,13024733,3344,256,0
+test-2-den011d,1,partition uniform-32 (uniform PR Quadtree per leaf),620.031,144.7937,475.2373,13.1045,80.070312,1.4,11.6,19.1,13013995,4684,1024,0
+test-2-den011d,1,partition entity (uniform PR Quadtree per leaf),622.8886,130.5736,492.315,9.0901,80.058594,1.4,11.7,19.4,13014001,3484,424,0
+test-2-den011d,1,"Uniform Grid (single index, direct)",281.4465,175.6986,87.7697,2.6552,80.074219,1.6,17.2,24.7,17388173,0,0,0
+test-2-den011d,1,partition query (uniform PR Quadtree per leaf),601.9743,138.8482,463.1261,13.1817,80.070312,1.4,11.5,19.3,13015266,3594,439,0
+test-2-den011d,1,partition combined (uniform PR Quadtree per leaf),667.1122,140.4068,526.7054,6.0884,80.070312,1.4,11.7,19.2,13014067,3502,433,0
+test-2-den011d,1,partition uniform-4 (uniform PR Quadtree per leaf),501.0698,100.8656,400.2042,16.8695,80.074219,1.2,9.4,15.2,13027579,2980,16,0
+test-2-den011d,1,partition uniform-8 (uniform PR Quadtree per leaf),493.2575,111.4799,381.7776,6.787,80.074219,1.2,9.9,16.4,13026955,3040,64,0
+test-2-den011d,1,"PR Quadtree (single index, direct)",243.6484,75.9972,152.7443,4.3812,80.082031,0.8,7.3,11.2,13027579,0,0,0
+test-2-den011d,1,partition uniform-1 (uniform PR Quadtree per leaf),461.6356,110.5486,351.087,6.4953,80.070312,1.1,9.5,15.2,13027579,2970,1,0
+test-2-den011d,2,partition uniform-8 (uniform PR Quadtree per leaf),492.9954,109.1224,383.873,7.0077,80.066406,1.3,10.0,16.6,13452658,3028,64,0
+test-2-den011d,2,partition entity (uniform PR Quadtree per leaf),600.8773,138.9547,461.9226,7.6717,80.074219,1.5,11.8,19.3,13445057,3472,424,0
+test-2-den011d,2,partition uniform-4 (uniform PR Quadtree per leaf),510.0727,116.0388,394.0339,6.5317,80.085938,1.3,9.7,16.0,13453322,2968,16,0
+test-2-den011d,2,partition uniform-32 (uniform PR Quadtree per leaf),620.4988,140.528,479.9708,6.9764,80.082031,1.6,11.9,19.5,13445048,4672,1024,0
+test-2-den011d,2,partition uniform-1 (uniform PR Quadtree per leaf),596.145,117.9725,478.1725,12.6972,80.066406,1.3,9.6,15.1,13453322,2958,1,0
+test-2-den011d,2,"Uniform Grid (single index, direct)",300.2956,185.7592,94.9964,2.6959,80.082031,1.8,17.0,24.4,17914718,0,0,0
+test-2-den011d,2,partition query (uniform PR Quadtree per leaf),790.8633,146.6221,644.2412,8.7536,80.070312,1.7,12.8,21.4,13446160,3582,439,0
+test-2-den011d,2,"PR Quadtree (single index, direct)",265.0874,75.1245,171.2488,4.0154,80.082031,0.9,7.4,11.2,13453322,0,0,0
+test-2-den011d,2,partition combined (uniform PR Quadtree per leaf),796.9709,155.2002,641.7707,7.5927,80.074219,1.7,12.9,22.0,13445090,3490,433,0
+test-2-den011d,2,partition uniform-16 (uniform PR Quadtree per leaf),684.4985,136.2179,548.2806,6.9541,80.0625,1.4,11.2,19.3,13450595,3332,256,0
