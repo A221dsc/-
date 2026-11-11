@@ -236,3 +236,13 @@ python -X utf8 scripts/h01_loads.py build_m3/spatial_m3.exe results/homogeneous_
 
 `hpartition FINE QUAD CPU TRACE PLAN VALIDATE PROFILE` 使用 `HomogeneousPartitionIndex`（每叶同一 Quad、全局 id→leaf、代际路由）；1×1 为直接 Quad 的 1.043×。受控负载显示小查询热点/更新密集/迁移阶段分区有净收益，大范围查询/均匀阶段变差。详见 [H0.1 报告](H01_LIGHTWEIGHT_PARTITION_REPORT.md)。
 
+## H1-A：想定粒度选择
+
+```powershell
+python -X utf8 scripts/h1_tests.py
+python -X utf8 scripts/h1a_dataset.py build_m3/spatial_m3.exe results/partition_prediction/dataset --seeds 3
+python -X utf8 scripts/h1a_select.py
+```
+
+数据集含直接单树与 1/4/8/16/32 分区；H1-A 用名义想定特征 + 线性成本模型做粒度选择，留一场景验证遗憾 1.9%（固定粒度 11.7%）。详见 [H1 报告](H1_SCENARIO_GRANULARITY_REPORT.md)。
+

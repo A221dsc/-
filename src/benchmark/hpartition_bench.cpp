@@ -19,6 +19,13 @@
 namespace spatial {
 namespace {
 
+double working_mib() {
+    PROCESS_MEMORY_COUNTERS memory{};
+    if (!GetProcessMemoryInfo(GetCurrentProcess(), &memory, sizeof(memory)))
+        throw std::runtime_error("WorkingSetSize unavailable");
+    return memory.WorkingSetSize / 1048576.0;
+}
+
 double peak_mib() {
     PROCESS_MEMORY_COUNTERS memory{};
     if (!GetProcessMemoryInfo(GetCurrentProcess(), &memory, sizeof(memory)))
@@ -58,6 +65,8 @@ int run_hpartition(const M3Trace& trace, int fine, int quad, const std::string& 
                    bool validate, bool profile) {
     (void)fine;
     const Plan plan = read_leaf_plan(plan_path);
+    const double prebuild_mib = peak_mib();
+    const double prebuild_ws = working_mib();
     HomogeneousPartitionIndex index(trace.bounds, quad, profile);
     std::unique_ptr<ArrayOracle> oracle;
     if (validate) oracle = std::make_unique<ArrayOracle>();
@@ -69,6 +78,7 @@ int run_hpartition(const M3Trace& trace, int fine, int quad, const std::string& 
         if (validate) oracle->set(id, point);
     }
     const double build_ms = (Clock::now() - begin).count() / 1e6;
+    const double postbuild_ws = working_mib();
     double query_ms = 0.0, update_ms = 0.0;
     std::uint64_t queries = 0, mismatches = 0, candidates = 0;
     std::vector<std::int64_t> latency;
@@ -121,6 +131,8 @@ int run_hpartition(const M3Trace& trace, int fine, int quad, const std::string& 
               << " switch_ms=0"
               << " build_ms=" << build_ms
               << " peak_mib=" << peak_mib()
+              << " prebuild_mib=" << prebuild_mib
+              << " index_delta_mib=" << (postbuild_ws - prebuild_ws)
               << " index_nodes=" << index.index_nodes()
               << " candidate_count=" << candidates
               << " p50_us=" << p50 << " p95_us=" << p95 << " p99_us=" << p99

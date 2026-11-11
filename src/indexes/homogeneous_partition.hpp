@@ -48,8 +48,8 @@ private:
     Box world_;
     int capacity_{32};
     bool profile_{false};
-    int sub_w_{1};
-    int sub_h_{1};
+    double cell_w_{1.0};
+    double cell_h_{1.0};
     std::vector<std::array<int, 4>> rects_;
     std::vector<std::unique_ptr<Index>> quads_;
     std::vector<int> leaf_of_cell_;

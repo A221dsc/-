@@ -1,0 +1,69 @@
+{
+ "rows": 24,
+ "candidates": [
+  0,
+  1,
+  4,
+  8,
+  16,
+  32
+ ],
+ "accuracy": {
+  "model": 0.5833333333333334,
+  "rule": 0.3333333333333333,
+  "fixed": 0.4583333333333333
+ },
+ "mean_ms": {
+  "chosen_ms": 31.316924999999998,
+  "rule_ms": 33.2364,
+  "fixed_ms": 34.452725,
+  "oracle_ms": 30.839704166666667
+ },
+ "regret": {
+  "chosen_ms": 0.019435959673776978,
+  "rule_ms": 0.06267029055455116,
+  "fixed_ms": 0.11738810122553779
+ },
+ "per_scenario": {
+  "A_uniform_uniform": [
+   0,
+   0,
+   0
+  ],
+  "B_concentrated": [
+   0,
+   0,
+   0
+  ],
+  "C_small_hot": [
+   32,
+   32,
+   32
+  ],
+  "D_large_query": [
+   0,
+   0,
+   0
+  ],
+  "E_update_heavy": [
+   32,
+   32,
+   32
+  ],
+  "F_migrating_hot": [
+   32,
+   32,
+   32
+  ],
+  "G_hot_vs_dense": [
+   32,
+   32,
+   32
+  ],
+  "H_mobility": [
+   32,
+   32,
+   32
+  ]
+ }
+}

@@ -68,6 +68,11 @@ public:
     virtual Answer query(Query q) const = 0;
     virtual std::size_t nodes() const { return 0; }
     std::size_t size() const { return points_.size(); }
+    std::optional<Point> point_of(Id id) const {
+        auto it = points_.find(id);
+        if (it == points_.end()) return std::nullopt;
+        return it->second;
+    }
 protected:
     std::unordered_map<Id, Point> points_;
     virtual void insert(Id, Point) = 0;

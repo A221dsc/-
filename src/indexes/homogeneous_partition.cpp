@@ -13,10 +13,9 @@ HomogeneousPartitionIndex::HomogeneousPartitionIndex(Box world, int quad_capacit
     : world_(world), capacity_(quad_capacity), profile_(profile) {
     if (world.x1 <= world.x0 || world.y1 <= world.y0)
         throw std::invalid_argument("invalid world box");
-    sub_w_ = (world.x1 - world.x0) / side;
-    sub_h_ = (world.y1 - world.y0) / side;
-    if (sub_w_ <= 0) sub_w_ = 1;
-    if (sub_h_ <= 0) sub_h_ = 1;
+    cell_w_ = (world.x1 - world.x0) / side;
+    cell_h_ = (world.y1 - world.y0) / side;
+    if (cell_w_ <= 0.0 || cell_h_ <= 0.0) throw std::invalid_argument("empty world");
 }
 
 void HomogeneousPartitionIndex::set_partition(const std::vector<std::array<int, 4>>& rects,
@@ -48,14 +47,14 @@ void HomogeneousPartitionIndex::set_partition(const std::vector<std::array<int, 
 
 std::unique_ptr<Index> HomogeneousPartitionIndex::make_leaf(unsigned leaf) const {
     const auto& r = rects_[leaf];
-    Box box{world_.x0 + r[0] * sub_w_, world_.y0 + r[1] * sub_h_,
-            world_.x0 + r[2] * sub_w_, world_.y0 + r[3] * sub_h_};
+    Box box{world_.x0 + r[0] * cell_w_, world_.y0 + r[1] * cell_h_,
+            world_.x0 + r[2] * cell_w_, world_.y0 + r[3] * cell_h_};
     return make_quad(capacity_, box);
 }
 
 unsigned HomogeneousPartitionIndex::cell_of(Point p) const {
-    const int u = static_cast<int>((p.x - world_.x0) / sub_w_);
-    const int v = static_cast<int>((p.y - world_.y0) / sub_h_);
+    const int u = static_cast<int>(std::floor((p.x - world_.x0) / cell_w_));
+    const int v = static_cast<int>(std::floor((p.y - world_.y0) / cell_h_));
     return clamp_cell(v) * side + clamp_cell(u);
 }
 
@@ -71,7 +70,7 @@ std::size_t HomogeneousPartitionIndex::entity_count(unsigned leaf) const {
 }
 
 std::size_t HomogeneousPartitionIndex::index_nodes() const {
-    std::size_t total = quads_.size();
+    std::size_t total = 0;
     for (const auto& leaf : quads_) total += leaf->nodes();
     return total;
 }
@@ -91,11 +90,13 @@ void HomogeneousPartitionIndex::set(Id id, Point point) {
         return;
     }
     const unsigned old = it->second;
+    const auto previous = quads_[old]->point_of(id);
     quads_[old]->erase(id);
     try {
         quads_[leaf]->set(id, point);
     } catch (...) {
-        quads_[old]->set(id, point);
+        // Restore the authoritative old point and ownership on failure.
+        if (previous) quads_[old]->set(id, *previous);
         throw;
     }
     it->second = leaf;
