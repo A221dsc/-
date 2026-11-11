@@ -42,6 +42,8 @@ def run_cf(binary, trace, plan, window, leaf, mode_b, horizon, verify=False, pro
     out = {}
     for token in result.stdout.split():
         key, value = token.split("=", 1)
+        if key in ("window_q", "window_u"):
+            continue
         if "/" in value:
             value = value.split("/")[0]
         out[key] = float(value)

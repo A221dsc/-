@@ -26,6 +26,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <map>
 
 namespace spatial {
 namespace {
@@ -33,6 +34,7 @@ namespace {
 struct LeafPlan {
     std::vector<std::array<int, 4>> rects;
     std::vector<unsigned> levels;
+    std::map<std::pair<int, unsigned>, std::array<double, 4>> prior;  // window, leaf -> q,n,u,c
 };
 
 LeafPlan read_leaf_plan(const std::string& path) {
@@ -45,12 +47,19 @@ LeafPlan read_leaf_plan(const std::string& path) {
         std::istringstream stream(line);
         std::string kind;
         stream >> kind;
-        if (kind != "L") continue;
-        std::array<int, 4> rect{};
-        unsigned level = 1;
-        stream >> rect[0] >> rect[1] >> rect[2] >> rect[3] >> level;
-        plan.rects.push_back(rect);
-        plan.levels.push_back(level);
+        if (kind == "L") {
+            std::array<int, 4> rect{};
+            unsigned level = 1;
+            stream >> rect[0] >> rect[1] >> rect[2] >> rect[3] >> level;
+            plan.rects.push_back(rect);
+            plan.levels.push_back(level);
+        } else if (kind == "P") {
+            int window = 0;
+            unsigned leaf = 0;
+            std::array<double, 4> load{};
+            stream >> window >> leaf >> load[0] >> load[1] >> load[2] >> load[3];
+            plan.prior[{window, leaf}] = load;
+        }
     }
     if (plan.rects.empty()) throw std::runtime_error("empty partition plan");
     return plan;
@@ -62,6 +71,9 @@ struct ArmResult {
     std::uint64_t digest_before{}, digest_after{};
     std::size_t entities{};
     WindowLoad load;
+    std::array<double, 4> prior{};
+    double actual_future_q{}, actual_future_u{};
+    std::vector<double> window_q, window_u;
     int windows{};
     std::uint64_t queries{}, mismatches{};
 };
@@ -105,6 +117,8 @@ ArmResult run_arm(const M3Trace& trace, const LeafPlan& plan, int fine, int quad
     if (window > 0 && cursor < trace.events.size()) ++cursor;  // the P at the target window start
     result.entities = index.entity_count(leaf);
     result.load = index.window_load(leaf);
+    const auto found = plan.prior.find({window, leaf});
+    if (found != plan.prior.end()) result.prior = found->second;
     result.digest_before = index.state_digest();
     index.reset_window();
     if (switch_first) {
@@ -115,6 +129,13 @@ ArmResult run_arm(const M3Trace& trace, const LeafPlan& plan, int fine, int quad
     const std::int64_t end_step = target_step + static_cast<std::int64_t>(horizon) * 50;
     result.windows = 1;
     auto accumulate_local = [&]() {
+        // Called exactly once per window boundary: the window loads/times are
+        // cleared by reset_window, so accumulating twice would double count.
+        const auto& observed = index.window_load(leaf);
+        result.actual_future_q += static_cast<double>(observed.queries);
+        result.actual_future_u += static_cast<double>(observed.updates);
+        result.window_q.push_back(static_cast<double>(observed.queries));
+        result.window_u.push_back(static_cast<double>(observed.updates));
         if (!profile) return;
         const auto& t = index.leaf_times(leaf);
         result.local_query_ms += static_cast<double>(t.query_ns) / 1e6;
@@ -122,11 +143,15 @@ ArmResult run_arm(const M3Trace& trace, const LeafPlan& plan, int fine, int quad
         result.local_local_ms += static_cast<double>(t.local_ns) / 1e6;
         result.local_switch_ms += static_cast<double>(t.switch_ns) / 1e6;
     };
+    bool last_accumulated = false;
     while (cursor < trace.events.size()) {
         const M3Event& event = trace.events[cursor];
         if (event.type == 'P') {
             accumulate_local();
-            if (event.step >= end_step) break;
+            if (event.step >= end_step) {
+                last_accumulated = true;
+                break;
+            }
             index.reset_window();
             ++result.windows;
             ++cursor;
@@ -154,7 +179,7 @@ ArmResult run_arm(const M3Trace& trace, const LeafPlan& plan, int fine, int quad
         }
         ++cursor;
     }
-    accumulate_local();
+    if (!last_accumulated) accumulate_local();
     result.digest_after = index.state_digest();
     result.total_ms = result.query_ms + result.update_ms + result.switch_ms;
     return result;
@@ -194,8 +219,27 @@ int run_partition_cf(const M3Trace& trace, int fine, int quad, const std::string
               << " digest_after_a=" << a.digest_after << " digest_after_b=" << b.digest_after
               << " state_equal=" << (state_equal ? 1 : 0)
               << " entities=" << a.entities
-              << " load_q=" << a.load.queries << " load_u=" << a.load.updates
-              << " load_c=" << a.load.coverage
+              << " obs_prev_q=" << a.load.queries << " obs_prev_u=" << a.load.updates
+              << " obs_prev_c=" << a.load.coverage
+              << " prior_q=" << a.prior[0] << " prior_n=" << a.prior[1]
+              << " prior_u=" << a.prior[2] << " prior_c=" << a.prior[3]
+              << " actual_future_q=" << a.actual_future_q
+              << " actual_future_u=" << a.actual_future_u
+              << " window_q=";
+    for (std::size_t i = 0; i < a.window_q.size(); ++i) {
+        if (i) std::cout << '|';
+        std::cout << a.window_q[i];
+    }
+    std::cout << " window_u=";
+    for (std::size_t i = 0; i < a.window_u.size(); ++i) {
+        if (i) std::cout << '|';
+        std::cout << a.window_u[i];
+    }
+    std::cout
+              << " local_total_a=" << a.local_query_ms + a.local_base_ms + a.local_local_ms +
+                                         a.local_switch_ms
+              << " local_total_b=" << b.local_query_ms + b.local_base_ms + b.local_local_ms +
+                                         b.local_switch_ms
               << " windows=" << a.windows << "/" << b.windows
               << " queries=" << a.queries << "/" << b.queries
               << " mismatches=" << a.mismatches + b.mismatches

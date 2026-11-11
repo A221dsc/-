@@ -207,3 +207,12 @@ python -X utf8 scripts/m4_counterfactual.py build_m3/spatial_m3.exe results/m4/p
 
 `partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY PROFILE ORDER` 输出完整墙钟与叶子局部分量，两臂状态摘要必须一致；标签按配对 t 区间分为可靠正/负、可重复近零、无法分辨。详见 [M4.12 报告](M4_COUNTERFACTUAL_V2_REPORT.md)。
 
+## M4.13：受控可分性与三时域负载
+
+```powershell
+python -X utf8 scripts/m4_controlled.py build_m3/spatial_m3.exe results/m4/phase13/controlled
+python -X utf8 scripts/m4_stratified_cf.py build_m3/spatial_m3.exe results/m4/phase8/plans data/processed/m4/traces data/processed/m4/loads results/m4/phase13/stratified
+```
+
+`partition_cf` 输出 `obs_prev_*`（w−1 观测）、`prior_*`（w 名义预测）、`actual_future_*`（仅离线）三组负载；受控场景给出 QUAD 的可靠正/负收益。详见 [M4.13 报告](M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md)。
+

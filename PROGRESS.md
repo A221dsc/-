@@ -166,3 +166,12 @@
 - 诊断修正：`q_real_spearman` → `q_window_change_spearman`（描述性），新增 `counterfactual_matches=0`；时域差异需在可靠标签上按相同时域比较。
 - 未训练监督模型、未重训 DQN；下一步按已观测前缀负载选候选、提高配对与 horizon、建立受控场景与可靠标签后再评估成本学习。报告 [M4_COUNTERFACTUAL_V2_REPORT.md](M4_COUNTERFACTUAL_V2_REPORT.md)。
 
+## M4.13：反事实收益时序一致性与模式可分性
+
+- 修复局部 profile 在结束 P 的重复累计（`last_accumulated`）；三时域拆开：`obs_prev_*`（w−1 已观测）、`prior_*`（w 名义预测）、`actual_future_*` 与逐窗口负载（仅离线）。新增分量守恒/窗口数测试。
+- 受控场景（2×2 真实回放）：查询主导叶 SCAN 164.5 / FINE 41.2 / **QUAD 16.3**，切 QUAD 净收益 +5.5/窗口（h4 +23.5，可靠正）；更新主导叶 SCAN 22.9 / **FINE 17.4** / QUAD 32.2，切 QUAD −1.1/窗口（h4 −4.0，可靠负）。更新密集最优是 FINE，不是 SCAN。
+- 真实训练图分层抽样（7 层、5 配对 + 空对照）：3 可重复近零、5 无法分辨、0 可靠正负；真实负载单区域收益多数接近零。
+- 简单回本判据：QUAD 在两类场景符号全对；FINE 在更新主导叶预测错误（模型 −7.8 vs 实测 +5.5/24 窗口），线性成本模型不覆盖该区间。
+- 旧想定 DQN（种子 22）受控复核：查询叶 24 窗全保持 SCAN（错过 +23.5），更新叶从窗口 1 起持续 QUAD（最差）——两个方向都选反；注明 Q 长期折扣与 4 窗反事实的时域差异。
+- 裁决：情况 B（受控可分、真实机会有限）叠加模型未学到；下一步以受控场景作单元测试、研究保守保持与成本摊销、修复成本模型 FINE 区间，不再扩大 DQN 训练。报告 [M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md](M4_COUNTERFACTUAL_SEPARABILITY_REPORT.md)。
+
