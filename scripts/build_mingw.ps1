@@ -26,7 +26,7 @@ if ($LASTEXITCODE) { exit $LASTEXITCODE }
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
 & g++ @flags @objects src/workload/replay.cpp src/benchmark/main.cpp $dll -lpsapi -o "$Build/spatial_bench.exe"
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
-& g++ @flags @objects src/workload/m3.cpp src/benchmark/m3.cpp $dll -lpsapi -o "$Build/spatial_m3.exe"
+& g++ @flags @objects src/workload/m3.cpp src/benchmark/m3.cpp src/benchmark/rlserve.cpp $dll -lpsapi -o "$Build/spatial_m3.exe"
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
 '#include <boost/version.hpp>' | & g++ @flags -E -dM -x c++ - | Select-String 'define BOOST_LIB_VERSION '
 & "$Build/index_tests.exe"

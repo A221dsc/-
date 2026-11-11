@@ -1,0 +1,38 @@
+{
+  "historical-11": {
+    "buffer": 145760,
+    "episodes": 40,
+    "inference_s": 0.04695540084503591,
+    "loss_last": 0.5682543510943652,
+    "train_seconds": 126.42878818511963,
+    "validation_ms": 2113.213100000001,
+    "windows": 72
+  },
+  "historical-22": {
+    "buffer": 145760,
+    "episodes": 40,
+    "inference_s": 0.0492094992659986,
+    "loss_last": 0.3214962327340618,
+    "train_seconds": 131.27051949501038,
+    "validation_ms": 1465.3584,
+    "windows": 72
+  },
+  "scenario-11": {
+    "buffer": 145760,
+    "episodes": 40,
+    "inference_s": 0.05076629971154034,
+    "loss_last": 0.3240445114672184,
+    "train_seconds": 128.62698554992676,
+    "validation_ms": 1545.6714999999995,
+    "windows": 72
+  },
+  "scenario-22": {
+    "buffer": 145760,
+    "episodes": 40,
+    "inference_s": 0.04610749939456582,
+    "loss_last": 0.3522104361653328,
+    "train_seconds": 150.05757188796997,
+    "validation_ms": 1467.6333000000002,
+    "windows": 72
+  }
+}

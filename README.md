@@ -113,3 +113,15 @@ python -X utf8 scripts/run_m4_exits.py
 
 完整方法名：Uncertainty-Aware Feed-Forward Regional Index Selection、Quantile-Cost-Penalized Feed-Forward Regional Index Selection、CVaR-Risk-Constrained Feed-Forward Regional Index Selection、Historical-Error-Feedback Robust Feed-Forward Regional Index Selection。详见 [M4 第三阶段报告](M4_PHASE3_REPORT.md)。
 
+## M4.4：交互式强化学习环境与 Double DQN
+
+```powershell
+python -X utf8 scripts/m4_rl_env_test.py
+python -X utf8 scripts/m4_dqn.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase4/dqn --seeds 11 22 --episodes 40
+python -X utf8 scripts/m4_dqn_eval.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase4/dqn results/m4/phase4/eval
+python -X utf8 scripts/run_m4_phase4_compare.py
+python -X utf8 scripts/m4_offline_ref.py configs/m4.json data/processed/m4 results/m4/calibration results/m4/phase4/offline
+```
+
+`spatial_m3 rlserve FINE QUAD CPU TRACE VERIFY` 提供持久化交互回放；`replayplan FINE QUAD CPU TRACE PLAN` 对学习策略做同路径计时。完整方法名：Historical-Load Double DQN Regional Index Selection、Scenario-Forward-Enhanced Double DQN Regional Index Selection。详见 [M4.4 报告](M4_PHASE4_REPORT.md)。
+

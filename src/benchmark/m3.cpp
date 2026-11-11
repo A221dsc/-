@@ -38,6 +38,12 @@
 
 using namespace spatial;
 
+namespace spatial {
+int run_rlserve(const M3Trace& trace, int fine, int quad, bool verify);
+int run_replayplan(const M3Trace& trace, int fine, int quad,
+                   const std::vector<std::vector<int>>& plan);
+}
+
 namespace {
 void pin(int cpu) {
 #ifdef _WIN32
@@ -591,6 +597,32 @@ int main(int argc, char** argv) {
                                   config ? &*config : nullptr, true, prior);
             run_profile(context, trace, argv[9], load_ms);
             return 0;
+        }
+        if (mode == "replayplan") {
+            if (argc != 7) throw std::invalid_argument("usage: spatial_m3 replayplan FINE QUAD CPU TRACE PLAN");
+            pin(std::stoi(argv[4]));
+            const auto trace = read_m3_trace(argv[5]);
+            std::ifstream plan_in(argv[6]);
+            if (!plan_in) throw std::runtime_error("cannot open action plan");
+            std::vector<std::vector<int>> plan;
+            std::string line;
+            while (std::getline(plan_in, line)) {
+                std::vector<int> row;
+                std::stringstream stream(line);
+                std::string token;
+                while (std::getline(stream, token, ',')) {
+                    if (!token.empty()) row.push_back(std::stoi(token));
+                }
+                if (!row.empty()) plan.push_back(std::move(row));
+            }
+            return run_replayplan(trace, std::stoi(argv[2]), std::stoi(argv[3]), plan);
+        }
+        if (mode == "rlserve") {
+            if (argc != 7) throw std::invalid_argument("usage: spatial_m3 rlserve FINE QUAD CPU TRACE VERIFY");
+            pin(std::stoi(argv[4]));
+            const auto trace = read_m3_trace(argv[5]);
+            return run_rlserve(trace, std::stoi(argv[2]), std::stoi(argv[3]),
+                               std::stoi(argv[6]) != 0);
         }
         if (mode == "loadprobe") {
             if (argc != 7) throw std::invalid_argument("usage: spatial_m3 loadprobe FINE QUAD CPU TRACE PREFIX");

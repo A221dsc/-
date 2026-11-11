@@ -1,0 +1,56 @@
+historical seed 11 episode 3: validation 1535.3 ms over 72 windows, train 9s
+historical seed 11 episode 6: validation 1546.3 ms over 72 windows, train 17s
+historical seed 11 episode 9: validation 1700.0 ms over 72 windows, train 26s
+historical seed 11 episode 12: validation 2171.9 ms over 72 windows, train 36s
+historical seed 11 episode 15: validation 1659.7 ms over 72 windows, train 46s
+historical seed 11 episode 18: validation 1606.8 ms over 72 windows, train 55s
+historical seed 11 episode 21: validation 1644.4 ms over 72 windows, train 64s
+historical seed 11 episode 24: validation 1929.2 ms over 72 windows, train 72s
+historical seed 11 episode 27: validation 1537.7 ms over 72 windows, train 81s
+historical seed 11 episode 30: validation 1636.6 ms over 72 windows, train 90s
+historical seed 11 episode 33: validation 1538.5 ms over 72 windows, train 98s
+historical seed 11 episode 36: validation 1507.7 ms over 72 windows, train 107s
+historical seed 11 episode 39: validation 1572.5 ms over 72 windows, train 115s
+historical seed 11: validation 1623.2 ms, train 120s
+historical seed 22 episode 3: validation 1512.6 ms over 72 windows, train 9s
+historical seed 22 episode 6: validation 1570.0 ms over 72 windows, train 17s
+historical seed 22 episode 9: validation 1542.0 ms over 72 windows, train 26s
+historical seed 22 episode 12: validation 1600.4 ms over 72 windows, train 34s
+historical seed 22 episode 15: validation 1526.5 ms over 72 windows, train 43s
+historical seed 22 episode 18: validation 1608.8 ms over 72 windows, train 52s
+historical seed 22 episode 21: validation 1541.3 ms over 72 windows, train 60s
+historical seed 22 episode 24: validation 1032.6 ms over 72 windows, train 68s
+historical seed 22 episode 27: validation 1760.9 ms over 72 windows, train 77s
+historical seed 22 episode 30: validation 1570.9 ms over 72 windows, train 86s
+historical seed 22 episode 33: validation 1535.6 ms over 72 windows, train 94s
+historical seed 22 episode 36: validation 1502.5 ms over 72 windows, train 103s
+historical seed 22 episode 39: validation 1529.6 ms over 72 windows, train 111s
+historical seed 22: validation 1549.3 ms, train 116s
+scenario seed 11 episode 3: validation 1682.0 ms over 72 windows, train 9s
+scenario seed 11 episode 6: validation 1438.6 ms over 72 windows, train 17s
+scenario seed 11 episode 9: validation 1700.1 ms over 72 windows, train 26s
+scenario seed 11 episode 12: validation 1539.6 ms over 72 windows, train 34s
+scenario seed 11 episode 15: validation 1534.6 ms over 72 windows, train 43s
+scenario seed 11 episode 18: validation 1490.1 ms over 72 windows, train 51s
+scenario seed 11 episode 21: validation 1415.5 ms over 72 windows, train 59s
+scenario seed 11 episode 24: validation 1415.8 ms over 72 windows, train 68s
+scenario seed 11 episode 27: validation 1519.5 ms over 72 windows, train 76s
+scenario seed 11 episode 30: validation 1560.5 ms over 72 windows, train 85s
+scenario seed 11 episode 33: validation 1614.7 ms over 72 windows, train 93s
+scenario seed 11 episode 36: validation 1660.6 ms over 72 windows, train 101s
+scenario seed 11 episode 39: validation 1380.6 ms over 72 windows, train 110s
+scenario seed 11: validation 1532.8 ms, train 115s
+scenario seed 22 episode 3: validation 1953.5 ms over 72 windows, train 9s
+scenario seed 22 episode 6: validation 1719.5 ms over 72 windows, train 17s
+scenario seed 22 episode 9: validation 1529.8 ms over 72 windows, train 26s
+scenario seed 22 episode 12: validation 1505.9 ms over 72 windows, train 34s
+scenario seed 22 episode 15: validation 1510.9 ms over 72 windows, train 43s
+scenario seed 22 episode 18: validation 1536.2 ms over 72 windows, train 52s
+scenario seed 22 episode 21: validation 1600.0 ms over 72 windows, train 60s
+scenario seed 22 episode 24: validation 1612.4 ms over 72 windows, train 69s
+scenario seed 22 episode 27: validation 1487.4 ms over 72 windows, train 77s
+scenario seed 22 episode 30: validation 1506.5 ms over 72 windows, train 86s
+scenario seed 22 episode 33: validation 1543.2 ms over 72 windows, train 94s
+scenario seed 22 episode 36: validation 1500.5 ms over 72 windows, train 102s
+scenario seed 22 episode 39: validation 1573.7 ms over 72 windows, train 111s
+scenario seed 22: validation 1273.8 ms, train 115s
