@@ -1,0 +1,79 @@
+{
+  "batch_valid": true,
+  "environment": {
+    "cpu_count": 20,
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "max_per_trace_ratio": 1.0107373728630082,
+  "per_trace_anchor": [
+    {
+      "actual": 0,
+      "end": 628.9507,
+      "ratio": 0.7714222916325029,
+      "scenario": "test-0-brc100d",
+      "start": 815.3131
+    },
+    {
+      "actual": 1,
+      "end": 649.0512,
+      "ratio": 0.9904072358419178,
+      "scenario": "test-0-brc100d",
+      "start": 655.3377
+    },
+    {
+      "actual": 2,
+      "end": 642.8743,
+      "ratio": 0.9834886927170278,
+      "scenario": "test-0-brc100d",
+      "start": 653.6672
+    },
+    {
+      "actual": 0,
+      "end": 533.0022,
+      "ratio": 0.9990652311926747,
+      "scenario": "test-1-brc203d",
+      "start": 533.5009
+    },
+    {
+      "actual": 1,
+      "end": 484.313,
+      "ratio": 0.985366389592792,
+      "scenario": "test-1-brc203d",
+      "start": 491.5055
+    },
+    {
+      "actual": 2,
+      "end": 483.6752,
+      "ratio": 0.9642166957388488,
+      "scenario": "test-1-brc203d",
+      "start": 501.625
+    },
+    {
+      "actual": 0,
+      "end": 504.3256,
+      "ratio": 0.9465266786670323,
+      "scenario": "test-2-den011d",
+      "start": 532.8171
+    },
+    {
+      "actual": 1,
+      "end": 524.2718,
+      "ratio": 1.0107373728630082,
+      "scenario": "test-2-den011d",
+      "start": 518.7023
+    },
+    {
+      "actual": 2,
+      "end": 536.213,
+      "ratio": 0.9832580626765057,
+      "scenario": "test-2-den011d",
+      "start": 545.3431
+    }
+  ],
+  "sentinel": {
+    "end": 263.9496,
+    "ratio": 0.6563010968288636,
+    "start": 402.1776
+  },
+  "threshold": 1.15
+}

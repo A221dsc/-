@@ -1,0 +1,48 @@
+historical seed 11 ep 5: val 691.8 ms train 4s
+historical seed 11 ep 10: val 1354.9 ms train 9s
+historical seed 11 ep 15: val 1039.3 ms train 14s
+historical seed 11 ep 20: val 1299.4 ms train 18s
+historical seed 11: early stop
+historical seed 11: final 691.7 ms
+historical seed 22 ep 5: val 842.2 ms train 5s
+historical seed 22 ep 10: val 1593.6 ms train 10s
+historical seed 22 ep 15: val 1272.7 ms train 15s
+historical seed 22 ep 20: val 579.9 ms train 19s
+historical seed 22 ep 25: val 1292.6 ms train 23s
+historical seed 22 ep 30: val 606.9 ms train 27s
+historical seed 22 ep 35: val 640.0 ms train 31s
+historical seed 22: early stop
+historical seed 22: final 572.4 ms
+historical seed 33 ep 5: val 974.5 ms train 5s
+historical seed 33 ep 10: val 1341.7 ms train 10s
+historical seed 33 ep 15: val 1326.0 ms train 15s
+historical seed 33 ep 20: val 1058.6 ms train 19s
+historical seed 33: early stop
+historical seed 33: final 976.4 ms
+scenario seed 11 ep 5: val 812.6 ms train 5s
+scenario seed 11 ep 10: val 795.8 ms train 9s
+scenario seed 11 ep 15: val 1357.8 ms train 14s
+scenario seed 11 ep 20: val 675.6 ms train 19s
+scenario seed 11 ep 25: val 1331.0 ms train 23s
+scenario seed 11 ep 30: val 673.3 ms train 27s
+scenario seed 11 ep 35: val 1026.1 ms train 32s
+scenario seed 11 ep 40: val 850.2 ms train 36s
+scenario seed 11: final 654.2 ms
+scenario seed 22 ep 5: val 1375.8 ms train 5s
+scenario seed 22 ep 10: val 817.3 ms train 10s
+scenario seed 22 ep 15: val 876.4 ms train 14s
+scenario seed 22 ep 20: val 758.2 ms train 19s
+scenario seed 22 ep 25: val 553.8 ms train 22s
+scenario seed 22 ep 30: val 526.0 ms train 26s
+scenario seed 22 ep 35: val 741.2 ms train 29s
+scenario seed 22 ep 40: val 1104.2 ms train 33s
+scenario seed 22: final 520.4 ms
+scenario seed 33 ep 5: val 1093.4 ms train 5s
+scenario seed 33 ep 10: val 1399.4 ms train 10s
+scenario seed 33 ep 15: val 1380.9 ms train 14s
+scenario seed 33 ep 20: val 992.5 ms train 19s
+scenario seed 33 ep 25: val 1044.0 ms train 23s
+scenario seed 33 ep 30: val 968.3 ms train 27s
+scenario seed 33 ep 35: val 773.1 ms train 32s
+scenario seed 33 ep 40: val 1028.7 ms train 36s
+scenario seed 33: final 744.3 ms

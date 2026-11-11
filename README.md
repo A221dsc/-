@@ -169,3 +169,13 @@ python -X utf8 scripts/run_m4_phase8_compare.py
 
 `partition_rlserve FINE QUAD CPU TRACE PLAN VERIFY` 提供可变叶子数的交互回放；`partition_greedy` 的四项成本已互斥。锚点漂移超阈值批次自动标记无效。详见 [M4.8 报告](M4_PARTITION_RL_PILOT_REPORT.md)。
 
+## M4.9：强化学习实验修复
+
+```powershell
+python -X utf8 scripts/m4_dqn_partition.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase8/plans results/m4/phase9/dqn --seeds 11 22 33 --episodes 40
+python -X utf8 scripts/m4_dqn_partition_eval.py configs/m4.json data/processed/m4 build_m3/spatial_m3.exe results/m4/phase7/plans results/m4/phase9/dqn results/m4/phase9/eval_uniform
+python -X utf8 scripts/run_m4_phase9_compare.py
+```
+
+窗口对齐、独立验证、动作收益、特征/推理计时与“逐轨迹 + 哨兵”锚点已修复；M4.8 标签以 [M4.9 报告](M4_PARTITION_RL_CORRECTED_REPORT.md) 为准。
+

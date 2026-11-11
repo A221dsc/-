@@ -1,0 +1,40 @@
+historical seed 11 ep 5: val 686.1 ms train 4s
+historical seed 11 ep 10: val 632.5 ms train 9s
+historical seed 11 ep 15: val 1226.1 ms train 13s
+historical seed 11 ep 20: val 1142.0 ms train 18s
+historical seed 11 ep 25: val 987.8 ms train 22s
+historical seed 11: early stop
+historical seed 11: final 652.2 ms
+historical seed 22 ep 5: val 627.6 ms train 4s
+historical seed 22 ep 10: val 563.7 ms train 9s
+historical seed 22 ep 15: val 1184.7 ms train 13s
+historical seed 22 ep 20: val 638.5 ms train 17s
+historical seed 22 ep 25: val 1183.6 ms train 22s
+historical seed 22: early stop
+historical seed 22: final 583.3 ms
+historical seed 33 ep 5: val 985.8 ms train 5s
+historical seed 33 ep 10: val 1205.7 ms train 10s
+historical seed 33 ep 15: val 1188.6 ms train 15s
+historical seed 33 ep 20: val 1038.0 ms train 19s
+historical seed 33: early stop
+historical seed 33: final 958.3 ms
+scenario seed 11 ep 5: val 1151.5 ms train 5s
+scenario seed 11 ep 10: val 1392.2 ms train 10s
+scenario seed 11 ep 15: val 1315.9 ms train 15s
+scenario seed 11 ep 20: val 1191.1 ms train 20s
+scenario seed 11: early stop
+scenario seed 11: final 1209.2 ms
+scenario seed 22 ep 5: val 1169.7 ms train 5s
+scenario seed 22 ep 10: val 604.2 ms train 9s
+scenario seed 22 ep 15: val 475.3 ms train 13s
+scenario seed 22 ep 20: val 615.8 ms train 17s
+scenario seed 22 ep 25: val 878.7 ms train 22s
+scenario seed 22 ep 30: val 680.9 ms train 26s
+scenario seed 22: early stop
+scenario seed 22: final 479.9 ms
+scenario seed 33 ep 5: val 1066.4 ms train 5s
+scenario seed 33 ep 10: val 1202.4 ms train 10s
+scenario seed 33 ep 15: val 1425.2 ms train 15s
+scenario seed 33 ep 20: val 1202.5 ms train 20s
+scenario seed 33: early stop
+scenario seed 33: final 1017.8 ms

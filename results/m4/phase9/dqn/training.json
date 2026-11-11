@@ -1,0 +1,38 @@
+{
+  "historical-11": {
+    "best_validation_ms": 691.7532999999999,
+    "episodes": 20,
+    "train_seconds": 19.468651294708252,
+    "validation_ms": 691.7205999999999
+  },
+  "historical-22": {
+    "best_validation_ms": 579.8625,
+    "episodes": 35,
+    "train_seconds": 32.14591312408447,
+    "validation_ms": 572.4219999999999
+  },
+  "historical-33": {
+    "best_validation_ms": 974.4854000000003,
+    "episodes": 20,
+    "train_seconds": 20.774954080581665,
+    "validation_ms": 976.4200000000001
+  },
+  "scenario-11": {
+    "best_validation_ms": 673.3496,
+    "episodes": 40,
+    "train_seconds": 36.599241971969604,
+    "validation_ms": 654.1636000000001
+  },
+  "scenario-22": {
+    "best_validation_ms": 525.9806000000001,
+    "episodes": 40,
+    "train_seconds": 34.46634340286255,
+    "validation_ms": 520.4188999999999
+  },
+  "scenario-33": {
+    "best_validation_ms": 773.1033,
+    "episodes": 40,
+    "train_seconds": 36.995360136032104,
+    "validation_ms": 744.3285999999999
+  }
+}

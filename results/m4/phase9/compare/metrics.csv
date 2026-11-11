@@ -1,0 +1,271 @@
+scenario,actual,role,method,online_ms,leaves
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",602.3951999468684,256
+test-0-brc100d,0,classic,Uniform Grid,425.5143,0
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",324.74830042565463,448
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",597.5073000668198,256
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",258.60369928199646,448
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",738.4917999400109,448
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",597.2171000980557,448
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",509.69729938976764,256
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",429.47119936431943,256
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",354.61559960772394,256
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",288.6489996617407,448
+test-0-brc100d,0,greedy,uniform-16 + prior cost greedy,316.5557,256
+test-0-brc100d,0,classic,Fixed Regional Scan,672.4948,0
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",675.9234004504502,256
+test-0-brc100d,0,classic,PR Quadtree,300.4261,0
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",259.87400038514136,448
+test-0-brc100d,0,classic,Fixed Local Quadtree,446.1554,0
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",489.47550153631863,256
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",481.70069953318534,448
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",312.51299982494714,256
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",269.6898996566862,448
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",640.4723000628352,256
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",283.3584007700622,256
+test-0-brc100d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",358.653499906075,256
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",368.6075999095082,448
+test-0-brc100d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",404.46470018528106,256
+test-0-brc100d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",445.780699980104,448
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",338.1393994636029,448
+test-0-brc100d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",477.8508002573043,448
+test-0-brc100d,0,greedy,adaptive-query + prior cost greedy,238.1316,448
+test-0-brc100d,1,greedy,adaptive-query + prior cost greedy,227.3034,448
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",351.37680016056004,448
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",489.19409961162506,448
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",413.30829985143544,448
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",265.3468002705067,448
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",251.8511002202332,256
+test-0-brc100d,1,classic,Uniform Grid,362.372,0
+test-0-brc100d,1,classic,Fixed Local Quadtree,411.7392,0
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",265.6276004989624,448
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",463.8802999126047,448
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",290.0535998797417,448
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",323.1488995328009,448
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",401.43710031023323,256
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",328.3386993832111,256
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",212.0981998373151,448
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",372.60889965785145,256
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",434.18199948134423,256
+test-0-brc100d,1,classic,PR Quadtree,310.2864,0
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",381.9580003254473,448
+test-0-brc100d,1,classic,Fixed Regional Scan,665.0099,0
+test-0-brc100d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",233.46119993774295,448
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",345.3433002790958,256
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",702.626299027425,256
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",654.0189988016575,256
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",502.8946994911313,256
+test-0-brc100d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",293.14799906364976,256
+test-0-brc100d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",422.8341999854058,448
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",509.64390003073515,256
+test-0-brc100d,1,greedy,uniform-16 + prior cost greedy,293.5185,256
+test-0-brc100d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",389.32810059703587,256
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",280.682800789693,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",409.491999677217,256
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",462.7991001154989,448
+test-0-brc100d,2,greedy,uniform-16 + prior cost greedy,285.2333,256
+test-0-brc100d,2,greedy,adaptive-query + prior cost greedy,213.476,448
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",263.5609006278396,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",244.7350007210076,256
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",399.5114002182365,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",367.89549948991237,256
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",347.6963004060596,256
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",442.87660049507616,256
+test-0-brc100d,2,classic,Fixed Regional Scan,628.5766,0
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",225.77809961564242,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",356.4705004906595,256
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",310.39509952035843,448
+test-0-brc100d,2,classic,PR Quadtree,265.8751,0
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",402.5727995144516,448
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",296.09840057212114,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",492.62790045780537,256
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",468.0537003350437,448
+test-0-brc100d,2,classic,Fixed Local Quadtree,449.4128,0
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",212.45210098983944,448
+test-0-brc100d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",655.2995992817372,256
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",577.1091997764647,256
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",324.6385995720923,256
+test-0-brc100d,2,classic,Uniform Grid,322.5126,0
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",428.2686994181722,256
+test-0-brc100d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",406.2320003567338,448
+test-0-brc100d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",283.1161999973059,256
+test-0-brc100d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",315.1900997265011,448
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",525.5914000623375,256
+test-1-brc203d,0,classic,Uniform Grid,296.4236,0
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",242.71209990906715,256
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",323.6398992898613,256
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",226.8371991948694,256
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",264.75190033468607,256
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",410.036599668622,256
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",373.0287002276331,445
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",281.11259979472754,445
+test-1-brc203d,0,classic,Fixed Regional Scan,557.7487,0
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",418.2247997113377,256
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",274.83799958043994,256
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",286.8246997454464,445
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",382.9803992776573,445
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",409.6878002935469,445
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",265.891799680987,445
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",397.544600295043,445
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",277.4138004509151,256
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",203.69650026025175,445
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",303.92540021107493,445
+test-1-brc203d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",207.3143990704447,445
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",222.2799997879684,445
+test-1-brc203d,0,classic,PR Quadtree,261.4739,0
+test-1-brc203d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",202.09890013440847,256
+test-1-brc203d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",273.70800013046266,445
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",391.3231002594501,256
+test-1-brc203d,0,greedy,uniform-16 + prior cost greedy,204.2926,256
+test-1-brc203d,0,greedy,adaptive-query + prior cost greedy,192.9685,445
+test-1-brc203d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",250.67789930826723,256
+test-1-brc203d,0,classic,Fixed Local Quadtree,407.7246,0
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",385.82130019293726,445
+test-1-brc203d,1,classic,Fixed Regional Scan,487.307,0
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",226.32949932159187,256
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",244.2697994210124,256
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",280.57299970879853,445
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",249.5230005482942,445
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",280.14120042309463,445
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",232.8070997846395,256
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",386.6090001411915,256
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",193.74550050489606,445
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",421.39469941996634,256
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",280.7298997829974,256
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",317.6015993541032,445
+test-1-brc203d,1,greedy,adaptive-query + prior cost greedy,201.5064,445
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",223.31459969457686,445
+test-1-brc203d,1,classic,Fixed Local Quadtree,389.2325,0
+test-1-brc203d,1,classic,PR Quadtree,268.4881,0
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",374.67349995195866,445
+test-1-brc203d,1,classic,Uniform Grid,295.254,0
+test-1-brc203d,1,greedy,uniform-16 + prior cost greedy,203.4746,256
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",273.87080035503806,445
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",493.59390061769784,256
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",353.18950012968185,445
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",288.9969992907673,256
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",195.433199874416,256
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",359.0909001401007,256
+test-1-brc203d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",220.31480076228678,256
+test-1-brc203d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",275.9887999858737,256
+test-1-brc203d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",361.2612997967809,445
+test-1-brc203d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",193.6477004579574,445
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",195.76899917291104,445
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",251.59320014054478,256
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",347.0251997690588,445
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",194.10820126936733,256
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",186.97129969906808,445
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",227.5575007055074,445
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",361.95250019324124,256
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",461.23780011395513,256
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",268.4851000552893,445
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",268.33170100726784,256
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",349.103900145036,256
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",211.36359952510298,445
+test-1-brc203d,2,greedy,uniform-16 + prior cost greedy,180.6354,256
+test-1-brc203d,2,classic,Fixed Regional Scan,466.4825,0
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",356.09899936442076,445
+test-1-brc203d,2,classic,Uniform Grid,286.0358,0
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",431.3021996728003,256
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",286.44939997174146,445
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",341.4412998786211,445
+test-1-brc203d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",365.47490009503963,445
+test-1-brc203d,2,greedy,adaptive-query + prior cost greedy,171.7173,445
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",224.0801998560846,256
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",234.58199956029952,445
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",262.1077002368867,256
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",270.05239932916464,256
+test-1-brc203d,2,classic,PR Quadtree,251.0563,0
+test-1-brc203d,2,classic,Fixed Local Quadtree,376.3621,0
+test-1-brc203d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",343.7354001678914,256
+test-1-brc203d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",241.6442001001388,256
+test-1-brc203d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",272.8560997925579,445
+test-2-den011d,0,classic,Fixed Local Quadtree,419.4248,0
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",271.68229962947964,256
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",208.03630037010313,439
+test-2-den011d,0,classic,PR Quadtree,257.3214,0
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",234.69969983425736,256
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",308.03739971496464,256
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",395.14950010629593,256
+test-2-den011d,0,classic,Fixed Regional Scan,518.0909,0
+test-2-den011d,0,classic,Uniform Grid,332.1091,0
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",296.05080015410186,439
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",269.67159956139324,439
+test-2-den011d,0,greedy,uniform-16 + prior cost greedy,213.4156,256
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",361.2829000279963,256
+test-2-den011d,0,greedy,adaptive-query + prior cost greedy,199.5978,439
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",237.61690063008666,439
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",326.29500025661883,256
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",397.8905004664868,256
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",261.75449976978007,256
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",225.75069910809697,439
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",406.013299939394,256
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",264.38330009525714,439
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",190.72260009988247,439
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",357.9183006418705,439
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",238.80350084983706,439
+test-2-den011d,0,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",387.5362996758014,439
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",233.2596002420932,439
+test-2-den011d,0,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",259.230000188303,256
+test-2-den011d,0,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",360.0628993632317,439
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",521.1816997224927,256
+test-2-den011d,0,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",170.33790041702986,256
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",231.01790027475357,256
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",206.16680033081172,439
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",409.55250047915877,256
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",336.3401000638902,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",246.20630019242168,439
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",381.75369950389563,439
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",183.08449961907564,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",378.69959982352555,439
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",283.3505992425114,439
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",539.6155988778592,256
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",267.80010007262524,439
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",346.3674998684883,256
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",272.10709903669357,256
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",401.5604990657896,439
+test-2-den011d,1,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",191.88650004490614,439
+test-2-den011d,1,greedy,uniform-16 + prior cost greedy,203.7852,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",259.20490003231464,439
+test-2-den011d,1,classic,Fixed Regional Scan,547.061,0
+test-2-den011d,1,classic,Fixed Local Quadtree,400.5203,0
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",257.5763008763522,256
+test-2-den011d,1,classic,Uniform Grid,318.7255,0
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",374.95380003902017,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",400.52019959214033,439
+test-2-den011d,1,classic,PR Quadtree,258.9027,0
+test-2-den011d,1,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",255.5576008341223,256
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",301.8335003638923,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",235.7076000747919,439
+test-2-den011d,1,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",412.36869946101905,256
+test-2-den011d,1,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",279.53299936382473,439
+test-2-den011d,1,greedy,adaptive-query + prior cost greedy,206.1764,439
+test-2-den011d,2,classic,Fixed Local Quadtree,364.0624,0
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 33]",280.33769979023634,439
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 11]",234.23180070700943,439
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 33]",363.31999976480006,439
+test-2-den011d,2,classic,PR Quadtree,258.2724,0
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 11]",254.31340057745277,256
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 33]",416.43219990962746,256
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 11]",284.96330084786416,439
+test-2-den011d,2,greedy,adaptive-query + prior cost greedy,203.3271,439
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 22]",282.99499965281484,256
+test-2-den011d,2,classic,Fixed Regional Scan,542.6525,0
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 33]",275.8933000410259,256
+test-2-den011d,2,classic,Uniform Grid,300.2268,0
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 11]",560.5968998554825,256
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 33]",410.7031997389525,256
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained uniform, seed 22]",216.60579948687553,439
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 11]",249.8559994394958,439
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 33]",381.8267990432501,256
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained nonuniform, seed 22]",338.16029971901474,256
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained nonuniform, seed 22]",228.3256989904672,439
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 22]",258.40120011386574,256
+test-2-den011d,2,greedy,uniform-16 + prior cost greedy,212.324,256
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained nonuniform, seed 11]",280.6497000332952,256
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 22]",207.22420107957126,439
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 22]",275.25360042498113,439
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 33]",404.54469945112464,439
+test-2-den011d,2,dqn,"uniform-16 + scenario DQN [trained uniform, seed 22]",193.96990045348406,256
+test-2-den011d,2,dqn,"adaptive-query + historical DQN [trained uniform, seed 33]",381.1497000804931,439
+test-2-den011d,2,dqn,"uniform-16 + historical DQN [trained uniform, seed 11]",349.37540033953786,256
+test-2-den011d,2,dqn,"adaptive-query + scenario DQN [trained nonuniform, seed 11]",398.1430000362128,439

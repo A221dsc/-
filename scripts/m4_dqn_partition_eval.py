@@ -60,11 +60,14 @@ def main():
                     env = Env(args.binary, trace, source)
                     changes = []
                     inference = 0.0
+                    feature_time = 0.0
                     previous = np.asarray(env.state["modes"])
+                    next_window = 0
                     while not env.state["done"]:
-                        window = env.state["window"]
-                        feats = features(env.state, min(23, window + 1), areas, aspect, levels,
+                        start = time.perf_counter()
+                        feats = features(env.state, min(23, next_window), areas, aspect, levels,
                                          prior, agent.has_scenario)
+                        feature_time += time.perf_counter() - start
                         start = time.perf_counter()
                         actions, benefits = agent.act(feats, env.state, 0.0)
                         inference += time.perf_counter() - start
@@ -72,8 +75,9 @@ def main():
                         applied = np.asarray(result["applied"])
                         for leaf in range(len(previous)):
                             if previous[leaf] != applied[leaf]:
-                                changes.append((window, leaf, int(applied[leaf])))
+                                changes.append((next_window, leaf, int(applied[leaf])))
                         previous = applied
+                        next_window += 1
                     env.close()
                     plan_path = plan_dir / f"{variant}-{seed}-{ident}-{partition}-a{actual}.plan"
                     lines = [f"L {x0} {y0} {x1} {y1} {level}"
@@ -88,9 +92,11 @@ def main():
                     head = dict(token.split("=", 1) for token in result.stdout.strip().split())
                     rows.append({"variant": variant, "seed": seed, "partition": partition,
                                  "scenario": ident, "actual": actual,
-                                 "online_ms": float(head["online_ms"]) + inference * 1000.0,
+                                 "online_ms": float(head["online_ms"]) +
+                                 (inference + feature_time) * 1000.0,
                                  "index_ms": head["online_ms"],
                                  "inference_ms": inference * 1000.0,
+                                 "feature_ms": feature_time * 1000.0,
                                  "changes": len(changes)})
                     print(f"{variant}-{seed} {partition} {ident} a{actual}: "
                           f"{float(head['online_ms']) + inference*1000:.1f} ms", flush=True)

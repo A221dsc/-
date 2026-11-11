@@ -124,7 +124,10 @@ class Agent:
             for i in np.flatnonzero(explore):
                 actions[i] = self.rng.choice(np.flatnonzero(mask[i]))
         mode = np.asarray(state["modes"])
-        benefit = (q - q[np.arange(len(mode)), mode][:, None]).max(axis=1)
+        # Benefit must match the action actually requested, including exploration;
+        # keeping the current mode carries no switching benefit.
+        benefit = q[np.arange(len(mode)), actions] - q[np.arange(len(mode)), mode]
+        benefit = np.where(actions == mode, 0.0, benefit)
         return actions.astype(int), benefit
 
     def remember(self, feats, actions, rewards, next_feats, next_mask, done):
@@ -165,18 +168,22 @@ def episode(agent, binary, trace, plan, epsilon, train=True, collect=None):
     env = Env(binary, trace, plan)
     total = 0.0
     inference = 0.0
+    feature_time = 0.0
     previous = np.asarray(env.state["modes"])
+    next_window = 0  # the window the next step will replay
     while not env.state["done"]:
-        window = env.state["window"]
-        feats = features(env.state, min(23, window + 1), areas, aspect, levels, prior,
+        start = time.perf_counter()
+        feats = features(env.state, min(23, next_window), areas, aspect, levels, prior,
                          agent.has_scenario)
+        feature_time += time.perf_counter() - start
         start = time.perf_counter()
         actions, benefits = agent.act(feats, env.state, epsilon)
         inference += time.perf_counter() - start
         result = env.step(actions, benefits)
         total += result["cost_ms"]
+        next_window += 1
         if train:
-            nxt = features(env.state, min(23, window + 2), areas, aspect, levels, prior,
+            nxt = features(env.state, min(23, next_window), areas, aspect, levels, prior,
                            agent.has_scenario)
             rewards = -np.asarray(result["region_us"], dtype=np.float32) / (1000.0 * 5.0)
             agent.remember(feats, np.asarray(result["applied"], dtype=int),
@@ -190,7 +197,7 @@ def episode(agent, binary, trace, plan, epsilon, train=True, collect=None):
                     collect.append((window, leaf, int(result["applied"][leaf])))
             previous = np.asarray(result["applied"])
     env.close()
-    return total, inference
+    return total, inference + feature_time, feature_time
 
 
 def run(args):
@@ -201,31 +208,47 @@ def run(args):
         trace = args.scenarios / "traces" / f"{ident}.actual.m3bin"
         plan = args.plans / f"{ident}.{args.train_partition}.plan"
         train.append((trace, plan))
+    validation = []
+    for index, map_name in enumerate(config["maps"]["validation"]):
+        ident = f"validation-{index}-{Path(map_name).stem}"
+        trace = args.scenarios / "traces" / f"{ident}.actual.m3bin"
+        plan = args.plans / f"{ident}.{args.train_partition}.plan"
+        if trace.exists() and plan.exists():
+            validation.append((trace, plan))
+    if not validation:
+        raise SystemExit("no independent validation traces found")
     results = {}
     for variant in ("historical", "scenario"):
         for seed in args.seeds:
             agent = Agent(seed, has_scenario=(variant == "scenario"))
             best = float("inf")
+            best_weights = None
             stale = 0
             start = time.time()
             for episode_index in range(args.episodes):
                 trace, plan = train[episode_index % len(train)]
                 epsilon = max(0.05, 1.0 - episode_index / max(1, args.episodes * 0.7))
-                total, _ = episode(agent, args.binary, trace, plan, epsilon)
+                total, _, _ = episode(agent, args.binary, trace, plan, epsilon)
                 if (episode_index + 1) % 5 == 0:
-                    value, _ = episode(agent, args.binary, train[0][0], train[0][1], 0.0,
-                                       train=False)
+                    value = sum(episode(agent, args.binary, v_trace, v_plan, 0.0,
+                                        train=False)[0] for v_trace, v_plan in validation)
                     print(f"{variant} seed {seed} ep {episode_index + 1}: val {value:.1f} ms "
                           f"train {time.time() - start:.0f}s", flush=True)
                     if value < best - 1.0:
                         best, stale = value, 0
+                        best_weights = [p.copy() for p in agent.online.params()]
                     else:
                         stale += 1
                         if stale >= 3:
                             print(f"{variant} seed {seed}: early stop", flush=True)
                             break
-            value, _ = episode(agent, args.binary, train[0][0], train[0][1], 0.0, train=False)
+            if best_weights is not None:
+                for param, saved in zip(agent.online.params(), best_weights):
+                    param[...] = saved
+            value = sum(episode(agent, args.binary, v_trace, v_plan, 0.0, train=False)[0]
+                        for v_trace, v_plan in validation)
             results[f"{variant}-{seed}"] = {"validation_ms": value, "episodes": episode_index + 1,
+                                            "best_validation_ms": best,
                                             "train_seconds": time.time() - start}
             np.savez(args.output / f"weights-{variant}-{seed}.npz",
                      W1=agent.online.W1, b1=agent.online.b1, W2=agent.online.W2,
