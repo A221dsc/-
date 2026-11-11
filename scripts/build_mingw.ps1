@@ -10,7 +10,7 @@ $flags = @('-std=c++20', '-O3', '-DNDEBUG', '-Isrc', "-I$LsiRoot/include")
 $common = @(
     'src/indexes/grid.cpp', 'src/indexes/quad.cpp', 'src/indexes/boost.cpp',
     'src/indexes/lsi.cpp', 'src/indexes/regional.cpp', 'src/indexes/selector.cpp',
-    'src/indexes/prior.cpp', 'src/indexes/partition.cpp',
+    'src/indexes/prior.cpp', 'src/indexes/partition.cpp', 'src/indexes/homogeneous_partition.cpp',
     'src/validation/oracle.cpp'
 )
 $objects = foreach ($src in $common) {
@@ -26,7 +26,7 @@ if ($LASTEXITCODE) { exit $LASTEXITCODE }
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
 & g++ @flags @objects src/workload/replay.cpp src/benchmark/main.cpp $dll -lpsapi -o "$Build/spatial_bench.exe"
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
-& g++ @flags @objects src/workload/m3.cpp src/benchmark/m3.cpp src/benchmark/rlserve.cpp src/benchmark/partition_bench.cpp src/benchmark/partition_greedy.cpp src/benchmark/partition_rlserve.cpp src/benchmark/partition_cf.cpp $dll -lpsapi -o "$Build/spatial_m3.exe"
+& g++ @flags @objects src/workload/m3.cpp src/benchmark/m3.cpp src/benchmark/rlserve.cpp src/benchmark/partition_bench.cpp src/benchmark/partition_greedy.cpp src/benchmark/partition_rlserve.cpp src/benchmark/partition_cf.cpp src/benchmark/hpartition_bench.cpp $dll -lpsapi -o "$Build/spatial_m3.exe"
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
 '#include <boost/version.hpp>' | & g++ @flags -E -dM -x c++ - | Select-String 'define BOOST_LIB_VERSION '
 & "$Build/index_tests.exe"

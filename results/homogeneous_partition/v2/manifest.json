@@ -1,0 +1,79 @@
+{
+  "batch_valid": true,
+  "environment": {
+    "cpu_count": 20,
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "max_trace_drift": 1.1228532957679043,
+  "per_trace": [
+    {
+      "actual": 0,
+      "drift": 1.002596716490984,
+      "end": 543.9015,
+      "scenario": "test-0-brc100d",
+      "start": 542.4928
+    },
+    {
+      "actual": 1,
+      "drift": 1.004187249471174,
+      "end": 562.7862,
+      "scenario": "test-0-brc100d",
+      "start": 560.4395
+    },
+    {
+      "actual": 2,
+      "drift": 1.021517803726766,
+      "end": 546.9192,
+      "scenario": "test-0-brc100d",
+      "start": 558.6877
+    },
+    {
+      "actual": 0,
+      "drift": 1.0096008013107438,
+      "end": 447.7311,
+      "scenario": "test-1-brc203d",
+      "start": 443.4734
+    },
+    {
+      "actual": 1,
+      "drift": 1.0454071064136052,
+      "end": 440.8372,
+      "scenario": "test-1-brc203d",
+      "start": 421.6895
+    },
+    {
+      "actual": 2,
+      "drift": 1.1228532957679043,
+      "end": 379.2849,
+      "scenario": "test-1-brc203d",
+      "start": 425.8813
+    },
+    {
+      "actual": 0,
+      "drift": 1.0173964784752647,
+      "end": 434.7719,
+      "scenario": "test-2-den011d",
+      "start": 442.3354
+    },
+    {
+      "actual": 1,
+      "drift": 1.0225290904618802,
+      "end": 456.0446,
+      "scenario": "test-2-den011d",
+      "start": 445.9967
+    },
+    {
+      "actual": 2,
+      "drift": 1.0339040947364306,
+      "end": 481.5551,
+      "scenario": "test-2-den011d",
+      "start": 465.7638
+    }
+  ],
+  "sentinel": {
+    "drift": 1.0511229042292975,
+    "end": 239.7008,
+    "start": 228.0426
+  },
+  "threshold": 1.15
+}

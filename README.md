@@ -227,3 +227,12 @@ python -X utf8 scripts/homogeneous_partition_experiment.py
 
 `spatial_m3 partition FINE QUAD CPU TRACE PLAN VALIDATE STATIC_MODE` 的 STATIC_MODE=2 把所有叶固定为同一 PR Quadtree；H0 对照全图 vs 4×4/8×8/16×16/32×32 vs 非均匀分区。结论与复现见 [H0 报告](H0_HOMOGENEOUS_PARTITION_REPORT.md)。
 
+## H0.1：轻量同构分区
+
+```powershell
+python -X utf8 scripts/homogeneous_partition_v2_experiment.py
+python -X utf8 scripts/h01_loads.py build_m3/spatial_m3.exe results/homogeneous_partition/controlled
+```
+
+`hpartition FINE QUAD CPU TRACE PLAN VALIDATE PROFILE` 使用 `HomogeneousPartitionIndex`（每叶同一 Quad、全局 id→leaf、代际路由）；1×1 为直接 Quad 的 1.043×。受控负载显示小查询热点/更新密集/迁移阶段分区有净收益，大范围查询/均匀阶段变差。详见 [H0.1 报告](H01_LIGHTWEIGHT_PARTITION_REPORT.md)。
+

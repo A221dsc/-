@@ -67,6 +67,7 @@ public:
     }
     virtual Answer query(Query q) const = 0;
     virtual std::size_t nodes() const { return 0; }
+    std::size_t size() const { return points_.size(); }
 protected:
     std::unordered_map<Id, Point> points_;
     virtual void insert(Id, Point) = 0;

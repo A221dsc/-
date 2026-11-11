@@ -39,3 +39,4 @@ __pycache__/
 /results/m4/phase11/diag/decision_log.csv
 /results/m4/phase12/diag/decision_log.csv
 /results/m4/phase13/controlled/*.m3bin
+/results/homogeneous_partition/controlled/*.m3bin

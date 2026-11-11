@@ -185,3 +185,12 @@
   - 分区越多越慢；节点数 2970→4716（+59%）；进程峰值 80.1 MB（轨迹主导）。
 - 裁决：在当前容器与真实轨迹上，同构分区无净收益；不进入 H1。先修复容器（实体单份存储、降低路由/簿记、隔离内存测量）并补齐受控负载，再判断分区价值。报告 [H0_HOMOGENEOUS_PARTITION_REPORT.md](H0_HOMOGENEOUS_PARTITION_REPORT.md)、审计 [H0_INDEX_AUDIT.md](H0_INDEX_AUDIT.md)、计划 [RESEARCH_PARTITION_PLAN.md](RESEARCH_PARTITION_PLAN.md)。
 
+## H0.1：轻量级同构分区索引与分区价值复核（research/scenario-aware-partition）
+
+- 旧容器 1×1 额外成本定位：`objects_`/叶 `ids`/`aux.points_` 三处重复 + 子格遍历线性去重；新容器路由仅 1.7–2.2 ms，局部 Quad 查询 81.7–90.9 ms 才是主要成本。
+- 新增 `HomogeneousPartitionIndex`：每叶同一 Quad（容量 32）、全局 id→leaf、代际标记路由、跨叶异常回滚；`hpartition` 基准输出构建/查询/更新/节点/路由/局部耗时/正确性。
+- 1×1 验收：新 252.1 ms vs 直接 Quad 241.6（1.043× ≤1.10；旧 1×1 266.7）。
+- 9 条真实轨迹（批次有效，mismatches=0）：1×1 252.1、4×4 252.4、8×8 254.3、16×16 261.3、32×32 275.3、非均匀 276.7–283.2。
+- 受控负载（20k 实体，8 场景，参数冻结）：小查询热点 32×32 −25%、更新密集 32×32 −28%、热点≠实体 −13%、迁移 8/16×16 −11%；大范围查询 +212%、均匀 +68%、集中 +35%、大机动 +18%。
+- 裁决：结果 A（部分），H1 条件式启动；大范围/均匀阶段保持单树或粗分区。报告 [H01_LIGHTWEIGHT_PARTITION_REPORT.md](H01_LIGHTWEIGHT_PARTITION_REPORT.md)。
+
