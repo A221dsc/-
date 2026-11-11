@@ -157,3 +157,12 @@
 - M4.10 指标修正：`window_cost_change`（非反事实收益）、热点升建用执行后模式、短期释放按首次升建追踪、`missed_by_model_score`、三模式 Q 极差；修正后热点升建 0.11–0.23、Q-真实收益 Spearman −0.33–0.08。
 - 裁决：可靠标签不足，未训练监督成本模型、未重启 DQN；当前更接近“数据/特征尚不足以稳定学习模式选择”的情况。M4.10 性能负结果保留。报告 [M4_COUNTERFACTUAL_SELECTION_REPORT.md](M4_COUNTERFACTUAL_SELECTION_REPORT.md)。
 
+## M4.12：反事实测量修复与可学习性验证
+
+- 修复 `observe=false` 导致的反事实假零负载；新增 `PartitionIndex::state_digest()`（实体 ID/坐标/叶子/数量），两臂动作前后摘要必须相等（`state_equal=1`）。
+- 测量器 v2：完整墙钟与叶子局部分量分离（profile 仅诊断）、配对 A/B 与 B/A 交替、5 组配对、3 组 A/A 空对照、原始配对保留、t 置信区间与四类标签（可靠正/负、可重复近零、无法分辨）。
+- 正确性：空动作噪声 0.1–5.7 ms、重复 5% 内、`mismatches=0`、摘要随状态变化、两臂状态一致。
+- 标签实测（窗口 12、前 3 叶、h1/2/4）：54 个候选 0 个可靠、9 个可重复近零、45 个无法分辨；候选按名义先验选出，实际 `load_q` 中位仅 3、实体 3，是效应量过小的直接原因。
+- 诊断修正：`q_real_spearman` → `q_window_change_spearman`（描述性），新增 `counterfactual_matches=0`；时域差异需在可靠标签上按相同时域比较。
+- 未训练监督模型、未重训 DQN；下一步按已观测前缀负载选候选、提高配对与 horizon、建立受控场景与可靠标签后再评估成本学习。报告 [M4_COUNTERFACTUAL_V2_REPORT.md](M4_COUNTERFACTUAL_V2_REPORT.md)。
+

@@ -198,3 +198,12 @@ python -X utf8 scripts/m4_counterfactual.py build_m3/spatial_m3.exe results/m4/p
 
 `partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY` 在相同状态下测量“保持 vs 切换”的真实窗口成本；噪声底约 2 ms，低于该值的标签标记为不确定。详见 [M4.11 报告](M4_COUNTERFACTUAL_SELECTION_REPORT.md)。
 
+## M4.12：反事实测量 v2
+
+```powershell
+python -X utf8 scripts/m4_counterfactual_test.py
+python -X utf8 scripts/m4_counterfactual.py build_m3/spatial_m3.exe results/m4/phase8/plans data/processed/m4/traces results/m4/phase12/cf --windows 12 --top 3 --pairs 5 --null-pairs 3 --horizons 1 2 4
+```
+
+`partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY PROFILE ORDER` 输出完整墙钟与叶子局部分量，两臂状态摘要必须一致；标签按配对 t 区间分为可靠正/负、可重复近零、无法分辨。详见 [M4.12 报告](M4_COUNTERFACTUAL_V2_REPORT.md)。
+

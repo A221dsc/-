@@ -159,7 +159,8 @@ def main():
                 "promotions": promotions,
                 "short_release": short_release,
                 "budget_use": statistics.mean(budget) / 4.0 if budget else 0.0,
-                "q_real_spearman": spearman(np.array(benefits), np.array(deltas)),
+                "q_window_change_spearman": spearman(np.array(benefits), np.array(deltas)),
+                "counterfactual_matches": 0,  # no reliable CF labels yet
                 "missed_by_model_score": missed,
                 "mean_q_range": float(np.mean([max(r["q_scan"], r["q_fine"], r["q_quad"]) -
                                                min(r["q_scan"], r["q_fine"], r["q_quad"])
@@ -172,7 +173,7 @@ def main():
     for m in metrics:
         print(f"seed {m['seed']} {m['partition']}: hot_upgrade {m['hot_upgrade_ratio_executed']:.2f} "
               f"upd_scan {m['update_heavy_scan_ratio']:.2f} promotions {m['promotions']} "
-              f"budget {m['budget_use']:.2f} spearman {m['q_real_spearman']:.2f} "
+              f"budget {m['budget_use']:.2f} q-desc-spearman {m['q_window_change_spearman']:.2f} "
               f"missed {m['missed_by_model_score']} q_range {m['mean_q_range']:.3f}")
 
 

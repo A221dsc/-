@@ -49,7 +49,7 @@ int run_partition_rlserve(const M3Trace& trace, int fine, int quad,
                           const std::string& plan_path, bool verify);
 int run_partition_cf(const M3Trace& trace, int fine, int quad, const std::string& plan_path,
                      int window, unsigned leaf, int mode_a, int mode_b, int horizon,
-                     bool verify);
+                     bool verify, bool profile, bool switch_first_order);
 int run_replayplan(const M3Trace& trace, int fine, int quad,
                    const std::vector<std::vector<int>>& plan);
 }
@@ -609,13 +609,14 @@ int main(int argc, char** argv) {
             return 0;
         }
         if (mode == "partition_cf") {
-            if (argc != 13) throw std::invalid_argument("usage: spatial_m3 partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY");
+            if (argc != 15) throw std::invalid_argument("usage: spatial_m3 partition_cf FINE QUAD CPU TRACE PLAN WINDOW LEAF MODE_A MODE_B HORIZON VERIFY PROFILE ORDER");
             pin(std::stoi(argv[4]));
             const auto trace = read_m3_trace(argv[5]);
             return run_partition_cf(trace, std::stoi(argv[2]), std::stoi(argv[3]), argv[6],
                                     std::stoi(argv[7]), static_cast<unsigned>(std::stoul(argv[8])),
                                     std::stoi(argv[9]), std::stoi(argv[10]),
-                                    std::stoi(argv[11]), std::stoi(argv[12]) != 0);
+                                    std::stoi(argv[11]), std::stoi(argv[12]) != 0,
+                                    std::stoi(argv[13]) != 0, std::stoi(argv[14]) != 0);
         }
         if (mode == "partition_rlserve") {
             if (argc != 8) throw std::invalid_argument("usage: spatial_m3 partition_rlserve FINE QUAD CPU TRACE PLAN VERIFY");

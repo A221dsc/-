@@ -10,10 +10,11 @@ TRACE = Path("data/processed/m4/traces/train-0-brc202d.actual.m3bin")
 PLAN = Path("results/m4/phase8/plans/train-0-brc202d.uniform-16.plan")
 
 
-def run(window, leaf, mode_b, horizon, verify=False):
+def run(window, leaf, mode_b, horizon, verify=False, profile=False, order=False):
     result = subprocess.run(
         [str(BINARY), "partition_cf", "160", "32", "0", str(TRACE), str(PLAN),
-         str(window), str(leaf), "0", str(mode_b), str(horizon), "1" if verify else "0"],
+         str(window), str(leaf), "0", str(mode_b), str(horizon),
+         "1" if verify else "0", "1" if profile else "0", "1" if order else "0"],
         capture_output=True, text=True)
     if result.returncode:
         raise SystemExit(result.stderr)
@@ -29,6 +30,7 @@ def run(window, leaf, mode_b, horizon, verify=False):
 def main():
     # 1. Identical arms: switching to the current mode must change nothing except noise.
     runs = [run(12, 55, 0, 1) for _ in range(3)]
+    assert all(r["state_equal"] == 1 for r in runs), "null arms differ in state"
     nets = [r["net_ms"] for r in runs]
     # The two arms are independent replays; the observed null noise is ~1-2 ms.
     assert max(abs(n) for n in nets) < 2.5, f"identical arms net too large: {nets}"
@@ -40,6 +42,7 @@ def main():
     #    query count for a real switch.
     first = run(12, 55, 2, 1)
     second = run(12, 55, 2, 1)
+    assert first["state_equal"] == 1 and second["state_equal"] == 1
     assert first["entities"] == second["entities"]
     assert first["load_q"] == second["load_q"]
     assert first["queries"] == second["queries"]
@@ -49,7 +52,13 @@ def main():
     # 3. Query correctness against the oracle on a real switch.
     verified = run(12, 55, 2, 2, verify=True)
     assert verified["mismatches"] == 0, "counterfactual oracle mismatch"
+    assert verified["state_equal"] == 1
     print("oracle mismatches:", verified["mismatches"])
+
+    # 3b. The digest must depend on the real state: different windows differ.
+    early = run(4, 55, 0, 1)
+    assert early["digest_before_a"] != first["digest_before_a"], "digest does not depend on state"
+    print("digest changes across windows")
 
     # 4. The uncertainty flag: a small net must be marked uncertain by the driver rule.
     small_ok = abs(first["net_ms"]) < 0.1

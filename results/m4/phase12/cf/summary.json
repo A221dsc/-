@@ -1,0 +1,10 @@
+{
+  "candidates": 54,
+  "labels": {
+    "near_zero_reproducible": 9,
+    "unresolvable": 45
+  },
+  "null_pairs": 3,
+  "pairs": 5,
+  "state_ok": true
+}

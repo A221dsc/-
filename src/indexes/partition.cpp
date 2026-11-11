@@ -1,4 +1,5 @@
 #include "partition.hpp"
+#include <bit>
 #include "core/clock.hpp"
 #include <algorithm>
 #include <cmath>
@@ -201,6 +202,31 @@ Answer PartitionIndex::query(Query q) const {
         }
     }
     return result;
+}
+
+std::uint64_t PartitionIndex::state_digest() const {
+    std::vector<std::uint64_t> rows;
+    rows.reserve(objects_.size());
+    for (const auto& [id, record] : objects_) {
+        std::uint64_t h = 1469598103934665603ULL;
+        auto mix = [&](std::uint64_t value) {
+            h ^= value;
+            h *= 1099511628211ULL;
+        };
+        mix(static_cast<std::uint64_t>(id));
+        mix(std::bit_cast<std::uint64_t>(record.point.x));
+        mix(std::bit_cast<std::uint64_t>(record.point.y));
+        mix(static_cast<std::uint64_t>(record.leaf));
+        rows.push_back(h);
+    }
+    std::sort(rows.begin(), rows.end());
+    std::uint64_t digest = rows.size();
+    for (std::uint64_t value : rows) {
+        digest ^= value;
+        digest *= 1099511628211ULL;
+    }
+    digest ^= static_cast<std::uint64_t>(leaves_.size()) << 32;
+    return digest;
 }
 
 void PartitionIndex::reset_window() {
