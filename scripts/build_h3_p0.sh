@@ -71,4 +71,10 @@ g++ "${CXXFLAGS[@]}" tests/h3_rtm_pilot.cpp \
   "$BUILD/libh3.a" -lm \
   -o "$BUILD/h3_rtm_pilot.exe"
 
-echo "built $BUILD/h3_management_tests.exe, $BUILD/h3_partition_bench.exe and $BUILD/h3_rtm_pilot.exe"
+g++ "${CXXFLAGS[@]}" tests/h3_rtm_correctness.cpp \
+  "$BUILD/obj/cpp/geo.o" "$BUILD/obj/cpp/local_projection.o" \
+  "$BUILD/obj/cpp/h3_util.o" "$BUILD/obj/cpp/h3_management.o" \
+  src/validation/oracle.cpp "$BUILD/libh3.a" -lm \
+  -o "$BUILD/h3_rtm_correctness.exe"
+
+echo "built tests, bench, pilot and correctness targets"

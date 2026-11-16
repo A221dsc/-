@@ -1,0 +1,8 @@
+4km/res9/t4/m1.000000: workers=4 regions=4 entities=5000 queries=1000 updates=2000 buckets=233 passed
+4km/res9/t4/m1.500000: workers=4 regions=6 entities=5000 queries=1000 updates=2000 buckets=233 passed
+4km/res9/t4/m2.000000: workers=4 regions=8 entities=5000 queries=1000 updates=2000 buckets=233 passed
+4km/res9/t8/m1.000000: workers=8 regions=8 entities=5000 queries=1000 updates=2000 buckets=233 passed
+4km/res9/t8/m1.500000: workers=8 regions=12 entities=5000 queries=1000 updates=2000 buckets=233 passed
+4km/res9/t8/m2.000000: workers=8 regions=16 entities=5000 queries=1000 updates=2000 buckets=233 passed
+20km/res10/t8/m2: workers=8 regions=16 entities=5000 queries=1000 updates=2000 buckets=4636 passed
+H3-RTM worker-sharded correctness suite passed

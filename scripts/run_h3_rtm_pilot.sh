@@ -8,6 +8,7 @@ cd "$ROOT"
 bash scripts/build_h3_p0.sh
 mkdir -p results/h3_rtm
 
+./build_h3_p0/h3_rtm_correctness.exe | tee results/h3_rtm/correctness.log
 ./build_h3_p0/h3_rtm_pilot.exe results/h3_rtm/pilot.csv 20000 5000 5000 \
   | tee results/h3_rtm/pilot.log
 

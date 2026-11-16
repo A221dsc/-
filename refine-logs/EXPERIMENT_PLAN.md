@@ -124,3 +124,15 @@ Pilot results: [PILOT_RESULTS.md](PILOT_RESULTS.md).
 - **C1'**：对固定 \(T\)，自适应选择 \(m\in[T,2T]\) 与映射，能比固定 \(m=T\) 降低 makespan/p99；不是“\(m>T\) 一定更好”。
 - **C2'**：training 负载选择 \(m\)/映射可接近 oracle（pilot gap 0.9%–2.5%）。
 - **C0**：hash 分片全局 H3 在空间 fanout 上明显劣于空间管理分区（pilot 强效应）。
+
+---
+
+## Correctness gate after R010（2026-11-16）
+
+Results: [CORRECTNESS_RESULTS.md](CORRECTNESS_RESULTS.md).
+
+- `WorkerShardedIndex` 在 4 km/res9（T=4/8，m=1.0/1.5/2.0）和 20 km/res10（T=8，m=2.0）共 7 组配置上通过。
+- 5,000 实体、1,000 查询、2,000 更新；初始/更新后/8 线程并行查询均与 `ArrayOracle` 一致，**0 mismatch**。
+- 已验证唯一归属、cell→worker 覆盖、worker 计数、跨 worker 移动、删除重插、并行只读。
+- 未验证：慢尺度增量分裂/合并与 worker 迁移的联合、并发写、真实线程队列、真实想定。
+- 因此 B1 正确性关卡通过，允许进入 M3；但性能结论仍必须由 B2 真实线程复核。

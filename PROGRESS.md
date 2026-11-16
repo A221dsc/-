@@ -232,3 +232,11 @@
 - H1'“自适应 m + fanout-aware 映射优于固定 m=T”初步成立：F 在 3/4 设置优于 B（−10.2%/−4.9%/−2.4%/+1.0%），相对 oracle 遗憾 0.9%–2.5%。
 - 最强效应：空间管理分区 B 远优于 hash 分片 A（20 km/8：22.6k vs 215.2k µs；fanout 1.30 vs 7.74；messages 2,959 vs 37,939）。
 - 下一步 M3：m/T 与 msg_cost 敏感性；通过后再做真实线程 B2。
+
+## H3-RTM 正确性关卡通过（2026-11-16）
+
+- 新增 `WorkerShardedIndex`：每个 H3 cell 唯一属于一个连通管理区域，区域唯一映射到 worker；worker 只持 `H3Index → ids` 桶，坐标全局单份。
+- 正确性测试 `tests/h3_rtm_correctness.cpp`：4 km/res9（T=4/8，m=1.0/1.5/2.0）+ 20 km/res10（T=8，m=2.0）共 7 组。
+- 每组 5,000 实体、1,000 查询、2,000 更新；初始、更新后、8 线程并行查询均与 ArrayOracle 0 mismatch；唯一归属/worker 计数/cell 覆盖通过。
+- 未验证：增量分裂合并+worker 迁移联合、并发写、真实线程队列、真实想定。
+- 报告 `refine-logs/CORRECTNESS_RESULTS.md`；日志 `results/h3_rtm/correctness.log`。

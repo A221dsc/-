@@ -490,6 +490,164 @@ FixedPartitionIndex::FixedPartitionIndex(std::shared_ptr<CellCover> cover,
     }
 }
 
+WorkerShardedIndex::WorkerShardedIndex(std::shared_ptr<CellCover> cover,
+                                               std::vector<int> region_assignment,
+                                               std::vector<int> region_to_worker)
+    : cover_(std::move(cover)),
+      region_to_worker_(std::move(region_to_worker)) {
+    if (!cover_) throw std::invalid_argument("WorkerShardedIndex: null cover");
+    if (region_assignment.size() != cover_->size()) {
+        throw std::invalid_argument("WorkerShardedIndex: assignment size");
+    }
+    if (region_to_worker_.empty()) {
+        throw std::invalid_argument("WorkerShardedIndex: empty mapping");
+    }
+    const int regions =
+        *std::max_element(region_assignment.begin(), region_assignment.end()) + 1;
+    if (regions > static_cast<int>(region_to_worker_.size())) {
+        throw std::invalid_argument("WorkerShardedIndex: mapping too short");
+    }
+    const int workers =
+        *std::max_element(region_to_worker_.begin(), region_to_worker_.end()) + 1;
+    if (workers <= 0) throw std::invalid_argument("WorkerShardedIndex: bad worker count");
+    worker_indexes_.resize(static_cast<std::size_t>(workers));
+    cell_to_worker_.assign(cover_->size(), -1);
+    for (std::size_t cell = 0; cell < region_assignment.size(); ++cell) {
+        const int region = region_assignment[cell];
+        if (region < 0 || region >= static_cast<int>(region_to_worker_.size())) {
+            throw std::invalid_argument("WorkerShardedIndex: bad region");
+        }
+        const int worker = region_to_worker_[static_cast<std::size_t>(region)];
+        if (worker < 0 || worker >= workers) {
+            throw std::invalid_argument("WorkerShardedIndex: bad worker");
+        }
+        cell_to_worker_[cell] = worker;
+    }
+}
+
+void WorkerShardedIndex::set(Id id, Point point) {
+    const GeoPoint geo = cover_->config().projection.toGeo(point);
+    LatLng ll{deg2rad(geo.lat_deg), deg2rad(geo.lng_deg)};
+    H3Index cell = H3_NULL;
+    h3_check(H3_EXPORT(latLngToCell)(&ll, cover_->config().resolution, &cell),
+             "latLngToCell");
+    const int cell_id = cover_->id_of(cell);
+    if (cell_id < 0) throw std::logic_error("WorkerShardedIndex: cell outside universe");
+    const int worker = cell_to_worker_.at(static_cast<std::size_t>(cell_id));
+    const auto old = points_.find(id);
+    if (old == points_.end()) {
+        worker_indexes_[static_cast<std::size_t>(worker)].add(cell, id);
+        points_.emplace(id, point);
+        cell_of_.emplace(id, cell);
+        return;
+    }
+    if (old->second == point) return;
+    const H3Index old_cell = cell_of_.at(id);
+    const int old_cell_id = cover_->id_of(old_cell);
+    const int old_worker = cell_to_worker_.at(static_cast<std::size_t>(old_cell_id));
+    if (old_worker != worker) {
+        worker_indexes_[static_cast<std::size_t>(old_worker)].remove(old_cell, id);
+        worker_indexes_[static_cast<std::size_t>(worker)].add(cell, id);
+    } else if (old_cell != cell) {
+        worker_indexes_[static_cast<std::size_t>(worker)].remove(old_cell, id);
+        worker_indexes_[static_cast<std::size_t>(worker)].add(cell, id);
+    }
+    points_[id] = point;
+    cell_of_[id] = cell;
+}
+
+void WorkerShardedIndex::erase(Id id) {
+    const auto it = points_.find(id);
+    if (it == points_.end()) return;
+    const H3Index cell = cell_of_.at(id);
+    const int cell_id = cover_->id_of(cell);
+    const int worker = cell_to_worker_.at(static_cast<std::size_t>(cell_id));
+    worker_indexes_[static_cast<std::size_t>(worker)].remove(cell, id);
+    points_.erase(it);
+    cell_of_.erase(id);
+}
+
+QueryResult WorkerShardedIndex::query(Query query) const {
+    QueryResult result;
+    const auto candidates = cover_->candidate_cells(query);
+    result.stats.candidate_cells = candidates.size();
+    std::vector<std::vector<CellId>> by_worker(worker_indexes_.size());
+    for (const CellId cell : candidates) {
+        const int worker = cell_to_worker_.at(static_cast<std::size_t>(cell));
+        if (worker >= 0) by_worker[static_cast<std::size_t>(worker)].push_back(cell);
+    }
+    for (std::size_t worker = 0; worker < by_worker.size(); ++worker) {
+        if (by_worker[worker].empty()) continue;
+        ++result.stats.leaves_visited;
+        for (const CellId cell : by_worker[worker]) {
+            ++result.stats.bucket_lookups;
+            const auto* ids =
+                worker_indexes_[worker].bucket(cover_->cell(cell).h3);
+            if (!ids) continue;
+            for (const Id id : *ids) {
+                ++result.stats.candidates;
+                if (query.matches(points_.at(id))) result.ids.push_back(id);
+            }
+        }
+    }
+    std::sort(result.ids.begin(), result.ids.end());
+    return result;
+}
+
+std::size_t WorkerShardedIndex::worker_entity_count(int worker) const {
+    if (worker < 0 || worker >= static_cast<int>(worker_indexes_.size())) return 0;
+    return worker_indexes_[static_cast<std::size_t>(worker)].entity_count();
+}
+
+std::size_t WorkerShardedIndex::total_bucket_count() const {
+    std::size_t count = 0;
+    for (const auto& index : worker_indexes_) count += index.bucket_count();
+    return count;
+}
+
+bool WorkerShardedIndex::validate(std::string* why) const {
+    try {
+        if (cell_to_worker_.size() != cover_->size()) {
+            throw std::runtime_error("cell_to_worker size mismatch");
+        }
+        std::size_t total = 0;
+        for (const auto& index : worker_indexes_) total += index.entity_count();
+        if (total != points_.size()) {
+            throw std::runtime_error("worker entity totals disagree with points");
+        }
+        std::unordered_map<Id, std::size_t> seen;
+        for (std::size_t cell = 0; cell < cover_->size(); ++cell) {
+            const int worker = cell_to_worker_[cell];
+            if (worker < 0) throw std::runtime_error("cell without worker");
+            const auto* ids = worker_indexes_[static_cast<std::size_t>(worker)].bucket(
+                cover_->cell(static_cast<CellId>(cell)).h3);
+            if (!ids) continue;
+            for (const Id id : *ids) {
+                if (++seen[id] != 1) throw std::runtime_error("duplicate entity id");
+                const auto pit = points_.find(id);
+                if (pit == points_.end()) throw std::runtime_error("entity without point");
+                const GeoPoint geo = cover_->config().projection.toGeo(pit->second);
+                LatLng ll{deg2rad(geo.lat_deg), deg2rad(geo.lng_deg)};
+                H3Index actual_h3 = H3_NULL;
+                h3_check(H3_EXPORT(latLngToCell)(
+                             &ll, cover_->config().resolution, &actual_h3),
+                         "latLngToCell");
+                const int actual_cell = cover_->id_of(actual_h3);
+                if (actual_cell != static_cast<int>(cell)) {
+                    throw std::runtime_error("entity is in the wrong cell bucket");
+                }
+            }
+        }
+        if (seen.size() != points_.size()) {
+            throw std::runtime_error("not all points are indexed");
+        }
+        return true;
+    } catch (const std::exception& error) {
+        if (why) *why = error.what();
+        return false;
+    }
+}
+
 CapacityPartitionIndex::CapacityPartitionIndex(std::shared_ptr<CellCover> cover,
                                                std::size_t split_threshold,
                                                std::size_t merge_threshold)

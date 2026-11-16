@@ -187,6 +187,37 @@ public:
     std::string name() const override { return "FIXED_PARTITION"; }
 };
 
+// H3-RTM execution substrate: each connected management region is assigned to
+// one worker, and each worker owns the H3-cell buckets of its regions. The
+// authoritative point table is shared; worker indexes store IDs only.
+class WorkerShardedIndex {
+public:
+    WorkerShardedIndex(std::shared_ptr<CellCover> cover,
+                       std::vector<int> region_assignment,
+                       std::vector<int> region_to_worker);
+
+    void set(Id id, Point point);
+    void erase(Id id);
+    QueryResult query(Query query) const;
+
+    std::size_t size() const { return points_.size(); }
+    std::size_t worker_count() const { return worker_indexes_.size(); }
+    std::size_t partition_count() const { return region_to_worker_.size(); }
+    const std::vector<int>& cell_to_worker() const { return cell_to_worker_; }
+    const std::vector<int>& region_to_worker() const { return region_to_worker_; }
+    std::size_t worker_entity_count(int worker) const;
+    std::size_t total_bucket_count() const;
+    bool validate(std::string* why = nullptr) const;
+
+private:
+    std::shared_ptr<CellCover> cover_;
+    std::vector<int> cell_to_worker_;
+    std::vector<int> region_to_worker_;
+    std::vector<H3EntityIndex> worker_indexes_;
+    std::unordered_map<Id, Point> points_;
+    std::unordered_map<Id, H3Index> cell_of_;
+};
+
 class CapacityPartitionIndex final : public PartitionedBase {
 public:
     CapacityPartitionIndex(std::shared_ptr<CellCover> cover,
