@@ -223,3 +223,12 @@
 - 结构影响成本（4 km 固定结构差约 16%），但没有可复现净收益；查询训练分区不优于机动分区。20 km 所有分区单/多线程均更慢。
 - 裁决：正确性通过；“结构影响成本”成立但方向不利；“存在可在线利用空间”不成立。不进入 H3-P2，不训练模型。若继续，仅做 `Worker(P_i)` 分区—线程映射 + 与全局分片锁/粗摘要公平对照的受限实验。
 - 报告 `H3_P0_MANAGEMENT_PARTITION_REPORT.md`；复现 `scripts/run_h3_partition.sh`；结果 `results/h3_partition/`。
+
+## H3-RTM：管理分区—执行映射的粒度/映射 pilot（2026-11-16）
+
+- 计划 `refine-logs/EXPERIMENT_PLAN.md`，结果 `refine-logs/PILOT_RESULTS.md`，代码 `tests/h3_rtm_pilot.cpp`，数据 `results/h3_rtm/pilot.csv`。
+- 20k 实体、5k test queries、5k updates、2 maps、3 seeds、4/8 workers；execution-model simulation（非真实线程墙钟）。
+- 原 H1“固定 m>T 一定更好”被否决：20 km/8 固定 m>T 更慢；4 km/T8 无稳定收益。
+- H1'“自适应 m + fanout-aware 映射优于固定 m=T”初步成立：F 在 3/4 设置优于 B（−10.2%/−4.9%/−2.4%/+1.0%），相对 oracle 遗憾 0.9%–2.5%。
+- 最强效应：空间管理分区 B 远优于 hash 分片 A（20 km/8：22.6k vs 215.2k µs；fanout 1.30 vs 7.74；messages 2,959 vs 37,939）。
+- 下一步 M3：m/T 与 msg_cost 敏感性；通过后再做真实线程 B2。
