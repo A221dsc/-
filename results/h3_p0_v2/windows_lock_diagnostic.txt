@@ -1,0 +1,24 @@
+H3-P0-v2 pre-fix diagnostic, Windows 11, MinGW GCC 13.2.0, POSIX thread model.
+The mixed replay used libstdc++ std::shared_mutex with _GLIBCXX_USE_PTHREAD_RWLOCK_T=1.
+
+Original run, 5 random frames per configuration:
+PASS A+Lock workers=4 seed=101 random_frames=5
+FAIL query is not the step-start snapshot
+
+Unprofiled blocking-acquire-only variant, 240 random frames per configuration:
+RUN A+Lock workers=4 seed=303
+FAIL bad bucket membership/offset
+
+Temporary diagnostic wrapped the original shared mutex. After each successful
+exclusive acquisition, an atomic exchange marked the active writer with
+-1000000; the mark was cleared inside the lock immediately before unlock.
+Shared acquisitions incremented the same counter inside the lock.
+The sentinel output indicated two overlapping exclusive owners:
+
+RUN A+Lock workers=4 seed=101
+mutex write overlap: -1000000
+
+This reproduces the failure before candidate filtering or bucket mutation.
+A single-lock stand-alone stress probe reported overlap=0. The replay trigger
+was intermittent. All Windows modes now use SRW locks and shared release and
+acquire semantics. Results from the affected MinGW path are diagnostics only.

@@ -1,0 +1,131 @@
+Linux 559f49ed1685 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+g++ (GCC) 14.3.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Built /tmp/h3san/tsan with flags -O1 -g -fno-omit-frame-pointer -fsanitize=thread
+SOURCE_FINGERPRINT 02bf184596dda2bb05533d3d1810e38f3c6cdbead69d0544787c1ff48ae953b8
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=180
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=180
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=180
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=180
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=180
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=180
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=180
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=180
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=180
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=180
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=180
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=180
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=180
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=180
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=180
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=180
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=180
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=180
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=180
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=180
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=180
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=180
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=180
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=180
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=180
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=180
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=180
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=180
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=180
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=180
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=180
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=180
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=180
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=180
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=180
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=180
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=180
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=180
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=180
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=180
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=180
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=180
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=180
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=180
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=180
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=180
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=180
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=180
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=180
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-A,A+Lock,8,12011,4000,12,3,0,0,1,768,1536,25134,30556.21867,61112.43734,1734980,5482242,5491712,1712856,5458243,5458243,5459,5459,441854,169238,15181332117965964744,0,0,0,8890560,0,0,424246,15116243,378860,255571,7314446,10770572,6724891,0,0,0,0,241,0,17442,1414,195872,197012,93456,0,43864064
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-A,A+Static,8,12011,4000,12,3,0,0,1,768,1536,28934,26543.16721,53086.33442,2130009,2802249,2875448,2011145,2672468,2672468,5459,5459,441854,169238,15181332117965964744,2156,0,3692,6810523,0,0,541056,17752357,2622113,440241,9710113,8944311,9071625,0,0,0,0,241,0,16549,137953,195872,197012,93456,964,44847104
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-A,A+StaticMatched,8,12011,4000,12,3,0,0,1,768,1536,28467,26978.60681,53957.21362,2081143,2630019,2682615,1923805,2445756,2445756,5459,5459,441854,169238,15181332117965964744,2971,0,4507,6906230,0,0,574116,16566235,2996691,480615,8654010,9315854,9073408,0,0,0,0,241,0,18637,1278125,195872,197012,93456,964,46321664
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-A,B+,8,12011,4000,12,3,0,0,1,768,1536,28365,27075.62136,54151.24273,2093376,2463645,2496026,1898857,2338452,2338452,5459,5459,441854,169238,15181332117965964744,2971,3098,4634,6561519,0,0,614718,16675653,3005903,346784,9171300,8721944,8964549,0,0,0,0,241,16,18613,1163139,195872,197012,93456,1992,46317568
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-B,A+Lock,8,12011,4000,12,3,0,0,1,768,1536,23525,32646.12115,65292.2423,1727806,4529658,4538016,1705978,4505539,4505539,5238,5238,343340,122072,15650690719774793406,0,0,0,5737980,0,0,325134,16775036,368357,314002,9339588,7030376,6836543,0,0,0,0,241,0,18288,1294,195872,199424,107592,0,42553344
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-B,A+Static,8,12011,4000,12,3,0,0,1,768,1536,27106,28333.21036,56666.42072,2067241,2425698,2530572,1963779,2339541,2339541,5238,5238,343340,122072,15650690719774793406,1922,0,3458,6678134,0,0,529899,16524942,2301020,424985,8747414,8403775,8882806,0,0,0,0,241,0,18389,172689,195872,199424,107592,964,43700224
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-B,A+StaticMatched,8,12011,4000,12,3,0,0,1,768,1536,24584,31239.83078,62479.66157,1828917,2187637,2247355,1690855,2063904,2063904,5238,5238,343340,122072,15650690719774793406,2406,0,3942,6484531,0,0,526293,14197809,2200413,347553,7776774,8413576,7218696,0,0,0,0,241,0,18439,1097262,195872,199424,107592,964,44683264
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-B,B+,8,12011,4000,12,3,0,0,1,768,1536,28014,27414.864,54829.72799,1893450,4614948,4763376,1778137,4508633,4508633,5238,5238,343340,122072,15650690719774793406,2406,2521,4057,6831483,0,0,590740,17147985,2261305,330707,10783473,8563495,7484545,0,0,0,0,241,16,19111,1169840,195872,199424,107592,1992,44519424
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-C,A+Lock,8,12011,4000,12,3,0,0,1,768,1536,20372,37698.80228,75397.60456,1537690,2033561,2041500,1511709,2013188,2013188,5415,5415,338217,126696,5714402940843455681,0,0,0,5663851,0,0,371021,13687498,352102,366641,7890740,5960455,6223277,0,0,0,0,241,0,17384,1258,195872,196436,91464,0,41734144
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-C,A+Static,8,12011,4000,12,3,0,0,1,768,1536,27569,27857.37604,55714.75208,2145192,2517595,2574177,2027801,2338337,2338337,5415,5415,338217,126696,5714402940843455681,1897,0,3433,6659814,0,0,563567,17010501,2146898,358307,9906613,7840580,8633587,0,0,0,0,241,0,18125,181640,195872,196436,91464,964,43044864
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-C,A+StaticMatched,8,12011,4000,12,3,0,0,1,768,1536,27769,27656.73953,55313.47906,2036656,4268371,4348699,1896334,4139279,4139279,5415,5415,338217,126696,5714402940843455681,2589,0,4125,8241453,0,0,669715,15405058,2227194,418919,9083431,7266911,10193078,0,0,0,0,241,0,18941,1091765,195872,196692,91464,964,44355584
+scenario,method,workers,seed,entities,ticks,warmup,period_us,profile,oracle,queries,updates,wall_us,query_per_s,update_per_s,q50_ns,q95_ns,q99_ns,u50_ns,u95_ns,u99_ns,candidate_cells,bucket_lookups,candidates,hits,signature,owner_fanout,region_fanout,routed_jobs,prepare_ns,cover_cpu_ns,route_cpu_ns,dispatch_ns,execute_ns,merge_ns,barrier_tail_ns,stage_a_ns,stage_transition_ns,stage_b_ns,late_ticks,missed_ticks,deadline_misses,pending_at_horizon,cover_cells,regions,construct_us,mapping_ns,initial_index_bytes,index_bytes,snapshot_bytes,mapping_bytes,peak_rss_bytes
+W8-C,B+,8,12011,4000,12,3,0,0,1,768,1536,25212,30461.68491,60923.36982,1947599,2464899,2653972,1852731,2338798,2338798,5415,5415,338217,126696,5714402940843455681,2589,2664,4200,6717982,0,0,629220,14356681,2287501,374095,8650868,7402959,7937557,0,0,0,0,241,16,19198,1243609,195872,196436,91464,1992,44519424
+SANITIZER GATE PASS

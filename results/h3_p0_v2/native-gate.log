@@ -1,0 +1,613 @@
+NATIVE DEBUG GATE (TSan/ASan unavailable on this host)
+MSYS_NT-10.0-26300 DESKTOP-IOM7CP3 10.0-26300 2026-11-09 09:14 UTC x86_64 Msys
+g++.exe (GCC) 13.2.0
+SOURCE_FINGERPRINT a287767384b8f98b2589ba5bf80aa8c7a1e4d31069b271f6efa947485bdd6b91
+FLAGS -O1 -g -D_GLIBCXX_DEBUG -D_GLIBCXX_ASSERTIONS
+BUILD OK
+STRESS frames=600 workers=8 repeat=1
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+STRESS frames=600 workers=8 repeat=2
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+STRESS frames=600 workers=16 repeat=1
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=600
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=600
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=600
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=600
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=600
+STRESS frames=600 workers=16 repeat=2
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=600
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=600
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=600
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=600
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=600
+STRESS frames=600 workers=32 repeat=1
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=32 seed=101
+PASS A+Lock workers=32 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=32 seed=202
+PASS A+Lock workers=32 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=32 seed=303
+PASS A+Lock workers=32 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=600
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=600
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=600
+RUN A+Static workers=32 seed=101
+PASS A+Static workers=32 seed=101 profile=1 random_frames=600
+RUN A+Static workers=32 seed=202
+PASS A+Static workers=32 seed=202 profile=0 random_frames=600
+RUN A+Static workers=32 seed=303
+PASS A+Static workers=32 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=32 seed=101
+PASS A+StaticMatched workers=32 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=32 seed=202
+PASS A+StaticMatched workers=32 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=32 seed=303
+PASS A+StaticMatched workers=32 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=600
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=600
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=600
+RUN B+ workers=32 seed=101
+PASS B+ workers=32 seed=101 profile=1 random_frames=600
+RUN B+ workers=32 seed=202
+PASS B+ workers=32 seed=202 profile=0 random_frames=600
+RUN B+ workers=32 seed=303
+PASS B+ workers=32 seed=303 profile=1 random_frames=600
+STRESS frames=600 workers=32 repeat=2
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=600
+RUN A+Lock workers=32 seed=101
+PASS A+Lock workers=32 seed=101 profile=1 random_frames=600
+RUN A+Lock workers=32 seed=202
+PASS A+Lock workers=32 seed=202 profile=0 random_frames=600
+RUN A+Lock workers=32 seed=303
+PASS A+Lock workers=32 seed=303 profile=1 random_frames=600
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=600
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=600
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=600
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=600
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=600
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=600
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=600
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=600
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=600
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=600
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=600
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=600
+RUN A+Static workers=32 seed=101
+PASS A+Static workers=32 seed=101 profile=1 random_frames=600
+RUN A+Static workers=32 seed=202
+PASS A+Static workers=32 seed=202 profile=0 random_frames=600
+RUN A+Static workers=32 seed=303
+PASS A+Static workers=32 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=600
+RUN A+StaticMatched workers=32 seed=101
+PASS A+StaticMatched workers=32 seed=101 profile=1 random_frames=600
+RUN A+StaticMatched workers=32 seed=202
+PASS A+StaticMatched workers=32 seed=202 profile=0 random_frames=600
+RUN A+StaticMatched workers=32 seed=303
+PASS A+StaticMatched workers=32 seed=303 profile=1 random_frames=600
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=600
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=600
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=600
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=600
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=600
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=600
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=600
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=600
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=600
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=600
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=600
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=600
+RUN B+ workers=32 seed=101
+PASS B+ workers=32 seed=101 profile=1 random_frames=600
+RUN B+ workers=32 seed=202
+PASS B+ workers=32 seed=202 profile=0 random_frames=600
+RUN B+ workers=32 seed=303
+PASS B+ workers=32 seed=303 profile=1 random_frames=600
+VERIFY OK A A+Lock
+VERIFY OK A A+Static
+VERIFY OK A A+StaticMatched
+VERIFY OK A B+
+VERIFY OK B A+Lock
+VERIFY OK B A+Static
+VERIFY OK B A+StaticMatched
+VERIFY OK B B+
+VERIFY OK C A+Lock
+VERIFY OK C A+Static
+VERIFY OK C A+StaticMatched
+VERIFY OK C B+
+NATIVE GATE PASS

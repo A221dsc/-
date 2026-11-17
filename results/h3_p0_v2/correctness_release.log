@@ -1,0 +1,98 @@
+RUN A+ workers=1 seed=42
+PASS A+ workers=1 seed=42 profile=1 random_frames=500
+RUN A+Lock workers=1 seed=101
+PASS A+Lock workers=1 seed=101 profile=1 random_frames=500
+RUN A+Lock workers=1 seed=202
+PASS A+Lock workers=1 seed=202 profile=0 random_frames=500
+RUN A+Lock workers=1 seed=303
+PASS A+Lock workers=1 seed=303 profile=1 random_frames=500
+RUN A+Lock workers=4 seed=101
+PASS A+Lock workers=4 seed=101 profile=1 random_frames=500
+RUN A+Lock workers=4 seed=202
+PASS A+Lock workers=4 seed=202 profile=0 random_frames=500
+RUN A+Lock workers=4 seed=303
+PASS A+Lock workers=4 seed=303 profile=1 random_frames=500
+RUN A+Lock workers=8 seed=101
+PASS A+Lock workers=8 seed=101 profile=1 random_frames=500
+RUN A+Lock workers=8 seed=202
+PASS A+Lock workers=8 seed=202 profile=0 random_frames=500
+RUN A+Lock workers=8 seed=303
+PASS A+Lock workers=8 seed=303 profile=1 random_frames=500
+RUN A+Lock workers=16 seed=101
+PASS A+Lock workers=16 seed=101 profile=1 random_frames=500
+RUN A+Lock workers=16 seed=202
+PASS A+Lock workers=16 seed=202 profile=0 random_frames=500
+RUN A+Lock workers=16 seed=303
+PASS A+Lock workers=16 seed=303 profile=1 random_frames=500
+RUN A+Static workers=1 seed=101
+PASS A+Static workers=1 seed=101 profile=1 random_frames=500
+RUN A+Static workers=1 seed=202
+PASS A+Static workers=1 seed=202 profile=0 random_frames=500
+RUN A+Static workers=1 seed=303
+PASS A+Static workers=1 seed=303 profile=1 random_frames=500
+RUN A+Static workers=4 seed=101
+PASS A+Static workers=4 seed=101 profile=1 random_frames=500
+RUN A+Static workers=4 seed=202
+PASS A+Static workers=4 seed=202 profile=0 random_frames=500
+RUN A+Static workers=4 seed=303
+PASS A+Static workers=4 seed=303 profile=1 random_frames=500
+RUN A+Static workers=8 seed=101
+PASS A+Static workers=8 seed=101 profile=1 random_frames=500
+RUN A+Static workers=8 seed=202
+PASS A+Static workers=8 seed=202 profile=0 random_frames=500
+RUN A+Static workers=8 seed=303
+PASS A+Static workers=8 seed=303 profile=1 random_frames=500
+RUN A+Static workers=16 seed=101
+PASS A+Static workers=16 seed=101 profile=1 random_frames=500
+RUN A+Static workers=16 seed=202
+PASS A+Static workers=16 seed=202 profile=0 random_frames=500
+RUN A+Static workers=16 seed=303
+PASS A+Static workers=16 seed=303 profile=1 random_frames=500
+RUN A+StaticMatched workers=1 seed=101
+PASS A+StaticMatched workers=1 seed=101 profile=1 random_frames=500
+RUN A+StaticMatched workers=1 seed=202
+PASS A+StaticMatched workers=1 seed=202 profile=0 random_frames=500
+RUN A+StaticMatched workers=1 seed=303
+PASS A+StaticMatched workers=1 seed=303 profile=1 random_frames=500
+RUN A+StaticMatched workers=4 seed=101
+PASS A+StaticMatched workers=4 seed=101 profile=1 random_frames=500
+RUN A+StaticMatched workers=4 seed=202
+PASS A+StaticMatched workers=4 seed=202 profile=0 random_frames=500
+RUN A+StaticMatched workers=4 seed=303
+PASS A+StaticMatched workers=4 seed=303 profile=1 random_frames=500
+RUN A+StaticMatched workers=8 seed=101
+PASS A+StaticMatched workers=8 seed=101 profile=1 random_frames=500
+RUN A+StaticMatched workers=8 seed=202
+PASS A+StaticMatched workers=8 seed=202 profile=0 random_frames=500
+RUN A+StaticMatched workers=8 seed=303
+PASS A+StaticMatched workers=8 seed=303 profile=1 random_frames=500
+RUN A+StaticMatched workers=16 seed=101
+PASS A+StaticMatched workers=16 seed=101 profile=1 random_frames=500
+RUN A+StaticMatched workers=16 seed=202
+PASS A+StaticMatched workers=16 seed=202 profile=0 random_frames=500
+RUN A+StaticMatched workers=16 seed=303
+PASS A+StaticMatched workers=16 seed=303 profile=1 random_frames=500
+RUN B+ workers=1 seed=101
+PASS B+ workers=1 seed=101 profile=1 random_frames=500
+RUN B+ workers=1 seed=202
+PASS B+ workers=1 seed=202 profile=0 random_frames=500
+RUN B+ workers=1 seed=303
+PASS B+ workers=1 seed=303 profile=1 random_frames=500
+RUN B+ workers=4 seed=101
+PASS B+ workers=4 seed=101 profile=1 random_frames=500
+RUN B+ workers=4 seed=202
+PASS B+ workers=4 seed=202 profile=0 random_frames=500
+RUN B+ workers=4 seed=303
+PASS B+ workers=4 seed=303 profile=1 random_frames=500
+RUN B+ workers=8 seed=101
+PASS B+ workers=8 seed=101 profile=1 random_frames=500
+RUN B+ workers=8 seed=202
+PASS B+ workers=8 seed=202 profile=0 random_frames=500
+RUN B+ workers=8 seed=303
+PASS B+ workers=8 seed=303 profile=1 random_frames=500
+RUN B+ workers=16 seed=101
+PASS B+ workers=16 seed=101 profile=1 random_frames=500
+RUN B+ workers=16 seed=202
+PASS B+ workers=16 seed=202 profile=0 random_frames=500
+RUN B+ workers=16 seed=303
+PASS B+ workers=16 seed=303 profile=1 random_frames=500

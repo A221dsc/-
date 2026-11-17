@@ -1,0 +1,234 @@
+{
+  "host": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "topology": {
+    "allowed_logical": 20,
+    "physical_cores": 14,
+    "numa_nodes": [
+      0
+    ],
+    "affinity_mask": "0xfffff",
+    "cpu_sets": [
+      {
+        "cpu": 0,
+        "group": 0,
+        "core": 0,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 1,
+        "group": 0,
+        "core": 0,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": true
+      },
+      {
+        "cpu": 2,
+        "group": 0,
+        "core": 2,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 3,
+        "group": 0,
+        "core": 2,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": true
+      },
+      {
+        "cpu": 4,
+        "group": 0,
+        "core": 4,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 5,
+        "group": 0,
+        "core": 4,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 6,
+        "group": 0,
+        "core": 6,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 7,
+        "group": 0,
+        "core": 6,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": true
+      },
+      {
+        "cpu": 8,
+        "group": 0,
+        "core": 8,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 9,
+        "group": 0,
+        "core": 8,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": true
+      },
+      {
+        "cpu": 10,
+        "group": 0,
+        "core": 10,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": false
+      },
+      {
+        "cpu": 11,
+        "group": 0,
+        "core": 10,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 1,
+        "parked": true
+      },
+      {
+        "cpu": 12,
+        "group": 0,
+        "core": 12,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 13,
+        "group": 0,
+        "core": 13,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 14,
+        "group": 0,
+        "core": 14,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 15,
+        "group": 0,
+        "core": 15,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 16,
+        "group": 0,
+        "core": 16,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 17,
+        "group": 0,
+        "core": 17,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 18,
+        "group": 0,
+        "core": 18,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      },
+      {
+        "cpu": 19,
+        "group": 0,
+        "core": 19,
+        "llc": 0,
+        "numa": 0,
+        "efficiency_class": 0,
+        "parked": false
+      }
+    ],
+    "pinning": "OS placement within inherited process affinity",
+    "cim": "unavailable (['powershell', '-NoProfile', '-Command', '[Console]::OutputEncoding = [Text.UTF8Encoding]::new(); Get-CimInstance Win32_Processor | Select Name,NumberOfCores,Nu)",
+    "power_scheme": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)"
+  },
+  "threads": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "skipped_threads": [
+    32
+  ],
+  "resolution": 9,
+  "h3": "4.1.0",
+  "compiler": "g++ (GCC) 13.2.0\r\nCopyright (C) 2023 Free Software Foundation, Inc.\r\nThis is free software; see the source for copying conditions.  There is NO\r\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n\r\n",
+  "flags": "-std=c++20 -O3 -DNDEBUG -pthread -Wall -Wextra",
+  "source_base": "98e06037b15faf90e8768a50e036d82b6b3345a9",
+  "binary_sha256": "9706a0967e59471e40e0d8992e47cefeaa38ce8ede7079ae2fdeea83adefc7fb",
+  "source_sha256": "a287767384b8f98b2589ba5bf80aa8c7a1e4d31069b271f6efa947485bdd6b91",
+  "quick": false,
+  "methods": [
+    "A+Lock",
+    "A+Static",
+    "A+StaticMatched",
+    "B+"
+  ],
+  "seeds": [
+    12011,
+    14447,
+    17021,
+    19531,
+    21961,
+    24407,
+    26777,
+    29303
+  ],
+  "timer": "QueryPerformanceCounter (10000000 Hz), high-resolution waitable timer for arrivals",
+  "gate": "native-debug-stress",
+  "worker_mode": "persistent native threads",
+  "sentinel_rule": "flag ratios outside [0.95, 1.05]; retain all observations"
+}

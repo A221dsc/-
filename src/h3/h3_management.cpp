@@ -161,18 +161,15 @@ int CellCover::id_of(H3Index h3) const {
 std::vector<CellId> CellCover::candidate_cells(const Query& query) const {
     std::vector<CellId> out;
     const double expand = max_radius_ + config_.cell_margin_m;
-    const int gx0 = std::clamp(
-        static_cast<int>(std::floor((query.box.x0 - expand - grid_min_x_) / grid_cell_)),
-        0, grid_w_ - 1);
-    const int gx1 = std::clamp(
-        static_cast<int>(std::floor((query.box.x1 + expand - grid_min_x_) / grid_cell_)),
-        0, grid_w_ - 1);
-    const int gy0 = std::clamp(
-        static_cast<int>(std::floor((query.box.y0 - expand - grid_min_y_) / grid_cell_)),
-        0, grid_h_ - 1);
-    const int gy1 = std::clamp(
-        static_cast<int>(std::floor((query.box.y1 + expand - grid_min_y_) / grid_cell_)),
-        0, grid_h_ - 1);
+    const auto grid_index = [&](double edge, double origin, int extent) {
+        const auto relative = (edge - origin) / grid_cell_;
+        if (std::isnan(relative)) throw std::invalid_argument("invalid query bounds");
+        return static_cast<int>(std::clamp(relative, 0.0, static_cast<double>(extent - 1)));
+    };
+    const int gx0 = grid_index(query.box.x0 - expand, grid_min_x_, grid_w_);
+    const int gx1 = grid_index(query.box.x1 + expand, grid_min_x_, grid_w_);
+    const int gy0 = grid_index(query.box.y0 - expand, grid_min_y_, grid_h_);
+    const int gy1 = grid_index(query.box.y1 + expand, grid_min_y_, grid_h_);
     for (int gy = gy0; gy <= gy1; ++gy) {
         for (int gx = gx0; gx <= gx1; ++gx) {
             for (const CellId id : grid_[static_cast<std::size_t>(gy * grid_w_ + gx)]) {
